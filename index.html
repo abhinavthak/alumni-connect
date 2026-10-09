@@ -820,8 +820,7 @@ function listing(a){
             ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
             <div>${ic('users')}<span>Peers and networking</span></div><div>${ic('cap')}<span>Admission and eligibility</span></div></div></div>
           <div class="sec"><div class="overall">${STAR.replace('<svg','<svg style="width:28px;height:28px;fill:currentColor"')}<b class="num">${avg.toFixed(1)}</b><span class="muted">${esc(a.first)}'s university scorecard, out of 5</span></div>
-            <div class="scores">${Object.entries(a.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div>
-            <div class="facts"><div class="fact"><b class="num">${a.median}</b><span>${esc(a.first)}'s salary change after the degree</span></div><div class="fact"><b class="num">${a.fees}</b><span>Total fees paid over the course</span></div></div></div>
+            <div class="scores">${Object.entries(a.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div></div>
           <div class="sec" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
             <div class="reviews">${REVIEWS.map(([n,c,t,h])=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="stars">${STAR.repeat(5)}</div><p>${esc(t)}</p></div>`).join('')}</div></div>
         </div>
