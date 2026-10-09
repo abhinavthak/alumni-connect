@@ -278,13 +278,19 @@ textarea{resize:vertical}
 .subline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:15px;margin-top:6px}
 .subline b{font-weight:600}
 .cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;margin-top:28px;align-items:start}
-.edu{display:grid;gap:12px}
-.edu-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--line-soft);border-radius:14px;padding:12px 14px}
-.edu-row .tile{width:48px;height:48px;border-radius:12px;background:var(--soft);display:grid;place-items:center}
-.edu-row .tile svg.i{width:22px;height:22px;stroke-width:1.6}
-.edu-row b{display:block;font-weight:600}
-.edu-row span{font-size:13.5px;color:var(--muted)}
-.edu-row .tag svg.i{width:12px;height:12px;stroke-width:3}
+.tl{list-style:none;margin:0;padding:0;display:grid}
+.tl-i{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding-bottom:24px}
+.tl-i:last-child{padding-bottom:0}
+.tl-i:not(:last-child)::before{content:"";position:absolute;left:23.5px;top:52px;bottom:4px;border-left:2px solid var(--line-soft)}
+.tl-logo{width:48px;height:48px;border-radius:12px;background:var(--soft);border:1px solid var(--line-soft);display:grid;place-items:center;position:relative;z-index:1}
+.tl-logo svg.i{width:22px;height:22px;stroke-width:1.6}
+.tl-b{display:grid;gap:2px;min-width:0;padding-top:2px}
+.tl-b b{font-weight:600;font-size:16px}
+.tl-b .deg{font-size:14.5px}
+.tl-b .yrs{font-size:13.5px;color:var(--muted)}
+.tl-b .vchk{display:inline-flex;align-items:center;gap:4px;color:var(--good);font-weight:600}
+.tl-b .vchk svg.i{width:12px;height:12px;stroke-width:3}
+.tl-b p{font-size:14.5px;line-height:1.55;margin-top:8px;max-width:62ch}
 .socs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
 .soc{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--bg);font:inherit;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .soc:hover{border-color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.06)}
@@ -299,7 +305,9 @@ textarea{resize:vertical}
 .ms svg.i{width:15px;height:15px}
 .deg-ed{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:12px}
 .deg-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.deg-grid{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:10px}
+.deg-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.tl.ed .tl-i:not(:last-child)::before{top:52px}
+.tl.ed .tl-i{padding-bottom:16px}
 .deg-ed .x svg.i{width:16px;height:16px}
 .soc-ed{display:flex;align-items:flex-end;gap:12px}
 .soc-ed .si{width:40px;height:40px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none;margin-bottom:2px}
@@ -581,15 +589,33 @@ const ALUMNI=[
 const NEXT=['Today, 8:30 PM','Tomorrow, 7:00 PM','Sat, 11:00 AM','Sun, 5:00 PM','Today, 9:00 PM','Tomorrow, 6:30 PM','Mon, 8:00 PM','Sat, 4:00 PM','Tomorrow, 9:00 PM','Today, 7:30 PM','Sun, 10:00 AM','Fri, 8:00 PM','Tomorrow, 8:00 PM','Sat, 6:00 PM'];
 const LANGS=['English, Hindi, Tamil','English, Hindi, Gujarati','English, Marathi, Hindi','English, Hindi, Punjabi','English, Hindi, Urdu','English, Telugu, Kannada','English, Hindi, Marathi','English, Malayalam, Hindi','English, Malayalam, Tamil','English, Telugu, Hindi','English, Hindi','English, Bengali, Hindi','English, Hindi, Urdu','English, Gujarati, Hindi'];
 const STREAM={1:'mca',2:'mba',3:'ba',4:'mba',5:'bca',6:'bcom',7:'bba',8:'mba',9:'mca',10:'msc',11:'ma',12:'mcom',13:'ma',14:'bba'};
-const EXTRA_DEG={1:[['BCA',2018,'Deccan University Online']],2:[['BCom',2017,'Deccan University Online']],4:[['BBA',2015,'Konkan Open University']],8:[['MCom',2012,'Deccan University Online']],10:[['BA',2017,'Satpura University Online']],12:[['BCom',2016,'Deccan University Online']]};
+const EDU={
+ 1:[['MCA',2019,2021,'Vindhya University Online','Computer Applications','Evening live classes while working in customer support. Final project: a ticket-routing service, reviewed by an industry mentor.'],['BCA',2015,2018,'Deccan University Online','Computer Applications','Studied full time online from Madurai. Ran the student coding club and won the inter-university hackathon in year 3.']],
+ 2:[['MBA',2020,2022,'Narmada University Online','Marketing','Weekend live sessions alongside a sales job. Capstone on rural FMCG distribution with a Marico mentor.'],['BCom',2014,2017,'Deccan University Online','Accounting and Finance','Commerce basics while working in the family textile business.']],
+ 3:[['BA',2017,2020,'Konkan Open University','Psychology','Recorded lectures let me freelance in design alongside. Research project on how students choose courses online.']],
+ 4:[['MBA',2017,2019,'Aravali University Online','Operations and Supply Chain','Studied while working in logistics. Proctored exams every term; my employer counted the degree for promotion.'],['BBA',2012,2015,'Konkan Open University','General Management','First degree after joining a warehouse team at 19.']],
+ 5:[['BCA',2020,2023,'Vindhya University Online','Data Analytics','Evening live classes and weekend doubt sessions. Built a dashboard project that landed my internship.']],
+ 6:[['BCom',2018,2021,'Deccan University Online','Accounting and Taxation','Did it alongside CA Intermediate. Flexible exam slots let me write both.']],
+ 7:[['BBA',2019,2022,'Narmada University Online','Business Analytics','Live case sessions every week. Used the saved commuting time for three internships.']],
+ 8:[['MBA',2016,2018,'Konkan Open University','Executive MBA','Weekend programme at 34 while working full time. UGC-entitled, accepted by HR for promotion.'],['MCom',2010,2012,'Deccan University Online','Finance','Studied by distance mode during my first job at a Pune auto supplier.']],
+ 9:[['MCA',2020,2022,'Aravali University Online','Software Engineering','Kept the curriculum light and spent most time on open-source projects that got me hired.']],
+ 10:[['MSc',2018,2020,'Godavari University Online','Data Science','Statistics faculty were excellent; Python I practised on my own. Thesis on hospital readmission data.'],['BA',2014,2017,'Satpura University Online','Economics','Studied while working as a lab assistant.']],
+ 11:[['MA',2019,2021,'Satpura University Online','English Literature','Rigorous reading lists and weekly written assignments, which trained me to write to deadlines.']],
+ 12:[['MCom',2017,2019,'Deccan University Online','Finance and Taxation','Fit around month-end closing at work. Taxation modules were directly useful.'],['BCom',2013,2016,'Deccan University Online','Accounting','First degree, studied from Kolkata.']],
+ 13:[['MA',2020,2022,'Satpura University Online','Journalism and Mass Communication','Freelanced for local outlets throughout; my portfolio, not the degree, got me hired.']],
+ 14:[['BBA',2017,2020,'Godavari University Online','Marketing','Joined the family business at 18 and studied around work without a break.']],
+};
+const sortEdu=ds=>ds.sort((x,y)=>(y.batch-x.batch)||(y.start-x.start));
+const syncLatest=a=>{if(!a.degrees.length)return;sortEdu(a.degrees);const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college};
+const COURSE_FULL={MBA:'Master of Business Administration',MCA:'Master of Computer Applications',BBA:'Bachelor of Business Administration',BCA:'Bachelor of Computer Applications',BCom:'Bachelor of Commerce',MCom:'Master of Commerce',MA:'Master of Arts',MSc:'Master of Science',BA:'Bachelor of Arts'};
 const COURSE_STREAM={MBA:'mba',MCA:'mca',BBA:'bba',BCA:'bca',BCom:'bcom',MCom:'mcom',MA:'ma',MSc:'msc',BA:'ba'};
 const SOC_META={linkedin:['LinkedIn','linkedin','#0A66C2'],instagram:['Instagram','instagram','#E1306C'],youtube:['YouTube','youtube','#FF0000'],x:['X','xsoc','#111111'],website:['Website','globe','#222222']};
 const SOCIALS={1:{linkedin:'in/ananya-iyer-dev',instagram:'@ananya.codes'},2:{linkedin:'in/rohanmehta-brand',instagram:'@rohan.markets'},3:{linkedin:'in/sneha-kulkarni-ux',website:'snehakulkarni.design'},4:{linkedin:'in/arjun-singh-scm'},5:{linkedin:'in/fatima-shaikh-data',x:'@fatimadata'},6:{linkedin:'in/karthik-rao-ca'},7:{linkedin:'in/meera-joshi-ba',instagram:'@meera.cases'},8:{linkedin:'in/vikram-nair-pm'},9:{linkedin:'in/priya-menon-eng',x:'@priyabuilds',website:'priyamenon.dev'},10:{linkedin:'in/kavya-reddy-ds',youtube:'@KavyaExplainsData'},11:{linkedin:'in/aditi-sharma-writes',instagram:'@aditi.reads'},12:{linkedin:'in/siddharth-bose-fin'},13:{linkedin:'in/zoya-khan-news',x:'@zoyareports',youtube:'@ZoyaOnTheGround'},14:{linkedin:'in/harsh-patel-bd'}};
 ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];
-  a.degrees=[{course:a.course,batch:a.batch,college:a.college},...(EXTRA_DEG[a.id]||[]).map(([course,batch,college])=>({course,batch,college}))];
+  a.degrees=(EDU[a.id]||[]).map(([course,start,batch,college,field,details])=>({course,start,batch,college,field,details,verified:true}));syncLatest(a);
   a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
 const streamsOf=a=>a.degrees.map(d=>COURSE_STREAM[d.course]);
-const syncPrimary=a=>{const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college};
+
 const CATS=[['all','All programs','all'],['mba','MBA','chart'],['mca','MCA','code'],['bba','BBA','brief'],['bca','BCA','laptop'],['bcom','BCom','calc'],['mcom','MCom','rupee'],['ma','MA','book'],['msc','MSc','flask'],['ba','BA','pen']];
 const TOPICS=['Placement support','Live classes','Exams & assessments','Degree recognition','Fees & EMI','Work + study','Career switch','Faculty'];
 const TOPIC_ICON={'Placement support':'brief','Live classes':'video','Exams & assessments':'book','Degree recognition':'shield','Fees & EMI':'rupee','Work + study':'clock','Career switch':'rocket','Faculty':'users'};
@@ -773,10 +799,12 @@ function listing(a){
           </div>
           <div class="sec"><div class="hl">
             ${a.fav?`<div>${ic('medal')}<p><b>Student favourite</b><span>One of the most-loved alumni on Alumni Connect, based on ratings and reviews.</span></p></div>`:''}
-            <div>${ic('shield')}<p><b>Verified alumni</b><span>${a.degrees.length>1?`${a.degrees.length} degrees`:'Degree'} verified with a university email and degree certificate.</span></p></div>
+            <div>${ic('shield')}<p><b>Verified alumni</b><span>Education verified with a university email and degree certificate.</span></p></div>
             <div>${ic('clock')}<p><b>Replies ${a.respond}</b><span>${a.calls} calls completed with students and parents.</span></p></div>
           </div></div>
-          <div class="sec"><h2>Education</h2><div class="edu">${a.degrees.map((d,i)=>`<div class="edu-row"><span class="tile">${ic(CATS.find(c=>c[0]===COURSE_STREAM[d.course])?.[2]||'cap')}</span><div><b>${esc(d.course)} · ${esc(d.college)}</b><span>Class of ${d.batch}${i===0?' · Main degree':''}</span></div><span class="tag ok">${ic('check')}Verified</span></div>`).join('')}</div></div>
+          <div class="sec"><h2>Education</h2><ol class="tl">${a.degrees.map(d=>`<li class="tl-i"><span class="tl-logo">${ic(CATS.find(c=>c[0]===COURSE_STREAM[d.course])?.[2]||'cap')}</span><div class="tl-b">
+              <b>${esc(d.college)}</b><span class="deg">${COURSE_FULL[d.course]||esc(d.course)} (${esc(d.course)})${d.field?`, ${esc(d.field)}`:''}</span>
+              <span class="yrs num">${d.start} – ${d.batch} · ${d.batch-d.start} yr${d.batch-d.start===1?'':'s'}${d.verified?` · <span class="vchk">${ic('check')}Verified</span>`:''}</span>${d.details?`<p>${esc(d.details)}</p>`:''}</div></li>`).join('')}</ol></div>
           ${a.socials.filter(x=>x.show).length?`<div class="sec"><h2>Find ${esc(a.first)} online</h2><div class="socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="soc" data-soc="${lbl}" style="--c:${col}"><span class="si">${ic(icn)}</span><span class="sx"><b>${lbl}</b><small>${esc(x.handle)}</small></span></button>`}).join('')}</div></div>`:''}
           <div class="sec"><h2>In ${esc(a.first)}'s words</h2><p class="bigquote">“${esc(a.quote)}”</p></div>
           <div class="sec"><h2>What you can ask about</h2><div class="ask">
@@ -897,19 +925,20 @@ function dProfile(){
   const socOf=n=>ME.socials.find(x=>x.net===n);
   return `<div class="hhead"><div><h1>Your profile</h1><p>Your degrees and links, as students see them on your profile.</p></div><button class="btn dark sm" id="save-profile">Save</button></div>
   <div class="two">
-    <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2>Education</h2><span class="muted" style="font-size:13px">${ME.degrees.length} of 4</span></div>
-      <p class="muted" style="font-size:14px;margin-top:-8px">Your main degree shows on your listing card. Students can filter by any of them.</p>
-      ${ME.degrees.map((d,i)=>`<div class="deg-ed">
-        <div class="deg-top"><span class="tag ${i===0?'free':''}">${i===0?'Main degree':'Degree '+(i+1)}</span>
-          <div style="display:flex;gap:4px">${i>0?`<button class="linkbtn" data-degmain="${i}">Make main</button>`:''}${ME.degrees.length>1?`<button class="x" data-degdel="${i}" aria-label="Remove degree ${i+1}">${ic('trash')}</button>`:''}</div></div>
+    <div class="panel"><h2>Education</h2>
+      <p class="muted" style="font-size:14px;margin-top:-8px">Listed newest first, like a timeline. Your most recent degree shows on your listing card.</p>
+      <ol class="tl ed">${ME.degrees.map((d,i)=>`<li class="tl-i"><span class="tl-logo">${ic(CATS.find(c=>c[0]===COURSE_STREAM[d.course])?.[2]||'cap')}</span><div class="deg-ed">
+        <div class="deg-top"><b class="num">${d.start} – ${d.batch}</b><div style="display:flex;gap:6px;align-items:center">${d.verified?'<span class="tag ok">Verified</span>':'<span class="tag">Verification pending</span>'}<button class="x" data-degdel="${i}" aria-label="Remove this education">${ic('trash')}</button></div></div>
+        <label class="field">University<input class="input" id="deg-u-${i}" data-deg="${i}" data-f="college" value="${esc(d.college)}" placeholder="e.g. Vindhya University Online"></label>
         <div class="deg-grid">
-          <label class="field">Course<select class="input" id="deg-c-${i}" data-deg="${i}" data-f="course">${COURSES.map(c=>`<option ${c===d.course?'selected':''}>${c}</option>`).join('')}</select></label>
-          <label class="field">Graduated<input class="input num" id="deg-b-${i}" type="number" min="1990" max="2030" data-deg="${i}" data-f="batch" value="${d.batch}"></label>
-          <label class="field" style="grid-column:1/-1">University<input class="input" id="deg-u-${i}" data-deg="${i}" data-f="college" value="${esc(d.college)}"></label>
+          <label class="field">Degree<select class="input" id="deg-c-${i}" data-deg="${i}" data-f="course">${COURSES.map(c=>`<option value="${c}" ${c===d.course?'selected':''}>${c}</option>`).join('')}</select></label>
+          <label class="field">Field of study<input class="input" id="deg-f-${i}" data-deg="${i}" data-f="field" value="${esc(d.field||'')}" placeholder="e.g. Marketing"></label>
+          <label class="field">Start year<input class="input num" id="deg-s-${i}" type="number" min="1980" max="2035" data-deg="${i}" data-f="start" value="${d.start}"></label>
+          <label class="field">End year (or expected)<input class="input num" id="deg-b-${i}" type="number" min="1980" max="2035" data-deg="${i}" data-f="batch" value="${d.batch}"></label>
         </div>
-        <span class="tag ok" style="justify-self:start">${ic('check','style="width:12px;height:12px"')} ${i<2?'Verified':'Verification pending'}</span>
-      </div>`).join('')}
-      ${ME.degrees.length<4?`<button class="btn sm" id="add-degree" style="justify-self:start">${ic('plus')}Add another degree</button>`:''}
+        <label class="field">Details<textarea class="input" id="deg-d-${i}" rows="2" data-deg="${i}" data-f="details" placeholder="Projects, activities, how you studied alongside work">${esc(d.details||'')}</textarea></label>
+      </div></li>`).join('')}</ol>
+      <button class="btn sm" id="add-degree" style="justify-self:start">${ic('plus')}Add education</button>
     </div>
     <div class="panel"><h2>Social links</h2>
       <p class="muted" style="font-size:14px;margin-top:-8px">Switch on the ones students should see. Links help students trust that you're real.</p>
@@ -1002,10 +1031,9 @@ document.addEventListener('click',e=>{
   if(t.id==='save-av'){toast('Calendar saved');return}
   if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;ME.median=$('#my-ctc').value;ME.fees=$('#my-fees').value;Object.assign(ME.scores,MY_SCORES);toast('Review saved. Students see it on your profile');return}
   if(d.soc){toast(`In the live product this opens ${d.soc}`);return}
-  if(t.id==='add-degree'){ME.degrees.push({course:'MBA',batch:new Date().getFullYear(),college:''});render();$('#deg-u-'+(ME.degrees.length-1))?.focus();return}
-  if(d.degdel){ME.degrees.splice(+d.degdel,1);syncPrimary(ME);render();toast('Degree removed');return}
-  if(d.degmain){const [x]=ME.degrees.splice(+d.degmain,1);ME.degrees.unshift(x);syncPrimary(ME);render();toast(`${x.course} is now your main degree`);return}
-  if(t.id==='save-profile'){syncPrimary(ME);toast('Profile saved. Students see your degrees and links now');return}
+  if(t.id==='add-degree'){const y=new Date().getFullYear();ME.degrees.unshift({course:'MBA',start:y-2,batch:y,college:'',field:'',details:'',verified:false});render();$('#deg-u-0')?.focus();return}
+  if(d.degdel){if(ME.degrees.length===1){toast('Keep at least one education entry');return}ME.degrees.splice(+d.degdel,1);syncLatest(ME);render();toast('Education removed');return}
+  if(t.id==='save-profile'){syncLatest(ME);render();toast('Profile saved. Students see your education and links now');return}
   if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
 });
 document.addEventListener('keydown',e=>{
@@ -1015,14 +1043,14 @@ document.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();open(+e.target.dataset.open)}});
 document.addEventListener('input',e=>{
   const t=e.target;
-  if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg];dg[t.dataset.f]=t.dataset.f==='batch'?(+t.value||dg.batch):t.value;syncPrimary(ME)}
+  if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;dg[f]=(f==='batch'||f==='start')?(+t.value||dg[f]):t.value}
   if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
   if(t.id==='q'){S.q=t.value;renderResults()}
   if(t.dataset.score){MY_SCORES[t.dataset.score]=+t.value;$('#scv-'+t.id.split('-')[1]).textContent=(+t.value).toFixed(1)}
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
-  if(t.dataset.deg!==undefined&&t.dataset.f==='course'){ME.degrees[+t.dataset.deg].course=t.value;syncPrimary(ME)}
+  if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;if(f==='course')dg.course=t.value;if(f==='batch'||f==='start'){const ae=t.id;syncLatest(ME);render()}else syncLatest(ME)}
   if(t.dataset.socshow){const n=t.dataset.socshow,cur=ME.socials.find(x=>x.net===n);if(cur)cur.show=t.checked;else{t.checked=false;toast('Add a link first, then switch it on')}}
   if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
 render();
