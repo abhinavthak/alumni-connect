@@ -299,11 +299,11 @@ textarea{resize:vertical}
 .page-bar .in{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .ghost{border:0;background:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px;text-decoration:underline}
 .ghost:hover{background:var(--soft)}
-.listing{max-width:1120px;margin:0 auto;padding:24px 24px 120px}
+.listing{max-width:1180px;margin:0 auto;padding:18px 24px 120px}
 .listing h1{font-size:clamp(22px,3vw,28px);font-weight:600}
 .subline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:15px;margin-top:6px}
 .subline b{font-weight:600}
-.cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;margin-top:28px;align-items:start}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:64px;margin-top:20px;align-items:start}
 .tl{list-style:none;margin:0;padding:0;display:grid}
 .tl-i{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding-bottom:24px}
 .tl-i:last-child{padding-bottom:0}
@@ -428,6 +428,10 @@ textarea{resize:vertical}
 .bk-sec{display:grid;gap:8px}
 .bk-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .durs{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:8px}
+.book .bk-sec{gap:6px}
+.book .dur{padding:8px 4px}
+.book .slot{padding:8px 4px}
+.book .datefield{padding:8px 12px}
 .dur{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 4px;display:grid;gap:2px;justify-items:center;font:inherit;color:var(--ink);cursor:pointer}
 .dur b{font-size:14px;font-weight:700}
 .dur span{font-size:12.5px;color:var(--muted);white-space:nowrap}
@@ -444,7 +448,7 @@ textarea{resize:vertical}
 .datefield b{font-size:15px;font-weight:600}
 .datefield small{font-size:12.5px;color:var(--muted)}
 .datefield em{font-style:normal;font-size:13px;font-weight:600;text-decoration:underline}
-.calpop{position:absolute;top:calc(100% + 10px);right:-24px;z-index:20;width:min(680px,calc(100vw - 32px));background:var(--bg);border-radius:24px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:24px 28px 18px;display:grid;gap:18px;animation:ddin .16s ease-out}
+.calpop{position:absolute;top:0;right:calc(100% + 16px);z-index:20;width:min(660px,calc(100vw - 460px));max-height:calc(100vh - 96px);overflow:auto;background:var(--bg);border-radius:24px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:24px 28px 18px;display:grid;gap:18px;animation:ddin .16s ease-out}
 .cp-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .cp-h b{display:block;font-size:20px;font-weight:700}
 .cp-h span{font-size:14px;color:var(--muted)}
@@ -471,8 +475,8 @@ textarea{resize:vertical}
 .cp-key i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .cp-key .k1{background:var(--ink)}
 .cp-key .k2{background:var(--line);margin-left:8px}
-@media (max-width:1100px){.calpop{right:0}}
-@media (max-width:860px){.calpop{left:0;right:0;width:auto;padding:18px}.cp-ms{grid-template-columns:1fr}.cp-ms .cm+.cm{display:none}}
+@media (max-width:1180px){.calpop{width:min(340px,calc(100vw - 460px))}.cp-ms{grid-template-columns:1fr}.cp-ms .cm+.cm{display:none}}
+@media (max-width:860px){.calpop{position:fixed;left:12px;right:12px;top:calc(72px + env(safe-area-inset-top,0px));width:auto;padding:18px;max-height:calc(100vh - 100px)}}
 .bk-sum{background:var(--soft);border-radius:12px;padding:14px;display:grid;gap:8px;font-size:14px}
 .bk-sum div{display:flex;justify-content:space-between;gap:12px}
 .bk-sum div span:first-child{color:var(--muted)}
@@ -496,7 +500,7 @@ textarea{resize:vertical}
 .bk-trust li{display:flex;align-items:center;gap:8px}
 .bk-trust svg.i{width:15px;height:15px}
 .book .slots{grid-template-columns:repeat(3,minmax(0,1fr))}
-.book{position:sticky;top:88px;border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:var(--shadow);display:grid;gap:16px;background:var(--bg)}
+.book{position:sticky;top:72px;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);display:grid;gap:14px;background:var(--bg)}
 .book .p{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .book .p s{font-size:16px;color:var(--muted);font-weight:400}
 .book .p small{font-size:15px;font-weight:400}
@@ -1031,13 +1035,13 @@ function bookCard(a){
   const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date):[];
   if(S.slot&&!slots.includes(S.slot))S.slot=null;
   const can=!q.call||S.slot;
-  return `<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
+  return `${S.cal&&q.call?calPop(a):''}<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
       <div class="bk-p num"><b>${rupee(q.pay)}</b>${q.free?`<s>${rupee(q.full)}</s>`:''}<span>${q.call?`/ ${fmtDur(q.o.dur)}`:'/ question'}</span></div></div>
       ${q.free?`<span class="bk-off" title="25% off your first connect. After this, normal prices apply.">${ic('gift')}25% off</span>`:''}</div>
     <div class="seg2" role="tablist" aria-label="Session type">${a.services.map((x,i)=>`<button role="tab" aria-selected="${S.svc===i}" data-svc="${i}">${ic(x.t==='call'?'video':'chat')}${x.t==='call'?'Video call':'Priority DM'}</button>`).join('')}</div>
     ${q.call?`
       <div class="bk-sec"><span class="lbl">Duration</span><div class="durs">${q.opts.map((x,i)=>`<button class="dur" data-dur="${i}" aria-pressed="${q.o===x}"><b>${fmtDur(x.dur)}</b><span class="num">${rupee(q.free?off(x.price):x.price)}</span></button>`).join('')}</div></div>
-      <div class="bk-sec bk-date"><span class="lbl">Date</span><button class="datefield" data-cal aria-expanded="${!!S.cal}" aria-haspopup="dialog">${ic('calendar')}<span><b>${dinfo(S.date).short}</b><small>${S.date===0?'Today':S.date===1?'Tomorrow':`In ${S.date} days`}</small></span><em>Change</em></button>${S.cal?calPop(a):''}</div>
+      <div class="bk-sec bk-date"><span class="lbl">Date</span><button class="datefield" data-cal aria-expanded="${!!S.cal}" aria-haspopup="dialog">${ic('calendar')}<span><b>${dinfo(S.date).short}</b><small>${S.date===0?'Today':S.date===1?'Tomorrow':`In ${S.date} days`}</small></span><em>Change</em></button></div>
       <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span>${S.slot?`<span class="bk-pick num">${ic('check')}${dinfo(S.date).dow==='Today'||dinfo(S.date).dow==='Tomorrow'?dinfo(S.date).dow:dinfo(S.date).short} · ${S.slot}</span>`:`<span class="muted" style="font-size:13px">${slots.length} slots</span>`}</div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
     :`<ul class="bk-trust" style="font-size:13.5px;color:var(--ink)"><li>${ic('chat')}One detailed written answer from ${esc(a.first)}</li><li>${ic('clock')}Reply in ${q.s.eta}</li><li>${ic('check')}One follow-up question included</li></ul>
       <label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
