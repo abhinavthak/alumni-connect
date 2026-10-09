@@ -989,6 +989,87 @@ input[type=range]{accent-color:var(--ink);width:100%}
 .err{color:var(--bad);font-size:13px}
 @media (max-width:1100px){.tgrid{grid-template-columns:minmax(0,1fr)}.earn-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.balcard{grid-column:1/-1}.cal2{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:760px){.sess{grid-template-columns:minmax(0,1fr)}.sess-r{justify-items:start}.sess-acts{justify-content:flex-start}.prof-top{grid-template-columns:minmax(0,1fr)}.ph-fields{grid-template-columns:minmax(0,1fr)}.earn-top{grid-template-columns:minmax(0,1fr)}.wd{grid-template-columns:auto 40px minmax(0,1fr)}.wd .addslot{grid-column:1/-1}.rule{grid-template-columns:minmax(0,1fr)}}
+/* ---- mobile ---- */
+.short{display:none}
+.btabs{display:none}
+.sheet-h{display:none}
+@media (max-width:860px){
+  .page-bar .in{flex-wrap:wrap;row-gap:0}
+  .pnav{display:flex!important;order:3;width:100%;margin:0 -10px;padding-bottom:4px}
+  .book{display:none}
+  .book.sheet{display:grid;position:fixed;left:0;right:0;bottom:0;top:auto;z-index:80;max-height:90vh;overflow:auto;border-radius:22px 22px 0 0;padding:16px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(0,0,0,.2);animation:sheetin .22s ease-out}
+  .bk-scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:79}
+  .book.sheet .sheet-h{display:flex;justify-content:space-between;align-items:center;margin:-4px 0 2px}
+  .book.sheet .sheet-h b{font-size:16px}
+  .book.sheet .bk-k{display:none}
+  .listing{padding-bottom:110px}
+}
+@keyframes sheetin{from{transform:translateY(40px);opacity:.6}}
+@media (prefers-reduced-motion:reduce){.book.sheet{animation:none}}
+@media (max-width:760px){
+  .top-in .center:has(.htabs){display:none}
+  .btabs{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+  .bt{position:relative;border:0;background:none;font:inherit;display:grid;justify-items:center;gap:3px;padding:6px 2px;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer}
+  .bt svg.i{width:21px;height:21px}
+  .bt[aria-current="page"]{color:var(--brand-ink)}
+  .bt i{position:absolute;top:2px;left:calc(50% + 6px);min-width:16px;height:16px;border-radius:99px;background:var(--brand);color:#fff;font-size:10px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 4px}
+  .host{padding-bottom:110px}
+  .more-list{display:grid;gap:4px;padding-block:8px!important}
+  .more-i{display:flex;align-items:center;gap:14px;border:0;background:none;font:inherit;font-size:16px;font-weight:600;color:var(--ink);padding:14px 6px;border-bottom:1px solid var(--line-soft);cursor:pointer;text-align:left}
+  .more-i span{flex:1}
+  .more-i svg.i{width:20px;height:20px}
+  .more-i svg.i:last-child{width:14px;height:14px;color:var(--muted)}
+}
+@media (max-width:640px){
+  .long{display:none}.short{display:inline}
+  .switch-link{padding:8px 10px;font-size:13px;border:1px solid var(--line);border-radius:99px}
+  .trust{grid-template-columns:1fr 1fr!important;margin-block:14px 4px}
+  .tr-i{padding:10px 12px;gap:10px}
+  .tr-i+.tr-i{border-left:0}
+  .tr-i:nth-child(even){border-left:1px solid var(--line-soft)!important}
+  .tr-i:nth-child(n+3){border-top:1px solid var(--line-soft)}
+  .tr-i span:not(.tr-ic){display:none}
+  .tr-i b{font-size:12.5px}
+  .tr-ic{width:30px;height:30px}
+  .tr-ic svg.i{width:15px;height:15px}
+  .scrim{place-items:end stretch;padding:0}
+  .modal{width:100%!important;max-height:92vh;border-radius:22px 22px 0 0;animation:sheetin .22s ease-out}
+  .modal-b{padding:6px 18px}
+  .modal-f{flex-wrap:wrap;gap:8px;padding:12px 18px calc(14px + env(safe-area-inset-bottom,0px))}
+  .modal-f>.btn,.modal-f .sess-acts{flex:1 1 auto}
+  .modal-f .sess-acts .btn{flex:1}
+  .modal-f>.linkbtn{order:2;width:100%;text-align:center;padding:6px}
+  .hhead{gap:12px}
+  .hbtns{flex-wrap:nowrap;overflow-x:auto;width:100%;scrollbar-width:none;padding-bottom:2px}
+  .hbtns::-webkit-scrollbar{display:none}
+  .hbtns>*{flex:none}
+  .kpi b{font-size:20px}
+  .gl-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-4px;padding-inline:4px}
+  .gl-row::-webkit-scrollbar{display:none}
+  .gl-d{flex:0 0 92px;scroll-snap-align:start}
+  .tbl{border:1px solid var(--line)}
+  .tbl table{min-width:0}
+  .tbl thead{display:none}
+  .tbl tbody,.tbl tr,.tbl td{display:block}
+  .tbl tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 14px;border-bottom:1px solid var(--line-soft)}
+  .tbl tr:last-child{border-bottom:0}
+  .tbl td{padding:0;border:0}
+  .tbl td:nth-child(1){grid-row:2;grid-column:1;font-size:12.5px;color:var(--muted)}
+  .tbl td:nth-child(2){grid-row:1;grid-column:1;font-size:14px}
+  .tbl td:nth-child(3){grid-row:2;grid-column:2;justify-self:end}
+  .tbl td:nth-child(4){grid-row:1;grid-column:2;font-weight:700}
+  .nh-act{gap:8px}
+  .nh-act>.btn{flex:1 1 auto}
+  .nh-more{width:100%;margin-left:0;justify-content:center}
+  .act-row{flex-wrap:wrap}
+  .act-row>.btn{margin-left:auto}
+  .sx-top{padding:4px 12px 0}
+  .sx-tools{padding:12px}
+  .sx-row{padding-inline:14px}
+  .listing h1{font-size:21px}
+  .panel .box2-h{flex-wrap:wrap;row-gap:6px}
+  .hostcard .face h2{font-size:20px}
+}
 .ydlogo{height:34px;width:auto;display:block}
 .ac-tag{font-size:13px;font-weight:700;color:var(--brand-ink);border-left:1px solid var(--line);padding-left:10px;letter-spacing:0}
 @media (max-width:640px){.ac-tag{display:none}.ydlogo{height:28px}}
@@ -1172,7 +1253,7 @@ function header(){
       </form>${S.dd?ddPanel():''}</div>
       <div class="right">
         <span class="freechip ${S.freeLeft?'':'used'}" title="Your first call on Alumni Connect is 25% off">${ic('gift')}${S.freeLeft?'<span class="num">25% off</span><span class="long">&nbsp;first call</span>':'<span>Offer used</span>'}</span>
-        <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
+        <button class="switch-link" data-view="alumni"><span class="long">Switch to alumni dashboard</span><span class="short">For alumni</span></button>
       </div></div></div>`}
   const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
   const upN=BOOKINGS.filter(b=>b.st==='upcoming').length,qN=QUESTIONS.filter(q=>q.st==='open').length,nN=NOTIFS.filter(n=>n.unread).length;
@@ -1180,7 +1261,8 @@ function header(){
   return `<div class="wrap"><div class="top-in">
     <button class="logo" data-tab="today" aria-label="Alumni dashboard home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"></button>
     <div class="center" style="min-width:0"><nav class="htabs" aria-label="Dashboard">${tabs.map(([k,l,n])=>`<button class="htab" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${l}${n?`<span class="dot-n num">${n}</span>`:''}</button>`).join('')}</nav></div>
-    <div class="right"><button class="bell" data-a="bell" aria-label="Notifications${nN?`, ${nN} unread`:''}" aria-expanded="${!!S.notif}">${ic('bell')}${nN?`<span class="bdg num">${nN}</span>`:''}</button>${S.notif?notifPanel():''}<button class="switch-link" data-view="student"><span class="long">Switch to </span>student<span class="long"> view</span></button>
+    <nav class="btabs" aria-label="Dashboard">${[['today','Today','all'],['sessions','Sessions','video'],['inbox','Questions','chat'],['calendar','Calendar','calendar']].map(([k,l,i])=>{const n=k==='inbox'?qN:k==='sessions'?(BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length||0):0;return `<button class="bt" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${ic(i)}${n?`<i class="num">${n}</i>`:''}<span>${l}</span></button>`}).join('')}<button class="bt" data-a="more" ${['services','earnings','profile','settings'].includes(S.tab)?'aria-current="page"':''}>${ic('menu')}<span>More</span></button></nav>
+    <div class="right"><button class="bell" data-a="bell" aria-label="Notifications${nN?`, ${nN} unread`:''}" aria-expanded="${!!S.notif}">${ic('bell')}${nN?`<span class="bdg num">${nN}</span>`:''}</button>${S.notif?notifPanel():''}<button class="switch-link" data-view="student"><span class="long">Switch to student view</span><span class="short">Student view</span></button>
       <span class="menu">${ic('menu')}<img src="${ME.img}" alt="${ME.name}"></span></div>
   </div></div>`}
 
@@ -1353,7 +1435,7 @@ function listing(a){
             <div class="reviews">${REVIEWS.map(([n,c,t,h],i)=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="rv-meta"><span class="stars">${STAR.repeat(5)}</span><span>${REV_META[i][0]} · ${REV_META[i][1]}</span></div><p>${esc(t)}</p></div>`).join('')}</div>
             <button class="btn sm" data-allrev style="margin-top:28px">Show all ${a.reviews} reviews</button></div>
         </div>
-        <aside class="book" id="bookcard">${bookCard(a)}</aside>
+        <aside class="book ${S.sheet?'sheet':''}" id="bookcard">${bookCard(a)}</aside>
       </div>
     </div>
     ${mbarHTML(a)}
@@ -1373,7 +1455,7 @@ function bookCard(a){
   const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date,a):[];
   if(S.slot&&!slots.includes(S.slot))S.slot=null;
   const can=!q.call||S.slot;
-  return `${S.cal&&q.call?calPop(a):''}<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
+  return `<div class="sheet-h"><b>Book with ${esc(a.first)}</b><button class="x" data-closesheet aria-label="Close">${ic('x')}</button></div>${S.cal&&q.call?calPop(a):''}<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
       <div class="bk-p num"><b>${rupee(q.pay)}</b>${q.free?`<s>${rupee(q.full)}</s>`:''}<span>${q.call?`/ ${fmtDur(q.o.dur)}`:'/ question'}</span></div></div>
       ${q.free?`<span class="bk-off" title="25% off your first connect. After this, normal prices apply.">${ic('gift')}25% off</span>`:''}</div>
     <div class="seg2" role="tablist" aria-label="Session type">${a.services.map((x,i)=>`<button role="tab" aria-selected="${S.svc===i}" data-svc="${i}">${ic(x.t==='call'?'video':'chat')}${x.t==='call'?'Video call':'Priority DM'}</button>`).join('')}</div>
@@ -1473,7 +1555,7 @@ function dToday(){
     ...fb.map(b=>[ic('book'),`Add notes from your call with <b>${b.who}</b> so they can rate it`,`<button class="btn sm" data-a="wrap" data-id="${b.id}">Add notes</button>`])];
   const kpi=(tab,label,val,sub)=>`<button class="kpi" data-tab="${tab}"><span>${label}</span><b class="num">${val}</b><small>${sub}</small></button>`;
   return `<div class="hhead"><div><h1>${new Date().getHours()<12?'Good morning':new Date().getHours()<17?'Good afternoon':'Good evening'}, ${ME.first}</h1><p>${SETTINGS.paused?'Your profile is paused. Students can’t book you right now.':`Here’s your week at a glance.`}</p></div>
-    <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Profile paused':'Profile live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View public profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
+    <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Profile paused':'Profile live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View <span class="long">public </span>profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
   <div class="kpis">
     ${kpi('sessions','Next 7 days',`${wk.length} session${wk.length===1?'':'s'}`,`${wkMin>=60?`${+(wkMin/60).toFixed(1)} hrs`:`${wkMin} min`} · ${rupee(wkEarn)} to earn`)}
     ${kpi('inbox','Questions waiting',waitQ.length,waitQ.length?'Answer within 24 hours':'All answered')}
@@ -1782,6 +1864,7 @@ function modalHTML(){
       <label class="field">Code<input class="input num" id="otp-in" inputmode="numeric" maxlength="4" placeholder="••••" style="letter-spacing:.4em;font-size:20px;max-width:160px"></label><p class="err" id="otp-err" hidden></p></section>`,
       `<button class="linkbtn" data-a="otpResend">Resend code</button><button class="btn dark sm" data-a="otpOk">Verify</button>`);
   case 'svcDel':{const sv=SERVICES.find(x=>x.id===m.id);return shell('Delete this service?',`<section><p style="font-size:14px">“${esc(sv.title)}” will be removed from your profile. Sessions already booked stay booked.</p></section>`,`<button class="linkbtn" data-a="mclose">Keep it</button><button class="btn sm danger-fill" data-a="svcDelOk" data-id="${sv.id}">Delete service</button>`)}
+  case 'more':return shell('More',`<section class="more-list">${[['services','Services','video'],['earnings','Earnings','rupee'],['profile','Profile','users'],['settings','Settings','sliders']].map(([k,l,i])=>`<button class="more-i" data-a="moreGo" data-v="${k}">${ic(i)}<span>${l}</span>${ic('back','style="transform:scaleX(-1)"')}</button>`).join('')}<button class="more-i" data-a="toStudent">${ic('globe')}<span>Switch to student view</span>${ic('back','style="transform:scaleX(-1)"')}</button></section>`,'');
   case 'deactivate':return shell('Deactivate your profile?',`<section><p style="font-size:14px">Your profile will be hidden and students can’t book you. Upcoming sessions stay booked unless you cancel them. You can reactivate any time from Settings.</p></section>`,
       `<button class="linkbtn" data-a="mclose">Keep profile</button><button class="btn sm danger-fill" data-a="deacOk">Deactivate</button>`);
   case 'verifyDeg':return shell('Verify your education',`<section><p class="muted" style="font-size:14px">Choose one. We check with the university and usually finish within 2 working days.</p>
@@ -1804,6 +1887,9 @@ document.addEventListener('click',e=>{
   if(t.dataset.self&&e.target!==t)return;
   if(t.tagName==='INPUT'||t.tagName==='SELECT')return; /* handled in change */
   switch(a){
+  case 'more':openModal({t:'more'});return;
+  case 'moreGo':S.modal=null;S.tab=v;render();scrollTo(0,0);return;
+  case 'toStudent':S.modal=null;S.view='student';S.profile=null;try{localStorage.setItem('ac2-view','student')}catch(_){};render();scrollTo(0,0);return;
   case 'bell':S.notif=!S.notif;$('#top').innerHTML=header();return;
   case 'nAll':NOTIFS.forEach(n=>n.unread=false);$('#top').innerHTML=header();return;
   case 'nGo':{const n=NOTIFS.find(x=>x.id===id);n.unread=false;S.notif=false;S.tab=n.go;render();scrollTo(0,0);return}
@@ -1917,7 +2003,10 @@ function renderOverlay(){
   $('#overlay').innerHTML=h;
   document.body.style.overflow=h?'hidden':''}
 function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile),bc=$('#bookcard');if(!a||!bc){renderOverlay();return}bc.innerHTML=bookCard(a);const m=$('.mbar');if(m)m.outerHTML=mbarHTML(a)}
-function open(id){Object.assign(S,{profile:id,svc:0,dur:1,date:0,slot:null,done:null,cal:false,calM:0});renderOverlay()}
+document.addEventListener('click',e=>{if(e.target.classList&&e.target.classList.contains('bk-scrim'))closeSheet()});
+function openSheet(){const bc=$('#bookcard'),pg=$('.page');if(!bc||!pg)return;S.sheet=true;bc.classList.add('sheet');if(!$('.bk-scrim')){const sc=document.createElement('div');sc.className='bk-scrim';sc.dataset.closesheet='';pg.appendChild(sc)}}
+function closeSheet(){S.sheet=false;$('#bookcard')?.classList.remove('sheet');$('.bk-scrim')?.remove()}
+function open(id){S.sheet=false;Object.assign(S,{profile:id,svc:0,dur:1,date:0,slot:null,done:null,cal:false,calM:0});renderOverlay()}
 
 document.addEventListener('submit',e=>{if(e.target.id==='searchform'){e.preventDefault();renderResults()}});
 document.addEventListener('click',e=>{
@@ -1947,6 +2036,8 @@ document.addEventListener('click',e=>{
   if(d.resetfree!==undefined){S.freeLeft=1;render();toast('Demo reset: 25% first-call discount restored');return}
   if(d.closepage!==undefined){S.profile=null;renderOverlay();return}
   if(d.sharebtn!==undefined){toast('Profile link copied');return}
+  if(d.scrollbook!==undefined&&matchMedia("(max-width:860px)").matches){openSheet();return}
+  if(d.closesheet!==undefined){closeSheet();return}
   if(d.scrollbook!==undefined){$('#bookcard')?.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(d.svc){S.svc=+d.svc;S.slot=null;renderBook();return}
   if(d.dur){S.dur=+d.dur;renderBook();return}
