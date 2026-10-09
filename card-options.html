@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alumni Card Options</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap">
+<style>
+:root{--bg:#fff;--soft:#F7F7F7;--ink:#222;--muted:#6A6A6A;--line:#DDDDDD;--line-soft:#EBEBEB;--brand:#FF385C;--brand-ink:#D70466;--brand-soft:#FFF0F3;--good:#008A05;--teal:#00A699;
+  --grad:linear-gradient(to right,#E61E4D,#E31C5F 50%,#D70466);--font:"DM Sans","Helvetica Neue",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 24px 80px}
+header.pg{display:grid;gap:6px;margin-bottom:40px}
+header.pg h1{font-size:30px;letter-spacing:-.02em}
+header.pg p{color:var(--muted);max-width:62ch}
+section.opt{padding-block:36px;border-top:1px solid var(--line-soft)}
+.opt-h{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.opt-h .tag{font-size:13px;font-weight:800;background:var(--ink);color:#fff;border-radius:8px;padding:3px 10px}
+.opt-h h2{font-size:22px;letter-spacing:-.01em}
+.opt-d{color:var(--muted);margin-bottom:22px;max-width:70ch}
+.row{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.row.wide{grid-template-columns:repeat(auto-fill,minmax(520px,1fr))}
+@media (max-width:600px){.row.wide{grid-template-columns:1fr}}
+svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.star{width:13px;height:13px;fill:currentColor}
+.vt{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#1D9BF0;color:#fff;flex:none}
+.vt svg{width:10px;height:10px;stroke-width:4}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.free{color:var(--brand-ink);font-weight:700}
+.btn{border:0;border-radius:10px;font:inherit;font-weight:600;font-size:14px;padding:10px 16px;cursor:pointer;white-space:nowrap}
+.btn.pink{background:var(--grad);color:#fff}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.ghost{background:#fff;border:1px solid var(--ink);color:var(--ink)}
+
+/* A — Profile card (Topmate / LinkedIn) */
+.a{border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:14px;background:#fff;transition:box-shadow .2s}
+.a:hover{box-shadow:0 10px 28px rgba(0,0,0,.08)}
+.a .top{display:flex;gap:14px;align-items:center}
+.a .top img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 25%}
+.a .who{display:grid;gap:2px;min-width:0}
+.a .who h3{font-size:17px;display:flex;align-items:center;gap:6px;min-width:0}
+.a .who span{font-size:14px;color:var(--muted)}
+.a .co{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink)}
+.a .meta{display:grid;gap:8px;font-size:14px}
+.a .meta div{display:flex;align-items:center;gap:8px;color:var(--muted);min-width:0}
+.a .meta b{color:var(--ink);font-weight:600}
+.a .q{font-size:14px;color:var(--ink);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.a .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.a .foot .p{display:grid;font-size:13px;color:var(--muted);white-space:nowrap}
+.a .foot .p b{font-size:17px}
+
+/* B — Airbnb listing */
+.b{display:grid;gap:10px;cursor:pointer}
+.b .ph{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden}
+.b .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transition:transform .3s}
+.b:hover .ph img{transform:scale(1.03)}
+.b .fav{position:absolute;top:12px;left:12px;background:#fff;font-size:13px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.b .heart{position:absolute;top:12px;right:12px;width:26px;height:26px}
+.b .heart path{fill:rgba(0,0,0,.5);stroke:#fff;stroke-width:2}
+.b .txt{display:grid;gap:1px;font-size:15px}
+.b .l1{display:flex;justify-content:space-between;gap:8px}
+.b .l1 b{font-weight:600}
+.b .m{color:var(--muted)}
+.b .pr{margin-top:5px}
+.b .pr b{font-weight:600}
+.b .pr u{color:var(--muted);text-decoration:none}
+
+/* C — Practo-style horizontal */
+.c{border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:116px minmax(0,1fr);gap:18px;background:#fff}
+.c .pic{position:relative;align-self:start}
+.c .pic img{width:116px;height:116px;border-radius:14px;object-fit:cover;object-position:50% 25%}
+.c .pic .rt{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);background:#fff;border:1px solid var(--line);border-radius:99px;padding:2px 9px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.c .body{display:grid;gap:10px;min-width:0}
+.c h3{font-size:18px;display:flex;align-items:center;gap:6px}
+.c .role{font-size:14px;color:var(--muted);margin-top:-6px}
+.c .facts{display:flex;flex-wrap:wrap;gap:6px}
+.c .facts span{font-size:12.5px;background:var(--soft);border-radius:8px;padding:4px 9px;display:inline-flex;align-items:center;gap:6px}
+.c .facts svg.i{width:14px;height:14px}
+.c .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:12px;border-top:1px dashed var(--line)}
+.c .slot{font-size:13px;color:var(--good);font-weight:600;display:flex;align-items:center;gap:6px}
+.c .bar .p{font-size:14px}
+.c .acts{display:flex;gap:8px}
+
+/* D — Portrait overlay (current) */
+.d{display:grid;gap:12px}
+.d .ph{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden}
+.d .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.d .shade{position:absolute;inset:auto 0 0;height:58%;background:linear-gradient(to top,rgba(10,10,12,.86),rgba(10,10,12,0))}
+.d .over{position:absolute;left:0;right:0;bottom:0;padding:0 16px 16px;color:#fff;display:grid;gap:3px}
+.d .over h3{font-size:19px;display:flex;align-items:center;gap:6px}
+.d .over span{font-size:13.5px;opacity:.9}
+.d .r{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+<script>
+const P={brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',cap:'<path d="M2 9l10-5 10 5-10 5Z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',check:'<path d="m5 12 5 5L20 7"/>',video:'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/>',lang:'<path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c-1 4-4 7-7 8M13 21l4-9 4 9M14.5 18h5"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
+const STAR='<svg class="star" viewBox="0 0 32 32"><path d="M15.1 1.58l-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"/></svg>';
+const HEART='<svg class="heart" viewBox="0 0 32 32"><path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"/></svg>';
+const VT=`<span class="vt" title="Verified alumni">${ic('check')}</span>`;
+const A=[
+ {img:'img/a1.jpg',name:'Ananya Iyer',role:'SDE II',co:'Razorpay',course:'MCA',batch:2021,uni:'Vindhya University Online',rating:4.92,rev:128,calls:212,price:249,dur:20,next:'Today, 8:30 PM',fav:true,langs:'English, Hindi, Tamil',q:'I did my MCA while working support at a startup. The live coding labs and project reviews got me into engineering.'},
+ {img:'img/a2.jpg',name:'Rohan Mehta',role:'Brand Manager',co:'Marico',course:'MBA',batch:2022,uni:'Narmada University Online',rating:4.81,rev:74,calls:131,price:399,dur:30,next:'Tomorrow, 7:00 PM',fav:false,langs:'English, Hindi, Gujarati',q:'The MBA helped me move from sales to brand. Placement support is a job portal and mock interviews; the network you build yourself.'},
+ {img:'img/a3.jpg',name:'Sneha Kulkarni',role:'UX Researcher',co:'Swiggy',course:'BA',batch:2020,uni:'Konkan Open University',rating:4.97,rev:41,calls:58,price:199,dur:25,next:'Sat, 11:00 AM',fav:true,langs:'English, Marathi, Hindi',q:'I studied psychology online while freelancing. Recorded lectures made it possible; I added design courses on the side.'},
+];
+const yy=b=>'’'+String(b).slice(2);
+const cardA=a=>`<article class="a"><div class="top"><img src="${a.img}" alt=""><div class="who"><h3><span class="ell">${a.name}</span>${VT}</h3><span class="ell">${a.role} at ${a.co}</span></div></div>
+  <div class="meta"><div>${ic('cap')}<span class="ell"><b>${a.course} ${yy(a.batch)}</b> · ${a.uni}</span></div><div>${STAR}<span><b>${a.rating.toFixed(2)}</b> (${a.rev} reviews) · ${a.calls} calls</span></div></div>
+  <p class="q">“${a.q}”</p>
+  <div class="foot"><div class="p"><b><span class="free">Free</span> first call</b>then ₹${a.price} / ${a.dur} min</div><button class="btn pink">Book</button></div></article>`;
+const cardB=a=>`<article class="b"><div class="ph"><img src="${a.img}" alt="">${a.fav?'<span class="fav">Student favourite</span>':''}${HEART}</div>
+  <div class="txt"><div class="l1"><b>${a.name}</b><span>${STAR} ${a.rating.toFixed(2)}</span></div><span class="m">${a.role} at ${a.co}</span><span class="m ell">${a.course} ${yy(a.batch)} · ${a.uni}</span><span class="pr"><span class="free">Free</span> first call <u>· then ₹${a.price}</u></span></div></article>`;
+const cardC=a=>`<article class="c"><div class="pic"><img src="${a.img}" alt=""><span class="rt">${STAR}${a.rating.toFixed(1)} <span style="font-weight:500;color:var(--muted)">(${a.rev})</span></span></div>
+  <div class="body"><h3>${a.name}${VT}</h3><p class="role">${a.role} at <b style="color:var(--ink);font-weight:600">${a.co}</b></p>
+  <div class="facts"><span>${ic('cap')}${a.course} ${yy(a.batch)} · ${a.uni}</span><span>${ic('users')}${a.calls} students helped</span><span>${ic('lang')}${a.langs}</span></div>
+  <div class="bar"><div><div class="slot">${ic('clock')}Next slot: ${a.next}</div><div class="p"><span class="free">Free</span> first call · then ₹${a.price} / ${a.dur} min</div></div><div class="acts"><button class="btn ghost">View profile</button><button class="btn pink">Book free call</button></div></div></div></article>`;
+const cardD=a=>`<article class="d"><div class="ph"><img src="${a.img}" alt=""><div class="shade"></div><div class="over"><h3>${a.name}${VT}</h3><span>${a.role} at ${a.co}</span><span style="opacity:.75">${a.course} ${yy(a.batch)} · ${a.uni}</span></div></div>
+  <div class="r"><span>${STAR} <b>${a.rating.toFixed(2)}</b> <span style="color:var(--muted)">(${a.rev})</span></span><span style="color:var(--muted);font-size:13px">${a.next}</span></div>
+  <div class="r"><span><span class="free">Free</span> first call <span style="color:var(--muted)">· then ₹${a.price}</span></span><button class="btn dark" style="padding:8px 14px;border-radius:99px;font-size:13px">Book</button></div></article>`;
+const OPTS=[
+ ['A','Profile card','Like Topmate or LinkedIn. Small round photo, text first: who they are, their degree, rating, a line in their own words, and a clear price with a Book button. Best when students care more about the person\'s story than their photo.',cardA,''],
+ ['B','Airbnb listing','Pure Airbnb: big square photo with nothing on it but a badge and heart, then four short lines underneath. Clean and familiar, but shows the least information.',cardB,''],
+ ['C','Practo-style row','Wide card like doctor listings on Practo, which Indian users already know. Photo on the left, details and facts in the middle, next slot and two buttons at the bottom. Shows the most information; two cards per row.',cardC,'wide'],
+ ['D','Photo with name overlay (current)','The current design: square photo with name, role and degree on a dark fade, rating and price underneath.',cardD,''],
+];
+document.getElementById('app').innerHTML=`<header class="pg"><h1>Alumni card options</h1><p>Four directions for the alumni listing card, using the same three alumni. Pick a letter, or mix parts (for example, “A but with B’s photo”).</p></header>`+
+ OPTS.map(([k,t,d,f,cls])=>`<section class="opt"><div class="opt-h"><span class="tag">${k}</span><h2>${t}</h2></div><p class="opt-d">${d}</p><div class="row ${cls}">${(cls?A.slice(0,2):A).map(f).join('')}</div></section>`).join('');
+</script>
+</body>
+</html>
