@@ -17,19 +17,9 @@
   --h1:#EDE3F7; --h2:#DCEBF7; --h3:#E0F2E3; --h4:#FBE6D6; --h5:#F8E0EA; --h6:#E4E7FA;
   --grad:linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
   --font:"DM Sans", "Helvetica Neue", system-ui, -apple-system, sans-serif;
-  --pop:0 6px 20px rgba(0,0,0,.2); --surface:#FFFFFF;
+  --pop:0 6px 20px rgba(0,0,0,.2); --surface:#FFFFFF; color-scheme:light;
   --shadow:0 6px 16px rgba(0,0,0,.12); --shadow-sm:0 1px 2px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#121212; --soft:#1C1C1C; --ink:#F2F2F2; --muted:#A8A8A8; --line:#353535; --line-soft:#2A2A2A;
-  --brand:#FF5A75; --brand-deep:#FF385C; --brand-ink:#FF7A93; --brand-soft:#3A1820; --star:#F2F2F2; --good:#4CC35A; --good-soft:#142A17; --warn:#F2A33A; --warn-soft:#33240F; --bad:#FF7A5C; --bad-soft:#3A1A14;
-  --h1:#3A2D4A; --h2:#203646; --h3:#213A28; --h4:#45301F; --h5:#432633; --h6:#2A2D4A; --pop:0 6px 24px rgba(0,0,0,.6); --surface:#222222;
-  --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#121212; --soft:#1C1C1C; --ink:#F2F2F2; --muted:#A8A8A8; --line:#353535; --line-soft:#2A2A2A;
-  --brand:#FF5A75; --brand-deep:#FF385C; --brand-ink:#FF7A93; --brand-soft:#3A1820; --star:#F2F2F2; --good:#4CC35A; --good-soft:#142A17; --warn:#F2A33A; --warn-soft:#33240F; --bad:#FF7A5C; --bad-soft:#3A1A14;
-  --h1:#3A2D4A; --h2:#203646; --h3:#213A28; --h4:#45301F; --h5:#432633; --h6:#2A2D4A; --pop:0 6px 24px rgba(0,0,0,.6); --surface:#222222;
-  --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
@@ -402,7 +392,6 @@ input[type=range]{accent-color:var(--ink);width:100%}
 }
 .ydlogo{height:34px;width:auto;display:block}
 .ac-tag{font-size:13px;font-weight:700;color:var(--brand-ink);border-left:1px solid var(--line);padding-left:10px;letter-spacing:0}
-@media (prefers-color-scheme: dark){.ydlogo{filter:invert(1) hue-rotate(180deg) saturate(1.4)}}
 @media (max-width:640px){.ac-tag{display:none}.ydlogo{height:28px}}
 </style>
 </head>
