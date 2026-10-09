@@ -11,23 +11,24 @@
 <style>
 /* Layout: Airbnb-style marketplace. Student side = pill search + category strip + photo grid + listing page with sticky booking card. Alumni side = hosting-style top tabs. */
 :root{
-  --bg:#FFFFFF; --soft:#F4F5F7; --ink:#101112; --muted:#666666; --line:#DFE1E6; --line-soft:#EEEFF2;
-  --brand:#EE2C3C; --brand-deep:#BE2330; --brand-ink:#BE2330; --brand-soft:#FCF0F1; --on-brand:#FFFFFF; --star:#FCBC05;
-  --good:#0A9044; --good-soft:#E6F4EC; --warn:#C4811D; --warn-soft:#FDF3E3; --bad:#BE2330; --bad-soft:#FCF0F1;
-  --h1:#FCF0F1; --h2:#F5F1FE; --h3:#E8F5EE; --h4:#FEF3E2; --h5:#FCF1F5; --h6:#EEF3FB;
-  --grad:linear-gradient(180deg,#EE2C3C,#DA202F 93.75%);
-  --font:"DM Sans", "Circular XX", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bg:#FFFFFF; --soft:#F7F7F7; --ink:#222222; --muted:#6A6A6A; --line:#DDDDDD; --line-soft:#EBEBEB;
+  --brand:#FF385C; --brand-deep:#D70466; --brand-ink:#D70466; --brand-soft:#FFF0F3; --on-brand:#FFFFFF; --star:#222222;
+  --good:#008A05; --good-soft:#E8F5E9; --warn:#B25E00; --warn-soft:#FFF4E5; --bad:#C13515; --bad-soft:#FDECEA;
+  --h1:#EDE3F7; --h2:#DCEBF7; --h3:#E0F2E3; --h4:#FBE6D6; --h5:#F8E0EA; --h6:#E4E7FA;
+  --grad:linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+  --font:"DM Sans", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  --pop:0 6px 20px rgba(0,0,0,.2); --surface:#FFFFFF;
   --shadow:0 6px 16px rgba(0,0,0,.12); --shadow-sm:0 1px 2px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111214; --soft:#1B1C1F; --ink:#F2F2F3; --muted:#A5A9B3; --line:#30333A; --line-soft:#24262B;
-  --brand:#F15663; --brand-deep:#EE2C3C; --brand-ink:#FF7581; --brand-soft:#3A1519; --star:#FCBC05; --good:#4CC37E; --good-soft:#12291C; --warn:#F0B04F; --warn-soft:#33240F; --bad:#FF7581; --bad-soft:#3A1519;
-  --h1:#3A1E22; --h2:#2A2340; --h3:#183326; --h4:#3A2C14; --h5:#3A1E2B; --h6:#1E2A3D;
+  --bg:#121212; --soft:#1C1C1C; --ink:#F2F2F2; --muted:#A8A8A8; --line:#353535; --line-soft:#2A2A2A;
+  --brand:#FF5A75; --brand-deep:#FF385C; --brand-ink:#FF7A93; --brand-soft:#3A1820; --star:#F2F2F2; --good:#4CC35A; --good-soft:#142A17; --warn:#F2A33A; --warn-soft:#33240F; --bad:#FF7A5C; --bad-soft:#3A1A14;
+  --h1:#3A2D4A; --h2:#203646; --h3:#213A28; --h4:#45301F; --h5:#432633; --h6:#2A2D4A; --pop:0 6px 24px rgba(0,0,0,.6); --surface:#222222;
   --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#111214; --soft:#1B1C1F; --ink:#F2F2F3; --muted:#A5A9B3; --line:#30333A; --line-soft:#24262B;
-  --brand:#F15663; --brand-deep:#EE2C3C; --brand-ink:#FF7581; --brand-soft:#3A1519; --star:#FCBC05; --good:#4CC37E; --good-soft:#12291C; --warn:#F0B04F; --warn-soft:#33240F; --bad:#FF7581; --bad-soft:#3A1519;
-  --h1:#3A1E22; --h2:#2A2340; --h3:#183326; --h4:#3A2C14; --h5:#3A1E2B; --h6:#1E2A3D;
+  --bg:#121212; --soft:#1C1C1C; --ink:#F2F2F2; --muted:#A8A8A8; --line:#353535; --line-soft:#2A2A2A;
+  --brand:#FF5A75; --brand-deep:#FF385C; --brand-ink:#FF7A93; --brand-soft:#3A1820; --star:#F2F2F2; --good:#4CC35A; --good-soft:#142A17; --warn:#F2A33A; --warn-soft:#33240F; --bad:#FF7A5C; --bad-soft:#3A1A14;
+  --h1:#3A2D4A; --h2:#203646; --h3:#213A28; --h4:#45301F; --h5:#432633; --h6:#2A2D4A; --pop:0 6px 24px rgba(0,0,0,.6); --surface:#222222;
   --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -57,12 +58,37 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .freechip.used{background:var(--soft);color:var(--muted)}
 
 /* pill search */
-.search{display:flex;align-items:center;border:1px solid var(--line);border-radius:99px;box-shadow:var(--shadow-sm);background:var(--bg);padding:6px 6px 6px 0;min-width:0}
-.search .seg{display:grid;padding:6px 22px;border-right:1px solid var(--line-soft);min-width:0}
+.center{position:relative}
+.search{display:flex;align-items:center;border:1px solid var(--line);border-radius:99px;box-shadow:var(--shadow-sm);background:var(--bg);padding:6px 6px 6px 0;min-width:0;transition:background .15s}
+.search.open{background:var(--soft);box-shadow:none}
+.search .seg{display:grid;gap:1px;padding:8px 22px;border:0;border-right:1px solid var(--line-soft);background:transparent;text-align:left;min-width:0;border-radius:99px;font:inherit;color:inherit;cursor:pointer}
 .search .seg:last-of-type{border-right:0}
-.search .seg span{font-size:12px;font-weight:700}
-.search select,.search input{border:0;background:transparent;font-size:14px;color:var(--muted);padding:0;outline:none;min-width:0;width:100%}
-.search .seg:focus-within{background:var(--soft);border-radius:99px}
+.search .seg:hover{background:var(--soft)}
+.search.open .seg:hover{background:var(--line-soft)}
+.search .seg[aria-expanded="true"]{background:var(--bg);box-shadow:var(--pop);border-right-color:transparent}
+.search .seg .k{font-size:12px;font-weight:700}
+.search .seg .v{font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.search .seg .v.set{color:var(--ink);font-weight:600}
+.search .seg.txt{cursor:text}
+.search input{border:0;background:transparent;font-size:14px;color:var(--ink);padding:0;outline:none;min-width:0;width:100%}
+.search input::placeholder{color:var(--muted)}
+.dd{position:absolute;top:calc(100% + 12px);left:0;z-index:40;width:min(440px,100%);background:var(--surface);border:1px solid var(--line-soft);border-radius:32px;box-shadow:var(--pop);padding:16px;display:grid;gap:2px;max-height:min(70vh,520px);overflow:auto;animation:ddin .16s ease-out}
+.dd.right{left:auto;right:0}
+@keyframes ddin{from{opacity:0;transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.dd{animation:none}}
+.dd h4{margin:4px 12px 8px;font-size:12px;font-weight:700;color:var(--muted)}
+.ddo{display:flex;align-items:center;gap:14px;width:100%;border:0;background:transparent;text-align:left;padding:10px 12px;border-radius:14px;font:inherit;color:var(--ink);cursor:pointer}
+.ddo:hover,.ddo:focus-visible{background:var(--soft);outline:none}
+.ddo .tile{width:48px;height:48px;border-radius:12px;background:var(--soft);display:grid;place-items:center;flex:none;border:1px solid var(--line-soft)}
+.ddo:hover .tile,.ddo:focus-visible .tile{background:var(--surface)}
+.ddo .tile svg.i{width:22px;height:22px;stroke-width:1.6}
+.ddo .txt{display:grid;min-width:0;flex:1}
+.ddo .txt b{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ddo .txt small{font-size:13px;color:var(--muted)}
+.ddo .ok{display:grid;color:var(--ink);visibility:hidden}
+.ddo .ok svg.i{width:18px;height:18px;stroke-width:2.5}
+.ddo[aria-selected="true"] .ok{visibility:visible}
+.ddo[aria-selected="true"] .txt b{font-weight:700}
 .search .go{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;display:grid;place-items:center}
 .search .go svg.i{stroke-width:3;width:16px;height:16px}
 
@@ -99,7 +125,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .card:hover .slide img{transform:scale(1.03)}
 .fav{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);color:#222;font-size:13px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18);z-index:2}
 .onphoto{position:absolute;left:12px;bottom:26px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.95);color:#222;font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
-.onphoto svg.i{width:13px;height:13px;stroke-width:3;color:#EE2C3C}
+.onphoto svg.i{width:13px;height:13px;stroke-width:3;color:#E31C5F}
 .sl-pane{padding:20px 20px 30px;display:flex;flex-direction:column;gap:10px;justify-content:space-between;color:var(--ink)}
 .sl-k{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.75}
 .sl-big{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
@@ -122,7 +148,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .dots i.on{background:#fff;transform:scale(1.15)}
 .heart{position:absolute;top:10px;right:10px;border:0;background:none;padding:4px;z-index:2}
 .heart svg{width:26px;height:26px;fill:rgba(0,0,0,.5);stroke:#fff;stroke-width:2}
-.heart[aria-pressed="true"] svg{fill:#EE2C3C}
+.heart[aria-pressed="true"] svg{fill:#FF385C}
 .ct{display:grid;gap:2px;font-size:15px;min-width:0}
 .l1{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
 .l1 b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
@@ -141,7 +167,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .empty{padding:64px 16px;text-align:center;color:var(--muted)}
 
 /* buttons */
-.btn{border:1px solid var(--ink);background:var(--bg);padding:12px 20px;border-radius:6px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.btn{border:1px solid var(--ink);background:var(--bg);padding:12px 20px;border-radius:8px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
 .btn:hover{background:var(--soft)}
 .btn.sm{padding:8px 14px;font-size:14px}
 .btn.dark{background:var(--ink);color:var(--bg)}
@@ -461,7 +487,7 @@ const REVIEWS=[
  ['Tanvi','Bank employee · Jaipur','The free first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
 ];
 
-const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec',saved:new Set([3]),
+const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec',dd:null,saved:new Set([3]),
   freeLeft:1,connects:0,filtersOpen:false,
   profile:null,svc:0,date:0,slot:null,done:null,
   tab:'today',rTab:'upcoming',answered:new Set()};
@@ -475,18 +501,35 @@ const avI=(name,hue,size)=>`<span class="av" style="width:${size}px;height:${siz
 function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2600)}
 
 /* ---------- header ---------- */
+function segBtn(key,label,val,set,cls){
+  return `<button type="button" class="seg ${cls}" id="dd-${key}" data-dd="${key}" aria-haspopup="listbox" aria-expanded="${S.dd===key}"><span class="k">${label}</span><span class="v ${set?'set':''}">${esc(val)}</span></button>`}
+function ddPanel(){
+  const key=S.dd,cur=S[key];
+  const count=f=>ALUMNI.filter(f).length;
+  let head,opts;
+  if(key==='college'){
+    head='Search by university';
+    opts=[['all','Any university','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.map(a=>a.college))].sort().map(c=>[c,c,'cap',`${count(a=>a.college===c)} alumni`])];
+  }else{
+    head='Search by course';
+    const icon=c=>(CATS.find(x=>x[1]===c)||[])[2]||'cap';
+    opts=[['all','Any course','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.map(a=>a.course))].sort().map(c=>[c,c,icon(c),`${count(a=>a.course===c)} alumni`])];
+  }
+  return `<div class="dd ${key==='course'?'mid':''}" role="listbox" aria-labelledby="dd-${key}" id="ddpanel"><h4>${head}</h4>
+    ${opts.map(([v,l,i,sub])=>`<button type="button" class="ddo" role="option" data-pick="${esc(v)}" aria-selected="${cur===v}"><span class="tile">${ic(i)}</span><span class="txt"><b>${esc(l)}</b><small>${sub}</small></span><span class="ok">${ic('check')}</span></button>`).join('')}</div>`}
+function setDD(k){S.dd=k;$('#top').innerHTML=header();if(k){const b=$('#dd-'+k),pn=$('#ddpanel'),c=$('.center');if(b&&pn&&c){const l=b.getBoundingClientRect().left-c.getBoundingClientRect().left;if(l+pn.offsetWidth<=c.offsetWidth)pn.style.left=l+'px';else{pn.style.left='auto';pn.style.right='0'}}const sel=$('#ddpanel [aria-selected="true"]')||$('#ddpanel .ddo');sel&&sel.focus()}}
 function header(){
   if(S.view==='student'){
     const colleges=[...new Set(ALUMNI.map(a=>a.college))].sort();
     const courses=[...new Set(ALUMNI.map(a=>a.course))].sort();
     return `<div class="wrap"><div class="top-in">
       <button class="logo" data-home aria-label="Alumni Connect home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"><span class="ac-tag">Alumni Connect</span></button>
-      <div class="center"><form class="search" id="searchform" role="search">
-        <label class="seg"><span>University</span><select id="f-college"><option value="all">Any university</option>${colleges.map(c=>`<option ${S.college===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
-        <label class="seg hide-sm"><span>Course</span><select id="f-course"><option value="all">Any course</option>${courses.map(c=>`<option ${S.course===c?'selected':''}>${c}</option>`).join('')}</select></label>
-        <label class="seg"><span>Search</span><input id="q" type="search" placeholder="Name, company, city" value="${esc(S.q)}"></label>
+      <div class="center"><form class="search ${S.dd?'open':''}" id="searchform" role="search">
+        ${segBtn('college','University',S.college==='all'?'Any university':S.college,S.college!=='all','')}
+        ${segBtn('course','Course',S.course==='all'?'Any course':S.course,S.course!=='all','hide-sm')}
+        <label class="seg txt"><span class="k">Search</span><input id="q" type="search" placeholder="Name, company, city" value="${esc(S.q)}"></label>
         <button class="go" type="submit" aria-label="Search">${ic('search')}</button>
-      </form></div>
+      </form>${S.dd?ddPanel():''}</div>
       <div class="right">
         <span class="freechip ${S.freeLeft?'':'used'}" title="Your first connect on Alumni Connect is free">${ic('gift')}<span class="num">${S.freeLeft}</span><span class="long">&nbsp;free connect</span></span>
         <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
@@ -758,6 +801,11 @@ function open(id){Object.assign(S,{profile:id,svc:0,date:0,slot:null,done:null})
 
 document.addEventListener('submit',e=>{if(e.target.id==='searchform'){e.preventDefault();renderResults()}});
 document.addEventListener('click',e=>{
+  if(S.dd&&!e.target.closest('.dd,[data-dd]')){setDD(null)}
+  const pk=e.target.closest('[data-pick]');
+  if(pk){S[S.dd]=pk.dataset.pick;const k=S.dd;setDD(null);renderResults();$('#dd-'+k)?.focus();return}
+  const dd=e.target.closest('[data-dd]');
+  if(dd){setDD(S.dd===dd.dataset.dd?null:dd.dataset.dd);return}
   const t=e.target.closest('button,[data-open],[data-scrim]');if(!t)return;
   const d=t.dataset;
   if(d.view){S.view=d.view;S.profile=null;S.filtersOpen=false;try{localStorage.setItem('ac2-view',S.view)}catch(_){};render();scrollTo(0,0);return}
@@ -765,7 +813,7 @@ document.addEventListener('click',e=>{
     document.querySelectorAll(`.heart[data-heart="${id}"]`).forEach(h=>h.setAttribute('aria-pressed',S.saved.has(id)));toast(S.saved.has(id)?'Saved to your shortlist':'Removed from shortlist');return}
   if(d.slide){const tr=t.parentElement.querySelector('.track');tr.scrollBy({left:+d.slide*tr.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return}
   if(d.open){open(+d.open);return}
-  if(d.home!==undefined){Object.assign(S,{cat:'all',q:'',college:'all',course:'all'});render();return}
+  if(d.home!==undefined){Object.assign(S,{cat:'all',q:'',college:'all',course:'all',dd:null});render();return}
   if(d.cat){S.cat=d.cat;document.querySelectorAll('.cat').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===S.cat));renderResults();return}
   if(t.id==='open-filters'){S.filtersOpen=true;renderOverlay();return}
   if(d.closefilters!==undefined||(d.scrim==='filters'&&e.target===t)){S.filtersOpen=false;renderOverlay();renderResults();return}
@@ -806,6 +854,8 @@ document.addEventListener('click',e=>{
   if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
 });
 document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&S.dd){const k=S.dd;setDD(null);$('#dd-'+k)?.focus();return}
+  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest('.dd')){e.preventDefault();const o=[...document.querySelectorAll('.ddo')],i=o.indexOf(e.target);o[(i+(e.key==='ArrowDown'?1:-1)+o.length)%o.length].focus();return}
   if(e.key==='Escape'){if(S.filtersOpen){S.filtersOpen=false;renderOverlay()}else if(S.profile){S.profile=null;renderOverlay()}}
   if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();open(+e.target.dataset.open)}});
 document.addEventListener('input',e=>{
@@ -815,8 +865,6 @@ document.addEventListener('input',e=>{
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
-  if(t.id==='f-college'){S.college=t.value;renderResults()}
-  if(t.id==='f-course'){S.course=t.value;renderResults()}
   if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
 render();
 </script>
