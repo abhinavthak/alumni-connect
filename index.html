@@ -164,8 +164,11 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .over h3 .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .over .vt{width:18px;height:18px;border-radius:50%;background:#fff;color:#222;display:grid;place-items:center;flex:none}
 .over .vt svg.i{width:11px;height:11px;stroke-width:4}
-.over .r1{font-size:14.5px;font-weight:600;opacity:.96;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.over .r2{font-size:13px;opacity:.78;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.over .r1,.over .r2{display:flex;align-items:center;gap:7px;min-width:0}
+.over .r1 span,.over .r2 span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.over .r1 svg.i,.over .r2 svg.i{width:15px;height:15px;stroke-width:2;flex:none}
+.over .r1{font-size:14.5px;font-weight:600;opacity:.96;margin-top:2px}
+.over .r2{font-size:13px;opacity:.8}
 .fav{background:rgba(255,255,255,.96)}
 .below{display:grid;gap:6px;padding:0 2px;min-width:0}
 .below .row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0}
@@ -606,8 +609,8 @@ function card(a){
       <div class="track" data-track="${a.id}">
         <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" loading="lazy"><div class="shade"></div>
           <div class="over"><h3><span class="nm">${esc(a.name)}</span><span class="vt" title="Verified alumni">${ic('check')}</span></h3>
-            <span class="r1">${esc(a.role)} at ${esc(a.company)}</span>
-            <span class="r2">${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></div></div>
+            <span class="r1">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></span>
+            <span class="r2">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></span></div></div>
         <div class="slide sl-pane" style="background:var(--${a.hue})">
           <span class="sl-k">${esc(a.first)} rates ${esc(a.short)}</span>
           <div class="sl-big num">${avg.toFixed(1)}<small>/5</small></div>
