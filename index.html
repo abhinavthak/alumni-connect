@@ -105,13 +105,15 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 
 /* grid */
 .results-meta{font-size:14px;color:var(--muted);padding-block:16px 4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:40px 24px;padding-block:12px 64px}
-.card{display:grid;gap:10px;cursor:pointer;min-width:0}
-.ph{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--soft);max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:24px;padding-block:12px 64px}
+.card{display:flex;flex-direction:column;cursor:pointer;min-width:0;background:var(--surface);border:1px solid var(--line-soft);border-radius:20px;padding:8px;transition:box-shadow .2s,transform .2s,border-color .2s}
+.card:hover{box-shadow:0 12px 32px rgba(0,0,0,.10);border-color:transparent;transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.card,.card:hover{transition:none;transform:none}}
+.ph{position:relative;aspect-ratio:5/4;border-radius:14px;overflow:hidden;background:var(--soft);max-width:100%}
 .track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;height:100%;scroll-snap-align:start;position:relative;overflow:hidden}
-.slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.slide img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;transition:transform .35s}
 .card:hover .slide img{transform:scale(1.03)}
 .fav{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);color:#222;font-size:13px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18);z-index:2}
 .onphoto{position:absolute;left:12px;bottom:26px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.95);color:#222;font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
@@ -154,6 +156,38 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .price-line s{color:var(--muted);font-weight:400}
 .price-line b{font-weight:700}
 .price-line .free{color:var(--brand-ink)}
+
+/* card body */
+.co{position:absolute;left:10px;bottom:24px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.96);color:#222;font-size:12.5px;font-weight:600;padding:4px 10px 4px 4px;border-radius:99px;box-shadow:0 1px 3px rgba(0,0,0,.18);max-width:calc(100% - 20px)}
+.co i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#222;flex:none}
+.co span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cb{padding:14px 8px 12px;display:grid;gap:6px;min-width:0}
+.who{display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0}
+.who h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:6px;min-width:0;letter-spacing:-.01em}
+.who h3 .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vt{width:17px;height:17px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;flex:none}
+.vt svg.i{width:10px;height:10px;stroke-width:4}
+.role{font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.deg{display:flex;align-items:center;gap:8px;min-width:0;font-size:13px;color:var(--muted);margin-top:2px}
+.deg b{flex:none;font-size:12px;font-weight:700;color:var(--ink);padding:3px 8px;border-radius:6px}
+.deg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tags{display:flex;gap:6px;overflow:hidden;margin-top:4px;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent)}
+.tags span{flex:none;font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:99px;padding:3px 10px;white-space:nowrap;color:var(--ink)}
+.tags span.more{color:var(--muted)}
+.cf{margin-top:auto;border-top:1px solid var(--line-soft);padding:12px 8px 4px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pr{display:grid;gap:3px;min-width:0}
+.pr .top{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.pr .top b{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.pr .top b.free{color:var(--brand-ink)}
+.pr .top span{font-size:13px;color:var(--muted)}
+.pr .nx{display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.pr .nx svg.i{width:13px;height:13px}
+.pr .nx.soon{color:var(--good);font-weight:600}
+.btn.cta{padding:9px 14px;font-size:14px;border-radius:8px;flex:none}
+.sl-pane{padding:16px 16px 26px;overflow:hidden}
+.sl-big{font-size:32px}
+.sl-bars{gap:5px}
+.sl-q{font-size:16px;line-height:1.4}
 .empty{padding:64px 16px;text-align:center;color:var(--muted)}
 
 /* buttons */
@@ -569,11 +603,11 @@ function priceLine(a,svc){
   return S.freeLeft?`<b class="free">Free</b> first call · <span class="u">then ${rupee(s.price)}</span>`:`<b>${rupee(s.price)}</b> · ${unit}`}
 function card(a){
   const avg=Object.values(a.scores).reduce((x,y)=>x+y,0)/4;
-  const soon=/^(Today|Tomorrow)/.test(a.next);
+  const soon=/^(Today|Tomorrow)/.test(a.next),s0=a.services[0];
   return `<article class="card" data-open="${a.id}" tabindex="0" aria-label="${esc(a.name)}, ${esc(a.course)} ${a.batch}, ${esc(a.college)}">
     <div class="ph">
       <div class="track" data-track="${a.id}">
-        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" loading="lazy"><span class="onphoto">${ic('check')}Verified alumni</span></div>
+        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" loading="lazy"><span class="co"><i style="background:var(--${a.hue})">${esc(a.company[0])}</i><span>${esc(a.company)}</span></span></div>
         <div class="slide sl-pane" style="background:var(--${a.hue})">
           <span class="sl-k">${esc(a.first)} rates ${esc(a.short)}</span>
           <div class="sl-big num">${avg.toFixed(1)}<small>/5</small></div>
@@ -592,12 +626,18 @@ function card(a){
       <button class="arrow next" data-slide="1" aria-label="Next">${ic('back','style="transform:scaleX(-1)"')}</button>
       <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
     </div>
-    <div class="ct">
-      <div class="l1"><b>${esc(a.name)}</b><span class="rate num">${STAR}${a.rating.toFixed(2)}<span class="cnt">(${a.reviews})</span></span></div>
-      <span class="m">${esc(a.role)} at ${esc(a.company)}</span>
-      <span class="m">${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span>
-      <span class="avail ${soon?'soon':''}">${ic('clock')}${soon?'Available ':'Next: '}${a.next}</span>
-      <span class="price-line num">${priceLine(a)}</span>
+    <div class="cb">
+      <div class="who"><h3><span class="nm">${esc(a.name)}</span><span class="vt" title="Verified alumni" aria-label="Verified alumni">${ic('check')}</span></h3><span class="rate num">${STAR}${a.rating.toFixed(2)}<span class="cnt">(${a.reviews})</span></span></div>
+      <p class="role">${esc(a.role)} · ${a.calls} calls taken</p>
+      <div class="deg"><b class="num" style="background:var(--${a.hue})">${esc(a.course)} · ${a.batch}</b><span>${esc(a.college)}</span></div>
+      <div class="tags">${a.topics.slice(0,2).map(t=>`<span>${esc(t)}</span>`).join('')}${a.topics.length>2?`<span class="more">+${a.topics.length-2}</span>`:''}</div>
+    </div>
+    <div class="cf">
+      <div class="pr num">
+        <div class="top">${S.freeLeft?`<b class="free">Free</b><span>first call · then ${rupee(s0.price)}</span>`:`<b>${rupee(s0.price)}</b><span>/ ${s0.dur} min call</span>`}</div>
+        <span class="nx ${soon?'soon':''}">${ic('clock')}${soon?'':'Next: '}${a.next}</span>
+      </div>
+      <button class="btn brand cta" data-open="${a.id}">${S.freeLeft?'Book free':'Book'}</button>
     </div></article>`}
 function syncSlide(track){
   const ph=track.parentElement,i=Math.round(track.scrollLeft/track.clientWidth),n=track.children.length;
