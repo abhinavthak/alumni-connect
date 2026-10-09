@@ -435,6 +435,44 @@ textarea{resize:vertical}
 .dur:hover{border-color:var(--ink)}
 .dur[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:var(--soft)}
 .dur[aria-pressed="true"] span{color:var(--ink)}
+.bk-date{position:relative}
+.datefield{display:flex;align-items:center;gap:12px;width:100%;border:1px solid var(--muted);border-radius:12px;background:var(--bg);padding:10px 14px;font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.datefield:hover{border-color:var(--ink)}
+.datefield[aria-expanded="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.datefield svg.i{width:20px;height:20px}
+.datefield>span{display:grid;flex:1;min-width:0}
+.datefield b{font-size:15px;font-weight:600}
+.datefield small{font-size:12.5px;color:var(--muted)}
+.datefield em{font-style:normal;font-size:13px;font-weight:600;text-decoration:underline}
+.calpop{position:absolute;top:calc(100% + 10px);right:-24px;z-index:20;width:min(680px,calc(100vw - 32px));background:var(--bg);border-radius:24px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:24px 28px 18px;display:grid;gap:18px;animation:ddin .16s ease-out}
+.cp-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.cp-h b{display:block;font-size:20px;font-weight:700}
+.cp-h span{font-size:14px;color:var(--muted)}
+.cp-nav{display:flex;gap:8px}
+.cp-ar{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.cp-ar:hover:not(:disabled){border-color:var(--ink)}
+.cp-ar:disabled{opacity:.35;cursor:not-allowed}
+.cp-ar svg.i{width:14px;height:14px;stroke-width:2.5}
+.cp-ms{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.cm{display:grid;gap:10px;align-content:start;grid-template-rows:auto auto auto}
+.cm-t{text-align:center;font-size:15px;font-weight:600}
+.cw,.cg{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
+.cw span{font-size:12px;font-weight:600;color:var(--muted);padding-bottom:4px}
+.cg{row-gap:2px}
+.cd{aspect-ratio:1/1;border:0;background:transparent;border-radius:50%;font:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;position:relative;max-width:44px;justify-self:center;width:100%}
+.cd:hover:not(:disabled){box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cd:disabled{color:var(--line);cursor:not-allowed;text-decoration:line-through;font-weight:400}
+.cd.past:disabled{text-decoration:none}
+.cd.today::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--brand)}
+.cd.sel{background:var(--ink);color:var(--bg)}
+.cd.sel::after{background:var(--bg)}
+.cp-f{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line-soft);padding-top:14px}
+.cp-key{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.cp-key i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.cp-key .k1{background:var(--ink)}
+.cp-key .k2{background:var(--line);margin-left:8px}
+@media (max-width:1100px){.calpop{right:0}}
+@media (max-width:860px){.calpop{left:0;right:0;width:auto;padding:18px}.cp-ms{grid-template-columns:1fr}.cp-ms .cm+.cm{display:none}}
 .bk-sum{background:var(--soft);border-radius:12px;padding:14px;display:grid;gap:8px;font-size:14px}
 .bk-sum div{display:flex;justify-content:space-between;gap:12px}
 .bk-sum div span:first-child{color:var(--muted)}
@@ -668,6 +706,7 @@ const P={
  plus:'<path d="M12 5v14M5 12h14"/>',
  trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
  college:'<path d="M3 21h18M3 9.5h18M12 3 3.5 8h17Z"/><path d="M5.5 10v8.5M9.8 10v8.5M14.2 10v8.5M18.5 10v8.5M4 18.5h16"/>',
+ calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
  share:'<path d="M12 3v13M7 8l5-5 5 5M5 14v6h14v-6"/>',
 };
 const ic=(n,extra='')=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
@@ -912,6 +951,23 @@ function filtersModal(){
   </div></div>`}
 
 /* ---------- student: listing page ---------- */
+const MAX_AHEAD=45;
+function dinfo(off){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+off);return {date:d,dow:off===0?'Today':off===1?'Tomorrow':d.toLocaleDateString('en-IN',{weekday:'short'}),short:d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}),long:d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}}
+const offDays=a=>[a.id%7,(a.id+3)%7];
+function dayOpen(a,off){if(off<0||off>MAX_AHEAD)return false;return !offDays(a).includes(dinfo(off).date.getDay())}
+function firstOpen(a){for(let o=0;o<=MAX_AHEAD;o++)if(dayOpen(a,o))return o;return 0}
+function calMonth(a,mOff){const t=new Date();t.setHours(0,0,0,0);const first=new Date(t.getFullYear(),t.getMonth()+mOff,1),days=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();
+  const lead=(first.getDay()+6)%7,cells=[];for(let i=0;i<lead;i++)cells.push('<span></span>');
+  for(let d=1;d<=days;d++){const dt=new Date(first.getFullYear(),first.getMonth(),d),off=Math.round((dt-t)/864e5),open=dayOpen(a,off),past=off<0;
+    cells.push(`<button class="cd${off===S.date?' sel':''}${off===0?' today':''}${past?' past':''}" data-day="${off}" ${open?'':'disabled'} aria-pressed="${off===S.date}" aria-label="${dt.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}${open?'':' (unavailable)'}">${d}</button>`)}
+  return `<div class="cm"><b class="cm-t">${first.toLocaleDateString('en-IN',{month:'long',year:'numeric'})}</b><div class="cw">${['M','T','W','T','F','S','S'].map(x=>`<span>${x}</span>`).join('')}</div><div class="cg">${cells.join('')}</div></div>`}
+function calPop(a){const maxM=Math.floor((dinfo(MAX_AHEAD).date.getMonth()-new Date().getMonth()+12)%12);
+  return `<div class="calpop" role="dialog" aria-label="Choose a date">
+    <div class="cp-h"><div><b>Select a date</b><span>${S.date!=null?dinfo(S.date).long:'Pick a day that works for you'}</span></div>
+      <div class="cp-nav"><button class="cp-ar" data-calm="-1" ${S.calM<=0?'disabled':''} aria-label="Previous month">${ic('back')}</button><button class="cp-ar" data-calm="1" ${S.calM>=maxM?'disabled':''} aria-label="Next month">${ic('back','style="transform:scaleX(-1)"')}</button></div></div>
+    <div class="cp-ms">${calMonth(a,S.calM)}${calMonth(a,S.calM+1)}</div>
+    <div class="cp-f"><span class="cp-key"><i class="k1"></i>Available<i class="k2"></i>Unavailable</span><button class="btn dark sm" data-calclose>Done</button></div>
+  </div>`}
 function nextDays(){const out=[],b=new Date();for(let i=0;i<7;i++){const d=new Date(b);d.setDate(b.getDate()+i);
   out.push({dow:i===0?'Today':i===1?'Tmrw':d.toLocaleDateString('en-IN',{weekday:'short'}),dd:d.getDate(),long:d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})})}return out}
 const SLOTS=['10:00 AM','12:30 PM','5:00 PM','6:30 PM','8:00 PM','9:30 PM'];
@@ -971,6 +1027,7 @@ function bookCard(a){
       <p class="muted">${d.t==='call'?`${esc(a.first)} will meet you on ${d.when} at ${d.slot}. The video link is in your email and WhatsApp.`:`${esc(a.first)} usually replies ${a.respond}. We'll notify you when the answer is ready.`}</p>
       <p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You saved <b>${rupee(d.full-d.paid)}</b> with your 25% first-connect discount. Normal prices apply from your next connect.</span></div>`:''}
       <button class="btn block" data-again>Book another session</button></div>`}
+  if(!dayOpen(a,S.date))S.date=firstOpen(a);
   const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date):[];
   if(S.slot&&!slots.includes(S.slot))S.slot=null;
   const can=!q.call||S.slot;
@@ -980,8 +1037,8 @@ function bookCard(a){
     <div class="seg2" role="tablist" aria-label="Session type">${a.services.map((x,i)=>`<button role="tab" aria-selected="${S.svc===i}" data-svc="${i}">${ic(x.t==='call'?'video':'chat')}${x.t==='call'?'Video call':'Priority DM'}</button>`).join('')}</div>
     ${q.call?`
       <div class="bk-sec"><span class="lbl">Duration</span><div class="durs">${q.opts.map((x,i)=>`<button class="dur" data-dur="${i}" aria-pressed="${q.o===x}"><b>${fmtDur(x.dur)}</b><span class="num">${rupee(q.free?off(x.price):x.price)}</span></button>`).join('')}</div></div>
-      <div class="bk-sec"><div class="bk-row"><span class="lbl">Date</span><span class="muted" style="font-size:13px">${new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'})}</span></div><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
-      <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span>${S.slot?`<span class="bk-pick num">${ic('check')}${days[S.date].dow==='Today'?'Today':days[S.date].long.split(',')[0]} · ${S.slot}</span>`:`<span class="muted" style="font-size:13px">${slots.length} slots</span>`}</div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
+      <div class="bk-sec bk-date"><span class="lbl">Date</span><button class="datefield" data-cal aria-expanded="${!!S.cal}" aria-haspopup="dialog">${ic('calendar')}<span><b>${dinfo(S.date).short}</b><small>${S.date===0?'Today':S.date===1?'Tomorrow':`In ${S.date} days`}</small></span><em>Change</em></button>${S.cal?calPop(a):''}</div>
+      <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span>${S.slot?`<span class="bk-pick num">${ic('check')}${dinfo(S.date).dow==='Today'||dinfo(S.date).dow==='Tomorrow'?dinfo(S.date).dow:dinfo(S.date).short} · ${S.slot}</span>`:`<span class="muted" style="font-size:13px">${slots.length} slots</span>`}</div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
     :`<ul class="bk-trust" style="font-size:13.5px;color:var(--ink)"><li>${ic('chat')}One detailed written answer from ${esc(a.first)}</li><li>${ic('clock')}Reply in ${q.s.eta}</li><li>${ic('check')}One follow-up question included</li></ul>
       <label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
     <div class="bk-foot">
@@ -989,7 +1046,7 @@ function bookCard(a){
       <button class="btn brand bk-go" id="confirm" ${can?'':'disabled'}>${can?(q.call?'Book call':'Send question'):(q.call?'Pick a time':'Write your question')}</button>
     </div>
     ${S.pdet?`<div class="bk-sum num">
-      ${q.call&&S.slot?`<div><span>When</span><span>${days[S.date].long}, ${S.slot}</span></div>`:''}
+      ${q.call&&S.slot?`<div><span>When</span><span>${dinfo(S.date).long}, ${S.slot}</span></div>`:''}
       <div><span>${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}</span><span>${rupee(q.full)}</span></div>
       ${q.free?`<div class="disc"><span>First-connect discount (25%)</span><span>−${rupee(q.full-q.pay)}</span></div>`:''}
       <div class="total"><span>You pay</span><span>${rupee(q.pay)}</span></div></div>`:''}
@@ -1127,11 +1184,12 @@ function renderOverlay(){
   $('#overlay').innerHTML=h;
   document.body.style.overflow=h?'hidden':''}
 function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile),bc=$('#bookcard');if(!a||!bc){renderOverlay();return}bc.innerHTML=bookCard(a);const m=$('.mbar');if(m)m.outerHTML=mbarHTML(a)}
-function open(id){Object.assign(S,{profile:id,svc:0,dur:1,date:0,slot:null,done:null});renderOverlay()}
+function open(id){Object.assign(S,{profile:id,svc:0,dur:1,date:0,slot:null,done:null,cal:false,calM:0});renderOverlay()}
 
 document.addEventListener('submit',e=>{if(e.target.id==='searchform'){e.preventDefault();renderResults()}});
 document.addEventListener('click',e=>{
   if(S.dd&&!e.target.closest('.dd,[data-dd]')){setDD(null)}
+  if(S.cal&&!e.target.closest('.calpop,[data-cal]')){S.cal=false;renderBook()}
   const pk=e.target.closest('[data-pick]');
   if(pk){S[S.dd]=pk.dataset.pick;const k=S.dd;setDD(null);renderResults();$('#dd-'+k)?.focus();return}
   const dd=e.target.closest('[data-dd]');
@@ -1160,7 +1218,10 @@ document.addEventListener('click',e=>{
   if(d.svc){S.svc=+d.svc;S.slot=null;renderBook();return}
   if(d.dur){S.dur=+d.dur;renderBook();return}
   if(d.pdet!==undefined){S.pdet=!S.pdet;renderBook();return}
-  if(d.date){S.date=+d.date;S.slot=null;renderBook();return}
+  if(d.day!==undefined&&t.classList.contains('cd')){S.date=+d.day;S.slot=null;S.cal=false;renderBook();return}
+  if(d.calm){S.calM=Math.max(0,S.calM+ +d.calm);renderBook();return}
+  if(d.cal!==undefined){S.cal=!S.cal;S.calM=Math.max(0,dinfo(S.date).date.getMonth()-new Date().getMonth());renderBook();return}
+  if(d.calclose!==undefined){S.cal=false;renderBook();return}
   if(d.slot){S.slot=d.slot;renderBook();return}
   if(d.again!==undefined){S.done=null;S.slot=null;renderBook();return}
   if(t.id==='confirm'){
@@ -1168,7 +1229,7 @@ document.addEventListener('click',e=>{
     if(!q.call&&($('#dm')?.value||'').trim().length<10){toast('Write a question of at least 10 characters');return}
     if(q.call&&!S.slot)return;
     const free=q.free;
-    S.done={t:q.s.t,free,paid:q.pay,full:q.full,dur:q.call?q.o.dur:0,when:nextDays()[S.date].long,slot:S.slot};
+    S.done={t:q.s.t,free,paid:q.pay,full:q.full,dur:q.call?q.o.dur:0,when:dinfo(S.date).long,slot:S.slot};
     if(free)S.freeLeft=0;S.connects++;
     $('#top').innerHTML=header();renderResults();const b=$('.trust');if(b)b.outerHTML=banner();
     renderBook();return}
@@ -1191,6 +1252,7 @@ document.addEventListener('click',e=>{
   if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
 });
 document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&S.cal){S.cal=false;renderBook();$('[data-cal]')?.focus();return}
   if(e.key==='Escape'&&S.dd){const k=S.dd;setDD(null);$('#dd-'+k)?.focus();return}
   if((e.key==='ArrowDown'||e.key==='ArrowUp')&&e.target.closest('.dd')){e.preventDefault();const o=[...document.querySelectorAll('.ddo')],i=o.indexOf(e.target);o[(i+(e.key==='ArrowDown'?1:-1)+o.length)%o.length].focus();return}
   if(e.key==='Escape'){if(S.filtersOpen){S.filtersOpen=false;renderOverlay()}else if(S.profile){S.profile=null;renderOverlay()}}
