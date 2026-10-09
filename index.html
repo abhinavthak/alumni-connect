@@ -191,6 +191,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .ln svg.i{width:15px;height:15px;flex:none;stroke-width:1.8}
 .ln span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ln.strong{color:var(--ink);font-size:14px}
+.ln em.plus{flex:none;font-style:normal;font-size:11.5px;font-weight:600;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:99px;padding:1px 8px}
 .when2 i{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none;margin-inline:4px}
 .when2.soon{color:var(--good);font-weight:600}
 .when2.soon i{background:var(--good);box-shadow:0 0 0 3px rgba(0,138,5,.15)}
@@ -277,6 +278,34 @@ textarea{resize:vertical}
 .subline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:15px;margin-top:6px}
 .subline b{font-weight:600}
 .cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;margin-top:28px;align-items:start}
+.edu{display:grid;gap:12px}
+.edu-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:14px;align-items:center;border:1px solid var(--line-soft);border-radius:14px;padding:12px 14px}
+.edu-row .tile{width:48px;height:48px;border-radius:12px;background:var(--soft);display:grid;place-items:center}
+.edu-row .tile svg.i{width:22px;height:22px;stroke-width:1.6}
+.edu-row b{display:block;font-weight:600}
+.edu-row span{font-size:13.5px;color:var(--muted)}
+.edu-row .tag svg.i{width:12px;height:12px;stroke-width:3}
+.socs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.soc{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--bg);font:inherit;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.soc:hover{border-color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.soc .si{width:36px;height:36px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none}
+.soc .si svg.i{width:19px;height:19px}
+.soc .sx{display:grid;min-width:0}
+.soc .sx b{font-weight:600;font-size:14px}
+.soc .sx small{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini-socs{display:flex;gap:6px;justify-content:center;margin-top:6px}
+.ms{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--c);display:grid;place-items:center;cursor:pointer}
+.ms:hover{background:var(--c);color:#fff;border-color:var(--c)}
+.ms svg.i{width:15px;height:15px}
+.deg-ed{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:12px}
+.deg-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.deg-grid{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:10px}
+.deg-ed .x svg.i{width:16px;height:16px}
+.soc-ed{display:flex;align-items:flex-end;gap:12px}
+.soc-ed .si{width:40px;height:40px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none;margin-bottom:2px}
+.soc-ed .si svg.i{width:20px;height:20px}
+.soc-ed .toggle{margin-bottom:6px}
+.soc-ed .field span{font-size:13px}
 .hostcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border-radius:24px;box-shadow:0 6px 20px rgba(0,0,0,.14);padding:28px 32px;background:var(--bg)}
 .hostcard .face{display:grid;justify-items:center;gap:6px;text-align:center}
 .hostcard .face .pic{position:relative}
@@ -517,6 +546,13 @@ const P={
  building:'<path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6M9 11h.01M15 11h.01"/>',
  laptop:'<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
  flask:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M7.5 14h9"/>',
+ linkedin:'<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V17M8 7.2v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"/>',
+ instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7v.01"/>',
+ youtube:'<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/>',
+ xsoc:'<path d="M4 4h4.5L20 20h-4.5Z"/><path d="M19.5 4 13 11.3M4.5 20l6.6-7.3"/>',
+ globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
  share:'<path d="M12 3v13M7 8l5-5 5 5M5 14v6h14v-6"/>',
 };
 const ic=(n,extra='')=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
@@ -545,7 +581,15 @@ const ALUMNI=[
 const NEXT=['Today, 8:30 PM','Tomorrow, 7:00 PM','Sat, 11:00 AM','Sun, 5:00 PM','Today, 9:00 PM','Tomorrow, 6:30 PM','Mon, 8:00 PM','Sat, 4:00 PM','Tomorrow, 9:00 PM','Today, 7:30 PM','Sun, 10:00 AM','Fri, 8:00 PM','Tomorrow, 8:00 PM','Sat, 6:00 PM'];
 const LANGS=['English, Hindi, Tamil','English, Hindi, Gujarati','English, Marathi, Hindi','English, Hindi, Punjabi','English, Hindi, Urdu','English, Telugu, Kannada','English, Hindi, Marathi','English, Malayalam, Hindi','English, Malayalam, Tamil','English, Telugu, Hindi','English, Hindi','English, Bengali, Hindi','English, Hindi, Urdu','English, Gujarati, Hindi'];
 const STREAM={1:'mca',2:'mba',3:'ba',4:'mba',5:'bca',6:'bcom',7:'bba',8:'mba',9:'mca',10:'msc',11:'ma',12:'mcom',13:'ma',14:'bba'};
-ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];a.stream=STREAM[a.id]});
+const EXTRA_DEG={1:[['BCA',2018,'Deccan University Online']],2:[['BCom',2017,'Deccan University Online']],4:[['BBA',2015,'Konkan Open University']],8:[['MCom',2012,'Deccan University Online']],10:[['BA',2017,'Satpura University Online']],12:[['BCom',2016,'Deccan University Online']]};
+const COURSE_STREAM={MBA:'mba',MCA:'mca',BBA:'bba',BCA:'bca',BCom:'bcom',MCom:'mcom',MA:'ma',MSc:'msc',BA:'ba'};
+const SOC_META={linkedin:['LinkedIn','linkedin','#0A66C2'],instagram:['Instagram','instagram','#E1306C'],youtube:['YouTube','youtube','#FF0000'],x:['X','xsoc','#111111'],website:['Website','globe','#222222']};
+const SOCIALS={1:{linkedin:'in/ananya-iyer-dev',instagram:'@ananya.codes'},2:{linkedin:'in/rohanmehta-brand',instagram:'@rohan.markets'},3:{linkedin:'in/sneha-kulkarni-ux',website:'snehakulkarni.design'},4:{linkedin:'in/arjun-singh-scm'},5:{linkedin:'in/fatima-shaikh-data',x:'@fatimadata'},6:{linkedin:'in/karthik-rao-ca'},7:{linkedin:'in/meera-joshi-ba',instagram:'@meera.cases'},8:{linkedin:'in/vikram-nair-pm'},9:{linkedin:'in/priya-menon-eng',x:'@priyabuilds',website:'priyamenon.dev'},10:{linkedin:'in/kavya-reddy-ds',youtube:'@KavyaExplainsData'},11:{linkedin:'in/aditi-sharma-writes',instagram:'@aditi.reads'},12:{linkedin:'in/siddharth-bose-fin'},13:{linkedin:'in/zoya-khan-news',x:'@zoyareports',youtube:'@ZoyaOnTheGround'},14:{linkedin:'in/harsh-patel-bd'}};
+ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];
+  a.degrees=[{course:a.course,batch:a.batch,college:a.college},...(EXTRA_DEG[a.id]||[]).map(([course,batch,college])=>({course,batch,college}))];
+  a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
+const streamsOf=a=>a.degrees.map(d=>COURSE_STREAM[d.course]);
+const syncPrimary=a=>{const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college};
 const CATS=[['all','All programs','all'],['mba','MBA','chart'],['mca','MCA','code'],['bba','BBA','brief'],['bca','BCA','laptop'],['bcom','BCom','calc'],['mcom','MCom','rupee'],['ma','MA','book'],['msc','MSc','flask'],['ba','BA','pen']];
 const TOPICS=['Placement support','Live classes','Exams & assessments','Degree recognition','Fees & EMI','Work + study','Career switch','Faculty'];
 const TOPIC_ICON={'Placement support':'brief','Live classes':'video','Exams & assessments':'book','Degree recognition':'shield','Fees & EMI':'rupee','Work + study':'clock','Career switch':'rocket','Faculty':'users'};
@@ -580,11 +624,11 @@ function ddPanel(){
   let head,opts;
   if(key==='college'){
     head='Search by university';
-    opts=[['all','Any university','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.map(a=>a.college))].sort().map(c=>[c,c,'cap',`${count(a=>a.college===c)} alumni`])];
+    opts=[['all','Any university','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.college)))].sort().map(c=>[c,c,'cap',`${count(a=>a.degrees.some(d=>d.college===c))} alumni`])];
   }else{
     head='Search by course';
     const icon=c=>(CATS.find(x=>x[1]===c)||[])[2]||'cap';
-    opts=[['all','Any course','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.map(a=>a.course))].sort().map(c=>[c,c,icon(c),`${count(a=>a.course===c)} alumni`])];
+    opts=[['all','Any course','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.course)))].sort().map(c=>[c,c,icon(c),`${count(a=>a.degrees.some(d=>d.course===c))} alumni`])];
   }
   return `<div class="dd ${key==='course'?'mid':''}" role="listbox" aria-labelledby="dd-${key}" id="ddpanel"><h4>${head}</h4>
     ${opts.map(([v,l,i,sub])=>`<button type="button" class="ddo" role="option" data-pick="${esc(v)}" aria-selected="${cur===v}"><span class="tile">${ic(i)}</span><span class="txt"><b>${esc(l)}</b><small>${sub}</small></span><span class="ok">${ic('check')}</span></button>`).join('')}</div>`}
@@ -606,7 +650,7 @@ function header(){
         <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
       </div></div></div>`}
   const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
-  const tabs=[['today','Today'],['calendar','Calendar'],['services','Services'],['inbox','Questions',pend],['earnings','Earnings'],['review','My university review']];
+  const tabs=[['today','Today'],['calendar','Calendar'],['services','Services'],['inbox','Questions',pend],['earnings','Earnings'],['profile','Profile'],['review','My university review']];
   return `<div class="wrap"><div class="top-in">
     <button class="logo" data-tab="today" aria-label="Alumni dashboard home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"></button>
     <div class="center" style="min-width:0"><nav class="htabs" aria-label="Dashboard">${tabs.map(([k,l,n])=>`<button class="htab" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${l}${n?`<span class="dot-n num">${n}</span>`:''}</button>`).join('')}</nav></div>
@@ -618,10 +662,10 @@ function header(){
 function filtered(){
   const q=S.q.trim().toLowerCase();
   let list=ALUMNI.filter(a=>{
-    if(q&&![a.name,a.college,a.company,a.course,a.role,a.city].join(' ').toLowerCase().includes(q))return false;
-    if(S.college!=='all'&&a.college!==S.college)return false;
-    if(S.course!=='all'&&!a.course.startsWith(S.course))return false;
-    if(S.cat!=='all'&&a.stream!==S.cat)return false;
+    if(q&&![a.name,a.company,a.role,a.city,...a.degrees.map(d=>d.course+' '+d.college)].join(' ').toLowerCase().includes(q))return false;
+    if(S.college!=='all'&&!a.degrees.some(d=>d.college===S.college))return false;
+    if(S.course!=='all'&&!a.degrees.some(d=>d.course===S.course))return false;
+    if(S.cat!=='all'&&!streamsOf(a).includes(S.cat))return false;
     if(S.topic&&!a.topics.includes(S.topic))return false;
     if(S.price!=='any'&&a.services[0].price>+S.price)return false;
     return true});
@@ -677,7 +721,7 @@ function card(a){
     <div class="below">
       <div class="who2"><h3><span class="nm">${esc(a.name)}</span><span class="vt2" title="Verified alumni" aria-label="Verified alumni">${ic('check')}</span></h3><span class="rt num">${STAR}${a.rating.toFixed(2)}<span>(${a.reviews})</span></span></div>
       <div class="ln strong">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></div>
-      <div class="ln">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></div>
+      <div class="ln">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span>${a.degrees.length>1?`<em class="plus" title="${esc(a.degrees.slice(1).map(d=>d.course+' '+d.batch+', '+d.college).join('; '))}">+${a.degrees.length-1} degree${a.degrees.length>2?'s':''}</em>`:''}</div>
       <div class="ln when2 ${soon?'soon':''}"><i></i><span>${soon?'Available ':'Next slot: '}${a.next}</span></div>
       <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book call with ${esc(a.first)} for ${rupee(off(s0.price))}, 25% off ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
         <span class="l">${ic('video')}Book call</span>
@@ -724,14 +768,16 @@ function listing(a){
         <div>
           <div class="hostcard">
             <div class="face"><div class="pic"><img src="${a.img}" alt="${esc(a.name)}"><span class="badge" title="Verified alumni">${ic('check')}</span></div>
-              <h2>${esc(a.first)}</h2><span>${esc(a.role)} at ${esc(a.company)}</span></div>
+              <h2>${esc(a.first)}</h2><span>${esc(a.role)} at ${esc(a.company)}</span>${a.socials.filter(x=>x.show).length?`<div class="mini-socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="ms" data-soc="${lbl}" style="--c:${col}" aria-label="${lbl}: ${esc(x.handle)}" title="${lbl}">${ic(icn)}</button>`}).join('')}</div>`:''}</div>
             <div class="hstats"><div><b class="num">${a.reviews}</b><span>Reviews</span></div><div><b class="num">${a.rating.toFixed(2)}★</b><span>Rating</span></div><div><b class="num">${yrs}</b><span>Years since graduating</span></div></div>
           </div>
           <div class="sec"><div class="hl">
             ${a.fav?`<div>${ic('medal')}<p><b>Student favourite</b><span>One of the most-loved alumni on Alumni Connect, based on ratings and reviews.</span></p></div>`:''}
-            <div>${ic('shield')}<p><b>Verified alumni</b><span>${esc(a.course)}, batch of ${a.batch}. Verified with a university email and degree certificate.</span></p></div>
+            <div>${ic('shield')}<p><b>Verified alumni</b><span>${a.degrees.length>1?`${a.degrees.length} degrees`:'Degree'} verified with a university email and degree certificate.</span></p></div>
             <div>${ic('clock')}<p><b>Replies ${a.respond}</b><span>${a.calls} calls completed with students and parents.</span></p></div>
           </div></div>
+          <div class="sec"><h2>Education</h2><div class="edu">${a.degrees.map((d,i)=>`<div class="edu-row"><span class="tile">${ic(CATS.find(c=>c[0]===COURSE_STREAM[d.course])?.[2]||'cap')}</span><div><b>${esc(d.course)} · ${esc(d.college)}</b><span>Class of ${d.batch}${i===0?' · Main degree':''}</span></div><span class="tag ok">${ic('check')}Verified</span></div>`).join('')}</div></div>
+          ${a.socials.filter(x=>x.show).length?`<div class="sec"><h2>Find ${esc(a.first)} online</h2><div class="socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="soc" data-soc="${lbl}" style="--c:${col}"><span class="si">${ic(icn)}</span><span class="sx"><b>${lbl}</b><small>${esc(x.handle)}</small></span></button>`}).join('')}</div></div>`:''}
           <div class="sec"><h2>In ${esc(a.first)}'s words</h2><p class="bigquote">“${esc(a.quote)}”</p></div>
           <div class="sec"><h2>What you can ask about</h2><div class="ask">
             ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
@@ -797,7 +843,7 @@ const SERVICES=[
 const WEEK=[['Monday',['8:00 PM','9:30 PM']],['Tuesday',[]],['Wednesday',['8:00 PM']],['Thursday',[]],['Friday',['8:30 PM','9:30 PM']],['Saturday',['11:00 AM','5:00 PM','6:30 PM']],['Sunday',['11:00 AM']]];
 const MY_SCORES={...ME.scores};
 
-function dash(){return `<div class="host">${({today:dToday,calendar:dCal,services:dSvc,inbox:dInbox,earnings:dEarn,review:dReview})[S.tab]()}</div>`}
+function dash(){return `<div class="host">${({today:dToday,calendar:dCal,services:dSvc,inbox:dInbox,earnings:dEarn,review:dReview,profile:dProfile})[S.tab]()}</div>`}
 function resCard(b){
   return `<div class="res"><div class="top2"><div style="min-width:0"><span class="when ${b.st==='done'?'past':''}">${b.st==='done'?'Completed ':''}${b.when}${b.time.includes(':')?`, ${b.time}`:` · ${b.time}`}</span>
     <h3>${b.who}</h3><p class="ctx">${b.ctx}</p></div>${avI(b.who,b.hue,48)}</div>
@@ -844,6 +890,36 @@ function dEarn(){
     <div class="st"><span>First connects at 25% off</span><b class="num">9</b><small class="n">this month</small></div></div>
   <div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th style="text-align:right">Amount</th></tr></thead><tbody>
   ${tx.map(([d,t,a])=>`<tr><td class="num">${d}</td><td>${t}</td><td class="num" style="text-align:right;color:${a>0?'var(--good)':'var(--muted)'}">${a===0?'Free':(a<0?'−':'+')+rupee(Math.abs(a))}</td></tr>`).join('')}</tbody></table></div>`}
+const COURSES=['MBA','MCA','BBA','BCA','BCom','MCom','MA','MSc','BA'];
+const NETS=['linkedin','instagram','youtube','x','website'];
+const NET_PH={linkedin:'in/your-name',instagram:'@yourhandle',youtube:'@YourChannel',x:'@yourhandle',website:'yourname.com'};
+function dProfile(){
+  const socOf=n=>ME.socials.find(x=>x.net===n);
+  return `<div class="hhead"><div><h1>Your profile</h1><p>Your degrees and links, as students see them on your profile.</p></div><button class="btn dark sm" id="save-profile">Save</button></div>
+  <div class="two">
+    <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2>Education</h2><span class="muted" style="font-size:13px">${ME.degrees.length} of 4</span></div>
+      <p class="muted" style="font-size:14px;margin-top:-8px">Your main degree shows on your listing card. Students can filter by any of them.</p>
+      ${ME.degrees.map((d,i)=>`<div class="deg-ed">
+        <div class="deg-top"><span class="tag ${i===0?'free':''}">${i===0?'Main degree':'Degree '+(i+1)}</span>
+          <div style="display:flex;gap:4px">${i>0?`<button class="linkbtn" data-degmain="${i}">Make main</button>`:''}${ME.degrees.length>1?`<button class="x" data-degdel="${i}" aria-label="Remove degree ${i+1}">${ic('trash')}</button>`:''}</div></div>
+        <div class="deg-grid">
+          <label class="field">Course<select class="input" id="deg-c-${i}" data-deg="${i}" data-f="course">${COURSES.map(c=>`<option ${c===d.course?'selected':''}>${c}</option>`).join('')}</select></label>
+          <label class="field">Graduated<input class="input num" id="deg-b-${i}" type="number" min="1990" max="2030" data-deg="${i}" data-f="batch" value="${d.batch}"></label>
+          <label class="field" style="grid-column:1/-1">University<input class="input" id="deg-u-${i}" data-deg="${i}" data-f="college" value="${esc(d.college)}"></label>
+        </div>
+        <span class="tag ok" style="justify-self:start">${ic('check','style="width:12px;height:12px"')} ${i<2?'Verified':'Verification pending'}</span>
+      </div>`).join('')}
+      ${ME.degrees.length<4?`<button class="btn sm" id="add-degree" style="justify-self:start">${ic('plus')}Add another degree</button>`:''}
+    </div>
+    <div class="panel"><h2>Social links</h2>
+      <p class="muted" style="font-size:14px;margin-top:-8px">Switch on the ones students should see. Links help students trust that you're real.</p>
+      ${NETS.map(n=>{const [lbl,icn,col]=SOC_META[n],cur=socOf(n);return `<div class="soc-ed">
+        <span class="si" style="--c:${col}">${ic(icn)}</span>
+        <label class="field" style="flex:1;min-width:0"><span>${lbl}</span><input class="input" id="soc-${n}" data-socnet="${n}" placeholder="${NET_PH[n]}" value="${cur?esc(cur.handle):''}"></label>
+        <label class="toggle" title="Show on profile"><input type="checkbox" id="soc-on-${n}" data-socshow="${n}" ${cur&&cur.show?'checked':''} aria-label="Show ${lbl} on profile"><span></span></label>
+      </div>`}).join('')}
+    </div>
+  </div>`}
 function dReview(){
   return `<div class="hhead"><div><h1>My university review</h1><p>The first thing students read on your profile.</p></div><button class="btn dark sm" id="save-review">Save</button></div>
   <div class="two">
@@ -925,6 +1001,11 @@ document.addEventListener('click',e=>{
   if(d.addslot){const sl=WEEK[+d.addslot][1];const n=['7:00 PM','8:00 PM','9:00 PM','10:00 AM','6:00 PM'].find(o=>!sl.includes(o));if(n){sl.push(n);render()}return}
   if(t.id==='save-av'){toast('Calendar saved');return}
   if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;ME.median=$('#my-ctc').value;ME.fees=$('#my-fees').value;Object.assign(ME.scores,MY_SCORES);toast('Review saved. Students see it on your profile');return}
+  if(d.soc){toast(`In the live product this opens ${d.soc}`);return}
+  if(t.id==='add-degree'){ME.degrees.push({course:'MBA',batch:new Date().getFullYear(),college:''});render();$('#deg-u-'+(ME.degrees.length-1))?.focus();return}
+  if(d.degdel){ME.degrees.splice(+d.degdel,1);syncPrimary(ME);render();toast('Degree removed');return}
+  if(d.degmain){const [x]=ME.degrees.splice(+d.degmain,1);ME.degrees.unshift(x);syncPrimary(ME);render();toast(`${x.course} is now your main degree`);return}
+  if(t.id==='save-profile'){syncPrimary(ME);toast('Profile saved. Students see your degrees and links now');return}
   if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
 });
 document.addEventListener('keydown',e=>{
@@ -934,11 +1015,15 @@ document.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();open(+e.target.dataset.open)}});
 document.addEventListener('input',e=>{
   const t=e.target;
+  if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg];dg[t.dataset.f]=t.dataset.f==='batch'?(+t.value||dg.batch):t.value;syncPrimary(ME)}
+  if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
   if(t.id==='q'){S.q=t.value;renderResults()}
   if(t.dataset.score){MY_SCORES[t.dataset.score]=+t.value;$('#scv-'+t.id.split('-')[1]).textContent=(+t.value).toFixed(1)}
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
+  if(t.dataset.deg!==undefined&&t.dataset.f==='course'){ME.degrees[+t.dataset.deg].course=t.value;syncPrimary(ME)}
+  if(t.dataset.socshow){const n=t.dataset.socshow,cur=ME.socials.find(x=>x.net===n);if(cur)cur.show=t.checked;else{t.checked=false;toast('Add a link first, then switch it on')}}
   if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
 render();
 </script>

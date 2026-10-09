@@ -7,8 +7,8 @@ Open `index.html` in a browser, or view it on GitHub Pages.
 ## What's in it
 
 - **Student view**: search by university, course or name; browse by programme (MBA, MCA, BBA, BCA, BCom, MCom, MA, MSc, BA); filter by topic and price; Airbnb-style listing cards with a swipeable photo / scorecard / quote carousel.
-- **Alumni profile**: verified-alumni card, highlights, their own words, topics, scorecard and reviews, with a booking card (video call or priority DM, date and time) showing the 25% first-connect discount.
-- **Alumni dashboard**: today's sessions, questions to answer, services and prices, weekly availability, university review and earnings.
+- **Alumni profile**: verified-alumni card, every degree they hold, their LinkedIn / Instagram / YouTube / X / website links, highlights, their own words, topics, scorecard and reviews, with a booking card (video call or priority DM, date and time) showing the 25% first-connect discount.
+- **Alumni dashboard**: today's sessions, questions to answer, services and prices, weekly availability, profile (multiple degrees, social links), university review and earnings.
 
 ## Notes
 
