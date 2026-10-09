@@ -124,12 +124,20 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .why-row{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13px;color:var(--muted)}
 .why-row li{display:inline-flex;align-items:center;gap:6px}
 .why-row svg.i{width:14px;height:14px;color:var(--ink)}
-.why-tile{border-radius:18px;background:var(--brand-soft);padding:22px 20px;display:flex;flex-direction:column;gap:14px;align-self:stretch}
-.why-k{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
-.why-tile ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.why-tile li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;font-size:13.5px;line-height:1.45;color:var(--ink)}
-.why-tile li svg.i{width:17px;height:17px;color:var(--brand-ink);margin-top:1px}
-.why-tile b{font-weight:700}
+.how{grid-column:1/-1;display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:32px;align-items:center;background:var(--soft);border-radius:20px;padding:26px 28px}
+.how-h{display:grid;gap:6px}
+.how-k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink)}
+.how-h b{font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.25;text-wrap:balance}
+.how-h>span:last-child{font-size:13.5px;color:var(--muted);line-height:1.5}
+.how-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:st}
+.how-steps li{background:var(--bg);border-radius:16px;padding:16px;display:grid;gap:10px;align-content:start;counter-increment:st;position:relative}
+.how-steps li::before{content:counter(st);position:absolute;top:14px;right:16px;font-size:12px;font-weight:700;color:var(--muted)}
+.how-ic{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center}
+.how-ic svg.i{width:19px;height:19px}
+.how-steps b{display:block;font-size:14.5px;font-weight:700;margin-bottom:3px}
+.how-steps div span{font-size:13px;color:var(--muted);line-height:1.45}
+@media (max-width:1000px){.how{grid-template-columns:minmax(0,1fr);gap:18px}}
+@media (max-width:640px){.how-steps{grid-template-columns:minmax(0,1fr)}.how{padding:20px}}
 .banner{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-block:20px 8px;flex-wrap:wrap}
 .banner .gift{width:40px;height:40px;border-radius:50%;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center;flex:none}
 .banner .gift svg.i{width:20px;height:20px}
@@ -140,7 +148,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 
 /* grid */
 .results-meta{font-size:14px;color:var(--muted);padding-block:16px 4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:32px 24px;padding-block:12px 64px}
+.grid{display:grid;grid-auto-flow:row dense;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:32px 24px;padding-block:12px 64px}
 .card{display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0}
 .card .ph{box-shadow:0 1px 2px rgba(0,0,0,.06);transition:box-shadow .25s}
 .card:hover .ph{box-shadow:0 14px 34px rgba(0,0,0,.18)}
@@ -899,19 +907,18 @@ function banner(){
 function results(){
   const list=filtered();
   return `<p class="results-meta">${list.length} alumni ${S.cat!=='all'?`in <b style="color:var(--ink)">${CATS.find(c=>c[0]===S.cat)[1]}</b>`:'ready to talk'}${S.topic?` who can talk about <b style="color:var(--ink)">${esc(S.topic)}</b>`:''}</p>
-  ${list.length?`<div class="grid">${list.map((a,i)=>card(a)+(i===4&&list.length>6?whyTile():'')).join('')}</div>`:`<div class="empty"><h3 style="color:var(--ink);margin-bottom:6px">No exact matches</h3>Try changing or removing some of your filters.<div style="margin-top:16px"><button class="btn sm" data-clear>Clear all filters</button></div></div>`}`}
+  ${list.length?`<div class="grid">${list.map((a,i)=>card(a)+(i===4&&list.length>5?whyTile():'')).join('')}</div>`:`<div class="empty"><h3 style="color:var(--ink);margin-bottom:6px">No exact matches</h3>Try changing or removing some of your filters.<div style="margin-top:16px"><button class="btn sm" data-clear>Clear all filters</button></div></div>`}`}
 function priceLine(a,svc){
   const s=a.services[svc||0];
   const unit=s.t==='call'?`${s.dur} min call`:'question';
   return S.freeLeft?`<b class="free">${rupee(off(s.price))}</b> first call · <span class="u">then ${rupee(s.price)}</span>`:`<b>${rupee(s.price)}</b> · ${unit}`}
-function whyTile(){return `<aside class="why-tile" aria-label="Why ask alumni on ${BRAND}">
-  <span class="why-k">Why ask alumni on ${BRAND}?</span>
-  <ul>
-    <li>${ic('shield')}<span><b>Verified, not anonymous.</b> We check every degree with the university or the certificate.</span></li>
-    <li>${ic('users')}<span><b>No sales pitch.</b> Alumni aren't paid by universities, so you hear how it really was.</span></li>
-    <li>${ic('clock')}<span><b>Your money is safe.</b> We hold payment until the call ends. Full refund if they cancel.</span></li>
-    <li>${ic('gift')}<span><b>25% off your first call.</b> After that, each alum's own price.</span></li>
-  </ul></aside>`}
+function whyTile(){return `<section class="how" aria-label="How ${BRAND} works">
+  <div class="how-h"><span class="how-k">How it works</span><b>Hear it from someone who's been there</b><span>Every alum is verified, and ${BRAND} holds your payment until the call is done.</span></div>
+  <ol class="how-steps">
+    <li><span class="how-ic">${ic('search')}</span><div><b>Pick an alum</b><span>Filter by university, course or how they studied. Degrees are verified.</span></div></li>
+    <li><span class="how-ic">${ic('calendar')}</span><div><b>Book a call or ask a question</b><span>15 min to 2 hours, at a time that suits you. First call 25% off.</span></div></li>
+    <li><span class="how-ic">${ic('chat')}</span><div><b>Get the real picture</b><span>Alumni aren't paid by universities. If they cancel, you get a full refund.</span></div></li>
+  </ol></section>`}
 function card(a){
   const avg=Object.values(a.scores).reduce((x,y)=>x+y,0)/4;
   const soon=/^(Today|Tomorrow)/.test(a.next),s0=a.services[0];
