@@ -105,11 +105,11 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 
 /* grid */
 .results-meta{font-size:14px;color:var(--muted);padding-block:16px 4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:36px 24px;padding-block:12px 64px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:32px 24px;padding-block:12px 64px}
 .card{display:flex;flex-direction:column;gap:12px;cursor:pointer;min-width:0}
 .card .ph{box-shadow:0 1px 2px rgba(0,0,0,.06);transition:box-shadow .25s}
 .card:hover .ph{box-shadow:0 14px 34px rgba(0,0,0,.18)}
-.ph{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--soft);max-width:100%}
+.ph{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:var(--soft);max-width:100%}
 .track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;height:100%;scroll-snap-align:start;position:relative;overflow:hidden}
@@ -158,9 +158,9 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .price-line .free{color:var(--brand-ink)}
 
 /* card */
-.shade{position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(to top,rgba(10,10,12,.86) 0%,rgba(10,10,12,.55) 45%,rgba(10,10,12,0) 100%);pointer-events:none}
+.shade{position:absolute;inset:auto 0 0 0;height:58%;background:linear-gradient(to top,rgba(10,10,12,.86) 0%,rgba(10,10,12,.55) 45%,rgba(10,10,12,0) 100%);pointer-events:none}
 .over{position:absolute;left:0;right:0;bottom:0;padding:0 18px 26px;color:#fff;display:grid;gap:3px;pointer-events:none}
-.over h3{font-size:21px;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:7px;line-height:1.15}
+.over h3{font-size:19px;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:7px;line-height:1.15}
 .over h3 .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .over .vt{width:18px;height:18px;border-radius:50%;background:#fff;color:#222;display:grid;place-items:center;flex:none}
 .over .vt svg.i{width:11px;height:11px;stroke-width:4}
@@ -607,7 +607,7 @@ function card(a){
   return `<article class="card" data-open="${a.id}" tabindex="0" aria-label="${esc(a.name)}, ${esc(a.course)} ${a.batch}, ${esc(a.college)}">
     <div class="ph">
       <div class="track" data-track="${a.id}">
-        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" loading="lazy"><div class="shade"></div>
+        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" decoding="async"><div class="shade"></div>
           <div class="over"><h3><span class="nm">${esc(a.name)}</span><span class="vt" title="Verified alumni">${ic('check')}</span></h3>
             <span class="r1">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></span>
             <span class="r2">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></span></div></div>
