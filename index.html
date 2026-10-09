@@ -672,6 +672,163 @@ input[type=range]{accent-color:var(--ink);width:100%}
   .st b{font-size:22px}
   .cats{gap:24px}
 }
+/* ---- alumni dashboard ---- */
+.hbtns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.hbtns .btn svg.i{width:15px;height:15px}
+.livepill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:6px 12px;border-radius:99px;background:var(--good-soft);color:var(--good)}
+.livepill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.livepill.off{background:var(--soft);color:var(--muted)}
+.btn.ghost2{border-color:transparent;background:transparent;text-decoration:underline;text-underline-offset:3px}
+.btn.ghost2:hover{background:var(--soft)}
+.btn.danger{color:var(--bad)}
+.btn.danger-fill{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.danger-fill:hover{opacity:.9;background:var(--bad)}
+.tgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.tmain,.tside{display:grid;gap:20px;min-width:0}
+.nexthero{border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:14px;box-shadow:var(--shadow-sm)}
+.nexthero.empty{text-align:center;padding:36px}
+.nh-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.eyebrow2{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink)}
+.nh-who{display:flex;gap:14px;align-items:center}
+.nh-who h2,.nh-who h3{font-size:20px;font-weight:700}
+.nh-who span{font-size:14px;color:var(--muted)}
+.nh-when{display:flex;align-items:center;gap:8px;font-size:15px;flex-wrap:wrap}
+.nh-when svg.i{width:17px;height:17px}
+.soonpill{font-size:12.5px;font-weight:700;color:var(--good);background:var(--good-soft);padding:3px 9px;border-radius:99px}
+.nh-note{font-size:14.5px;line-height:1.55;background:var(--soft);border-radius:12px;padding:12px 14px}
+.nh-act{display:flex;gap:8px;flex-wrap:wrap}
+.nh-act .btn svg.i{width:16px;height:16px}
+.box2{border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px;align-content:start}
+.box2-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.box2-h h2{font-size:17px;font-weight:600}
+.act-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line-soft);font-size:14px}
+.box2 .act-row:first-of-type,.panel .act-row:first-of-type{border-top:0}
+.act-row>svg.i{width:18px;height:18px;flex:none;color:var(--muted)}
+.act-row>span{flex:1;min-width:0}
+.act-row>span.tag{flex:none}
+.reqtag{display:inline-flex;align-items:center;gap:5px;font-style:normal;font-size:12.5px;font-weight:600;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:99px;margin-top:4px;justify-self:start}
+.reqtag.pend{color:var(--muted);background:var(--soft)}
+.reqtag svg.i{width:13px;height:13px}
+.pbar{height:8px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+.pbar b{display:block;height:100%;background:var(--good);border-radius:99px}
+.chk{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.chk li{display:flex;align-items:center;gap:10px;font-size:14px}
+.chk li span{flex:1}
+.chk li i{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);flex:none}
+.chk li svg.i{width:16px;height:16px;color:var(--good);stroke-width:3;flex:none}
+.chk li.ok span{color:var(--muted);text-decoration:line-through}
+.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini-stats div{display:grid;gap:1px}
+.mini-stats b{font-size:20px;font-weight:700}
+.mini-stats span{font-size:12.5px;color:var(--muted)}
+.sesslist{display:grid;gap:12px}
+.sess{border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:18px;align-items:center}
+.sess.st-cancelled{opacity:.75}
+.sess-l{display:grid;gap:2px;font-size:13px}
+.sess-when{font-weight:700;font-size:14.5px;color:var(--ink)}
+.sess.st-upcoming .sess-when{color:var(--brand-ink)}
+.sess-m{display:flex;gap:12px;align-items:flex-start;min-width:0}
+.sess-m>div{display:grid;gap:2px;min-width:0}
+.sess-m b{font-weight:600}
+.sess-m>div>span{font-size:13.5px;color:var(--muted)}
+.fb{font-size:13.5px;color:var(--ink)!important;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fb svg{width:11px;height:11px;fill:var(--ink)}
+.mynote{font-size:13px;background:var(--soft);border-radius:8px;padding:6px 10px;margin-top:4px;color:var(--ink)!important}
+.sess-r{display:grid;justify-items:end;gap:8px}
+.sess-r .earn{font-weight:700;font-size:16px}
+.sess-acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.emptybox{border:1px dashed var(--line);border-radius:16px;padding:36px;text-align:center;color:var(--muted)}
+.q .meta>span{display:flex;align-items:center;gap:8px}
+.qtext{font-size:15px;font-weight:500}
+.q-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+.q-foot .ok{color:var(--good);font-weight:600}
+.ans{background:var(--soft);border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:14px}
+.ans b{font-size:12.5px;color:var(--muted);font-weight:600}
+.ans.follow{background:var(--bg);border:1px solid var(--line)}
+.muted-q{opacity:.7}
+.cal2{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);max-width:1180px}
+.week2{display:grid}
+.wd{display:grid;grid-template-columns:auto 40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line-soft)}
+.wd:first-child{border-top:0}
+.wd.off b{color:var(--muted)}
+.wd .toggle.sm{margin:0}
+.chip{display:inline-flex;align-items:center;gap:4px}
+.chip-x{border:0;background:none;padding:0;margin-left:2px;display:grid;place-items:center;cursor:pointer;color:var(--muted)}
+.chip-x svg.i{width:12px;height:12px;stroke-width:2.5}
+.chip-x:hover{color:var(--bad)}
+.addslot{display:flex;gap:6px}
+.addslot select{width:auto;padding:6px 8px;font-size:13px}
+.off-add{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rule{grid-template-columns:minmax(0,1fr) 170px;align-items:center}
+.svc-desc{font-size:14px;color:var(--muted)}
+.svc-prices{display:flex;gap:6px;flex-wrap:wrap}
+.svc-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px}
+.earn-top{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.balcard{border-radius:16px;background:var(--ink);color:var(--bg);padding:20px;display:grid;gap:6px;align-content:start}
+.balcard span{font-size:13px;opacity:.75}
+.balcard b{font-size:34px;font-weight:800;letter-spacing:-.02em}
+.balcard small{font-size:12.5px;opacity:.7;margin-bottom:8px}
+.balcard .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.prof-top{grid-template-columns:200px minmax(0,1fr);display:grid;gap:28px;max-width:1180px}
+.ph-up{display:grid;gap:10px;justify-items:center;text-align:center;align-content:start}
+.ph-up img{width:140px;height:140px;border-radius:50%;object-fit:cover}
+.ph-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ph-fields>.field:nth-child(4){grid-column:1/-1}
+.lang-add{display:inline-flex;gap:6px}
+.lang-add input{width:150px;padding:6px 10px;font-size:13px}
+.verify-row{display:flex;align-items:center;gap:10px;background:var(--warn-soft);border-radius:10px;padding:10px 12px;font-size:13px}
+.verify-row svg.i{width:16px;height:16px;color:var(--warn);flex:none}
+.verify-row span{flex:1}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0;border-top:1px solid var(--line-soft)}
+.panel h2+.set-row{border-top:0}
+.set-row>div{display:grid;gap:2px}
+.set-row b{font-weight:600;font-size:14.5px}
+.set-row span{font-size:13px;color:var(--muted)}
+.bell{position:relative;width:40px;height:40px;border-radius:50%;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.bell:hover{background:var(--soft)}
+.bell svg.i{width:20px;height:20px}
+.bell .bdg{position:absolute;top:4px;right:4px;min-width:17px;height:17px;border-radius:99px;background:var(--brand);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.right{position:relative}
+.npanel{position:absolute;top:calc(100% + 10px);right:0;width:min(380px,calc(100vw - 32px));background:var(--bg);border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:10px;z-index:45;display:grid;animation:ddin .16s ease-out}
+.np-h{display:flex;justify-content:space-between;align-items:center;padding:8px 10px 10px}
+.np-i{display:flex;gap:12px;align-items:flex-start;text-align:left;border:0;background:none;border-radius:12px;padding:10px;font:inherit;color:var(--ink);cursor:pointer}
+.np-i:hover{background:var(--soft)}
+.np-i>svg.i{width:18px;height:18px;flex:none;margin-top:2px;color:var(--muted)}
+.np-i>span{flex:1;display:grid;gap:2px;font-size:14px}
+.np-i small{font-size:12px;color:var(--muted)}
+.np-i i{width:8px;height:8px;border-radius:50%;background:var(--brand);margin-top:6px;flex:none}
+.np-i.un>span>span{font-weight:600}
+.dmodal{width:min(560px,100%)}
+.dmodal .modal-b section{padding-block:20px}
+.dmodal .modal-f .btn{flex:none}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:14px}
+.kv span{color:var(--muted)}
+.kv b{font-weight:600;text-align:right}
+.reqbox,.warnbox{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px 14px;font-size:14px}
+.reqbox{background:var(--warn-soft)}
+.reqbox>div{display:grid;gap:2px}
+.reqbox span{color:var(--muted);font-size:13px}
+.reqbox svg.i,.warnbox svg.i{width:18px;height:18px;flex:none;margin-top:1px}
+.warnbox{background:var(--bad-soft)}
+.warnbox svg.i{color:var(--bad)}
+.callbox{gap:14px}
+.call-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.call-tile{aspect-ratio:4/3;border-radius:14px;background:#1d1f24;color:#fff;display:grid;place-items:center;align-content:center;gap:8px;font-size:13px;font-weight:600;overflow:hidden;position:relative}
+.call-tile.me img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.call-tile.me span{position:absolute;left:10px;bottom:8px;background:rgba(0,0,0,.5);padding:2px 8px;border-radius:6px}
+.call-meta{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600}
+.livedot{width:8px;height:8px;border-radius:50%;background:var(--bad);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.livedot{animation:none}}
+.check2{display:flex;align-items:center;gap:8px;font-size:14px}
+.chat{display:grid;gap:10px;max-height:46vh;overflow:auto}
+.bub{max-width:80%;background:var(--soft);border-radius:14px 14px 14px 4px;padding:10px 12px;justify-self:start;display:grid;gap:2px}
+.bub.me{background:var(--ink);color:var(--bg);border-radius:14px 14px 4px 14px;justify-self:end}
+.bub p{font-size:14px}
+.bub small{font-size:11px;opacity:.65}
+.err{color:var(--bad);font-size:13px}
+@media (max-width:1100px){.tgrid{grid-template-columns:minmax(0,1fr)}.earn-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.balcard{grid-column:1/-1}.cal2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.sess{grid-template-columns:minmax(0,1fr)}.sess-r{justify-items:start}.sess-acts{justify-content:flex-start}.prof-top{grid-template-columns:minmax(0,1fr)}.ph-fields{grid-template-columns:minmax(0,1fr)}.earn-top{grid-template-columns:minmax(0,1fr)}.wd{grid-template-columns:auto 40px minmax(0,1fr)}.wd .addslot{grid-column:1/-1}.rule{grid-template-columns:minmax(0,1fr)}}
 .ydlogo{height:34px;width:auto;display:block}
 .ac-tag{font-size:13px;font-weight:700;color:var(--brand-ink);border-left:1px solid var(--line);padding-left:10px;letter-spacing:0}
 @media (max-width:640px){.ac-tag{display:none}.ydlogo{height:28px}}
@@ -727,6 +884,7 @@ const P={
  trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
  college:'<path d="M3 21h18M3 9.5h18M12 3 3.5 8h17Z"/><path d="M5.5 10v8.5M9.8 10v8.5M14.2 10v8.5M18.5 10v8.5M4 18.5h16"/>',
  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4Z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
  share:'<path d="M12 3v13M7 8l5-5 5 5M5 14v6h14v-6"/>',
 };
 const ic=(n,extra='')=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
@@ -808,7 +966,7 @@ const REVIEWS=[
  ['Tanvi','Bank employee · Jaipur','The discounted first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
 ];
 
-const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,mode:'any',sort:'rec',dd:null,dur:1,saved:new Set([3]),
+const S={modal:null,notif:false,sTab:'upcoming',qTab:'open',txf:'all',view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,mode:'any',sort:'rec',dd:null,dur:1,saved:new Set([3]),
   freeLeft:1,connects:0,filtersOpen:false,
   profile:null,svc:0,date:0,slot:null,done:null,
   tab:'today',rTab:'upcoming',answered:new Set()};
@@ -857,11 +1015,12 @@ function header(){
         <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
       </div></div></div>`}
   const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
-  const tabs=[['today','Today'],['calendar','Calendar'],['services','Services'],['inbox','Questions',pend],['earnings','Earnings'],['profile','Profile'],['review','My university review']];
+  const upN=BOOKINGS.filter(b=>b.st==='upcoming').length,qN=QUESTIONS.filter(q=>q.st==='open').length,nN=NOTIFS.filter(n=>n.unread).length;
+  const tabs=[['today','Today'],['sessions','Sessions',BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length||0],['inbox','Questions',qN],['calendar','Calendar'],['services','Services'],['earnings','Earnings'],['profile','Profile'],['settings','Settings']];
   return `<div class="wrap"><div class="top-in">
     <button class="logo" data-tab="today" aria-label="Alumni dashboard home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"></button>
     <div class="center" style="min-width:0"><nav class="htabs" aria-label="Dashboard">${tabs.map(([k,l,n])=>`<button class="htab" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${l}${n?`<span class="dot-n num">${n}</span>`:''}</button>`).join('')}</nav></div>
-    <div class="right"><button class="switch-link" data-view="student"><span class="long">Switch to </span>student<span class="long"> view</span></button>
+    <div class="right"><button class="bell" data-a="bell" aria-label="Notifications${nN?`, ${nN} unread`:''}" aria-expanded="${!!S.notif}">${ic('bell')}${nN?`<span class="bdg num">${nN}</span>`:''}</button>${S.notif?notifPanel():''}<button class="switch-link" data-view="student"><span class="long">Switch to </span>student<span class="long"> view</span></button>
       <span class="menu">${ic('menu')}<img src="${ME.img}" alt="${ME.name}"></span></div>
   </div></div>`}
 
@@ -872,6 +1031,7 @@ function filtered(){
     if(q&&![a.name,a.company,a.role,a.city,...a.degrees.map(d=>d.course+' '+d.college)].join(' ').toLowerCase().includes(q))return false;
     if(S.college!=='all'&&!a.degrees.some(d=>d.college===S.college))return false;
     if(S.course!=='all'&&!a.degrees.some(d=>d.course===S.course))return false;
+    if(a===ME&&SETTINGS.paused)return false;
     if(S.cat!=='all'&&!streamsOf(a).includes(S.cat))return false;
     if(S.mode!=='any'&&!a.degrees.some(d=>d.mode===S.mode))return false;
     if(S.topic&&!a.topics.includes(S.topic))return false;
@@ -975,7 +1135,7 @@ function filtersModal(){
 const MAX_AHEAD=45;
 function dinfo(off){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+off);return {date:d,dow:off===0?'Today':off===1?'Tomorrow':d.toLocaleDateString('en-IN',{weekday:'short'}),short:d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}),long:d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}}
 const offDays=a=>[a.id%7,(a.id+3)%7];
-function dayOpen(a,off){if(off<0||off>MAX_AHEAD)return false;return !offDays(a).includes(dinfo(off).date.getDay())}
+function dayOpen(a,off){if(off<0||off>MAX_AHEAD)return false;if(a===ME)return meOpen(off);return !offDays(a).includes(dinfo(off).date.getDay())}
 function firstOpen(a){for(let o=0;o<=MAX_AHEAD;o++)if(dayOpen(a,o))return o;return 0}
 function calMonth(a,mOff){const t=new Date();t.setHours(0,0,0,0);const first=new Date(t.getFullYear(),t.getMonth()+mOff,1),days=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();
   const lead=(first.getDay()+6)%7,cells=[];for(let i=0;i<lead;i++)cells.push('<span></span>');
@@ -1050,7 +1210,7 @@ function bookCard(a){
       <p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You saved <b>${rupee(d.full-d.paid)}</b> with your 25% first-connect discount. Normal prices apply from your next connect.</span></div>`:''}
       <button class="btn block" data-again>Book another session</button></div>`}
   if(!dayOpen(a,S.date))S.date=firstOpen(a);
-  const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date):[];
+  const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date,a):[];
   if(S.slot&&!slots.includes(S.slot))S.slot=null;
   const can=!q.call||S.slot;
   return `${S.cal&&q.call?calPop(a):''}<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
@@ -1075,87 +1235,212 @@ function bookCard(a){
     <p class="bk-note"><span>${ic('shield')}Secure payment</span><span>${ic('clock')}Free reschedule up to 4 hrs before</span></p>`}
 function mbarHTML(a){return `<div class="mbar">${(()=>{const q=quote(a);return `<div><div class="num" style="font-weight:700">${rupee(q.pay)}${q.free?` <s class="muted" style="font-weight:400">${rupee(q.full)}</s>`:''}</div><div class="muted" style="font-size:13px">${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}${q.free?' · 25% off':''}</div></div>`})()}
       <button class="btn brand" data-scrollbook>Book</button></div>`}
-function slotsFor(dur,dayIdx){return SLOTS.filter((x,i)=>(dayIdx+i)%4!==1&&!(dur>=60&&x==='9:30 PM')&&!(dur>=120&&x==='8:00 PM'))}
+function slotsFor(dur,dayIdx,a){if(a&&a===ME)return meSlots(dur,dayIdx);return SLOTS.filter((x,i)=>(dayIdx+i)%4!==1&&!(dur>=60&&x==='9:30 PM')&&!(dur>=120&&x==='8:00 PM'))}
 
 /* ---------- alumni dashboard ---------- */
 const ME=ALUMNI[0];
+ME.languages=['English','Hindi','Tamil'];
 const BOOKINGS=[
- {who:'Aditya Verma',ctx:'Works in customer support · MCA or MBA?',when:'Today',time:'8:30 PM',amt:249,free:false,hue:'h2',st:'upcoming'},
- {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:249,free:true,hue:'h5',st:'upcoming'},
- {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:249,free:true,hue:'h3',st:'upcoming'},
- {who:'Ishita Bose',ctx:'Comparing three online universities',when:'5 Oct',time:'6:00 PM',amt:249,free:false,hue:'h4',st:'done',rated:5,repeat:true},
- {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:249,free:true,hue:'h6',st:'done',rated:5},
- {who:'Tanvi Rao',ctx:'Asked about fee waivers',when:'1 Oct',time:'Priority DM',amt:99,free:false,hue:'h1',st:'done',rated:4},
+ {id:'b1',who:'Aditya Verma',hue:'h2',ctx:'Works in customer support · deciding between MCA and MBA',note:'I have 3 years in support at an edtech. Is an online MCA enough to move into a developer role, or do I need a bootcamp too?',off:0,time:'8:30 PM',dur:30,amt:299,free:false,st:'upcoming',msgs:[{me:false,t:'Hi Ananya, looking forward to the call. I will share my CV before we start.',at:'Yesterday'}]},
+ {id:'b2',who:'Nisha Gupta',hue:'h5',ctx:'Class 12, Pune · first time choosing a degree',note:'How do online exams work? Are they proctored at home and what happens if the internet drops?',off:1,time:'7:00 PM',dur:15,amt:199,free:true,st:'upcoming',msgs:[]},
+ {id:'b3',who:'Rahul Das',hue:'h3',ctx:'Diploma holder · lateral entry',note:'Can I do an MCA after a BCA from a distance university? Will employers treat it the same?',off:3,time:'11:00 AM',dur:60,amt:549,free:true,st:'upcoming',req:{off:5,time:'8:00 PM',why:'I have an exam on Tuesday morning.'},msgs:[]},
+ {id:'b4',who:'Meghna Iyer',hue:'h1',ctx:'Switching from teaching to tech',note:'Is it realistic to switch careers at 29 with an online MCA?',off:-2,time:'9:00 PM',dur:30,amt:299,free:false,st:'done',rated:null,msgs:[]},
+ {id:'b5',who:'Ishita Bose',hue:'h4',ctx:'Comparing three online universities',note:'How are projects graded at Vindhya?',off:-5,time:'6:00 PM',dur:30,amt:299,free:false,st:'done',rated:5,fb:'Super clear about how projects are graded. Booking again for my sister.',repeat:true,msgs:[]},
+ {id:'b6',who:'Kabir Malhotra',hue:'h6',ctx:'Parent of a working student',note:'Wants to know how employers see online degrees.',off:-7,time:'8:00 PM',dur:60,amt:549,free:true,st:'done',rated:5,fb:'Patient with all my questions. My daughter has decided.',msgs:[]},
+ {id:'b7',who:'Arnav Shah',hue:'h3',ctx:'Asked about fee EMIs',note:'',off:-4,time:'5:00 PM',dur:15,amt:199,free:false,st:'cancelled',reason:'Cancelled by student. Refunded in full.',msgs:[]},
 ];
 const QUESTIONS=[
- {id:'q1',who:'Sameer K.',q:'Did the placement cell actually help you get interviews, or did you apply on your own?',age:'3 hours ago',amt:99,free:false},
- {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:99,free:true},
+ {id:'q1',who:'Sameer K.',hue:'h2',q:'Did the placement cell actually help you get interviews, or did you apply on your own?',age:'3 hours ago',amt:99,free:false,st:'open',draft:''},
+ {id:'q2',who:'Divya P.',hue:'h5',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:99,free:true,st:'open',draft:''},
+ {id:'q3',who:'Rohit M.',hue:'h4',q:'Is the MCA final project done alone or in a group?',age:'4 Oct',amt:99,free:false,st:'answered',ans:'Alone, but you get a faculty mentor and two review checkpoints. Pick a project you can show in interviews.',follow:'Thanks! Did your mentor help with the code, or only with the report?',fans:''},
 ];
 const SERVICES=[
- {id:'s1',title:'MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video',durs:ME.services[0].durs},
- {id:'s2',title:'Priority DM: ask anything',kind:'Written reply in 1 day',dur:null,price:99,on:true,booked:50,icon:'chat'},
- {id:'s3',title:'Parent Q&A call',kind:'Video call',dur:30,price:349,on:false,booked:0,icon:'users',durs:[{dur:30,price:349,on:true},{dur:60,price:599,on:true},{dur:120,price:999,on:false}]},
+ {id:'s1',title:'MCA review call',desc:'Ask me anything about the online MCA at Vindhya: classes, projects, exams and the job switch.',kind:'call',on:true,booked:162,icon:'video',durs:ME.services[0].durs},
+ {id:'s2',title:'Priority DM: ask anything',desc:'One detailed written answer plus a follow-up.',kind:'dm',eta:'1 day',price:99,on:true,booked:50,icon:'chat'},
+ {id:'s3',title:'Parent Q&A call',desc:'For parents who want to understand online degrees before their child applies.',kind:'call',on:false,booked:0,icon:'users',durs:[{dur:30,price:349,on:true},{dur:60,price:599,on:true},{dur:120,price:999,on:false}]},
 ];
 const WEEK=[['Monday',['8:00 PM','9:30 PM']],['Tuesday',[]],['Wednesday',['8:00 PM']],['Thursday',[]],['Friday',['8:30 PM','9:30 PM']],['Saturday',['11:00 AM','5:00 PM','6:30 PM']],['Sunday',['11:00 AM']]];
+const TIME_OPTS=(()=>{const o=[];for(let h=7;h<=22;h++)for(const m of [0,30]){const hh=h%12||12;o.push(`${hh}:${m?'30':'00'} ${h<12?'AM':'PM'}`)}return o})();
+const tmin=t=>{const [hm,ap]=t.split(' ');let [h,m]=hm.split(':').map(Number);if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;return h*60+m};
+const TIMEOFF=[{from:'2026-10-24',to:'2026-10-26',note:'Diwali at home'}];
+const RULES={notice:'4',buffer:'15',max:'3',window:'45'};
+const PAYOUT={type:'bank',bank:'HDFC Bank',last4:'4821',holder:'Ananya Iyer',upi:'',auto:'weekly'};
+let BAL=4980;
+const TX=[
+ {d:'8 Oct',t:'Ishita Bose · 30 min call',a:269,k:'earn',st:'Paid'},
+ {d:'8 Oct',t:'Kabir Malhotra · 1 hr call (first connect, discount covered by YourDegree)',a:494,k:'earn',st:'Paid'},
+ {d:'6 Oct',t:'Rohit M. · priority DM',a:89,k:'earn',st:'Paid'},
+ {d:'5 Oct',t:'Sameer K. · 30 min call',a:269,k:'earn',st:'Paid'},
+ {d:'3 Oct',t:'Payout to HDFC Bank ••4821',a:-6420,k:'payout',st:'Paid'},
+ {d:'26 Sep',t:'Payout to HDFC Bank ••4821',a:-5180,k:'payout',st:'Paid'},
+];
+const SETTINGS={paused:false,until:'',notif:{booking:true,question:true,remind:true,payout:true,updates:false},ch:{email:true,whatsapp:true,sms:false},email:'ananya.iyer@example.com',phone:'+91 98•••• 4210',phoneVerified:false};
+const sessDay=off=>off===0?'Today':off===1?'Tomorrow':off===-1?'Yesterday':dinfo(off).short;
+const NOTIFS=[
+ {id:'n1',txt:`Rahul Das asked to move their call from ${sessDay(3)} to ${sessDay(5)}, 8:00 PM`,time:'20 min ago',go:'sessions',unread:true,icon:'calendar'},
+ {id:'n2',txt:'New question from Sameer K.',time:'3 hours ago',go:'inbox',unread:true,icon:'chat'},
+ {id:'n3',txt:'Aditya Verma booked a 30 min call for today, 8:30 PM',time:'Yesterday',go:'sessions',unread:false,icon:'video'},
+ {id:'n4',txt:'₹6,420 payout sent to HDFC Bank ••4821',time:'3 Oct',go:'earnings',unread:false,icon:'rupee'},
+];
+const earnOf=b=>Math.round(b.amt*0.9);
+const meOpen=off=>{const day=(dinfo(off).date.getDay()+6)%7,iso=dinfo(off).date.toISOString().slice(0,10);return WEEK[day][1].length>0&&!TIMEOFF.some(x=>iso>=x.from&&iso<=x.to)&&off<=+RULES.window};
+const meSlots=(dur,off)=>{const day=(dinfo(off).date.getDay()+6)%7;return [...WEEK[day][1]].sort((x,y)=>tmin(x)-tmin(y)).filter(x=>tmin(x)+dur<=23*60)};
 
-function dash(){return `<div class="host">${({today:dToday,calendar:dCal,services:dSvc,inbox:dInbox,earnings:dEarn,review:dReview,profile:dProfile})[S.tab]()}</div>`}
-function resCard(b){
-  return `<div class="res"><div class="top2"><div style="min-width:0"><span class="when ${b.st==='done'?'past':''}">${b.st==='done'?'Completed ':''}${b.when}${b.time.includes(':')?`, ${b.time}`:` · ${b.time}`}</span>
-    <h3>${b.who}</h3><p class="ctx">${b.ctx}</p></div>${avI(b.who,b.hue,48)}</div>
-    <div class="foot">${b.free?`<span class="tag free num" title="Student paid ${rupee(off(b.amt))}; YourDegree covers the other 25%">${rupee(b.amt)} · first connect</span>`:`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
-    ${b.st==='upcoming'?(b.when==='Today'?'<button class="btn dark sm" data-join>Join call</button>':'<button class="btn sm" data-msg>Message</button>'):`<span class="rate num">${STAR}${b.rated}.0</span>`}</div></div>`}
+function checklist(){return [
+ ['Add a profile photo',!!ME.img,'profile'],
+ ['Write your bio',(ME.bio||'').length>=60,'profile'],
+ ['Add your education',ME.degrees.length>0&&ME.degrees.every(d=>d.college),'profile'],
+ ['Add a social link',ME.socials.some(x=>x.show),'profile'],
+ ['Set weekly hours',WEEK.some(w=>w[1].length),'calendar'],
+ ['Turn on a service',SERVICES.some(s=>s.on),'services'],
+ ['Verify your phone number',SETTINGS.phoneVerified,'settings'],
+]}
+
+function dash(){const V={today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings};if(!V[S.tab])S.tab='today';return `<div class="host">${({today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings})[S.tab]()}</div>`}
+
+/* Today */
 function dToday(){
-  const list=BOOKINGS.filter(b=>S.rTab==='upcoming'?b.st==='upcoming':b.st==='done');
-  const pend=QUESTIONS.filter(q=>!S.answered.has(q.id));
-  return `<div class="hhead"><div><h1>Welcome back, ${ME.first}</h1><p>3 students want to hear about ${esc(ME.college)} this week.</p></div>
-    <button class="btn sm" id="copy-link">Copy profile link</button></div>
-  <div class="filters"><button class="opt" data-rtab="upcoming" aria-pressed="${S.rTab==='upcoming'}">Upcoming (3)</button><button class="opt" data-rtab="done" aria-pressed="${S.rTab==='done'}">Completed (3)</button></div>
-  <div class="rescards">${list.map(resCard).join('')}</div>
-  ${pend.length?`<div class="hsec"><h2>Questions waiting for you</h2><div class="qs">${pend.map(qCard).join('')}</div></div>`:''}
-  <div class="hsec"><h2>October so far</h2><div class="statgrid">
-    <div class="st"><span>Earned</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
-    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 first connects, discount covered by YourDegree</small></div>
-    <div class="st"><span>Booked again</span><b class="num">41%</b><small class="n">of first-time students</small></div>
-    <div class="st"><span>Rating</span><b class="num">4.92★</b><small class="n">128 reviews</small></div>
-  </div></div>`}
+  const up=BOOKINGS.filter(b=>b.st==='upcoming').sort((x,y)=>x.off-y.off||tmin(x.time)-tmin(y.time));
+  const next=up[0], reqs=up.filter(b=>b.req), waitQ=QUESTIONS.filter(q=>q.st==='open'), fb=BOOKINGS.filter(b=>b.st==='done'&&b.rated==null);
+  const cl=checklist(),doneN=cl.filter(c=>c[1]).length,pct=Math.round(doneN/cl.length*100);
+  const actions=[...reqs.map(b=>[ic('calendar'),`<b>${b.who}</b> wants to move their call to ${sessDay(b.req.off)}, ${b.req.time}`,`<button class="btn sm" data-a="detail" data-id="${b.id}">Review</button>`]),
+    ...(waitQ.length?[[ic('chat'),`<b>${waitQ.length} question${waitQ.length>1?'s':''}</b> waiting for your answer`,`<button class="btn sm" data-tab="inbox">Answer</button>`]]:[]),
+    ...fb.map(b=>[ic('check'),`Add notes from your call with <b>${b.who}</b>`,`<button class="btn sm" data-a="wrap" data-id="${b.id}">Add notes</button>`])];
+  return `<div class="hhead"><div><h1>Welcome back, ${ME.first}</h1><p>${SETTINGS.paused?'Your profile is paused. Students can’t book you right now.':`${up.length} upcoming session${up.length===1?'':'s'} and ${waitQ.length} question${waitQ.length===1?'':'s'} to answer.`}</p></div>
+    <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Paused':'Live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View public profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
+  <div class="tgrid">
+    <div class="tmain">
+      ${next?`<div class="nexthero"><div class="nh-top"><span class="eyebrow2">Next session</span><span class="tag num">${fmtDur(next.dur)} · earn ${rupee(earnOf(next))}</span></div>
+        <div class="nh-who">${avI(next.who,next.hue,56)}<div><h2>${next.who}</h2><span>${esc(next.ctx)}</span></div></div>
+        <div class="nh-when">${ic('clock')}<b>${sessDay(next.off)}, ${next.time}</b>${next.off===0?'<span class="soonpill">Starts in about 2 hours</span>':''}</div>
+        ${next.note?`<p class="nh-note">“${esc(next.note)}”</p>`:''}
+        <div class="nh-act">${next.off===0?`<button class="btn dark" data-a="join" data-id="${next.id}">${ic('video')}Join call</button>`:''}<button class="btn" data-a="msg" data-id="${next.id}">${ic('chat')}Message</button><button class="btn ghost2" data-a="resched" data-id="${next.id}">Reschedule</button><button class="btn ghost2" data-a="detail" data-id="${next.id}">Details</button></div></div>`
+      :`<div class="nexthero empty"><h2>No sessions booked yet</h2><p class="muted">Share your profile link to get your first booking.</p></div>`}
+      <div class="box2"><div class="box2-h"><h2>Needs your attention</h2><span class="muted num">${actions.length}</span></div>
+        ${actions.length?actions.map(([i,t,b])=>`<div class="act-row">${i}<span>${t}</span>${b}</div>`).join(''):'<p class="muted" style="font-size:14px">You’re all caught up.</p>'}</div>
+      <div class="box2"><div class="box2-h"><h2>Coming up</h2><button class="linkbtn" data-tab="sessions">All sessions</button></div>
+        ${up.slice(next?1:0,5).map(b=>`<div class="act-row">${avI(b.who,b.hue,36)}<span><b>${b.who}</b> · ${sessDay(b.off)}, ${b.time} · ${fmtDur(b.dur)}${b.req?' · <em class="reqtag">reschedule requested</em>':''}</span><button class="btn sm" data-a="detail" data-id="${b.id}">Open</button></div>`).join('')||'<p class="muted" style="font-size:14px">Nothing else this week.</p>'}</div>
+    </div>
+    <div class="tside">
+      ${pct<100?`<div class="box2"><div class="box2-h"><h2>Profile ${pct}% complete</h2></div><div class="pbar"><b style="width:${pct}%"></b></div>
+        <ul class="chk">${cl.map(([t,ok,tab])=>`<li class="${ok?'ok':''}">${ok?ic('check'):'<i></i>'}<span>${t}</span>${ok?'':`<button class="linkbtn" data-tab="${tab}">Fix</button>`}</li>`).join('')}</ul></div>`:''}
+      <div class="box2"><div class="box2-h"><h2>October so far</h2></div>
+        <div class="mini-stats"><div><b class="num">₹18,450</b><span>Earned</span></div><div><b class="num">23</b><span>Calls</span></div><div><b class="num">4.92★</b><span>Rating</span></div><div><b class="num">41%</b><span>Booked again</span></div></div>
+        <button class="linkbtn" data-tab="earnings">See earnings</button></div>
+    </div>
+  </div>`}
+
+/* Sessions */
+function sessCard(b){
+  const when=`${sessDay(b.off)}, ${b.time}`;
+  const acts=b.st==='upcoming'
+    ?`${b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">Join call</button>`:''}<button class="btn sm" data-a="msg" data-id="${b.id}">Message${b.msgs.length?` (${b.msgs.length})`:''}</button><button class="btn sm" data-a="resched" data-id="${b.id}">Reschedule</button><button class="btn sm ghost2 danger" data-a="cancel" data-id="${b.id}">Cancel</button>`
+    :b.st==='done'?`${b.rated==null?`<button class="btn dark sm" data-a="wrap" data-id="${b.id}">Add notes</button>`:''}<button class="btn sm" data-a="msg" data-id="${b.id}">Message</button>`
+    :'';
+  return `<div class="sess st-${b.st}">
+    <div class="sess-l"><span class="sess-when num">${when}</span><span class="muted num">${fmtDur(b.dur)} video call</span></div>
+    <div class="sess-m">${avI(b.who,b.hue,40)}<div><b>${b.who}</b><span>${esc(b.ctx)}</span>
+      ${b.req?`<span class="reqtag">${ic('calendar')}Asked to move to ${sessDay(b.req.off)}, ${b.req.time}</span>`:''}
+      ${b.pending?`<span class="reqtag pend">${ic('clock')}You suggested ${sessDay(b.pending.off)}, ${b.pending.time} · waiting for reply</span>`:''}
+      ${b.st==='done'?(b.rated?`<span class="fb">${STAR.repeat(b.rated)} “${esc(b.fb)}”</span>`:`<span class="muted" style="font-size:13px">Waiting for the student’s rating</span>`):''}
+      ${b.st==='cancelled'?`<span class="muted" style="font-size:13px">${esc(b.reason)}</span>`:''}
+      ${b.myNote?`<span class="mynote">Your notes: ${esc(b.myNote)}</span>`:''}</div></div>
+    <div class="sess-r"><span class="num earn">${b.st==='cancelled'?'₹0':rupee(earnOf(b))}</span>${b.free?'<span class="tag free">first connect</span>':''}<div class="sess-acts">${acts}<button class="btn sm ghost2" data-a="detail" data-id="${b.id}">Details</button></div></div>
+  </div>`}
+function dSessions(){
+  const tabs=[['upcoming','Upcoming'],['done','Completed'],['cancelled','Cancelled']];
+  S.sTab=S.sTab||'upcoming';
+  const list=BOOKINGS.filter(b=>b.st===S.sTab).sort((x,y)=>S.sTab==='upcoming'?x.off-y.off:y.off-x.off);
+  return `<div class="hhead"><div><h1>Sessions</h1><p>Join, reschedule or wrap up your calls. Times are in IST.</p></div></div>
+  <div class="filters">${tabs.map(([k,l])=>`<button class="opt" data-a="stab" data-v="${k}" aria-pressed="${S.sTab===k}">${l} (${BOOKINGS.filter(b=>b.st===k).length})</button>`).join('')}</div>
+  <div class="sesslist">${list.length?list.map(sessCard).join(''):`<div class="emptybox">${S.sTab==='upcoming'?'No upcoming sessions. Share your profile link to get booked.':S.sTab==='done'?'Completed sessions will show here.':'No cancelled sessions. Nice.'}</div>`}</div>`}
+
+/* Questions */
 function qCard(q){
-  const done=S.answered.has(q.id);
-  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?`<span class="tag free num" title="Student paid ${rupee(off(q.amt))}; YourDegree covers the other 25%">Earn ${rupee(q.amt)} · first connect</span>`:`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
-    <p>${esc(q.q)}</p>
-    ${done?'':`<textarea id="ans-${q.id}" rows="2" placeholder="Be specific: real numbers, names of clubs, what you would do differently."></textarea><div><button class="btn dark sm" data-answer="${q.id}">Send answer</button></div>`}</div>`}
-function dInbox(){return `<div class="hhead"><div><h1>Questions</h1><p>Answer within 24 hours to keep your “replies within 6 hours” badge.</p></div></div><div class="qs">${QUESTIONS.map(qCard).join('')}</div>`}
-function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Students get 25% off their first connect. You still earn your full price.</b><span>On a student's first call or question, they pay 75% of your price and YourDegree pays the other 25%. Last month 41% of your first-time students booked again.</span></p></div>`}
-function dSvc(){
-  return `<div class="hhead"><div><h1>Your services</h1><p>What students can book on your profile.</p></div><button class="btn dark sm" id="add-svc">Add a service</button></div>
-  ${freeInfo()}
-  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div><h3>${esc(s.title)}</h3><p class="sub">${s.kind}${s.durs?` · ${s.durs.filter(x=>x.on).map(x=>fmtDur(x.dur)).join(', ')||'no lengths on'}`:''}</p></div></div>
-      <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-toggle="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
-    ${s.durs?`<div class="dured"><div class="dured-h"><span>Length</span><span>Price</span><span>Offer</span></div>${s.durs.map((x,i)=>`<div class="dured-r"><b>${fmtDur(x.dur)}</b><span class="pin">₹<input class="input num" type="number" min="0" step="10" id="dp-${s.id}-${i}" data-durprice="${s.id}:${i}" value="${x.price}" ${x.on?'':'disabled'}></span><label class="toggle sm"><input type="checkbox" id="do-${s.id}-${i}" data-duron="${s.id}:${i}" ${x.on?'checked':''} aria-label="Offer ${fmtDur(x.dur)}"><span></span></label></div>`).join('')}<p class="muted" style="font-size:12.5px">Up to 2 hours. Students choose a length when booking.</p></div>`
-    :`<div class="pr"><label for="price-${s.id}">Your price</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>`}
-    <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px"><span class="muted num">${s.booked} bookings</span>${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</div></div>`).join('')}</div>`}
+  const pay=q.free?`<span class="tag free num">Earn ${rupee(Math.round(q.amt*0.9))} · first connect</span>`:`<span class="tag num">Earn ${rupee(Math.round(q.amt*0.9))}</span>`;
+  if(q.st==='open')return `<div class="q"><div class="meta"><span>${avI(q.who,q.hue,28)}<b>${q.who}</b> · ${q.age}</span>${pay}</div>
+    <p class="qtext">${esc(q.q)}</p>
+    <textarea class="input" id="ans-${q.id}" data-qdraft="${q.id}" rows="4" placeholder="Be specific: real numbers, names of clubs, what you would do differently.">${esc(q.draft)}</textarea>
+    <div class="q-foot"><span class="muted num" id="qc-${q.id}">${q.draft.length} / 80 characters minimum</span><div class="sess-acts"><button class="btn sm ghost2 danger" data-a="qdecline" data-id="${q.id}">Decline</button><button class="btn sm" data-a="qdraft" data-id="${q.id}">Save draft</button><button class="btn dark sm" data-a="qsend" data-id="${q.id}">Send answer</button></div></div></div>`;
+  if(q.st==='declined')return `<div class="q muted-q"><div class="meta"><span>${avI(q.who,q.hue,28)}<b>${q.who}</b> · ${q.age}</span><span class="tag">Declined · refunded</span></div><p class="qtext">${esc(q.q)}</p></div>`;
+  return `<div class="q"><div class="meta"><span>${avI(q.who,q.hue,28)}<b>${q.who}</b> · ${q.age}</span><span class="tag ok">Answered</span></div>
+    <p class="qtext">${esc(q.q)}</p><div class="ans"><b>Your answer</b><p>${esc(q.ans)}</p></div>
+    ${q.follow?`<div class="ans follow"><b>Follow-up from ${q.who.split(' ')[0]}</b><p>${esc(q.follow)}</p>${q.fans?`<div class="ans"><b>Your reply</b><p>${esc(q.fans)}</p></div>`:`<textarea class="input" id="fu-${q.id}" rows="2" placeholder="Reply to the follow-up"></textarea><div><button class="btn dark sm" data-a="qfollow" data-id="${q.id}">Send reply</button></div>`}</div>`:''}</div>`}
+function dInbox(){
+  S.qTab=S.qTab||'open';
+  const list=QUESTIONS.filter(q=>S.qTab==='open'?q.st==='open':q.st!=='open');
+  return `<div class="hhead"><div><h1>Questions</h1><p>Answer within 24 hours to keep your “replies within 6 hours” badge. Each question includes one follow-up.</p></div></div>
+  <div class="filters"><button class="opt" data-a="qtab" data-v="open" aria-pressed="${S.qTab==='open'}">Waiting (${QUESTIONS.filter(q=>q.st==='open').length})</button><button class="opt" data-a="qtab" data-v="done" aria-pressed="${S.qTab!=='open'}">Done (${QUESTIONS.filter(q=>q.st!=='open').length})</button></div>
+  <div class="qs">${list.length?list.map(qCard).join(''):'<div class="emptybox">No questions waiting. New ones will show here.</div>'}</div>`}
+
+/* Calendar */
 function dCal(){
-  return `<div class="hhead"><div><h1>Calendar</h1><p>Weekly hours when students can book you. Times are in IST.</p></div><button class="btn dark sm" id="save-av">Save</button></div>
-  <div class="week">${WEEK.map(([d,sl],i)=>`<div class="day"><b>${d}</b><div class="chips">${sl.length?sl.map(x=>`<span class="chip num">${x}</span>`).join(''):'<span class="muted" style="font-size:14px;align-self:center">Unavailable</span>'}<button class="chip add" data-addslot="${i}">+ Add time</button></div></div>`).join('')}</div>`}
+  return `<div class="hhead"><div><h1>Calendar</h1><p>When students can book you. Times are in IST. Changes apply to your booking calendar straight away.</p></div><button class="btn dark sm" data-a="saveCal">Save</button></div>
+  <div class="two cal2">
+    <div class="panel"><div class="box2-h"><h2>Weekly hours</h2><button class="linkbtn" data-a="copyMon">Copy Monday to weekdays</button></div>
+      <div class="week2">${WEEK.map(([d,sl],i)=>`<div class="wd ${sl.length?'':'off'}">
+        <label class="toggle sm"><input type="checkbox" id="wd-${i}" data-a="dayToggle" data-id="${i}" ${sl.length?'checked':''} aria-label="Available on ${d}"><span></span></label>
+        <b>${d.slice(0,3)}</b>
+        <div class="chips">${sl.length?[...sl].sort((x,y)=>tmin(x)-tmin(y)).map(x=>`<span class="chip num">${x}<button class="chip-x" data-a="slotDel" data-id="${i}" data-v="${x}" aria-label="Remove ${x}">${ic('x')}</button></span>`).join(''):'<span class="muted" style="font-size:13px">Unavailable</span>'}</div>
+        <div class="addslot"><select class="input" id="as-${i}" aria-label="Time to add on ${d}">${TIME_OPTS.filter(t=>!sl.includes(t)).map(t=>`<option ${t==='8:00 PM'?'selected':''}>${t}</option>`).join('')}</select><button class="btn sm" data-a="slotAdd" data-id="${i}">Add</button></div>
+      </div>`).join('')}</div></div>
+    <div style="display:grid;gap:20px;align-content:start">
+      <div class="panel"><h2>Time off</h2><p class="muted" style="font-size:14px;margin-top:-8px">Students can’t book you on these dates.</p>
+        ${TIMEOFF.map((x,i)=>`<div class="act-row">${ic('calendar')}<span><b class="num">${fmtRange(x.from,x.to)}</b>${x.note?` · ${esc(x.note)}`:''}</span><button class="x" data-a="offDel" data-id="${i}" aria-label="Remove time off">${ic('trash')}</button></div>`).join('')||'<p class="muted" style="font-size:14px">No time off planned.</p>'}
+        <div class="off-add"><label class="field">From<input class="input" type="date" id="off-from"></label><label class="field">To<input class="input" type="date" id="off-to"></label><label class="field" style="grid-column:1/-1">Note (optional)<input class="input" id="off-note" placeholder="e.g. Travelling"></label></div>
+        <button class="btn sm" data-a="offAdd" style="justify-self:start">${ic('plus')}Add time off</button></div>
+      <div class="panel"><h2>Booking rules</h2>
+        ${[['notice','Minimum notice',[['2','2 hours'],['4','4 hours'],['12','12 hours'],['24','1 day']]],['buffer','Gap between calls',[['0','No gap'],['10','10 min'],['15','15 min'],['30','30 min']]],['max','Most calls in a day',[['1','1'],['2','2'],['3','3'],['5','5'],['99','No limit']]],['window','Students can book up to',[['14','2 weeks ahead'],['30','4 weeks ahead'],['45','6 weeks ahead']]]].map(([k,l,o])=>`<label class="field rule">${l}<select class="input" id="rule-${k}" data-rule="${k}">${o.map(([v,t])=>`<option value="${v}" ${RULES[k]===v?'selected':''}>${t}</option>`).join('')}</select></label>`).join('')}
+        <p class="muted" style="font-size:13px">Timezone: India Standard Time (IST)</p></div>
+    </div>
+  </div>`}
+function fmtRange(a,b){const f=x=>new Date(x+'T00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});return a===b?f(a):`${f(a)} – ${f(b)}`}
+
+/* Services */
+function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Students get 25% off their first connect. You still earn your full price.</b><span>On a student's first call or question, they pay 75% of your price and YourDegree pays the other 25%. A 10% platform fee applies to every booking.</span></p></div>`}
+function dSvc(){
+  return `<div class="hhead"><div><h1>Services</h1><p>What students can book on your profile.</p></div><div class="hbtns"><button class="btn sm" data-a="preview">${ic('globe')}Preview as student</button><button class="btn dark sm" data-a="svcNew">${ic('plus')}Add a service</button></div></div>
+  ${freeInfo()}
+  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div style="min-width:0"><h3>${esc(s.title)}</h3><p class="sub">${s.kind==='call'?`Video call · ${s.durs.filter(x=>x.on).map(x=>fmtDur(x.dur)).join(', ')||'no lengths on'}`:`Written reply in ${s.eta}`}</p></div></div>
+      <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-a="svcToggle" data-id="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
+    <p class="svc-desc">${esc(s.desc||'')}</p>
+    <div class="svc-prices">${s.kind==='call'?s.durs.filter(x=>x.on).map(x=>`<span class="chip num">${fmtDur(x.dur)} · ${rupee(x.price)}</span>`).join(''):`<span class="chip num">${rupee(s.price)} per question</span>`}</div>
+    <div class="svc-foot"><span class="muted num">${s.booked} bookings · ${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</span><div class="sess-acts"><button class="btn sm" data-a="svcEdit" data-id="${s.id}">Edit</button>${['s1','s2'].includes(s.id)?'':`<button class="btn sm ghost2 danger" data-a="svcDel" data-id="${s.id}">Delete</button>`}</div></div></div>`).join('')}</div>`}
+
+/* Earnings */
 function dEarn(){
-  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · first connect (₹62 discount covered by YourDegree)',249],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
-  return `<div class="hhead"><div><h1>Earnings</h1><p>Platform fee of 10% is already deducted.</p></div><button class="btn dark sm" id="withdraw">Withdraw ₹4,980</button></div>
-  <div class="statgrid" style="margin-bottom:24px">
-    <div class="st"><span>Available</span><b class="num">₹4,980</b><small class="n">Auto-payout on 15 Oct</small></div>
-    <div class="st"><span>This month</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
-    <div class="st"><span>Lifetime</span><b class="num">₹52,310</b><small class="n">since Jan 2025</small></div>
-    <div class="st"><span>First connects at 25% off</span><b class="num">9</b><small class="n">this month</small></div></div>
-  <div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th style="text-align:right">Amount</th></tr></thead><tbody>
-  ${tx.map(([d,t,a])=>`<tr><td class="num">${d}</td><td>${t}</td><td class="num" style="text-align:right;color:${a>0?'var(--good)':'var(--muted)'}">${a===0?'Free':(a<0?'−':'+')+rupee(Math.abs(a))}</td></tr>`).join('')}</tbody></table></div>`}
+  S.txf=S.txf||'all';
+  const list=TX.filter(t=>S.txf==='all'||t.k===S.txf);
+  const method=PAYOUT.type==='bank'?`${PAYOUT.bank} ••${PAYOUT.last4}`:`UPI ${PAYOUT.upi}`;
+  return `<div class="hhead"><div><h1>Earnings</h1><p>Amounts are after the 10% platform fee.</p></div><button class="btn sm" data-a="statement">Download statement</button></div>
+  <div class="earn-top">
+    <div class="balcard"><span>Available to withdraw</span><b class="num">${rupee(BAL)}</b><small>Next auto-payout ${PAYOUT.auto==='weekly'?'on Wed, 15 Oct':PAYOUT.auto==='monthly'?'on 1 Nov':'is off'}</small><button class="btn dark" data-a="withdraw" ${BAL<100?'disabled':''}>Withdraw</button></div>
+    <div class="panel"><div class="box2-h"><h2>Payout method</h2><button class="linkbtn" data-a="payout">Change</button></div>
+      <div class="act-row">${ic(PAYOUT.type==='bank'?'building':'rupee')}<span><b>${esc(method)}</b><br><span class="muted" style="font-size:13px">${esc(PAYOUT.holder)}</span></span>${PAYOUT.checking?'<span class="tag">Being checked</span>':'<span class="tag ok">Verified</span>'}</div>
+      <label class="field">Automatic payouts<select class="input" id="auto-pay" data-a="autoPay"><option value="weekly" ${PAYOUT.auto==='weekly'?'selected':''}>Every week</option><option value="monthly" ${PAYOUT.auto==='monthly'?'selected':''}>Every month</option><option value="off" ${PAYOUT.auto==='off'?'selected':''}>Off, I’ll withdraw myself</option></select></label></div>
+    <div class="panel"><h2>This month</h2><div class="mini-stats"><div><b class="num">₹18,450</b><span>Earned</span></div><div><b class="num">₹2,050</b><span>Platform fee</span></div><div><b class="num">₹1,860</b><span>First-connect discounts we covered</span></div><div><b class="num">₹52,310</b><span>Lifetime</span></div></div></div>
+  </div>
+  <div class="box2-h" style="margin-top:28px"><h2>Activity</h2><div class="filters" style="margin:0">${[['all','All'],['earn','Earnings'],['payout','Payouts']].map(([k,l])=>`<button class="opt" data-a="txf" data-v="${k}" aria-pressed="${S.txf===k}">${l}</button>`).join('')}</div></div>
+  <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Date</th><th>Description</th><th>Status</th><th style="text-align:right">Amount</th></tr></thead><tbody>
+  ${list.map(t=>`<tr><td class="num">${t.d}</td><td>${esc(t.t)}</td><td>${t.st==='Paid'?'<span class="tag ok">Paid</span>':`<span class="tag">${t.st}</span>`}</td><td class="num" style="text-align:right;color:${t.a>0?'var(--good)':'var(--ink)'}">${t.a<0?'−':'+'}${rupee(Math.abs(t.a))}</td></tr>`).join('')}</tbody></table></div>`}
+
+/* Profile */
 const COURSES=['MBA','MCA','BBA','BCA','BCom','MCom','MA','MSc','BA'];
 const NETS=['linkedin','instagram','youtube','x','website'];
 const NET_PH={linkedin:'in/your-name',instagram:'@yourhandle',youtube:'@YourChannel',x:'@yourhandle',website:'yourname.com'};
 function dProfile(){
   const socOf=n=>ME.socials.find(x=>x.net===n);
-  return `<div class="hhead"><div><h1>Your profile</h1><p>Your bio, education and links, as students see them on your profile.</p></div><button class="btn dark sm" id="save-profile">Save</button></div>
-  <div class="panel" style="max-width:1000px;margin-bottom:24px"><h2>About you</h2>
-    <p class="muted" style="font-size:14px;margin-top:-8px">A few lines on what you do now, your journey and what students can ask you about.</p>
-    <textarea class="input" id="my-bio" rows="4" maxlength="600" placeholder="e.g. I'm a data analyst at Fractal. I finished my BCA in 2023 while working part time. Ask me about internships and landing your first analytics role.">${esc(ME.bio||'')}</textarea>
-    <span class="muted num" style="font-size:12.5px;justify-self:end" id="bio-count">${(ME.bio||'').length}/600</span></div>
+  return `<div class="hhead"><div><h1>Your profile</h1><p>Everything students see on your profile page.</p></div><div class="hbtns"><button class="btn sm" data-a="preview">${ic('globe')}View as student</button><button class="btn dark sm" id="save-profile">Save</button></div></div>
+  <div class="panel prof-top" style="margin-bottom:24px">
+    <div class="ph-up"><img src="${ME.img}" alt="Your profile photo" id="me-photo"><label class="btn sm" for="photo-in">${ic('plus')}Change photo</label><input type="file" id="photo-in" accept="image/*" hidden><span class="muted" style="font-size:12px">A clear, smiling photo gets more bookings.</span></div>
+    <div class="ph-fields">
+      <label class="field">Current role<input class="input" id="me-role" data-me="role" value="${esc(ME.role)}"></label>
+      <label class="field">Company<input class="input" id="me-company" data-me="company" value="${esc(ME.company)}"></label>
+      <label class="field">City<input class="input" id="me-city" data-me="city" value="${esc(ME.city)}"></label>
+      <div class="field">Languages you speak<div class="chips">${ME.languages.map((l,i)=>`<span class="chip">${esc(l)}<button class="chip-x" data-a="langDel" data-id="${i}" aria-label="Remove ${esc(l)}">${ic('x')}</button></span>`).join('')}<span class="lang-add"><input class="input" id="lang-in" placeholder="Add a language"><button class="btn sm" data-a="langAdd">Add</button></span></div></div>
+      <label class="field" style="grid-column:1/-1">About you<textarea class="input" id="my-bio" rows="4" maxlength="600" placeholder="e.g. I'm a data analyst at Fractal. I finished my BCA in 2023 while working part time.">${esc(ME.bio||'')}</textarea><span class="muted num" style="font-size:12.5px;justify-self:end" id="bio-count">${(ME.bio||'').length}/600</span></label>
+    </div>
+  </div>
   <div class="two">
     <div class="panel"><h2>Education</h2>
       <p class="muted" style="font-size:14px;margin-top:-8px">Listed newest first, like a timeline. Your most recent degree shows on your listing card.</p>
@@ -1170,27 +1455,220 @@ function dProfile(){
           <label class="field">End year (or expected)<input class="input num" id="deg-b-${i}" type="number" min="1980" max="2035" data-deg="${i}" data-f="batch" value="${d.batch}"></label>
         </div>
         <label class="field">Details<textarea class="input" id="deg-d-${i}" rows="2" data-deg="${i}" data-f="details" placeholder="Projects, activities, how you studied alongside work">${esc(d.details||'')}</textarea></label>
+        ${d.verified?'':`<div class="verify-row">${ic('shield')}<span>Upload your degree certificate or use your university email to get verified.</span><button class="btn sm" data-a="verifyDeg" data-id="${i}">Verify</button></div>`}
       </div></li>`).join('')}</ol>
       <button class="btn sm" id="add-degree" style="justify-self:start">${ic('plus')}Add education</button>
     </div>
-    <div class="panel"><h2>Social links</h2>
-      <p class="muted" style="font-size:14px;margin-top:-8px">Switch on the ones students should see. Links help students trust that you're real.</p>
-      ${NETS.map(n=>{const [lbl,icn,col]=SOC_META[n],cur=socOf(n);return `<div class="soc-ed">
-        <span class="si" style="--c:${col}">${ic(icn)}</span>
-        <label class="field" style="flex:1;min-width:0"><span>${lbl}</span><input class="input" id="soc-${n}" data-socnet="${n}" placeholder="${NET_PH[n]}" value="${cur?esc(cur.handle):''}"></label>
-        <label class="toggle" title="Show on profile"><input type="checkbox" id="soc-on-${n}" data-socshow="${n}" ${cur&&cur.show?'checked':''} aria-label="Show ${lbl} on profile"><span></span></label>
-      </div>`}).join('')}
+    <div style="display:grid;gap:20px;align-content:start">
+      <div class="panel"><h2>Social links</h2>
+        <p class="muted" style="font-size:14px;margin-top:-8px">Switch on the ones students should see. Links help students trust that you're real.</p>
+        ${NETS.map(n=>{const [lbl,icn,col]=SOC_META[n],cur=socOf(n);return `<div class="soc-ed">
+          <span class="si" style="--c:${col}">${ic(icn)}</span>
+          <label class="field" style="flex:1;min-width:0"><span>${lbl}</span><input class="input" id="soc-${n}" data-socnet="${n}" placeholder="${NET_PH[n]}" value="${cur?esc(cur.handle):''}"></label>
+          <label class="toggle" title="Show on profile"><input type="checkbox" id="soc-on-${n}" data-socshow="${n}" ${cur&&cur.show?'checked':''} aria-label="Show ${lbl} on profile"><span></span></label>
+        </div>`}).join('')}
+      </div>
+      <div class="panel"><h2>Your university review</h2>
+        <label class="field">One-line summary<textarea class="input" id="my-quote" rows="2" maxlength="140">${esc(ME.quote)}</textarea></label>
+        ${ME.degrees.map((d,di)=>{d.scores=d.scores||{...DEFAULT_SCORES};return `<div style="display:grid;gap:8px"><div><b style="font-weight:600">${esc(d.college||'New university')}</b> <span class="muted" style="font-size:13px">· ${esc(d.course)} ${d.start} – ${d.batch}</span></div>
+          ${Object.entries(d.scores).map(([k,v],i)=>`<div class="r"><span>${k}</span><input type="range" min="1" max="5" step="0.1" id="sc-${di}-${i}" data-score="${esc(k)}" data-sdeg="${di}" value="${v}"><b class="num" id="scv-${di}-${i}">${v.toFixed(1)}</b></div>`).join('')}</div>`}).join('')}
+      </div>
     </div>
   </div>`}
-function dReview(){
-  return `<div class="hhead"><div><h1>My university review</h1><p>The first thing students read on your profile.</p></div><button class="btn dark sm" id="save-review">Save</button></div>
-  <div class="two" style="grid-template-columns:minmax(0,640px)">
-    <div class="panel"><h2>About your time there</h2>
-      <label class="field">One-line summary<textarea id="my-quote" rows="3" maxlength="140">${esc(ME.quote)}</textarea></label>
-      <div style="display:grid;gap:20px"><span class="lbl">Scorecard for each university, out of 5</span>
-      ${ME.degrees.map((d,di)=>{d.scores=d.scores||{...DEFAULT_SCORES};return `<div style="display:grid;gap:10px"><div><b style="font-weight:600">${esc(d.college||'New university')}</b> <span class="muted" style="font-size:13px">· ${esc(d.course)} ${d.start} – ${d.batch}</span></div>
-        ${Object.entries(d.scores).map(([k,v],i)=>`<div class="r"><span>${k}</span><input type="range" min="1" max="5" step="0.1" id="sc-${di}-${i}" data-score="${esc(k)}" data-sdeg="${di}" value="${v}"><b class="num" id="scv-${di}-${i}">${v.toFixed(1)}</b></div>`).join('')}</div>`}).join('')}</div></div>
+
+/* Settings */
+function dSettings(){
+  const tg=(id,on,a,label)=>`<label class="toggle"><input type="checkbox" id="${id}" data-a="${a}" ${on?'checked':''} aria-label="${label}"><span></span></label>`;
+  return `<div class="hhead"><div><h1>Settings</h1><p>Profile visibility, notifications and contact details.</p></div></div>
+  <div class="two">
+    <div style="display:grid;gap:20px;align-content:start">
+      <div class="panel"><h2>Profile visibility</h2>
+        <div class="set-row"><div><b>${SETTINGS.paused?'Paused':'Live'}</b><span>${SETTINGS.paused?`Students can’t find or book you${SETTINGS.until?` until ${fmtRange(SETTINGS.until,SETTINGS.until)}`:''}. Existing sessions stay booked.`:'Students can find and book you.'}</span></div>${tg('set-live',!SETTINGS.paused,'livetoggle','Profile is live')}</div>
+        ${SETTINGS.paused?`<label class="field">Come back automatically on<input class="input" type="date" id="pause-until" value="${SETTINGS.until}" data-a="pauseUntil"></label>`:''}</div>
+      <div class="panel"><h2>Contact details</h2>
+        <div class="set-row"><div><b>Email</b><span>${esc(SETTINGS.email)}</span></div><span class="tag ok">Verified</span></div>
+        <div class="set-row"><div><b>Phone</b><span class="num">${SETTINGS.phone}</span></div>${SETTINGS.phoneVerified?'<span class="tag ok">Verified</span>':'<button class="btn sm" data-a="otp">Verify</button>'}</div>
+        <p class="muted" style="font-size:13px">Students never see your email or phone number. Calls happen on ${BRAND}.</p></div>
+    </div>
+    <div style="display:grid;gap:20px;align-content:start">
+      <div class="panel"><h2>Notify me about</h2>
+        ${[['booking','New bookings and changes'],['question','New questions'],['remind','Reminder 1 hour before a call'],['payout','Payouts'],['updates','Tips and product news']].map(([k,l])=>`<div class="set-row"><div><b>${l}</b></div>${tg('nt-'+k,SETTINGS.notif[k],'notif','Notify me about '+l)}</div>`).join('')}
+        <div class="field">Send them by<div class="chips">${[['email','Email'],['whatsapp','WhatsApp'],['sms','SMS']].map(([k,l])=>`<button class="opt" data-a="chan" data-v="${k}" aria-pressed="${SETTINGS.ch[k]}">${l}</button>`).join('')}</div></div></div>
+      <div class="panel"><h2>Account</h2><div class="set-row"><div><b>Deactivate profile</b><span>Hide your profile and stop new bookings. You can come back any time.</span></div><button class="btn sm ghost2 danger" data-a="deactivate">Deactivate</button></div></div>
+    </div>
   </div>`}
+
+/* Notifications dropdown */
+function notifPanel(){return `<div class="npanel" role="dialog" aria-label="Notifications"><div class="np-h"><b>Notifications</b>${NOTIFS.some(n=>n.unread)?'<button class="linkbtn" data-a="nAll">Mark all as read</button>':''}</div>
+  ${NOTIFS.map(n=>`<button class="np-i ${n.unread?'un':''}" data-a="nGo" data-id="${n.id}">${ic(n.icon)}<span><span>${esc(n.txt)}</span><small>${n.time}</small></span>${n.unread?'<i></i>':''}</button>`).join('')}</div>`}
+
+/* Modals */
+function modalHTML(){
+  const m=S.modal; if(!m)return '';
+  const b=m.id?BOOKINGS.find(x=>x.id===m.id):null, q=m.id?QUESTIONS.find(x=>x.id===m.id):null;
+  const shell=(title,body,foot)=>`<div class="scrim" data-a="mclose" data-self="1"><div class="modal dmodal" role="dialog" aria-modal="true" aria-label="${title}"><div class="modal-h"><button class="x" data-a="mclose" aria-label="Close">${ic('x')}</button><span>${title}</span><span></span></div><div class="modal-b">${body}</div>${foot?`<div class="modal-f">${foot}</div>`:''}</div></div>`;
+  const days=[...Array(21)].map((_,i)=>i).filter(o=>o>=1&&meOpen(o)).slice(0,8);
+  switch(m.t){
+  case 'detail':return shell('Session details',`<section><div class="nh-who">${avI(b.who,b.hue,52)}<div><h3>${b.who}</h3><span class="muted">${esc(b.ctx)}</span></div></div>
+      <div class="kv"><span>When</span><b class="num">${sessDay(b.off)}, ${b.time} IST</b><span>Length</span><b>${fmtDur(b.dur)} video call</b><span>Status</span><b>${b.st==='upcoming'?(b.req?'Reschedule requested':'Confirmed'):b.st==='done'?'Completed':'Cancelled'}</b></div>
+      ${b.note?`<div class="ans"><b>What ${b.who.split(' ')[0]} wants to ask</b><p>${esc(b.note)}</p></div>`:''}
+      ${b.req?`<div class="reqbox">${ic('calendar')}<div><b>${b.who.split(' ')[0]} asked to move this call to ${sessDay(b.req.off)}, ${b.req.time}</b><span>“${esc(b.req.why)}”</span></div></div>`:''}</section>
+      <section><h3 style="font-size:16px">Payment</h3><div class="kv"><span>Student paid</span><b class="num">${rupee(b.free?off(b.amt):b.amt)}</b>${b.free?`<span>First-connect discount we covered</span><b class="num">${rupee(b.amt-off(b.amt))}</b>`:''}<span>Platform fee (10%)</span><b class="num">−${rupee(b.amt-earnOf(b))}</b><span>You earn</span><b class="num">${b.st==='cancelled'?'₹0':rupee(earnOf(b))}</b></div></section>`,
+      b.req?`<button class="btn sm ghost2" data-a="reqNo" data-id="${b.id}">Keep original time</button><button class="btn dark sm" data-a="reqYes" data-id="${b.id}">Accept new time</button>`:b.st==='upcoming'?`<button class="btn sm ghost2 danger" data-a="cancel" data-id="${b.id}">Cancel session</button><div class="sess-acts"><button class="btn sm" data-a="resched" data-id="${b.id}">Reschedule</button><button class="btn dark sm" data-a="msg" data-id="${b.id}">Message</button></div>`:'');
+  case 'resched':return shell('Suggest a new time',`<section><p class="muted" style="font-size:14px">${b.who} will get your suggestion and can accept it or cancel for a full refund.</p>
+      <div class="field">New date<div class="chips">${days.map(o=>`<button class="opt num" data-a="rsDay" data-v="${o}" aria-pressed="${m.day===o}">${sessDay(o)}</button>`).join('')}</div></div>
+      ${m.day!=null?`<div class="field">Time (IST)<div class="chips">${meSlots(b.dur,m.day).map(t=>`<button class="opt num" data-a="rsTime" data-v="${t}" aria-pressed="${m.time===t}">${t}</button>`).join('')||'<span class="muted">No free times that day</span>'}</div></div>`:''}
+      <label class="field">Message to ${b.who.split(' ')[0]} (optional)<textarea class="input" id="rs-msg" rows="2" placeholder="Sorry, something came up at work. Does this time work?"></textarea></label></section>`,
+      `<button class="linkbtn" data-a="mclose">Back</button><button class="btn dark sm" data-a="rsSend" data-id="${b.id}" ${m.day!=null&&m.time?'':'disabled'}>Send suggestion</button>`);
+  case 'cancel':return shell('Cancel this session?',`<section><div class="warnbox">${ic('shield')}<span>${b.who} gets a <b>full refund</b>. Cancelling often lowers where you appear in search.</span></div>
+      <label class="field">Reason<select class="input" id="cx-reason"><option>Something urgent came up</option><option>I’m not the right person for this question</option><option>Scheduling conflict</option><option>Other</option></select></label>
+      <label class="field">Message to ${b.who.split(' ')[0]}<textarea class="input" id="cx-msg" rows="2" placeholder="Sorry I have to cancel. Please book another time that suits you."></textarea></label></section>`,
+      `<button class="linkbtn" data-a="mclose">Keep session</button><button class="btn sm danger-fill" data-a="cxConfirm" data-id="${b.id}">Cancel and refund</button>`);
+  case 'join':return shell('Call with '+b.who,`<section class="callbox"><div class="call-grid"><div class="call-tile">${avI(b.who,b.hue,72)}<span>${b.who}</span></div><div class="call-tile me"><img src="${ME.img}" alt=""><span>You</span></div></div>
+      <div class="call-meta"><span class="livedot"></span>Connected · 00:${String(m.sec||0).padStart(2,'0')} · ${fmtDur(b.dur)} booked</div>
+      ${b.note?`<div class="ans"><b>Their question</b><p>${esc(b.note)}</p></div>`:''}
+      <p class="muted" style="font-size:13px">In the live product this is the video call. End the call to add notes.</p></section>`,
+      `<span></span><button class="btn sm danger-fill" data-a="endCall" data-id="${b.id}">End call</button>`);
+  case 'wrap':return shell('Wrap up your call',`<section><p class="muted" style="font-size:14px">How did the call with ${b.who} go? Notes are private. The message goes to the student.</p>
+      <label class="field">Private notes<textarea class="input" id="wr-note" rows="3" placeholder="What they asked, what you suggested">${esc(b.myNote||'')}</textarea></label>
+      <label class="field">Message to ${b.who.split(' ')[0]} (optional)<textarea class="input" id="wr-msg" rows="2" placeholder="Great talking to you! Here's the link I mentioned…"></textarea></label>
+      <label class="check2"><input type="checkbox" id="wr-show" checked> Mark the call as completed</label></section>`,
+      `<button class="linkbtn" data-a="mclose">Later</button><button class="btn dark sm" data-a="wrapSave" data-id="${b.id}">Save</button>`);
+  case 'msg':return shell('Messages with '+b.who,`<section class="chat">${b.msgs.length?b.msgs.map(x=>`<div class="bub ${x.me?'me':''}"><p>${esc(x.t)}</p><small>${x.at}</small></div>`).join(''):'<p class="muted" style="font-size:14px;text-align:center">No messages yet. Say hello or share something to read before the call.</p>'}</section>`,
+      `<input class="input" id="chat-in" placeholder="Write a message" style="flex:1"><button class="btn dark sm" data-a="chatSend" data-id="${b.id}">Send</button>`);
+  case 'qdecline':return shell('Decline this question?',`<section><div class="warnbox">${ic('shield')}<span>${q.who} gets a <b>full refund</b> and can ask another alum.</span></div>
+      <label class="field">Reason<select class="input" id="qd-reason"><option>Outside what I know</option><option>Question is about a different university</option><option>Not appropriate</option></select></label></section>`,
+      `<button class="linkbtn" data-a="mclose">Back</button><button class="btn sm danger-fill" data-a="qdConfirm" data-id="${q.id}">Decline and refund</button>`);
+  case 'svc':{const s=m.id?SERVICES.find(x=>x.id===m.id):m.draft;return shell(m.id?'Edit service':'Add a service',`<section>
+      ${m.id?'':`<div class="field">Type<div class="chips">${[['call','Video call'],['dm','Priority DM']].map(([k,l])=>`<button class="opt" data-a="svcType" data-v="${k}" aria-pressed="${s.kind===k}">${l}</button>`).join('')}</div></div>`}
+      <label class="field">Title<input class="input" id="sv-title" value="${esc(s.title)}" placeholder="e.g. Placement prep call"></label>
+      <label class="field">What students get<textarea class="input" id="sv-desc" rows="2" placeholder="Describe the session in one or two lines">${esc(s.desc||'')}</textarea></label>
+      ${s.kind==='call'?`<div class="dured"><div class="dured-h"><span>Length</span><span>Price</span><span>Offer</span></div>${s.durs.map((x,i)=>`<div class="dured-r"><b>${fmtDur(x.dur)}</b><span class="pin">₹<input class="input num" type="number" min="0" step="10" id="sv-p-${i}" value="${x.price}"></span><label class="toggle sm"><input type="checkbox" id="sv-o-${i}" ${x.on?'checked':''} aria-label="Offer ${fmtDur(x.dur)}"><span></span></label></div>`).join('')}<p class="muted" style="font-size:12.5px">Up to 2 hours. Keep at least one length on.</p></div>`
+      :`<div class="deg-grid"><label class="field">Price per question<span class="pin" style="display:flex;align-items:center;gap:6px">₹<input class="input num" type="number" min="0" step="10" id="sv-price" value="${s.price}"></span></label><label class="field">Reply within<select class="input" id="sv-eta">${['1 day','2 days','3 days'].map(x=>`<option ${x===s.eta?'selected':''}>${x}</option>`).join('')}</select></label></div>`}</section>`,
+      `<button class="linkbtn" data-a="mclose">Cancel</button><button class="btn dark sm" data-a="svcSave">${m.id?'Save changes':'Add service'}</button>`)}
+  case 'withdraw':return shell('Withdraw earnings',`<section><label class="field">Amount<span class="pin" style="display:flex;align-items:center;gap:6px">₹<input class="input num" type="number" id="wd-amt" min="100" max="${BAL}" value="${BAL}"></span><span class="muted" style="font-size:12.5px">Available ${rupee(BAL)} · minimum ₹100</span></label>
+      <div class="act-row">${ic(PAYOUT.type==='bank'?'building':'rupee')}<span>To <b>${PAYOUT.type==='bank'?`${PAYOUT.bank} ••${PAYOUT.last4}`:`UPI ${esc(PAYOUT.upi)}`}</b><br><span class="muted" style="font-size:13px">Usually arrives within 1 working day</span></span></div></section>`,
+      `<button class="linkbtn" data-a="mclose">Cancel</button><button class="btn dark sm" data-a="wdConfirm">Withdraw</button>`);
+  case 'payout':return shell('Payout method',`<section><div class="chips">${[['bank','Bank account'],['upi','UPI']].map(([k,l])=>`<button class="opt" data-a="poType" data-v="${k}" aria-pressed="${m.type===k}">${l}</button>`).join('')}</div>
+      ${m.type==='bank'?`<label class="field">Account holder name<input class="input" id="po-holder" value="${esc(PAYOUT.holder)}"></label><label class="field">Account number<input class="input num" id="po-acc" inputmode="numeric" placeholder="9 to 18 digits"></label><label class="field">IFSC code<input class="input" id="po-ifsc" placeholder="e.g. HDFC0001234" style="text-transform:uppercase"></label>`
+      :`<label class="field">UPI ID<input class="input" id="po-upi" placeholder="name@bank"></label>`}
+      <p class="muted" style="font-size:12.5px">Prototype only: nothing you type here is saved or sent.</p><p class="err" id="po-err" hidden></p></section>`,
+      `<button class="linkbtn" data-a="mclose">Cancel</button><button class="btn dark sm" data-a="poSave">Save</button>`);
+  case 'otp':return shell('Verify your phone',`<section><p class="muted" style="font-size:14px">We sent a 4-digit code to ${SETTINGS.phone}. In this prototype, any 4 digits work.</p>
+      <label class="field">Code<input class="input num" id="otp-in" inputmode="numeric" maxlength="4" placeholder="••••" style="letter-spacing:.4em;font-size:20px;max-width:160px"></label><p class="err" id="otp-err" hidden></p></section>`,
+      `<button class="linkbtn" data-a="otpResend">Resend code</button><button class="btn dark sm" data-a="otpOk">Verify</button>`);
+  case 'deactivate':return shell('Deactivate your profile?',`<section><p style="font-size:14px">Your profile will be hidden and students can’t book you. Upcoming sessions stay booked unless you cancel them. You can reactivate any time from Settings.</p></section>`,
+      `<button class="linkbtn" data-a="mclose">Keep profile</button><button class="btn sm danger-fill" data-a="deacOk">Deactivate</button>`);
+  case 'verifyDeg':return shell('Verify your education',`<section><p class="muted" style="font-size:14px">Choose one. We check with the university and usually finish within 2 working days.</p>
+      <label class="field">University email<input class="input" id="vd-email" type="email" placeholder="you@university.edu.in"></label>
+      <div class="field">Or upload your degree certificate<input class="input" type="file" id="vd-file" accept=".pdf,image/*"></div></section>`,
+      `<button class="linkbtn" data-a="mclose">Cancel</button><button class="btn dark sm" data-a="vdSend" data-id="${m.id}">Submit for verification</button>`);
+  }
+  return '';
+}
+function openModal(o){S.modal=o;renderOverlay();setTimeout(()=>{const f=document.querySelector('.dmodal input:not([type=checkbox]):not([type=file]),.dmodal textarea');f&&f.focus()},30)}
+function closeModal(){S.modal=null;renderOverlay()}
+function refreshDash(){$('#top').innerHTML=header();$('#app').innerHTML=dash();if(S.modal)renderOverlay()}
+function addNotif(txt,go,icon){NOTIFS.unshift({id:'n'+Date.now(),txt,time:'Just now',go,unread:true,icon})}
+
+document.addEventListener('click',e=>{
+  if(S.view!=='alumni')return;
+  if(S.notif&&!e.target.closest('.npanel,[data-a="bell"]')){S.notif=false;$('#top').innerHTML=header()}
+  const t=e.target.closest('[data-a]');if(!t)return;
+  const a=t.dataset.a,id=t.dataset.id,v=t.dataset.v,B=()=>BOOKINGS.find(x=>x.id===id),Q=()=>QUESTIONS.find(x=>x.id===id);
+  if(t.dataset.self&&e.target!==t)return;
+  if(t.tagName==='INPUT'||t.tagName==='SELECT')return; /* handled in change */
+  switch(a){
+  case 'bell':S.notif=!S.notif;$('#top').innerHTML=header();return;
+  case 'nAll':NOTIFS.forEach(n=>n.unread=false);$('#top').innerHTML=header();return;
+  case 'nGo':{const n=NOTIFS.find(x=>x.id===id);n.unread=false;S.notif=false;S.tab=n.go;render();scrollTo(0,0);return}
+  case 'preview':S.view='student';S.profile=null;render();open(ME.id);return;
+  case 'mclose':closeModal();return;
+  case 'stab':S.sTab=v;refreshDash();return;
+  case 'qtab':S.qTab=v;refreshDash();return;
+  case 'txf':S.txf=v;refreshDash();return;
+  case 'detail':openModal({t:'detail',id});return;
+  case 'resched':openModal({t:'resched',id,day:null,time:null});return;
+  case 'rsDay':S.modal.day=+v;S.modal.time=null;renderOverlay();return;
+  case 'rsTime':S.modal.time=v;renderOverlay();return;
+  case 'rsSend':{const b=B(),m=S.modal,msg=($('#rs-msg')?.value||'').trim();b.pending={off:m.day,time:m.time};b.msgs.push({me:true,t:`Could we move our call to ${sessDay(m.day)}, ${m.time}?${msg?' '+msg:''}`,at:'Just now'});closeModal();refreshDash();toast(`Suggestion sent to ${b.who}. We’ll tell you when they reply.`);return}
+  case 'reqYes':{const b=B();b.off=b.req.off;b.time=b.req.time;delete b.req;addNotif(`You moved ${b.who}’s call to ${sessDay(b.off)}, ${b.time}`,'sessions','calendar');closeModal();refreshDash();toast(`Moved to ${sessDay(b.off)}, ${b.time}. ${b.who} has been told.`);return}
+  case 'reqNo':{const b=B();delete b.req;closeModal();refreshDash();toast(`Kept the original time. ${b.who} can keep it or cancel for a refund.`);return}
+  case 'cancel':openModal({t:'cancel',id});return;
+  case 'cxConfirm':{const b=B();b.st='cancelled';delete b.req;delete b.pending;b.reason=`Cancelled by you: ${$('#cx-reason').value}. ${b.who.split(' ')[0]} was refunded in full.`;closeModal();S.sTab='cancelled';refreshDash();toast('Session cancelled and refunded');return}
+  case 'join':openModal({t:'join',id,sec:0});clearInterval(window._ct);window._ct=setInterval(()=>{if(!S.modal||S.modal.t!=='join'){clearInterval(window._ct);return}S.modal.sec=(S.modal.sec+1)%60;const el=$('.call-meta');if(el)el.innerHTML=`<span class="livedot"></span>Connected · 00:${String(S.modal.sec).padStart(2,'0')} · ${fmtDur(B().dur)} booked`},1000);return;
+  case 'endCall':{clearInterval(window._ct);const b=B();b.st='done';b.rated=null;b.off=0;openModal({t:'wrap',id});refreshDash();return}
+  case 'wrap':openModal({t:'wrap',id});return;
+  case 'wrapSave':{const b=B();b.myNote=($('#wr-note').value||'').trim();const msg=($('#wr-msg').value||'').trim();if(msg)b.msgs.push({me:true,t:msg,at:'Just now'});if(b.rated==null&&$('#wr-show').checked){b.rated=5;b.fb='Thank you, this cleared up a lot for me.'}closeModal();S.sTab='done';refreshDash();toast('Saved. The student can now rate the call.');return}
+  case 'msg':openModal({t:'msg',id});setTimeout(()=>{const c=$('.chat');if(c)c.scrollTop=c.scrollHeight},40);return;
+  case 'chatSend':{const inp=$('#chat-in'),txt=(inp.value||'').trim();if(!txt)return;B().msgs.push({me:true,t:txt,at:'Just now'});renderOverlay();setTimeout(()=>{$('#chat-in')?.focus();const c=$('.chat');if(c)c.scrollTop=c.scrollHeight},20);refreshDash();return}
+  case 'qdraft':{const q=Q();q.draft=$('#ans-'+id).value;toast('Draft saved');return}
+  case 'qsend':{const q=Q(),txt=($('#ans-'+id).value||'').trim();if(txt.length<80){toast(`Add a bit more detail: ${80-txt.length} more characters`);$('#ans-'+id).focus();return}q.st='answered';q.ans=txt;q.draft='';BAL+=Math.round(q.amt*0.9);TX.unshift({d:'Today',t:`${q.who} · priority DM`,a:Math.round(q.amt*0.9),k:'earn',st:'Processing'});refreshDash();toast(`Answer sent. ${rupee(Math.round(q.amt*0.9))} added to your earnings`);return}
+  case 'qdecline':openModal({t:'qdecline',id});return;
+  case 'qdConfirm':{Q().st='declined';closeModal();refreshDash();toast('Question declined. The student has been refunded.');return}
+  case 'qfollow':{const q=Q(),txt=($('#fu-'+id).value||'').trim();if(!txt){toast('Write a reply first');return}q.fans=txt;refreshDash();toast('Reply sent');return}
+  case 'copyMon':{for(const i of [1,2,3,4])WEEK[i][1]=[...WEEK[0][1]];refreshDash();toast('Monday’s hours copied to Tuesday–Friday');return}
+  case 'slotDel':{const w=WEEK[+id][1];w.splice(w.indexOf(v),1);refreshDash();return}
+  case 'slotAdd':{const sel=$('#as-'+id),w=WEEK[+id][1];if(sel&&!w.includes(sel.value))w.push(sel.value);refreshDash();return}
+  case 'offDel':TIMEOFF.splice(+id,1);refreshDash();toast('Time off removed');return;
+  case 'offAdd':{const f=$('#off-from').value,to=$('#off-to').value||f,n=($('#off-note').value||'').trim();if(!f){toast('Pick a start date');return}if(to<f){toast('End date is before the start date');return}TIMEOFF.push({from:f,to,note:n});TIMEOFF.sort((x,y)=>x.from.localeCompare(y.from));refreshDash();toast('Time off added. Students can’t book those dates.');return}
+  case 'saveCal':toast('Calendar saved');return;
+  case 'svcNew':openModal({t:'svc',draft:{kind:'call',title:'',desc:'',price:99,eta:'1 day',durs:[{dur:15,price:149,on:true},{dur:30,price:249,on:true},{dur:60,price:449,on:false},{dur:120,price:799,on:false}]}});return;
+  case 'svcType':S.modal.draft.kind=v;renderOverlay();return;
+  case 'svcEdit':openModal({t:'svc',id});return;
+  case 'svcSave':{const m=S.modal,s=m.id?SERVICES.find(x=>x.id===m.id):m.draft;const title=($('#sv-title').value||'').trim();if(!title){toast('Give the service a title');$('#sv-title').focus();return}
+    if(s.kind==='call'){const on=s.durs.map((x,i)=>$('#sv-o-'+i).checked);if(!on.some(Boolean)){toast('Keep at least one length on');return}s.durs.forEach((x,i)=>{x.price=Math.max(0,+$('#sv-p-'+i).value||0);x.on=on[i]})}else{s.price=Math.max(0,+$('#sv-price').value||0);s.eta=$('#sv-eta').value}
+    s.title=title;s.desc=($('#sv-desc').value||'').trim();
+    if(!m.id){SERVICES.push({...s,id:'s'+(SERVICES.length+1+Math.floor(Math.random()*1000)),on:false,booked:0,icon:s.kind==='call'?'video':'chat'})}
+    if(s.id==='s1')syncCall(ME);if(s.id==='s2'){ME.services[1].price=s.price;ME.services[1].eta=s.eta}
+    closeModal();refreshDash();toast(m.id?'Service updated':'Service added. Switch it on when you’re ready.');return}
+  case 'svcDel':{const i=SERVICES.findIndex(x=>x.id===id);SERVICES.splice(i,1);refreshDash();toast('Service deleted');return}
+  case 'withdraw':openModal({t:'withdraw'});return;
+  case 'wdConfirm':{const amt=Math.floor(+$('#wd-amt').value||0);if(amt<100||amt>BAL){toast(`Enter an amount between ₹100 and ${rupee(BAL)}`);return}BAL-=amt;TX.unshift({d:'Today',t:`Payout to ${PAYOUT.type==='bank'?`${PAYOUT.bank} ••${PAYOUT.last4}`:'UPI '+PAYOUT.upi}`,a:-amt,k:'payout',st:'Processing'});addNotif(`${rupee(amt)} withdrawal is on its way`,'earnings','rupee');closeModal();refreshDash();toast(`${rupee(amt)} is on its way. Usually arrives within 1 working day.`);return}
+  case 'payout':openModal({t:'payout',type:PAYOUT.type});return;
+  case 'poType':S.modal.type=v;renderOverlay();return;
+  case 'poSave':{const err=$('#po-err'),fail=x=>{err.textContent=x;err.hidden=false};
+    if(S.modal.type==='bank'){const acc=($('#po-acc').value||'').replace(/\s/g,''),ifsc=($('#po-ifsc').value||'').toUpperCase().trim(),h=($('#po-holder').value||'').trim();if(!h)return fail('Enter the account holder’s name.');if(!/^\d{9,18}$/.test(acc))return fail('Account number should be 9 to 18 digits.');if(!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc))return fail('IFSC looks like HDFC0001234: 4 letters, a zero, then 6 letters or digits.');Object.assign(PAYOUT,{type:'bank',holder:h,last4:acc.slice(-4),bank:{HDFC:'HDFC Bank',ICIC:'ICICI Bank',SBIN:'State Bank of India',UTIB:'Axis Bank',KKBK:'Kotak Bank'}[ifsc.slice(0,4)]||'Bank'})}
+    else{const u=($('#po-upi').value||'').trim();if(!/^[\w.\-]{2,}@[A-Za-z]{2,}$/.test(u))return fail('UPI ID looks like name@bank.');Object.assign(PAYOUT,{type:'upi',upi:u})}
+    PAYOUT.checking=true;closeModal();refreshDash();toast('Payout method saved. We’ll confirm it with a ₹1 test deposit.');return}
+  case 'statement':toast('In the live product this downloads your statement as a PDF');return;
+  case 'langDel':ME.languages.splice(+id,1);refreshDash();return;
+  case 'langAdd':{const v2=($('#lang-in').value||'').trim();if(!v2)return;if(!ME.languages.some(l=>l.toLowerCase()===v2.toLowerCase()))ME.languages.push(v2[0].toUpperCase()+v2.slice(1));ME.langs=ME.languages.join(', ');refreshDash();$('#lang-in')?.focus();return}
+  case 'verifyDeg':openModal({t:'verifyDeg',id});return;
+  case 'vdSend':{const em=($('#vd-email').value||'').trim(),fl=$('#vd-file').files.length;if(!em&&!fl){toast('Add a university email or a certificate');return}closeModal();toast('Submitted. We’ll update you within 2 working days.');return}
+  case 'otp':openModal({t:'otp'});return;
+  case 'otpResend':toast('New code sent');return;
+  case 'otpOk':{const c=($('#otp-in').value||'').trim();if(!/^\d{4}$/.test(c)){const er=$('#otp-err');er.textContent='Enter the 4-digit code.';er.hidden=false;return}SETTINGS.phoneVerified=true;closeModal();refreshDash();toast('Phone number verified');return}
+  case 'chan':SETTINGS.ch[v]=!SETTINGS.ch[v];if(!Object.values(SETTINGS.ch).some(Boolean)){SETTINGS.ch[v]=true;toast('Keep at least one way to reach you')}refreshDash();return;
+  case 'deactivate':openModal({t:'deactivate'});return;
+  case 'deacOk':SETTINGS.paused=true;SETTINGS.until='';closeModal();refreshDash();toast('Profile deactivated. Reactivate any time.');return;
+  }
+});
+document.addEventListener('change',e=>{
+  if(S.view!=='alumni')return;const t=e.target,a=t.dataset.a;
+  if(t.id==='photo-in'&&t.files[0]){const r=new FileReader();r.onload=()=>{ME.img=r.result;refreshDash();toast('Photo updated')};r.readAsDataURL(t.files[0]);return}
+  if(t.dataset.rule){RULES[t.dataset.rule]=t.value;return}
+  if(!a)return;
+  if(a==='dayToggle'){const w=WEEK[+t.dataset.id];w[1]=t.checked?(w[1].length?w[1]:['8:00 PM']):[];refreshDash();return}
+  if(a==='svcToggle'){const s=SERVICES.find(x=>x.id===t.dataset.id);s.on=t.checked;refreshDash();toast(s.on?'Service is live on your profile':'Service hidden from students');return}
+  if(a==='autoPay'){PAYOUT.auto=t.value;refreshDash();toast(t.value==='off'?'Automatic payouts turned off':'Automatic payouts updated');return}
+  if(a==='livetoggle'){SETTINGS.paused=!t.checked;refreshDash();toast(SETTINGS.paused?'Profile paused. Students can’t book you.':'Profile is live again');return}
+  if(a==='pauseUntil'){SETTINGS.until=t.value;refreshDash();return}
+  if(a==='notif'){SETTINGS.notif[t.id.slice(3)]=t.checked;return}
+});
+document.addEventListener('input',e=>{
+  if(S.view!=='alumni')return;const t=e.target;
+  if(t.id==='my-quote')ME.quote=t.value;
+  if(t.dataset.qdraft){const q=QUESTIONS.find(x=>x.id===t.dataset.qdraft);q.draft=t.value;const c=$('#qc-'+q.id);if(c){c.textContent=t.value.trim().length>=80?`${t.value.length} characters · ready to send`:`${t.value.trim().length} / 80 characters minimum`;c.classList.toggle('ok',t.value.trim().length>=80)}}
+  if(t.dataset.me){ME[t.dataset.me]=t.value}
+});
+document.addEventListener('keydown',e=>{
+  if(S.view!=='alumni')return;
+  if(e.key==='Escape'&&S.modal){closeModal();return}
+  if(e.key==='Escape'&&S.notif){S.notif=false;$('#top').innerHTML=header();return}
+  if(e.key==='Enter'&&e.target.id==='chat-in'){e.preventDefault();document.querySelector('[data-a="chatSend"]')?.click()}
+  if(e.key==='Enter'&&e.target.id==='lang-in'){e.preventDefault();document.querySelector('[data-a="langAdd"]')?.click()}
+});
 
 /* ---------- render ---------- */
 function render(){
@@ -1203,6 +1681,7 @@ function renderOverlay(){
   let h='';
   if(S.view==='student'&&a)h=listing(a);
   if(S.view==='student'&&S.filtersOpen)h+=filtersModal();
+  if(S.view==='alumni'&&S.modal)h=modalHTML();
   $('#overlay').innerHTML=h;
   document.body.style.overflow=h?'hidden':''}
 function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile),bc=$('#bookcard');if(!a||!bc){renderOverlay();return}bc.innerHTML=bookCard(a);const m=$('.mbar');if(m)m.outerHTML=mbarHTML(a)}
@@ -1252,6 +1731,7 @@ document.addEventListener('click',e=>{
     if(q.call&&!S.slot)return;
     const free=q.free;
     S.done={t:q.s.t,free,paid:q.pay,full:q.full,dur:q.call?q.o.dur:0,when:dinfo(S.date).long,slot:S.slot};
+    if(a===ME){if(q.call){BOOKINGS.push({id:'b'+Date.now(),who:'Demo Student',hue:'h6',ctx:'Booked from the student view',note:'',off:S.date,time:S.slot,dur:q.o.dur,amt:q.full,free,st:'upcoming',msgs:[]});addNotif(`Demo Student booked a ${fmtDur(q.o.dur)} call for ${sessDay(S.date)}, ${S.slot}`,'sessions','video')}else{QUESTIONS.unshift({id:'q'+Date.now(),who:'Demo Student',hue:'h6',q:($('#dm')?.value||'').trim(),age:'Just now',amt:q.full,free,st:'open',draft:''});addNotif('New question from Demo Student','inbox','chat')}}
     if(free)S.freeLeft=0;S.connects++;
     $('#top').innerHTML=header();renderResults();const b=$('.trust');if(b)b.outerHTML=banner();
     renderBook();return}

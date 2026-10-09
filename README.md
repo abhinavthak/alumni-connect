@@ -8,7 +8,7 @@ Open `index.html` in a browser, or view it on GitHub Pages.
 
 - **Student view**: search by university, course or name; browse by programme (MBA, MCA, BBA, BCA, BCom, MCom, MA, MSc, BA); filter by topic and price; Airbnb-style listing cards with a swipeable photo / scorecard / quote carousel.
 - **Alumni profile**: verified-alumni card, an education timeline (university, degree, field, years, details), their LinkedIn / Instagram / YouTube / X / website links, highlights, their own words, topics, scorecard and reviews, with a booking card (video call or priority DM, date and time) showing the 25% first-connect discount.
-- **Alumni dashboard**: today's sessions, questions to answer, services and prices, weekly availability, profile (education timeline, social links), university review and earnings.
+- **Alumni dashboard**: Today (next session, things needing attention, profile checklist), Sessions (join, wrap up with notes, reschedule, cancel with refund, accept student reschedule requests, message students), Questions (answer with drafts, decline with refund, follow-ups), Calendar (weekly hours, time off, booking rules that drive the student booking calendar), Services (edit, add, preview), Earnings (withdraw, payout method, auto-payouts, activity), Profile (photo, headline, languages, bio, education, links, university review), Settings (pause profile, notifications, phone verification) and a notifications bell.
 
 ## Notes
 
