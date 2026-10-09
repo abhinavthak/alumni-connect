@@ -170,7 +170,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .over .r1{font-size:14.5px;font-weight:600;opacity:.96;margin-top:2px}
 .over .r2{font-size:13px;opacity:.8}
 .fav{background:rgba(255,255,255,.96)}
-.below{display:grid;gap:6px;padding:0 2px;min-width:0}
+.below{display:grid;gap:10px;padding:0 2px;min-width:0}
 .below .row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0}
 .below .rt{display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:600;white-space:nowrap}
 .below .rt svg{width:13px;height:13px;fill:var(--ink)}
@@ -182,6 +182,26 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .below .price b{font-weight:700}
 .below .price b.free{color:var(--brand-ink)}
 .below .price span{color:var(--muted)}
+.below .price{display:inline-flex;align-items:baseline;gap:6px;font-size:14px;white-space:nowrap}
+.below .price s{color:var(--muted);font-size:13px}
+.below .price b{font-weight:700;font-size:15px}
+.below .price b.free{color:var(--brand-ink)}
+.below .price span{color:var(--muted);font-size:13px}
+.cta{position:relative;overflow:hidden;width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:700;font-size:14.5px;color:#fff;background:var(--grad);cursor:pointer;box-shadow:0 1px 2px rgba(215,4,102,.25);transition:transform .12s,box-shadow .2s,filter .2s}
+.cta .l{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.cta .l svg.i{width:18px;height:18px;stroke-width:2}
+.cta .r{font-size:13.5px;font-weight:600;white-space:nowrap}
+.cta .r s{opacity:.8;font-weight:500}
+.cta .r i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);flex:none}
+.cta .r.soon i{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
+.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
+.cta:hover{box-shadow:0 8px 20px rgba(227,28,95,.35);filter:saturate(1.1)}
+.cta:hover::after{transform:translateX(100%)}
+.cta:active{transform:scale(.98)}
+.cta:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cta.paid{background:var(--ink);box-shadow:none}
+.cta.paid:hover{box-shadow:0 8px 20px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:reduce){.cta,.cta::after{transition:none}}
 .below .go2{flex:none;border:0;border-radius:99px;background:var(--ink);color:var(--bg);font:inherit;font-size:13px;font-weight:600;padding:8px 14px;cursor:pointer;transition:background .15s}
 .card:hover .below .go2{background:var(--brand)}
 .sl-pane{padding:16px 16px 26px;overflow:hidden}
@@ -631,7 +651,10 @@ function card(a){
     </div>
     <div class="below">
       <div class="row"><span class="rt num">${STAR}${a.rating.toFixed(2)}<span>(${a.reviews})</span></span><span class="when ${soon?'soon':''}"><i></i>${a.next}</span></div>
-      <div class="row"><span class="price num">${S.freeLeft?`<b class="free">Free</b> first call <span>· then ${rupee(s0.price)}</span>`:`<b>${rupee(s0.price)}</b> <span>· ${s0.dur} min call</span>`}</span><button class="go2" data-open="${a.id}">Book</button></div>
+      <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book free call with ${esc(a.first)}, normally ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
+        <span class="l">${ic('video')}${S.freeLeft?'Book free call':'Book call'}</span>
+        <span class="r num">${S.freeLeft?`<s>${rupee(s0.price)}</s>`:rupee(s0.price)}</span>
+      </button>
     </div></article>`}
 function syncSlide(track){
   const ph=track.parentElement,i=Math.round(track.scrollLeft/track.clientWidth),n=track.children.length;
