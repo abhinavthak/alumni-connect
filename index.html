@@ -1070,6 +1070,70 @@ input[type=range]{accent-color:var(--ink);width:100%}
   .panel .box2-h{flex-wrap:wrap;row-gap:6px}
   .hostcard .face h2{font-size:20px}
 }
+/* ---- mobile v2 ---- */
+.msearch,.m-only,.m-alum{display:none}
+@media (max-width:640px){
+  .top-in{grid-template-columns:auto 1fr;padding-block:10px 0}
+  .top-in .center:has(.search){display:none}
+  .top-in .right:has(.freechip){display:none}
+  .logo svg{width:28px;height:28px}
+  .msearch{display:flex;gap:8px;align-items:center;padding:8px 0 10px}
+  .ms-box{flex:1;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:99px;padding:0 16px;height:48px;box-shadow:0 2px 10px rgba(0,0,0,.08);background:var(--bg)}
+  .ms-box svg.i{width:18px;height:18px;stroke-width:2.5;flex:none}
+  .ms-box input{border:0;outline:none;background:transparent;font:inherit;font-size:14.5px;width:100%;min-width:0}
+  .ms-box:focus-within{border-color:var(--ink)}
+  .ms-f{position:relative;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--bg);display:grid;place-items:center;flex:none;cursor:pointer}
+  .ms-f svg.i{width:19px;height:19px}
+  .ms-f i{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;border-radius:99px;background:var(--ink);color:var(--bg);font-size:10.5px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 4px}
+  .m-only{display:grid}
+  .m-alum{display:block;text-align:center;padding:4px 0 32px;font-size:14px}
+  .cats-row{padding-top:8px;gap:0}
+  #open-filters-d{display:none}
+  .cats{gap:22px}
+  .cat{padding-bottom:10px}
+  .trust{display:flex!important;overflow-x:auto;scrollbar-width:none;border:0;border-radius:0;margin:12px -16px 2px;padding:0 16px;gap:8px}
+  .trust::-webkit-scrollbar{display:none}
+  .tr-i,.tr-i+.tr-i,.tr-i:nth-child(even),.tr-i:nth-child(n+3){flex:none;border:1px solid var(--line)!important;border-radius:99px;padding:6px 12px 6px 6px;gap:6px}
+  .tr-ic{width:24px;height:24px}
+  .tr-ic svg.i{width:13px;height:13px}
+  .tr-i b{font-size:12.5px;white-space:nowrap}
+  .results-meta{padding-block:12px 0}
+  .grid{grid-template-columns:minmax(0,1fr)!important;gap:0!important;padding-block:4px 24px}
+  .card{display:grid;grid-template-columns:112px minmax(0,1fr);gap:4px 14px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+  .card .ph{aspect-ratio:auto;height:140px;border-radius:14px;grid-row:1}
+  .card .track{overflow:hidden}
+  .card .slide.sl-pane,.card .dots,.card .arrow,.card .fav{display:none}
+  .card .heart{top:4px;right:4px}
+  .card .heart svg{width:22px;height:22px}
+  .card .below{gap:3px;padding:0;align-content:start}
+  .who2 h3{font-size:15.5px}
+  .who2{flex-wrap:wrap;row-gap:0}
+  .who2 .rt{font-size:13px}
+  .ln{font-size:13px}
+  .ln.strong{font-size:13.5px}
+  .ln em.plus{display:none}
+  .below .cta{margin-top:6px;padding:9px 12px;font-size:13.5px;border-radius:10px}
+  .below .cta .l svg.i{width:16px;height:16px}
+  .cta .cp small{display:none}
+  .how{margin-block:12px;border-radius:16px}
+  .how{padding:18px 0 18px 16px;gap:14px}
+  .hostcard{padding:18px;gap:14px;border-radius:18px}
+  .hostcard .face{display:grid;grid-template-columns:76px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:14px;row-gap:2px;justify-items:start;text-align:left;align-items:center}
+  .hostcard .face .pic{grid-row:1/4}
+  .hostcard .face img{width:76px;height:76px}
+  .hostcard .face .badge{width:24px;height:24px;bottom:0;right:-4px}
+  .hostcard .face .badge svg.i{width:12px;height:12px}
+  .hostcard .face h2{font-size:19px;text-align:left}
+  .hs-socs{justify-content:flex-start;margin-top:4px}
+  .hstats div{padding-block:6px}
+  .hstats b{font-size:18px}
+  .listing{padding-top:12px}
+  .cols{margin-top:14px}
+  .how-h{padding-right:16px}
+  .how-steps{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-right:16px}
+  .how-steps::-webkit-scrollbar{display:none}
+  .how-steps li{flex:0 0 78%;scroll-snap-align:start}
+}
 .ydlogo{height:34px;width:auto;display:block}
 .ac-tag{font-size:13px;font-weight:700;color:var(--brand-ink);border-left:1px solid var(--line);padding-left:10px;letter-spacing:0}
 @media (max-width:640px){.ac-tag{display:none}.ydlogo{height:28px}}
@@ -1230,11 +1294,11 @@ function ddPanel(){
   let head,opts;
   if(key==='college'){
     head='Search by university';
-    opts=[['all','Any university','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.college)))].sort().map(c=>[c,c,'cap',`${count(a=>a.degrees.some(d=>d.college===c))} alumni`])];
+    opts=[['all','Any university','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.college)).filter(Boolean))].sort().map(c=>[c,c,'cap',`${count(a=>a.degrees.some(d=>d.college===c))} alumni`])];
   }else{
     head='Search by course';
     const icon=c=>(CATS.find(x=>x[1]===c)||[])[2]||'cap';
-    opts=[['all','Any course','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.course)))].sort().map(c=>[c,c,icon(c),`${count(a=>a.degrees.some(d=>d.course===c))} alumni`])];
+    opts=[['all','Any course','all',`${ALUMNI.length} alumni`],...[...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.course)).filter(Boolean))].sort().map(c=>[c,c,icon(c),`${count(a=>a.degrees.some(d=>d.course===c))} alumni`])];
   }
   return `<div class="dd ${key==='course'?'mid':''}" role="listbox" aria-labelledby="dd-${key}" id="ddpanel"><h4>${head}</h4>
     ${opts.map(([v,l,i,sub])=>`<button type="button" class="ddo" role="option" data-pick="${esc(v)}" aria-selected="${cur===v}"><span class="tile">${ic(i)}</span><span class="txt"><b>${esc(l)}</b><small>${sub}</small></span><span class="ok">${ic('check')}</span></button>`).join('')}</div>`}
@@ -1254,7 +1318,9 @@ function header(){
       <div class="right">
         <span class="freechip ${S.freeLeft?'':'used'}" title="Your first call on Alumni Connect is 25% off">${ic('gift')}${S.freeLeft?'<span class="num">25% off</span><span class="long">&nbsp;first call</span>':'<span>Offer used</span>'}</span>
         <button class="switch-link" data-view="alumni"><span class="long">Switch to alumni dashboard</span><span class="short">For alumni</span></button>
-      </div></div></div>`}
+      </div></div>
+    <div class="msearch"><label class="ms-box">${ic('search')}<input id="mq" type="search" placeholder="Search name, company or university" value="${esc(S.q)}" aria-label="Search alumni"></label><button class="ms-f" id="open-filters" aria-label="Filters${filterCount()?`, ${filterCount()} on`:''}">${ic('sliders')}${filterCount()?`<i class="num">${filterCount()}</i>`:''}</button></div>
+  </div>`}
   const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
   const upN=BOOKINGS.filter(b=>b.st==='upcoming').length,qN=QUESTIONS.filter(q=>q.st==='open').length,nN=NOTIFS.filter(n=>n.unread).length;
   const tabs=[['today','Today'],['sessions','Sessions',BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length||0],['inbox','Questions',qN],['calendar','Calendar'],['services','Services'],['earnings','Earnings'],['profile','Profile'],['settings','Settings']];
@@ -1283,14 +1349,15 @@ function filtered(){
   if(S.sort==='price')list.sort((a,b)=>fromPrice(a)-fromPrice(b));
   if(S.sort==='recent')list.sort((a,b)=>b.batch-a.batch);
   return list}
-const filterCount=()=>(S.price!=='any')+!!S.topic+(S.mode!=='any')+(S.sort!=='rec');
+const filterCount=()=>(matchMedia('(max-width:640px)').matches?(S.college!=='all')+(S.course!=='all'):0)+(S.price!=='any')+!!S.topic+(S.mode!=='any')+(S.sort!=='rec');
 
 function browse(){
   return `<div class="wrap">
     <div class="cats-row"><div class="cats" role="group" aria-label="Streams">${CATS.map(([k,l,i])=>`<button class="cat" data-cat="${esc(k)}" aria-pressed="${S.cat===k}">${ic(i)}${l}</button>`).join('')}</div>
-      <button class="pillbtn" id="open-filters">${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}</button></div>
+      <button class="pillbtn" id="open-filters-d">${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}</button></div>
     ${banner()}
-    <div id="results">${results()}</div></div>`}
+    <div id="results">${results()}</div>
+    <p class="m-alum"><button class="linkbtn" data-view="alumni">Are you an alum? Open the alumni dashboard</button></p></div>`}
 function banner(){
   const offer=S.freeLeft
    ?`<div class="tr-i offer"><span class="tr-ic">${ic('gift')}</span><div><b>25% off your first call</b><span>Then each alum's own price</span></div></div>`
@@ -1361,6 +1428,9 @@ function filtersModal(){
   return `<div class="scrim" data-scrim="filters"><div class="modal" role="dialog" aria-modal="true" aria-label="Filters">
     <div class="modal-h"><button class="x" data-closefilters aria-label="Close">${ic('x')}</button><span>Filters</span><span></span></div>
     <div class="modal-b">
+      <section class="m-only"><h3>University and course</h3>
+        <label class="field">University<select class="input" id="mf-college">${['all',...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.college)).filter(Boolean))].sort((x,y)=>x==='all'?-1:y==='all'?1:x.localeCompare(y)).map(c=>`<option value="${esc(c)}" ${S.college===c?'selected':''}>${c==='all'?'Any university':esc(c)}</option>`).join('')}</select></label>
+        <label class="field">Course<select class="input" id="mf-course">${['all',...new Set(ALUMNI.flatMap(a=>a.degrees.map(d=>d.course)).filter(Boolean))].sort((x,y)=>x==='all'?-1:y==='all'?1:x.localeCompare(y)).map(c=>`<option value="${esc(c)}" ${S.course===c?'selected':''}>${c==='all'?'Any course':esc(c)}</option>`).join('')}</select></label></section>
       <section><h3>How they studied</h3><p class="muted">Talk to alumni who did the course the same way you plan to.</p>
         <div class="opts">${[['any','Any mode'],...MODES.map(m=>[m,m])].map(([v,l])=>`<button class="opt" data-mode="${v}" aria-pressed="${S.mode===v}">${v==='any'?'':ic(MODE_ICON[v])}${l}</button>`).join('')}</div></section>
       <section><h3>What you want to ask about</h3><p class="muted">Show alumni who are happy to talk about this.</p>
@@ -1993,7 +2063,7 @@ function render(){
   $('#top').innerHTML=header();
   $('#app').innerHTML=S.view==='student'?browse():dash();
   renderOverlay()}
-function renderResults(){const r=$('#results');if(r)r.innerHTML=results();const fb=$('#open-filters');if(fb)fb.innerHTML=`${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}`}
+function renderResults(){const r=$('#results');if(r)r.innerHTML=results();const fb=$('#open-filters-d');if(fb)fb.innerHTML=`${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}`}
 function renderOverlay(){
   const a=S.profile&&ALUMNI.find(x=>x.id===S.profile);
   let h='';
@@ -2025,13 +2095,13 @@ document.addEventListener('click',e=>{
   if(d.open){open(+d.open);return}
   if(d.home!==undefined){Object.assign(S,{cat:'all',q:'',college:'all',course:'all',dd:null});render();return}
   if(d.cat){S.cat=d.cat;document.querySelectorAll('.cat').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===S.cat));renderResults();return}
-  if(t.id==='open-filters'){S.filtersOpen=true;renderOverlay();return}
+  if(t.id==='open-filters'||t.id==='open-filters-d'){S.filtersOpen=true;renderOverlay();return}
   if(d.closefilters!==undefined||(d.scrim==='filters'&&e.target===t)){S.filtersOpen=false;renderOverlay();renderResults();return}
   if(d.mode){S.mode=d.mode;renderOverlay();return}
   if(d.topic){S.topic=S.topic===d.topic?null:d.topic;renderOverlay();return}
   if(d.price){S.price=d.price;renderOverlay();return}
   if(d.sort){S.sort=d.sort;renderOverlay();return}
-  if(d.clearfilters!==undefined){Object.assign(S,{price:'any',topic:null,mode:'any',sort:'rec'});renderOverlay();return}
+  if(d.clearfilters!==undefined){Object.assign(S,{price:'any',topic:null,mode:'any',sort:'rec'});if(matchMedia('(max-width:640px)').matches)Object.assign(S,{college:'all',course:'all'});renderOverlay();return}
   if(d.clear!==undefined){Object.assign(S,{q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,mode:'any',sort:'rec'});render();return}
   if(d.resetfree!==undefined){S.freeLeft=1;render();toast('Demo reset: 25% first-call discount restored');return}
   if(d.closepage!==undefined){S.profile=null;renderOverlay();return}
@@ -2089,12 +2159,14 @@ document.addEventListener('input',e=>{
   if(t.id==='my-bio'){ME.bio=t.value;const c=$('#bio-count');if(c)c.textContent=t.value.length+'/600'}
   if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;dg[f]=(f==='batch'||f==='start')?(+t.value||dg[f]):t.value}
   if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
-  if(t.id==='q'){S.q=t.value;renderResults()}
+  if(t.id==='q'||t.id==='mq'){S.q=t.value;renderResults()}
   if(t.dataset.score){ME.degrees[+t.dataset.sdeg].scores[t.dataset.score]=+t.value;$('#scv-'+t.id.slice(3)).textContent=(+t.value).toFixed(1)}
   if(t.dataset.durprice){const [sid,i]=t.dataset.durprice.split(':');const sv=SERVICES.find(x=>x.id===sid);sv.durs[+i].price=Math.max(0,+t.value||0);if(sid==='s1')syncCall(ME)}
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
+  if(t.id==='mf-college'){S.college=t.value;renderOverlay();return}
+  if(t.id==='mf-course'){S.course=t.value;renderOverlay();return}
   if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;if(f==='course')dg.course=t.value;if(f==='mode'){dg.mode=t.value;render();return}if(f==='batch'||f==='start'){const ae=t.id;syncLatest(ME);render()}else syncLatest(ME)}
   if(t.dataset.socshow){const n=t.dataset.socshow,cur=ME.socials.find(x=>x.net===n);if(cur)cur.show=t.checked;else{t.checked=false;toast('Add a link first, then switch it on')}}
   if(t.dataset.duron){const [sid,i]=t.dataset.duron.split(':');const sv=SERVICES.find(x=>x.id===sid);if(!t.checked&&sv.durs.filter(x=>x.on).length===1){t.checked=true;toast('Keep at least one call length on');return}sv.durs[+i].on=t.checked;if(sid==='s1')syncCall(ME);render();return}
