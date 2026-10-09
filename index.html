@@ -170,8 +170,21 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .over .r1{font-size:14.5px;font-weight:600;opacity:.96;margin-top:2px}
 .over .r2{font-size:13px;opacity:.8}
 .fav{background:rgba(255,255,255,.96)}
-.below{display:grid;gap:10px;padding:0 2px;min-width:0}
 .below .row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0}
+.below{display:grid;gap:5px;padding:2px 2px 0;min-width:0}
+.who2{display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0;margin-bottom:2px}
+.who2 h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:6px;min-width:0}
+.who2 .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vt2{width:16px;height:16px;border-radius:50%;background:#1D9BF0;color:#fff;display:grid;place-items:center;flex:none}
+.vt2 svg.i{width:9px;height:9px;stroke-width:4}
+.ln{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);min-width:0}
+.ln svg.i{width:15px;height:15px;flex:none;stroke-width:1.8}
+.ln span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ln.strong{color:var(--ink);font-size:14px}
+.when2 i{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none;margin-inline:4px}
+.when2.soon{color:var(--good);font-weight:600}
+.when2.soon i{background:var(--good);box-shadow:0 0 0 3px rgba(0,138,5,.15)}
+.below .cta{margin-top:8px}
 .below .rt{display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:600;white-space:nowrap}
 .below .rt svg{width:13px;height:13px;fill:var(--ink)}
 .below .rt span{color:var(--muted);font-weight:400}
@@ -627,10 +640,7 @@ function card(a){
   return `<article class="card" data-open="${a.id}" tabindex="0" aria-label="${esc(a.name)}, ${esc(a.course)} ${a.batch}, ${esc(a.college)}">
     <div class="ph">
       <div class="track" data-track="${a.id}">
-        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" decoding="async"><div class="shade"></div>
-          <div class="over"><h3><span class="nm">${esc(a.name)}</span><span class="vt" title="Verified alumni">${ic('check')}</span></h3>
-            <span class="r1">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></span>
-            <span class="r2">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></span></div></div>
+        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" decoding="async"></div>
         <div class="slide sl-pane" style="background:var(--${a.hue})">
           <span class="sl-k">${esc(a.first)} rates ${esc(a.short)}</span>
           <div class="sl-big num">${avg.toFixed(1)}<small>/5</small></div>
@@ -650,7 +660,10 @@ function card(a){
       <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
     </div>
     <div class="below">
-      <div class="row"><span class="rt num">${STAR}${a.rating.toFixed(2)}<span>(${a.reviews})</span></span><span class="when ${soon?'soon':''}"><i></i>${a.next}</span></div>
+      <div class="who2"><h3><span class="nm">${esc(a.name)}</span><span class="vt2" title="Verified alumni" aria-label="Verified alumni">${ic('check')}</span></h3><span class="rt num">${STAR}${a.rating.toFixed(2)}<span>(${a.reviews})</span></span></div>
+      <div class="ln strong">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></div>
+      <div class="ln">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></div>
+      <div class="ln when2 ${soon?'soon':''}"><i></i><span>${soon?'Available ':'Next slot: '}${a.next}</span></div>
       <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book free call with ${esc(a.first)}, normally ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
         <span class="l">${ic('video')}${S.freeLeft?'Book free call':'Book call'}</span>
         <span class="r num">${S.freeLeft?`<s>${rupee(s0.price)}</s>`:rupee(s0.price)}</span>
