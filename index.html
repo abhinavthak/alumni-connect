@@ -215,6 +215,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .cta .l{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .cta .l svg.i{width:18px;height:18px;stroke-width:2}
 .cta .cp{font-size:14px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:baseline;gap:6px}
+.cta .cp small{font-size:12px;font-weight:500;opacity:.85}
 .cta .cp s{opacity:.75;font-weight:500;font-size:12.5px}
 .cta .r i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);flex:none}
 .cta .r.soon i{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
@@ -387,6 +388,38 @@ textarea{resize:vertical}
 .rv .stars svg{width:10px;height:10px;fill:currentColor}
 
 /* booking card */
+.bk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.bk-k{font-size:13px;color:var(--muted);font-weight:600}
+.bk-p{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:2px}
+.bk-p b{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.bk-p s{color:var(--muted);font-size:16px}
+.bk-p span{color:var(--muted);font-size:15px}
+.bk-off{display:inline-flex;align-items:center;gap:6px;background:var(--brand-soft);color:var(--brand-ink);font-weight:700;font-size:13px;padding:6px 10px;border-radius:99px;white-space:nowrap;flex:none}
+.bk-off svg.i{width:15px;height:15px}
+.seg2{display:grid;grid-template-columns:1fr 1fr;background:var(--soft);border-radius:12px;padding:4px;gap:4px}
+.seg2 button{border:0;background:transparent;border-radius:9px;padding:9px 6px;font:inherit;font-weight:600;font-size:14px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
+.seg2 button svg.i{width:16px;height:16px}
+.seg2 button[aria-selected="true"]{background:var(--bg);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.bk-sec{display:grid;gap:8px}
+.bk-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.durs{display:grid;grid-template-columns:repeat(auto-fit,minmax(68px,1fr));gap:8px}
+.dur{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 4px;display:grid;gap:2px;justify-items:center;font:inherit;color:var(--ink);cursor:pointer}
+.dur b{font-size:14px;font-weight:700}
+.dur span{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.dur span s{opacity:.7}
+.dur:hover{border-color:var(--ink)}
+.dur[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:var(--soft)}
+.dur[aria-pressed="true"] span{color:var(--ink)}
+.bk-sum{background:var(--soft);border-radius:12px;padding:14px;display:grid;gap:8px;font-size:14px}
+.bk-sum div{display:flex;justify-content:space-between;gap:12px}
+.bk-sum div span:first-child{color:var(--muted)}
+.bk-sum .disc,.bk-sum .disc span:first-child{color:var(--good)}
+.bk-sum .total{border-top:1px solid var(--line);padding-top:10px;font-weight:700;font-size:15px}
+.bk-sum .total span:first-child{color:var(--ink)}
+.bk-trust{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:12.5px;color:var(--muted)}
+.bk-trust li{display:flex;align-items:center;gap:8px}
+.bk-trust svg.i{width:15px;height:15px}
+.book .slots{grid-template-columns:repeat(3,minmax(0,1fr))}
 .book{position:sticky;top:88px;border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:var(--shadow);display:grid;gap:16px;background:var(--bg)}
 .book .p{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .book .p s{font-size:16px;color:var(--muted);font-weight:400}
@@ -460,11 +493,19 @@ textarea{resize:vertical}
 .q .meta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);flex-wrap:wrap;align-items:center}
 .q .meta b{color:var(--ink)}
 .svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.svc{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px}
+.svc{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px;align-content:start}
 .svc .head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .svc h3{font-size:17px;font-weight:600}
 .svc .sub{font-size:14px;color:var(--muted)}
 .svc .pr{display:flex;align-items:center;gap:8px;font-size:14px}
+.dured{display:grid;gap:8px}
+.dured-h,.dured-r{display:grid;grid-template-columns:64px minmax(0,1fr) 48px;gap:10px;align-items:center}
+.dured-h{font-size:12px;color:var(--muted);font-weight:600}
+.dured-r b{font-size:14px;font-weight:600}
+.dured .pin{display:flex;align-items:center;gap:6px;font-size:14px}
+.dured .pin input{width:100%;padding:7px 9px}
+.dured .pin input:disabled{opacity:.45}
+.toggle.sm{transform:scale(.85);transform-origin:left center}
 .svc .pr input{width:100px;padding:8px 10px}
 .toggle{position:relative;width:48px;height:32px;flex:none}
 .toggle input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
@@ -641,13 +682,20 @@ const MODE_ICON={'Online':'laptop','On-campus':'building','Distance':'book'};
 const sortEdu=ds=>ds.sort((x,y)=>(y.batch-x.batch)||(y.start-x.start));
 const syncLatest=a=>{if(!a.degrees.length)return;sortEdu(a.degrees);const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college;if(d.scores)a.scores=d.scores};
 const BIO={"1": "I'm a backend engineer at Razorpay, working on payment routing. I moved into engineering from a customer-support job, so I know what it takes to study while working full time. Happy to talk about switching careers, choosing an MCA programme and building a portfolio that gets interviews.", "2": "Brand manager at Marico, looking after two hair-care brands. I spent four years in field sales before my MBA moved me into marketing. Ask me whether an MBA is worth it at your career stage and how to make the most of placement season.", "3": "UX researcher at Swiggy. I studied psychology and taught myself design on the side, freelancing for small startups until I landed my first full-time role. I can help you think through non-traditional paths into tech and design.", "4": "I manage warehouse operations across western India for Mahindra Logistics. I started on the warehouse floor at 19 and finished two degrees while working. If you're juggling a job and a degree, I've been there.", "5": "Data analyst at Fractal, building dashboards for retail clients. I finished my BCA in 2023, so the course and the job hunt are fresh in my mind. Ask me about internships, exam prep and landing your first analytics role.", "6": "Audit associate at Deloitte and a CA finalist. I did my BCom alongside CA, so I can tell you exactly how the two schedules fit together and where they clash.", "7": "Business analyst at Bain & Company. I used my BBA years for three internships and plenty of case competitions. I enjoy helping students plan internships and prepare for consulting interviews.", "8": "Program manager at Tata Motors with 15 years in the auto industry. I did my MBA at 34 with two kids at home, so I'm a good person to ask about studying later in your career.", "9": "Software engineer at Atlassian, working on developer tools. I care about open source and spent most of college building projects. I can review your GitHub and help you prepare for product-company interviews.", "10": "Data scientist at Apollo Hospitals, building patient-outcome models. I moved from lab work into data science through my MSc. Ask me about switching fields and what data science in healthcare really looks like.", "11": "Content lead at Unacademy, managing a team of eight writers. My MA in English taught me to read closely and write to deadlines, which is most of my job. Happy to talk about careers in writing, content and edtech.", "12": "Finance manager at Asian Paints, handling taxation and month-end reporting. I did my MCom alongside a full-time accounting job. Ask me about finance careers and whether a master's is worth it for you.", "13": "Correspondent at NDTV, reporting on education and civic issues from Delhi. I learned the job in my college newsroom and by freelancing. I can help you build a portfolio and pitch your first stories.", "14": "Business development manager at Sun Pharma; I also help run my family's distribution business. I did my BBA while working full time from 18. Ask me about studying while working and careers in pharma sales."};
+const callOpts=a=>a.services[0].durs.filter(x=>x.on);
+const fromPrice=a=>Math.min(...callOpts(a).map(x=>x.price));
+const syncCall=a=>{const c=a.services[0],o=c.durs.filter(x=>x.on);if(o.length){c.price=o[0].price;c.dur=o[0].dur}};
+const fmtDur=m=>m<60?`${m} min`:`${m/60} hr`;
+function quote(a){const s=a.services[S.svc],call=s.t==='call',opts=call?callOpts(a):[],o=call?opts[Math.min(S.dur,opts.length-1)]:null,full=call?o.price:s.price,free=S.freeLeft>0;return {s,call,opts,o,full,pay:free?off(full):full,free}}
 const COURSE_FULL={MBA:'Master of Business Administration',MCA:'Master of Computer Applications',BBA:'Bachelor of Business Administration',BCA:'Bachelor of Computer Applications',BCom:'Bachelor of Commerce',MCom:'Master of Commerce',MA:'Master of Arts',MSc:'Master of Science',BA:'Bachelor of Arts'};
 const COURSE_STREAM={MBA:'mba',MCA:'mca',BBA:'bba',BCA:'bca',BCom:'bcom',MCom:'mcom',MA:'ma',MSc:'msc',BA:'ba'};
 const SOC_META={linkedin:['LinkedIn','linkedin','#0A66C2'],instagram:['Instagram','instagram','#E1306C'],youtube:['YouTube','youtube','#FF0000'],x:['X','xsoc','#111111'],website:['Website','globe','#222222']};
 const SOCIALS={1:{linkedin:'in/ananya-iyer-dev',instagram:'@ananya.codes'},2:{linkedin:'in/rohanmehta-brand',instagram:'@rohan.markets'},3:{linkedin:'in/sneha-kulkarni-ux',website:'snehakulkarni.design'},4:{linkedin:'in/arjun-singh-scm'},5:{linkedin:'in/fatima-shaikh-data',x:'@fatimadata'},6:{linkedin:'in/karthik-rao-ca'},7:{linkedin:'in/meera-joshi-ba',instagram:'@meera.cases'},8:{linkedin:'in/vikram-nair-pm'},9:{linkedin:'in/priya-menon-eng',x:'@priyabuilds',website:'priyamenon.dev'},10:{linkedin:'in/kavya-reddy-ds',youtube:'@KavyaExplainsData'},11:{linkedin:'in/aditi-sharma-writes',instagram:'@aditi.reads'},12:{linkedin:'in/siddharth-bose-fin'},13:{linkedin:'in/zoya-khan-news',x:'@zoyareports',youtube:'@ZoyaOnTheGround'},14:{linkedin:'in/harsh-patel-bd'}};
 ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];
   a.degrees=(EDU[a.id]||[]).map(([course,start,batch,college,field,details],k)=>({course,start,batch,college,field,details,mode:(EDU_MODE[a.id]||[])[k]||'Online',verified:true,scores:k===0?{...a.scores}:{...(EXTRA_SCORES[a.id]||DEFAULT_SCORES)}}));syncLatest(a);
-  a.bio=BIO[a.id]||'';a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
+  a.bio=BIO[a.id]||'';
+  {const c=a.services[0],base=c.price,r9=n=>Math.max(99,Math.round(n/50)*50-1);c.durs=[[15,.8],[30,1.3],[60,2.2],[120,3.8]].map(([dur,m])=>({dur,price:r9(base*m),on:!(dur===120&&a.id%3===0)}));syncCall(a)}
+a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
 const streamsOf=a=>a.degrees.map(d=>COURSE_STREAM[d.course]);
 
 const CATS=[['all','All programs','all'],['mba','MBA','chart'],['mca','MCA','code'],['bba','BBA','brief'],['bca','BCA','laptop'],['bcom','BCom','calc'],['mcom','MCom','rupee'],['ma','MA','book'],['msc','MSc','flask'],['ba','BA','pen']];
@@ -661,7 +709,7 @@ const REVIEWS=[
  ['Tanvi','Bank employee · Jaipur','The discounted first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
 ];
 
-const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,mode:'any',sort:'rec',dd:null,saved:new Set([3]),
+const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,mode:'any',sort:'rec',dd:null,dur:1,saved:new Set([3]),
   freeLeft:1,connects:0,filtersOpen:false,
   profile:null,svc:0,date:0,slot:null,done:null,
   tab:'today',rTab:'upcoming',answered:new Set()};
@@ -728,10 +776,10 @@ function filtered(){
     if(S.cat!=='all'&&!streamsOf(a).includes(S.cat))return false;
     if(S.mode!=='any'&&!a.degrees.some(d=>d.mode===S.mode))return false;
     if(S.topic&&!a.topics.includes(S.topic))return false;
-    if(S.price!=='any'&&a.services[0].price>+S.price)return false;
+    if(S.price!=='any'&&fromPrice(a)>+S.price)return false;
     return true});
   if(S.sort==='rating')list.sort((a,b)=>b.rating-a.rating);
-  if(S.sort==='price')list.sort((a,b)=>a.services[0].price-b.services[0].price);
+  if(S.sort==='price')list.sort((a,b)=>fromPrice(a)-fromPrice(b));
   if(S.sort==='recent')list.sort((a,b)=>b.batch-a.batch);
   return list}
 const filterCount=()=>(S.price!=='any')+!!S.topic+(S.mode!=='any')+(S.sort!=='rec');
@@ -745,7 +793,7 @@ function browse(){
 function banner(){
   return S.freeLeft
    ?`<div class="banner"><span class="gift">${ic('gift')}</span><div class="txt"><b>Get 25% off your first call</b><span>Your first call or question with any alum below is 25% off. After that, each alum's normal price applies.</span></div></div>`
-   :`<div class="banner"><span class="gift">${ic('check')}</span><div class="txt"><b>You've used your 25% first-call discount</b><span>Normal prices now apply. Calls start at ${rupee(Math.min(...ALUMNI.map(a=>a.services[0].price)))}.</span></div><button class="linkbtn" data-resetfree>Reset demo</button></div>`}
+   :`<div class="banner"><span class="gift">${ic('check')}</span><div class="txt"><b>You've used your 25% first-call discount</b><span>Normal prices now apply. Calls start at ${rupee(Math.min(...ALUMNI.map(fromPrice)))}.</span></div><button class="linkbtn" data-resetfree>Reset demo</button></div>`}
 function results(){
   const list=filtered();
   return `<p class="results-meta">${list.length} alumni ${S.cat!=='all'?`in <b style="color:var(--ink)">${CATS.find(c=>c[0]===S.cat)[1]}</b>`:'ready to talk'}${S.topic?` who can talk about <b style="color:var(--ink)">${esc(S.topic)}</b>`:''}</p>
@@ -783,9 +831,9 @@ function card(a){
       <div class="ln strong">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></div>
       <div class="ln">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.degrees[0]?.mode||'')} · ${esc(a.college)}</span>${a.degrees.length>1?`<em class="plus" title="${esc(a.degrees.slice(1).map(d=>d.course+' '+d.batch+', '+d.college).join('; '))}">+${a.degrees.length-1} degree${a.degrees.length>2?'s':''}</em>`:''}</div>
       <div class="ln when2 ${soon?'soon':''}"><i></i><span>${soon?'Available ':'Next slot: '}${a.next}</span></div>
-      <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book call with ${esc(a.first)} for ${rupee(off(s0.price))}, 25% off ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
+      <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="Book a call with ${esc(a.first)}, from ${rupee(S.freeLeft?off(fromPrice(a)):fromPrice(a))}">
         <span class="l">${ic('video')}Book call</span>
-        <span class="cp num">${S.freeLeft?`<s>${rupee(s0.price)}</s> ${rupee(off(s0.price))}`:rupee(s0.price)}</span>
+        <span class="cp num"><small>from</small>${S.freeLeft?`<s>${rupee(fromPrice(a))}</s> ${rupee(off(fromPrice(a)))}`:rupee(fromPrice(a))}</span>
       </button>
     </div></article>`}
 function syncSlide(track){
@@ -857,8 +905,7 @@ function listing(a){
         <aside class="book" id="bookcard">${bookCard(a)}</aside>
       </div>
     </div>
-    <div class="mbar"><div><div class="num" style="font-weight:600">${S.freeLeft?`<span style="color:var(--brand-ink)">${rupee(off(s.price))}</span> <s class="muted" style="font-weight:400">${rupee(s.price)}</s>`:rupee(s.price)}</div><div class="muted" style="font-size:13px">${S.freeLeft?'25% off your first connect':s.t==='call'?`${s.dur} min call`:'Priority DM'}</div></div>
-      <button class="btn brand" data-scrollbook>Book</button></div>
+    ${mbarHTML(a)}
   </div>`}
 
 function bookCard(a){
@@ -867,25 +914,34 @@ function bookCard(a){
   const days=nextDays();
   if(S.done){
     const d=S.done;
-    return `<div class="done"><span class="ok">${ic('check')}</span><h2 style="font-size:22px">${d.t==='call'?'Your call is booked':'Your question is sent'}</h2>
+    return `<div class="done"><span class="ok">${ic('check')}</span><h2 style="font-size:22px">${d.t==='call'?`Your ${fmtDur(d.dur)} call is booked`:'Your question is sent'}</h2>
       <p class="muted">${d.t==='call'?`${esc(a.first)} will meet you on ${d.when} at ${d.slot}. The video link is in your email and WhatsApp.`:`${esc(a.first)} usually replies ${a.respond}. We'll notify you when the answer is ready.`}</p>
       <p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You saved <b>${rupee(d.full-d.paid)}</b> with your 25% first-connect discount. Normal prices apply from your next connect.</span></div>`:''}
       <button class="btn block" data-again>Book another session</button></div>`}
-  const can=s.t==='dm'||S.slot;
-  return `<div class="p num">${free?`<span class="free">${rupee(off(s.price))}</span><s>${rupee(s.price)}</s>`:rupee(s.price)}<small>${s.t==='call'?`/ ${s.dur} min call`:'/ question'}</small></div>
-    ${free?`<div class="freenote">${ic('gift')}<span><b>25% off your first connect.</b> After this, ${esc(a.first)} charges ${rupee(s.price)} per ${s.t==='call'?'call':'question'}.</span></div>`:''}
-    <div class="picker"><div class="row2">${a.services.map((x,i)=>`<button class="svcopt" data-svc="${i}" aria-pressed="${S.svc===i}"><span>${x.t==='call'?'Video call':'Priority DM'}</span><b>${x.t==='call'?`${x.dur} min`:`Reply in ${x.eta}`}</b></button>`).join('')}</div></div>
-    ${s.t==='call'?`
-      <div style="display:grid;gap:8px"><span class="lbl">Date</span><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
-      <div style="display:grid;gap:8px"><span class="lbl">Time (IST)</span><div class="slots">${SLOTS.filter((x,i)=>(S.date+i)%4!==1).map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
-    :`<label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
-    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?`${s.t==='call'?'Book call':'Send question'} · ${rupee(free?off(s.price):s.price)}`:'Choose a time'}</button>
-    <p class="charge">${free?'25% first-connect discount applied':'You\'ll pay after confirming'}</p>
-    <div class="lines num">
-      <div><span class="u">${s.t==='call'?`${s.dur} min video call`:'Priority DM'}</span><span>${rupee(s.price)}</span></div>
-      ${free?`<div class="disc"><span>First connect, 25% off</span><span>−${rupee(s.price-off(s.price))}</span></div>`:''}
-      <div class="total"><span>Total</span><span>${rupee(free?off(s.price):s.price)}</span></div>
-    </div>`}
+  const q=quote(a),slots=q.call?slotsFor(q.o.dur,S.date):[];
+  if(S.slot&&!slots.includes(S.slot))S.slot=null;
+  const can=!q.call||S.slot;
+  return `<div class="bk-h"><div><span class="bk-k">Book a session with ${esc(a.first)}</span>
+      <div class="bk-p num"><b>${rupee(q.pay)}</b>${q.free?`<s>${rupee(q.full)}</s>`:''}<span>${q.call?`/ ${fmtDur(q.o.dur)}`:'/ question'}</span></div></div>
+      ${q.free?`<span class="bk-off" title="25% off your first connect. After this, normal prices apply.">${ic('gift')}25% off</span>`:''}</div>
+    <div class="seg2" role="tablist" aria-label="Session type">${a.services.map((x,i)=>`<button role="tab" aria-selected="${S.svc===i}" data-svc="${i}">${ic(x.t==='call'?'video':'chat')}${x.t==='call'?'Video call':'Priority DM'}</button>`).join('')}</div>
+    ${q.call?`
+      <div class="bk-sec"><span class="lbl">Duration</span><div class="durs">${q.opts.map((x,i)=>`<button class="dur" data-dur="${i}" aria-pressed="${q.o===x}"><b>${fmtDur(x.dur)}</b><span class="num">${rupee(q.free?off(x.price):x.price)}</span></button>`).join('')}</div></div>
+      <div class="bk-sec"><div class="bk-row"><span class="lbl">Date</span><span class="muted" style="font-size:13px">${new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'})}</span></div><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
+      <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span><span class="muted" style="font-size:13px">${slots.length} slots</span></div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
+    :`<ul class="bk-trust" style="font-size:13.5px;color:var(--ink)"><li>${ic('chat')}One detailed written answer from ${esc(a.first)}</li><li>${ic('clock')}Reply in ${q.s.eta}</li><li>${ic('check')}One follow-up question included</li></ul>
+      <label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
+    <div class="bk-sum num">
+      ${q.call&&S.slot?`<div><span>When</span><b>${days[S.date].dow==='Today'?'Today':days[S.date].long.split(',')[0]}, ${S.slot}</b></div>`:''}
+      <div><span>${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}</span><span>${rupee(q.full)}</span></div>
+      ${q.free?`<div class="disc"><span>First-connect discount (25%)</span><span>−${rupee(q.full-q.pay)}</span></div>`:''}
+      <div class="total"><span>Total</span><span>${rupee(q.pay)}</span></div>
+    </div>
+    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?(q.call?`Book ${fmtDur(q.o.dur)} call · ${rupee(q.pay)}`:`Send question · ${rupee(q.pay)}`):'Pick a time to continue'}</button>
+    <ul class="bk-trust"><li>${ic('shield')}Secure payment, refunded if ${esc(a.first)} cancels</li><li>${ic('clock')}Free reschedule up to 4 hours before</li></ul>`}
+function mbarHTML(a){return `<div class="mbar">${(()=>{const q=quote(a);return `<div><div class="num" style="font-weight:700">${rupee(q.pay)}${q.free?` <s class="muted" style="font-weight:400">${rupee(q.full)}</s>`:''}</div><div class="muted" style="font-size:13px">${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}${q.free?' · 25% off':''}</div></div>`})()}
+      <button class="btn brand" data-scrollbook>Book</button></div>`}
+function slotsFor(dur,dayIdx){return SLOTS.filter((x,i)=>(dayIdx+i)%4!==1&&!(dur>=60&&x==='9:30 PM')&&!(dur>=120&&x==='8:00 PM'))}
 
 /* ---------- alumni dashboard ---------- */
 const ME=ALUMNI[0];
@@ -902,9 +958,9 @@ const QUESTIONS=[
  {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:99,free:true},
 ];
 const SERVICES=[
- {id:'s1',title:'MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video'},
+ {id:'s1',title:'MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video',durs:ME.services[0].durs},
  {id:'s2',title:'Priority DM: ask anything',kind:'Written reply in 1 day',dur:null,price:99,on:true,booked:50,icon:'chat'},
- {id:'s3',title:'Parent Q&A call',kind:'Video call',dur:30,price:349,on:false,booked:0,icon:'users'},
+ {id:'s3',title:'Parent Q&A call',kind:'Video call',dur:30,price:349,on:false,booked:0,icon:'users',durs:[{dur:30,price:349,on:true},{dur:60,price:599,on:true},{dur:120,price:999,on:false}]},
 ];
 const WEEK=[['Monday',['8:00 PM','9:30 PM']],['Tuesday',[]],['Wednesday',['8:00 PM']],['Thursday',[]],['Friday',['8:30 PM','9:30 PM']],['Saturday',['11:00 AM','5:00 PM','6:30 PM']],['Sunday',['11:00 AM']]];
 
@@ -938,9 +994,10 @@ function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Students get 25
 function dSvc(){
   return `<div class="hhead"><div><h1>Your services</h1><p>What students can book on your profile.</p></div><button class="btn dark sm" id="add-svc">Add a service</button></div>
   ${freeInfo()}
-  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div><h3>${esc(s.title)}</h3><p class="sub">${s.kind}${s.dur?` · ${s.dur} min`:''}</p></div></div>
+  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div><h3>${esc(s.title)}</h3><p class="sub">${s.kind}${s.durs?` · ${s.durs.filter(x=>x.on).map(x=>fmtDur(x.dur)).join(', ')||'no lengths on'}`:''}</p></div></div>
       <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-toggle="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
-    <div class="pr"><label for="price-${s.id}">Your price</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>
+    ${s.durs?`<div class="dured"><div class="dured-h"><span>Length</span><span>Price</span><span>Offer</span></div>${s.durs.map((x,i)=>`<div class="dured-r"><b>${fmtDur(x.dur)}</b><span class="pin">₹<input class="input num" type="number" min="0" step="10" id="dp-${s.id}-${i}" data-durprice="${s.id}:${i}" value="${x.price}" ${x.on?'':'disabled'}></span><label class="toggle sm"><input type="checkbox" id="do-${s.id}-${i}" data-duron="${s.id}:${i}" ${x.on?'checked':''} aria-label="Offer ${fmtDur(x.dur)}"><span></span></label></div>`).join('')}<p class="muted" style="font-size:12.5px">Up to 2 hours. Students choose a length when booking.</p></div>`
+    :`<div class="pr"><label for="price-${s.id}">Your price</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>`}
     <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px"><span class="muted num">${s.booked} bookings</span>${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</div></div>`).join('')}</div>`}
 function dCal(){
   return `<div class="hhead"><div><h1>Calendar</h1><p>Weekly hours when students can book you. Times are in IST.</p></div><button class="btn dark sm" id="save-av">Save</button></div>
@@ -1014,8 +1071,8 @@ function renderOverlay(){
   if(S.view==='student'&&S.filtersOpen)h+=filtersModal();
   $('#overlay').innerHTML=h;
   document.body.style.overflow=h?'hidden':''}
-function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile);const p=$('.page');const st=p?p.scrollTop:0;renderOverlay();const p2=$('.page');if(p2)p2.scrollTop=st}
-function open(id){Object.assign(S,{profile:id,svc:0,date:0,slot:null,done:null});renderOverlay()}
+function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile),bc=$('#bookcard');if(!a||!bc){renderOverlay();return}bc.innerHTML=bookCard(a);const m=$('.mbar');if(m)m.outerHTML=mbarHTML(a)}
+function open(id){Object.assign(S,{profile:id,svc:0,dur:1,date:0,slot:null,done:null});renderOverlay()}
 
 document.addEventListener('submit',e=>{if(e.target.id==='searchform'){e.preventDefault();renderResults()}});
 document.addEventListener('click',e=>{
@@ -1046,15 +1103,16 @@ document.addEventListener('click',e=>{
   if(d.sharebtn!==undefined){toast('Profile link copied');return}
   if(d.scrollbook!==undefined){$('#bookcard')?.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(d.svc){S.svc=+d.svc;S.slot=null;renderBook();return}
+  if(d.dur){S.dur=+d.dur;renderBook();return}
   if(d.date){S.date=+d.date;S.slot=null;renderBook();return}
   if(d.slot){S.slot=d.slot;renderBook();return}
   if(d.again!==undefined){S.done=null;S.slot=null;renderBook();return}
   if(t.id==='confirm'){
-    const a=ALUMNI.find(x=>x.id===S.profile),s=a.services[S.svc];
-    if(s.t==='dm'&&($('#dm')?.value||'').trim().length<10){toast('Write a question of at least 10 characters');return}
-    if(s.t==='call'&&!S.slot)return;
-    const free=S.freeLeft>0;
-    S.done={t:s.t,free,paid:free?off(s.price):s.price,full:s.price,when:nextDays()[S.date].long,slot:S.slot};
+    const a=ALUMNI.find(x=>x.id===S.profile),q=quote(a);
+    if(!q.call&&($('#dm')?.value||'').trim().length<10){toast('Write a question of at least 10 characters');return}
+    if(q.call&&!S.slot)return;
+    const free=q.free;
+    S.done={t:q.s.t,free,paid:q.pay,full:q.full,dur:q.call?q.o.dur:0,when:nextDays()[S.date].long,slot:S.slot};
     if(free)S.freeLeft=0;S.connects++;
     $('#top').innerHTML=header();renderResults();const b=$('.banner');if(b)b.outerHTML=banner();
     renderBook();return}
@@ -1088,11 +1146,13 @@ document.addEventListener('input',e=>{
   if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
   if(t.id==='q'){S.q=t.value;renderResults()}
   if(t.dataset.score){ME.degrees[+t.dataset.sdeg].scores[t.dataset.score]=+t.value;$('#scv-'+t.id.slice(3)).textContent=(+t.value).toFixed(1)}
+  if(t.dataset.durprice){const [sid,i]=t.dataset.durprice.split(':');const sv=SERVICES.find(x=>x.id===sid);sv.durs[+i].price=Math.max(0,+t.value||0);if(sid==='s1')syncCall(ME)}
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
   if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;if(f==='course')dg.course=t.value;if(f==='mode'){dg.mode=t.value;render();return}if(f==='batch'||f==='start'){const ae=t.id;syncLatest(ME);render()}else syncLatest(ME)}
   if(t.dataset.socshow){const n=t.dataset.socshow,cur=ME.socials.find(x=>x.net===n);if(cur)cur.show=t.checked;else{t.checked=false;toast('Add a link first, then switch it on')}}
+  if(t.dataset.duron){const [sid,i]=t.dataset.duron.split(':');const sv=SERVICES.find(x=>x.id===sid);if(!t.checked&&sv.durs.filter(x=>x.on).length===1){t.checked=true;toast('Keep at least one call length on');return}sv.durs[+i].on=t.checked;if(sid==='s1')syncCall(ME);render();return}
   if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
 render();
 </script>
