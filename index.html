@@ -765,15 +765,15 @@ function bookCard(a){
 const ME=ALUMNI[0];
 const BOOKINGS=[
  {who:'Aditya Verma',ctx:'Works in customer support · MCA or MBA?',when:'Today',time:'8:30 PM',amt:249,free:false,hue:'h2',st:'upcoming'},
- {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:187,free:true,hue:'h5',st:'upcoming'},
- {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:187,free:true,hue:'h3',st:'upcoming'},
+ {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:249,free:true,hue:'h5',st:'upcoming'},
+ {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:249,free:true,hue:'h3',st:'upcoming'},
  {who:'Ishita Bose',ctx:'Comparing three online universities',when:'5 Oct',time:'6:00 PM',amt:249,free:false,hue:'h4',st:'done',rated:5,repeat:true},
- {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:187,free:true,hue:'h6',st:'done',rated:5},
+ {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:249,free:true,hue:'h6',st:'done',rated:5},
  {who:'Tanvi Rao',ctx:'Asked about fee waivers',when:'1 Oct',time:'Priority DM',amt:99,free:false,hue:'h1',st:'done',rated:4},
 ];
 const QUESTIONS=[
  {id:'q1',who:'Sameer K.',q:'Did the placement cell actually help you get interviews, or did you apply on your own?',age:'3 hours ago',amt:99,free:false},
- {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:74,free:true},
+ {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:99,free:true},
 ];
 const SERVICES=[
  {id:'s1',title:'MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video'},
@@ -787,7 +787,7 @@ function dash(){return `<div class="host">${({today:dToday,calendar:dCal,service
 function resCard(b){
   return `<div class="res"><div class="top2"><div style="min-width:0"><span class="when ${b.st==='done'?'past':''}">${b.st==='done'?'Completed ':''}${b.when}${b.time.includes(':')?`, ${b.time}`:` · ${b.time}`}</span>
     <h3>${b.who}</h3><p class="ctx">${b.ctx}</p></div>${avI(b.who,b.hue,48)}</div>
-    <div class="foot">${b.free?`<span class="tag free num">${rupee(b.amt)} · first connect, 25% off</span>`:`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
+    <div class="foot">${b.free?`<span class="tag free num" title="Student paid ${rupee(off(b.amt))}; YourDegree covers the other 25%">${rupee(b.amt)} · first connect</span>`:`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
     ${b.st==='upcoming'?(b.when==='Today'?'<button class="btn dark sm" data-join>Join call</button>':'<button class="btn sm" data-msg>Message</button>'):`<span class="rate num">${STAR}${b.rated}.0</span>`}</div></div>`}
 function dToday(){
   const list=BOOKINGS.filter(b=>S.rTab==='upcoming'?b.st==='upcoming':b.st==='done');
@@ -799,17 +799,17 @@ function dToday(){
   ${pend.length?`<div class="hsec"><h2>Questions waiting for you</h2><div class="qs">${pend.map(qCard).join('')}</div></div>`:''}
   <div class="hsec"><h2>October so far</h2><div class="statgrid">
     <div class="st"><span>Earned</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
-    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 were first connects at 25% off</small></div>
+    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 first connects, discount covered by YourDegree</small></div>
     <div class="st"><span>Booked again</span><b class="num">41%</b><small class="n">of first-time students</small></div>
     <div class="st"><span>Rating</span><b class="num">4.92★</b><small class="n">128 reviews</small></div>
   </div></div>`}
 function qCard(q){
   const done=S.answered.has(q.id);
-  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?`<span class="tag free num">Earn ${rupee(q.amt)} · 25% off</span>`:`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
+  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?`<span class="tag free num" title="Student paid ${rupee(off(q.amt))}; YourDegree covers the other 25%">Earn ${rupee(q.amt)} · first connect</span>`:`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
     <p>${esc(q.q)}</p>
     ${done?'':`<textarea id="ans-${q.id}" rows="2" placeholder="Be specific: real numbers, names of clubs, what you would do differently."></textarea><div><button class="btn dark sm" data-answer="${q.id}">Send answer</button></div>`}</div>`}
 function dInbox(){return `<div class="hhead"><div><h1>Questions</h1><p>Answer within 24 hours to keep your “replies within 6 hours” badge.</p></div></div><div class="qs">${QUESTIONS.map(qCard).join('')}</div>`}
-function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Every student's first connect is 25% off</b><span>A student's first call or question on Alumni Connect is charged at 75% of your price. Your full price applies from their second connect. Last month 41% of your first-time students booked again.</span></p></div>`}
+function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Students get 25% off their first connect. You still earn your full price.</b><span>On a student's first call or question, they pay 75% of your price and YourDegree pays the other 25%. Last month 41% of your first-time students booked again.</span></p></div>`}
 function dSvc(){
   return `<div class="hhead"><div><h1>Your services</h1><p>What students can book on your profile.</p></div><button class="btn dark sm" id="add-svc">Add a service</button></div>
   ${freeInfo()}
@@ -821,7 +821,7 @@ function dCal(){
   return `<div class="hhead"><div><h1>Calendar</h1><p>Weekly hours when students can book you. Times are in IST.</p></div><button class="btn dark sm" id="save-av">Save</button></div>
   <div class="week">${WEEK.map(([d,sl],i)=>`<div class="day"><b>${d}</b><div class="chips">${sl.length?sl.map(x=>`<span class="chip num">${x}</span>`).join(''):'<span class="muted" style="font-size:14px;align-self:center">Unavailable</span>'}<button class="chip add" data-addslot="${i}">+ Add time</button></div></div>`).join('')}</div>`}
 function dEarn(){
-  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · first connect, 25% off',187],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
+  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · first connect (₹62 discount covered by YourDegree)',249],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
   return `<div class="hhead"><div><h1>Earnings</h1><p>Platform fee of 10% is already deducted.</p></div><button class="btn dark sm" id="withdraw">Withdraw ₹4,980</button></div>
   <div class="statgrid" style="margin-bottom:24px">
     <div class="st"><span>Available</span><b class="num">₹4,980</b><small class="n">Auto-payout on 15 Oct</small></div>
@@ -903,7 +903,7 @@ document.addEventListener('click',e=>{
   if(d.tab){S.tab=d.tab;render();scrollTo(0,0);return}
   if(d.rtab){S.rTab=d.rtab;render();return}
   if(d.answer){const v=($('#ans-'+d.answer)?.value||'').trim();if(!v){toast('Write an answer before sending');return}
-    const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(`Answer sent. ${rupee(q.amt)} added to earnings${q.free?' (first connect, 25% off)':''}`);return}
+    const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(`Answer sent. ${rupee(q.amt)} added to earnings${q.free?' (YourDegree covered the 25% first-connect discount)':''}`);return}
   if(t.id==='copy-link'){const txt='alumniconnect.in/ananya-iyer';(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Profile link copied'),()=>toast('Your link: '+txt));return}
   if(d.join!==undefined){toast('In the live product this opens the video call');return}
   if(d.msg!==undefined){toast('In the live product this opens a chat with the student');return}
