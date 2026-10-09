@@ -336,11 +336,31 @@ textarea{resize:vertical}
 .hl svg.i{width:26px;height:26px;stroke-width:1.6}
 .hl b{display:block;font-weight:600}
 .hl span{color:var(--muted);font-size:14px}
+.about{font-size:16px;line-height:1.65;max-width:62ch;white-space:pre-line}
 .bigquote{font-size:18px;line-height:1.5;max-width:60ch}
 .ask{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ask div{display:flex;gap:14px;align-items:center}
 .ask svg.i{width:24px;height:24px;stroke-width:1.6}
 .overall{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.scgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.sccard{border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:16px;align-content:start}
+.sch{display:flex;gap:12px;align-items:center;min-width:0}
+.sch .tl-logo{width:40px;height:40px;border-radius:10px}
+.sch .tl-logo svg.i{width:19px;height:19px}
+.sch-t{display:grid;min-width:0}
+.sch-t b{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sch-t span{font-size:12.5px;color:var(--muted)}
+.scavg{display:flex;align-items:center;gap:10px}
+.scavg>b{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.scavg>span{position:relative;display:inline-flex;color:var(--line)}
+.scavg>span svg{width:14px;height:14px;fill:currentColor}
+.scavg>span i{position:absolute;inset:0 auto 0 0;display:inline-flex;overflow:hidden;color:var(--ink);white-space:nowrap}
+.scavg small{font-size:12.5px;color:var(--muted)}
+.scrows{display:grid;gap:9px}
+.scr{display:grid;grid-template-columns:104px minmax(0,1fr) 28px;gap:10px;align-items:center;font-size:13.5px}
+.scr .bar{height:6px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+.scr .bar b{display:block;height:100%;border-radius:99px;background:var(--ink)}
+.scr>b{text-align:right;font-weight:600}
 .scgroup{display:grid;gap:36px}
 .overall b.num{font-size:36px}
 .sc-who{display:grid;gap:1px;margin-left:6px;padding-left:14px;border-left:1px solid var(--line)}
@@ -620,13 +640,14 @@ const MODES=['Online','On-campus','Distance'];
 const MODE_ICON={'Online':'laptop','On-campus':'building','Distance':'book'};
 const sortEdu=ds=>ds.sort((x,y)=>(y.batch-x.batch)||(y.start-x.start));
 const syncLatest=a=>{if(!a.degrees.length)return;sortEdu(a.degrees);const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college;if(d.scores)a.scores=d.scores};
+const BIO={"1": "I'm a backend engineer at Razorpay, working on payment routing. I moved into engineering from a customer-support job, so I know what it takes to study while working full time. Happy to talk about switching careers, choosing an MCA programme and building a portfolio that gets interviews.", "2": "Brand manager at Marico, looking after two hair-care brands. I spent four years in field sales before my MBA moved me into marketing. Ask me whether an MBA is worth it at your career stage and how to make the most of placement season.", "3": "UX researcher at Swiggy. I studied psychology and taught myself design on the side, freelancing for small startups until I landed my first full-time role. I can help you think through non-traditional paths into tech and design.", "4": "I manage warehouse operations across western India for Mahindra Logistics. I started on the warehouse floor at 19 and finished two degrees while working. If you're juggling a job and a degree, I've been there.", "5": "Data analyst at Fractal, building dashboards for retail clients. I finished my BCA in 2023, so the course and the job hunt are fresh in my mind. Ask me about internships, exam prep and landing your first analytics role.", "6": "Audit associate at Deloitte and a CA finalist. I did my BCom alongside CA, so I can tell you exactly how the two schedules fit together and where they clash.", "7": "Business analyst at Bain & Company. I used my BBA years for three internships and plenty of case competitions. I enjoy helping students plan internships and prepare for consulting interviews.", "8": "Program manager at Tata Motors with 15 years in the auto industry. I did my MBA at 34 with two kids at home, so I'm a good person to ask about studying later in your career.", "9": "Software engineer at Atlassian, working on developer tools. I care about open source and spent most of college building projects. I can review your GitHub and help you prepare for product-company interviews.", "10": "Data scientist at Apollo Hospitals, building patient-outcome models. I moved from lab work into data science through my MSc. Ask me about switching fields and what data science in healthcare really looks like.", "11": "Content lead at Unacademy, managing a team of eight writers. My MA in English taught me to read closely and write to deadlines, which is most of my job. Happy to talk about careers in writing, content and edtech.", "12": "Finance manager at Asian Paints, handling taxation and month-end reporting. I did my MCom alongside a full-time accounting job. Ask me about finance careers and whether a master's is worth it for you.", "13": "Correspondent at NDTV, reporting on education and civic issues from Delhi. I learned the job in my college newsroom and by freelancing. I can help you build a portfolio and pitch your first stories.", "14": "Business development manager at Sun Pharma; I also help run my family's distribution business. I did my BBA while working full time from 18. Ask me about studying while working and careers in pharma sales."};
 const COURSE_FULL={MBA:'Master of Business Administration',MCA:'Master of Computer Applications',BBA:'Bachelor of Business Administration',BCA:'Bachelor of Computer Applications',BCom:'Bachelor of Commerce',MCom:'Master of Commerce',MA:'Master of Arts',MSc:'Master of Science',BA:'Bachelor of Arts'};
 const COURSE_STREAM={MBA:'mba',MCA:'mca',BBA:'bba',BCA:'bca',BCom:'bcom',MCom:'mcom',MA:'ma',MSc:'msc',BA:'ba'};
 const SOC_META={linkedin:['LinkedIn','linkedin','#0A66C2'],instagram:['Instagram','instagram','#E1306C'],youtube:['YouTube','youtube','#FF0000'],x:['X','xsoc','#111111'],website:['Website','globe','#222222']};
 const SOCIALS={1:{linkedin:'in/ananya-iyer-dev',instagram:'@ananya.codes'},2:{linkedin:'in/rohanmehta-brand',instagram:'@rohan.markets'},3:{linkedin:'in/sneha-kulkarni-ux',website:'snehakulkarni.design'},4:{linkedin:'in/arjun-singh-scm'},5:{linkedin:'in/fatima-shaikh-data',x:'@fatimadata'},6:{linkedin:'in/karthik-rao-ca'},7:{linkedin:'in/meera-joshi-ba',instagram:'@meera.cases'},8:{linkedin:'in/vikram-nair-pm'},9:{linkedin:'in/priya-menon-eng',x:'@priyabuilds',website:'priyamenon.dev'},10:{linkedin:'in/kavya-reddy-ds',youtube:'@KavyaExplainsData'},11:{linkedin:'in/aditi-sharma-writes',instagram:'@aditi.reads'},12:{linkedin:'in/siddharth-bose-fin'},13:{linkedin:'in/zoya-khan-news',x:'@zoyareports',youtube:'@ZoyaOnTheGround'},14:{linkedin:'in/harsh-patel-bd'}};
 ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];
   a.degrees=(EDU[a.id]||[]).map(([course,start,batch,college,field,details],k)=>({course,start,batch,college,field,details,mode:(EDU_MODE[a.id]||[])[k]||'Online',verified:true,scores:k===0?{...a.scores}:{...(EXTRA_SCORES[a.id]||DEFAULT_SCORES)}}));syncLatest(a);
-  a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
+  a.bio=BIO[a.id]||'';a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
 const streamsOf=a=>a.degrees.map(d=>COURSE_STREAM[d.course]);
 
 const CATS=[['all','All programs','all'],['mba','MBA','chart'],['mca','MCA','code'],['bba','BBA','brief'],['bca','BCA','laptop'],['bcom','BCom','calc'],['mcom','MCom','rupee'],['ma','MA','book'],['msc','MSc','flask'],['ba','BA','pen']];
@@ -821,13 +842,15 @@ function listing(a){
               <b>${esc(d.college)}</b><span class="deg">${COURSE_FULL[d.course]||esc(d.course)} (${esc(d.course)})${d.field?`, ${esc(d.field)}`:''}</span>
               <span class="yrs num">${d.start} – ${d.batch} · ${d.batch-d.start} yr${d.batch-d.start===1?'':'s'} · <span class="mode">${ic(MODE_ICON[d.mode]||'cap')}${esc(d.mode)}</span>${d.verified?` · <span class="vchk">${ic('check')}Verified</span>`:''}</span>${d.details?`<p>${esc(d.details)}</p>`:''}</div></li>`).join('')}</ol></div>
           ${a.socials.filter(x=>x.show).length?`<div class="sec"><h2>Find ${esc(a.first)} online</h2><div class="socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="soc" data-soc="${lbl}" style="--c:${col}"><span class="si">${ic(icn)}</span><span class="sx"><b>${lbl}</b><small>${esc(x.handle)}</small></span></button>`}).join('')}</div></div>`:''}
-          <div class="sec"><h2>In ${esc(a.first)}'s words</h2><p class="bigquote">“${esc(a.quote)}”</p></div>
+          ${a.bio?`<div class="sec"><h2>About ${esc(a.first)}</h2><p class="about">${esc(a.bio)}</p></div>`:''}
           <div class="sec"><h2>What you can ask about</h2><div class="ask">
             ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
             <div>${ic('users')}<span>Peers and networking</span></div><div>${ic('cap')}<span>Admission and eligibility</span></div></div></div>
-          <div class="sec"><h2>${a.degrees.length>1?`${esc(a.first)}'s university scorecards`:`${esc(a.first)}'s university scorecard`}</h2><div class="scgroup">${a.degrees.filter(d=>d.scores).map(d=>{const av=Object.values(d.scores).reduce((x,y)=>x+y,0)/4;return `<div class="scblock">
-            <div class="overall">${STAR.replace('<svg','<svg style="width:24px;height:24px;fill:currentColor"')}<b class="num">${av.toFixed(1)}</b><div class="sc-who"><b>${esc(d.college)}</b><span class="num">${esc(d.course)} · ${d.start} – ${d.batch} · ${esc(d.mode)}</span></div></div>
-            <div class="scores">${Object.entries(d.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div></div>`}).join('')}</div></div>
+          <div class="sec"><h2>${a.degrees.length>1?`${esc(a.first)}'s university scorecards`:`${esc(a.first)}'s university scorecard`}</h2><div class="scgrid">${a.degrees.filter(d=>d.scores).map(d=>{const av=Object.values(d.scores).reduce((x,y)=>x+y,0)/4;return `<div class="sccard">
+            <div class="sch"><span class="tl-logo">${ic('college')}</span><div class="sch-t"><b>${esc(d.college)}</b><span class="num">${esc(d.course)} · ${d.start} – ${d.batch} · ${esc(d.mode)}</span></div></div>
+            <div class="scavg"><b class="num">${av.toFixed(1)}</b><span>${STAR}${STAR}${STAR}${STAR}${STAR}<i style="width:${(av/5*100).toFixed(0)}%">${STAR}${STAR}${STAR}${STAR}${STAR}</i></span><small>overall</small></div>
+            <div class="scrows">${Object.entries(d.scores).map(([k,v])=>`<div class="scr"><span>${k}</span><span class="bar"><b style="width:${v/5*100}%"></b></span><b class="num">${v.toFixed(1)}</b></div>`).join('')}</div>
+          </div>`}).join('')}</div></div>
           <div class="sec" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
             <div class="reviews">${REVIEWS.map(([n,c,t,h])=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="stars">${STAR.repeat(5)}</div><p>${esc(t)}</p></div>`).join('')}</div></div>
         </div>
@@ -937,7 +960,11 @@ const NETS=['linkedin','instagram','youtube','x','website'];
 const NET_PH={linkedin:'in/your-name',instagram:'@yourhandle',youtube:'@YourChannel',x:'@yourhandle',website:'yourname.com'};
 function dProfile(){
   const socOf=n=>ME.socials.find(x=>x.net===n);
-  return `<div class="hhead"><div><h1>Your profile</h1><p>Your degrees and links, as students see them on your profile.</p></div><button class="btn dark sm" id="save-profile">Save</button></div>
+  return `<div class="hhead"><div><h1>Your profile</h1><p>Your bio, education and links, as students see them on your profile.</p></div><button class="btn dark sm" id="save-profile">Save</button></div>
+  <div class="panel" style="max-width:1000px;margin-bottom:24px"><h2>About you</h2>
+    <p class="muted" style="font-size:14px;margin-top:-8px">A few lines on what you do now, your journey and what students can ask you about.</p>
+    <textarea class="input" id="my-bio" rows="4" maxlength="600" placeholder="e.g. I'm a data analyst at Fractal. I finished my BCA in 2023 while working part time. Ask me about internships and landing your first analytics role.">${esc(ME.bio||'')}</textarea>
+    <span class="muted num" style="font-size:12.5px;justify-self:end" id="bio-count">${(ME.bio||'').length}/600</span></div>
   <div class="two">
     <div class="panel"><h2>Education</h2>
       <p class="muted" style="font-size:14px;margin-top:-8px">Listed newest first, like a timeline. Your most recent degree shows on your listing card.</p>
@@ -1056,6 +1083,7 @@ document.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();open(+e.target.dataset.open)}});
 document.addEventListener('input',e=>{
   const t=e.target;
+  if(t.id==='my-bio'){ME.bio=t.value;const c=$('#bio-count');if(c)c.textContent=t.value.length+'/600'}
   if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;dg[f]=(f==='batch'||f==='start')?(+t.value||dg[f]):t.value}
   if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
   if(t.id==='q'){S.q=t.value;renderResults()}
