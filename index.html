@@ -735,36 +735,10 @@ input[type=range]{accent-color:var(--ink);width:100%}
 .stab.hot span{background:var(--warn-soft);color:var(--warn)}
 .stab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 .stab[aria-selected="true"] span{background:var(--ink);color:var(--bg)}
-.sfbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
-.sfbar select.input{width:auto;padding:9px 12px;font-size:14px;border-radius:99px}
-.sfbar .opt{display:inline-flex;align-items:center;gap:6px;padding:9px 14px}
-.sfbar .opt svg.i{width:15px;height:15px}
 .sf-search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:0 14px;min-width:240px;flex:0 1 300px}
 .sf-search svg.i{width:16px;height:16px;color:var(--muted);flex:none}
 .sf-search input{border:0;padding:9px 0;font-size:14px;outline:none;background:transparent}
 .sf-search:focus-within{border-color:var(--ink)}
-.sesslist2{display:grid;gap:14px}
-.sum-line{display:flex;gap:16px;font-size:14px;color:var(--muted);flex-wrap:wrap}
-.sum-line b{color:var(--ink)}
-.srow{display:grid;grid-template-columns:76px minmax(170px,1fr) minmax(0,1.3fr) 170px auto;gap:18px;align-items:center;border:1px solid var(--line-soft);border-left:3px solid var(--good);border-radius:14px;padding:14px 16px;background:var(--bg);cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.srow:hover{border-color:var(--line);border-left-color:var(--good);box-shadow:0 4px 14px rgba(0,0,0,.06)}
-.srow:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.srow.warn,.srow.warn:hover{border-left-color:var(--warn)}
-.srow.st-done,.srow.st-done:hover{border-left-color:var(--line)}
-.srow.st-cancelled,.srow.st-cancelled:hover{border-left-color:var(--line-soft);opacity:.72}
-.sr-time{display:grid;gap:1px}
-.sr-time b{font-size:15px;font-weight:700}
-.sr-time span{font-size:12.5px;color:var(--muted)}
-.sr-who{display:flex;gap:10px;align-items:center;min-width:0}
-.sr-who>div{display:grid;min-width:0}
-.sr-who b{font-weight:600}
-.sr-who span{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sr-mid{display:grid;gap:4px;min-width:0}
-.sr-q,.sr-fb{font-size:13.5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.sr-note{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sr-note svg.i{width:13px;height:13px;flex:none}
-.sr-stat{display:grid;gap:6px;justify-items:start}
-.sr-stat .reqtag{margin-top:0;white-space:nowrap}
 .stag{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--soft);color:var(--muted);white-space:nowrap}
 .stag svg.i{width:12px;height:12px;stroke-width:2.5}
 .stag svg{width:12px;height:12px;fill:currentColor}
@@ -780,8 +754,48 @@ input[type=range]{accent-color:var(--ink);width:100%}
 .ibtn svg.i{width:15px;height:15px}
 .ibtn.danger{color:var(--bad)}
 .ibtn.danger:hover{border-color:var(--bad);background:var(--bad-soft)}
-@media (max-width:1100px){.srow{grid-template-columns:70px minmax(0,1fr) auto;row-gap:10px}.sr-mid{grid-column:2/-1;grid-row:2}.sr-stat{grid-column:2;grid-row:3;display:flex;align-items:center;gap:10px}.sr-act{grid-column:3;grid-row:1/4;align-self:start;flex-direction:column;align-items:flex-end}}
-@media (max-width:640px){.srow{grid-template-columns:60px minmax(0,1fr)}.sr-act{grid-column:1/-1;grid-row:auto;flex-direction:row;justify-content:flex-start}.sf-search{flex:1 1 100%;min-width:0}}
+.sx{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg)}
+.sx-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:6px 20px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sx-top .stabs{border-bottom:0;margin:0}
+.sx-sum{font-size:13.5px;color:var(--muted);padding-bottom:12px}
+.sx-sum b{color:var(--ink)}
+.sx-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 20px;background:var(--soft);border-bottom:1px solid var(--line)}
+.sx-tools .sf-search{background:var(--bg);flex:0 1 280px;min-width:200px}
+.sx-sep{width:1px;height:24px;background:var(--line)}
+.sx-f{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:0 4px 0 12px;font-size:13px;color:var(--muted)}
+.sx-f select{border:0;background:transparent;font:inherit;font-size:14px;font-weight:600;color:var(--ink);padding:8px 6px;cursor:pointer;outline:none}
+.sx-f:focus-within{border-color:var(--ink)}
+.sx-chk{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;cursor:pointer}
+.sx-chk input{width:16px;height:16px;accent-color:var(--ink)}
+.sx-head,.sx-row{display:grid;grid-template-columns:130px minmax(160px,1fr) minmax(0,1.4fr) 165px 90px 200px;gap:16px;align-items:center;padding:0 20px}
+.sx-head{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-block:10px;border-bottom:1px solid var(--line)}
+.sx-row{padding-block:14px;border-bottom:1px solid var(--line-soft);cursor:pointer;transition:background .12s}
+.sx-row:last-child{border-bottom:0}
+.sx-row:hover{background:var(--soft)}
+.sx-row:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.sx-row.st-cancelled{color:var(--muted)}
+.c-when{display:grid;gap:2px}
+.c-when b{font-weight:700;font-size:14.5px}
+.c-when span{font-size:13px;color:var(--muted)}
+.c-who{display:flex;gap:10px;align-items:center;min-width:0}
+.c-who>div{display:grid;min-width:0}
+.c-who b{font-weight:600;font-size:14.5px}
+.c-who span{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c-q{font-size:13.5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c-st{display:flex;gap:10px;align-items:flex-start}
+.c-st>span:last-child{display:grid;gap:1px}
+.c-st b{font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.c-st b svg{width:12px;height:12px;fill:currentColor}
+.c-st small{font-size:12px;color:var(--muted)}
+.sdot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex:none;background:var(--line)}
+.sdot.ok{background:var(--good)}.sdot.warn{background:var(--warn)}.sdot.pend{background:var(--muted)}.sdot.done{background:var(--ink)}
+.c-earn{display:grid;justify-items:end;gap:1px}
+.c-earn b{font-weight:700;font-size:15px}
+.c-earn span{font-size:11.5px;font-weight:600;color:var(--brand-ink)}
+.c-act{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+.sx-empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:1150px){.sx-head{display:none}.sx-row{grid-template-columns:130px minmax(0,1fr) auto;row-gap:8px}.c-q{grid-column:2/-1}.c-st{grid-column:2}.c-earn{grid-column:3;grid-row:1}.c-act{grid-column:3;grid-row:3;justify-content:flex-end}}
+@media (max-width:640px){.sx-row{grid-template-columns:minmax(0,1fr) auto}.c-when{grid-column:1/-1}.c-who{grid-column:1}.c-earn{grid-column:2;grid-row:2}.c-q,.c-st{grid-column:1/-1}.c-act{grid-column:1/-1;grid-row:auto;justify-content:flex-start}.sx-tools .sf-search{flex:1 1 100%}.sx-sep{display:none}}
 .pbar{height:8px;border-radius:99px;background:var(--line-soft);overflow:hidden}
 .pbar b{display:block;height:100%;background:var(--good);border-radius:99px}
 .chk{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -1429,44 +1443,50 @@ function sessRow(b){
   const iconBtn=(a,icon,label,cls='')=>`<button class="ibtn ${cls}" data-a="${a}" data-id="${b.id}" aria-label="${label}" title="${label}">${ic(icon)}</button>`;
   let status='',primary='';
   if(b.st==='upcoming'){
-    status=b.req?`<span class="reqtag" title="Wants ${sessDay(b.req.off)}, ${b.req.time}">${ic('calendar')}Wants ${dinfo(b.req.off).short}</span>`:b.pending?`<span class="reqtag pend" title="You suggested ${sessDay(b.pending.off)}, ${b.pending.time}">${ic('clock')}Suggested ${dinfo(b.pending.off).short}</span>`:`<span class="stag ok">${ic('check')}Confirmed</span>`;
-    primary=b.req?`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review request</button>`:b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">${ic('video')}Join</button>`:`<button class="btn sm" data-a="msg" data-id="${b.id}">${ic('chat')}Message${b.msgs.length?` (${b.msgs.length})`:''}</button>`;
+    status=b.req?`<span class="sdot warn"></span><span><b>Reschedule asked</b><small>for ${dinfo(b.req.off).short}, ${b.req.time}</small></span>`:b.pending?`<span class="sdot pend"></span><span><b>Waiting on student</b><small>you suggested ${dinfo(b.pending.off).short}</small></span>`:`<span class="sdot ok"></span><span><b>Confirmed</b>${b.msgs.length?`<small>${b.msgs.length} message${b.msgs.length>1?'s':''}</small>`:''}</span>`;
+    primary=b.req?`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review</button>`:b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">Join</button>`:'';
   }else if(b.st==='done'){
-    status=b.rated?`<span class="stag rate">${STAR}${b.rated}.0</span>`:`<span class="stag">${ic('clock')}Awaiting rating</span>`;
-    primary=b.rated==null||!b.myNote?`<button class="btn ${b.rated==null?'dark':''} sm" data-a="wrap" data-id="${b.id}">${b.myNote?'Edit notes':'Add notes'}</button>`:'';
-  }else{status=`<span class="stag muted2">${ic('x')}Cancelled</span>`}
-  const secondary=b.st==='upcoming'?(primary.includes('data-a="msg"')?'':iconBtn('msg','chat','Message'))+iconBtn('resched','calendar','Reschedule')+iconBtn('cancel','x','Cancel session','danger'):b.st==='done'?iconBtn('msg','chat','Message'):'';
-  const detail=b.st==='done'&&b.rated?`<p class="sr-fb">“${esc(b.fb)}”</p>`:b.st==='cancelled'?`<p class="sr-fb muted">${esc(b.reason)}</p>`:b.note?`<p class="sr-q">“${esc(b.note)}”</p>`:`<p class="sr-q muted">No question added yet</p>`;
-  return `<div class="srow st-${b.st} ${b.req?'warn':''}" data-a="detail" data-id="${b.id}" role="button" tabindex="0" aria-label="${b.who}, ${sessDay(b.off)} ${b.time}">
-    <div class="sr-time num"><b>${b.time}</b><span>${fmtDur(b.dur)}</span></div>
-    <div class="sr-who">${avI(b.who,b.hue,40)}<div><b>${b.who}</b><span>${esc(b.ctx)}</span></div></div>
-    <div class="sr-mid">${detail}${b.myNote?`<span class="sr-note">${ic('book')}Your notes: ${esc(b.myNote)}</span>`:''}</div>
-    <div class="sr-stat">${status}<span class="sr-earn num">${b.st==='cancelled'?'₹0':rupee(earnOf(b))}${b.free?'<em class="tag free">first connect</em>':''}</span></div>
-    <div class="sr-act">${primary}${secondary}</div>
+    status=b.rated?`<span class="sdot done"></span><span><b class="num">${STAR} ${b.rated}.0</b><small>${b.myNote?'notes added':'rated by student'}</small></span>`:`<span class="sdot warn"></span><span><b>Add your notes</b><small>student rates after</small></span>`;
+    primary=b.rated==null?`<button class="btn dark sm" data-a="wrap" data-id="${b.id}">Add notes</button>`:'';
+  }else{status=`<span class="sdot off"></span><span><b>Cancelled</b><small>refunded</small></span>`}
+  const icons=b.st==='upcoming'?iconBtn('msg','chat','Message')+iconBtn('resched','calendar','Reschedule')+iconBtn('cancel','x','Cancel session','danger'):b.st==='done'?iconBtn('msg','chat','Message')+(b.rated?iconBtn('wrap','book',b.myNote?'Edit notes':'Add notes'):''):'';
+  const mid=b.st==='done'&&b.rated?`“${esc(b.fb)}”`:b.st==='done'&&b.note?`<span class="muted">Asked:</span> “${esc(b.note)}”`:b.st==='cancelled'?esc(b.reason):b.note?`“${esc(b.note)}”`:'<span class="muted">No question added</span>';
+  return `<div class="sx-row st-${b.st}" data-a="detail" data-id="${b.id}" role="button" tabindex="0" aria-label="${b.who}, ${sessDay(b.off)} ${b.time}">
+    <div class="c-when num"><b>${sessDay(b.off)}</b><span>${b.time} · ${fmtDur(b.dur)}</span></div>
+    <div class="c-who">${avI(b.who,b.hue,36)}<div><b>${b.who}</b><span>${esc(b.ctx)}</span></div></div>
+    <div class="c-q">${mid}</div>
+    <div class="c-st">${status}</div>
+    <div class="c-earn num"><b>${b.st==='cancelled'?'₹0':rupee(earnOf(b))}</b>${b.free?'<span>first connect</span>':''}</div>
+    <div class="c-act">${primary}${icons}</div>
   </div>`}
+function sessSummary(list){const live=list.filter(b=>b.st!=='cancelled'),mins=live.reduce((n,b)=>n+b.dur,0),earn=live.reduce((n,b)=>n+earnOf(b),0);
+  return `<b class="num">${list.length}</b> session${list.length===1?'':'s'} · <span class="num">${mins>=60?`${+(mins/60).toFixed(1)} hrs`:`${mins} min`}</span> · <b class="num">${rupee(earn)}</b> ${S.sTab==='done'?'earned':S.sTab==='cancelled'?'':'to earn'}`}
 function sessListHTML(){
-  const list=sessFiltered();
-  if(!list.length){const any=SF.q||SF.period!=='all'||SF.len!=='all'||SF.first;return `<div class="emptybox">${any?`No sessions match these filters. <button class="linkbtn" data-a="sfClear">Clear filters</button>`:S.sTab==='upcoming'?'No upcoming sessions. Share your profile link to get booked.':S.sTab==='action'?'Nothing needs your attention. Nice.':S.sTab==='done'?'Completed sessions will show here.':'No cancelled sessions.'}</div>`}
-  const mins=list.reduce((n,b)=>n+(b.st==='cancelled'?0:b.dur),0),earn=list.reduce((n,b)=>n+(b.st==='cancelled'?0:earnOf(b)),0);
-  const summary=`<div class="sum-line num"><b>${list.length} session${list.length===1?'':'s'}</b><span>${mins>=60?`${(mins/60).toFixed(mins%60?1:0)} hrs`:`${mins} min`} ${S.sTab==='done'?'talked':'booked'}</span><span>${rupee(earn)} ${S.sTab==='upcoming'||S.sTab==='action'?'to earn':S.sTab==='done'?'earned':''}</span></div>`;
-  const groups=[];list.forEach(b=>{const g=groups.find(x=>x.off===b.off);g?g.items.push(b):groups.push({off:b.off,items:[b]})});
-  return summary+groups.map(g=>`<div class="ag-day"><span class="ag-d">${g.off===0?'Today':g.off===1?'Tomorrow':g.off===-1?'Yesterday':dinfo(g.off).date.toLocaleDateString('en-IN',{weekday:'long'})} · ${dinfo(g.off).date.toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</span>${g.items.map(sessRow).join('')}</div>`).join('')}
+  const list=sessFiltered(),sum=$('#sx-sum');if(sum)sum.innerHTML=sessSummary(list);
+  if(!list.length){const any=SF.q||SF.period!=='all'||SF.len!=='all'||SF.first;return `<div class="sx-empty">${any?`No sessions match these filters. <button class="linkbtn" data-a="sfClear">Clear filters</button>`:S.sTab==='upcoming'?'No upcoming sessions. Share your profile link to get booked.':S.sTab==='action'?'Nothing needs your attention right now.':S.sTab==='done'?'Completed sessions will show here.':'No cancelled sessions.'}</div>`}
+  return list.map(sessRow).join('')}
 function dSessions(){
   S.sTab=S.sTab||'upcoming';
   const tabs=[['upcoming','Upcoming',b=>b.st==='upcoming'],['action','Needs action',needsAction],['done','Completed',b=>b.st==='done'],['cancelled','Cancelled',b=>b.st==='cancelled']];
-  const lens=[...new Set(BOOKINGS.map(b=>b.dur))].sort((x,y)=>x-y);
-  const periods=S.sTab==='upcoming'||S.sTab==='action'?[['all','Any time'],['today','Today'],['week','Next 7 days'],['month','This month']]:[['all','Any time'],['past30','Past 30 days'],['month','This month']];
+  const lens=[...new Set(BOOKINGS.map(b=>b.dur))].sort((x,y)=>x-y),fut=S.sTab==='upcoming'||S.sTab==='action';
+  const periods=fut?[['all','Any time'],['today','Today'],['week','Next 7 days'],['month','This month']]:[['all','Any time'],['past30','Past 30 days'],['month','This month']];
+  const list=sessFiltered(),any=SF.q||SF.period!=='all'||SF.len!=='all'||SF.first;
   return `<div class="hhead"><div><h1>Sessions</h1><p>Every call booked with you. Times are in IST.</p></div><button class="btn sm" data-tab="calendar">${ic('calendar')}Edit availability</button></div>
-  <div class="stabs" role="tablist">${tabs.map(([k,l,f])=>{const n=BOOKINGS.filter(f).length;return `<button role="tab" class="stab ${k==='action'&&n?'hot':''}" data-a="stab" data-v="${k}" aria-selected="${S.sTab===k}">${l}<span class="num">${n}</span></button>`}).join('')}</div>
-  <div class="sfbar">
-    <label class="sf-search">${ic('search')}<input class="input" id="sf-q" placeholder="Search student or topic" value="${esc(SF.q)}" aria-label="Search sessions"></label>
-    <select class="input" id="sf-period" data-sf="period" aria-label="Period">${periods.map(([v,l])=>`<option value="${v}" ${SF.period===v?'selected':''}>${l}</option>`).join('')}</select>
-    <select class="input" id="sf-len" data-sf="len" aria-label="Call length"><option value="all">Any length</option>${lens.map(m=>`<option value="${m}" ${SF.len==m?'selected':''}>${fmtDur(m)}</option>`).join('')}</select>
-    <button class="opt ${SF.first?'':''}" data-a="sfFirst" aria-pressed="${SF.first}">${ic('gift')}First connects</button>
-    <select class="input" id="sf-sort" data-sf="sort" aria-label="Sort"><option value="soon" ${SF.sort==='soon'?'selected':''}>${S.sTab==='upcoming'||S.sTab==='action'?'Soonest first':'Most recent first'}</option><option value="late" ${SF.sort==='late'?'selected':''}>${S.sTab==='upcoming'||S.sTab==='action'?'Latest first':'Oldest first'}</option></select>
-    ${SF.q||SF.period!=='all'||SF.len!=='all'||SF.first?'<button class="linkbtn" data-a="sfClear">Clear</button>':''}
-  </div>
-  <div id="sess-list" class="sesslist2">${sessListHTML()}</div>`}
+  <section class="sx" aria-label="Sessions">
+    <div class="sx-top"><div class="stabs" role="tablist">${tabs.map(([k,l,f])=>{const n=BOOKINGS.filter(f).length;return `<button role="tab" class="stab ${k==='action'&&n?'hot':''}" data-a="stab" data-v="${k}" aria-selected="${S.sTab===k}">${l}<span class="num">${n}</span></button>`}).join('')}</div>
+      <div class="sx-sum" id="sx-sum">${sessSummary(list)}</div></div>
+    <div class="sx-tools">
+      <label class="sf-search">${ic('search')}<input class="input" id="sf-q" placeholder="Search student or topic" value="${esc(SF.q)}" aria-label="Search sessions"></label>
+      <span class="sx-sep"></span>
+      <label class="sx-f"><span>When</span><select id="sf-period" data-sf="period">${periods.map(([v,l])=>`<option value="${v}" ${SF.period===v?'selected':''}>${l}</option>`).join('')}</select></label>
+      <label class="sx-f"><span>Length</span><select id="sf-len" data-sf="len"><option value="all">Any</option>${lens.map(m=>`<option value="${m}" ${SF.len==m?'selected':''}>${fmtDur(m)}</option>`).join('')}</select></label>
+      <label class="sx-f"><span>Sort</span><select id="sf-sort" data-sf="sort"><option value="soon" ${SF.sort==='soon'?'selected':''}>${fut?'Soonest first':'Newest first'}</option><option value="late" ${SF.sort==='late'?'selected':''}>${fut?'Latest first':'Oldest first'}</option></select></label>
+      <label class="sx-chk"><input type="checkbox" id="sf-first" data-a="sfFirstC" ${SF.first?'checked':''}>First connects only</label>
+      ${any?'<button class="linkbtn" data-a="sfClear" style="margin-left:auto">Clear filters</button>':''}
+    </div>
+    <div class="sx-head" aria-hidden="true"><span>When</span><span>Student</span><span>${S.sTab==='done'?'Their feedback':S.sTab==='cancelled'?'Reason':'Their question'}</span><span>Status</span><span style="text-align:right">You earn</span><span></span></div>
+    <div id="sess-list">${sessListHTML()}</div>
+  </section>`}
 /* Questions */
 function qCard(q){
   const pay=q.free?`<span class="tag free num">Earn ${rupee(Math.round(q.amt*0.9))} · first connect</span>`:`<span class="tag num">Earn ${rupee(Math.round(q.amt*0.9))}</span>`;
@@ -1763,6 +1783,7 @@ document.addEventListener('change',e=>{
   if(t.id==='photo-in'&&t.files[0]){const r=new FileReader();r.onload=()=>{ME.img=r.result;refreshDash();toast('Photo updated')};r.readAsDataURL(t.files[0]);return}
   if(t.dataset.rule){RULES[t.dataset.rule]=t.value;return}
   if(t.dataset.sf){SF[t.dataset.sf]=t.value;refreshDash();return}
+  if(t.id==='sf-first'){SF.first=t.checked;refreshDash();return}
   if(!a)return;
   if(a==='dayToggle'){const w=WEEK[+t.dataset.id];w[1]=t.checked?(w[1].length?w[1]:['8:00 PM']):[];refreshDash();return}
   if(a==='svcToggle'){const s=SERVICES.find(x=>x.id===t.dataset.id);s.on=t.checked;refreshDash();toast(s.on?'Service is live on your profile':'Service hidden from students');return}
@@ -1782,7 +1803,7 @@ document.addEventListener('keydown',e=>{
   if(S.view!=='alumni')return;
   if(e.key==='Escape'&&S.modal){closeModal();return}
   if(e.key==='Escape'&&S.notif){S.notif=false;$('#top').innerHTML=header();return}
-  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('srow')){e.preventDefault();openModal({t:'detail',id:e.target.dataset.id});return}
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('sx-row')){e.preventDefault();openModal({t:'detail',id:e.target.dataset.id});return}
   if(e.key==='Enter'&&e.target.id==='chat-in'){e.preventDefault();document.querySelector('[data-a="chatSend"]')?.click()}
   if(e.key==='Enter'&&e.target.id==='lang-in'){e.preventDefault();document.querySelector('[data-a="langAdd"]')?.click()}
 });
