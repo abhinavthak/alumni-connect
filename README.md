@@ -1,6 +1,6 @@
 # Alumni Connect — prototype
 
-A clickable prototype for YourDegree's Alumni Connect: students browse alumni of online degree programmes and book a call or send a question. **A student's first connect is 25% off; after that, each alum's normal price applies.**
+A clickable prototype for YourDegree's Alumni Connect: students browse alumni of online, distance and on-campus degree programmes and book a call or send a question. **A student's first connect is 25% off; after that, each alum's normal price applies.**
 
 Open `index.html` in a browser, or view it on GitHub Pages.
 
