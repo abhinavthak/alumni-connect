@@ -796,6 +796,78 @@ input[type=range]{accent-color:var(--ink);width:100%}
 .sx-empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:14px}
 @media (max-width:1150px){.sx-head{display:none}.sx-row{grid-template-columns:130px minmax(0,1fr) auto;row-gap:8px}.c-q{grid-column:2/-1}.c-st{grid-column:2}.c-earn{grid-column:3;grid-row:1}.c-act{grid-column:3;grid-row:3;justify-content:flex-end}}
 @media (max-width:640px){.sx-row{grid-template-columns:minmax(0,1fr) auto}.c-when{grid-column:1/-1}.c-who{grid-column:1}.c-earn{grid-column:2;grid-row:2}.c-q,.c-st{grid-column:1/-1}.c-act{grid-column:1/-1;grid-row:auto;justify-content:flex-start}.sx-tools .sf-search{flex:1 1 100%}.sx-sep{display:none}}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.kpi{border:1px solid var(--line);border-radius:16px;background:var(--bg);padding:16px 18px;display:grid;gap:2px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.kpi:hover{border-color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.kpi span{font-size:13px;color:var(--muted);font-weight:500}
+.kpi b{font-size:24px;font-weight:700;letter-spacing:-.01em}
+.kpi small{font-size:12.5px;color:var(--muted)}
+.soonpill.later{background:var(--soft);color:var(--muted)}
+.nh-facts{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px}
+.nh-facts span{display:inline-flex;align-items:center;gap:6px}
+.nh-facts svg.i{width:16px;height:16px;color:var(--muted)}
+.nh-note b{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:2px}
+.nh-note p{font-size:14.5px}
+.nh-more{display:flex;gap:16px;margin-left:auto;align-items:center}
+.cnt-b{font-size:12px;font-weight:700;background:var(--warn-soft);color:var(--warn);border-radius:99px;padding:2px 9px}
+.allgood{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--good)}
+.allgood svg.i{width:16px;height:16px}
+.ag-row.cmp .ag-time b{white-space:nowrap}
+.ag-row.cmp{grid-template-columns:70px minmax(0,1fr) auto;padding:10px 12px;gap:10px}
+.ag-row.cmp .ag-who>span>span{font-size:12.5px}
+.ag-amt{font-size:14px}
+.reqtxt{font-style:normal;color:var(--warn);font-weight:600}
+.chk li .btn{padding:5px 10px;font-size:12.5px}
+.autosave{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--good);font-weight:600}
+.autosave svg.i{width:15px;height:15px;stroke-width:2.5}
+.gl-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.gl-d{border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:2px;justify-items:start}
+.gl-w{font-size:12px;font-weight:600;color:var(--muted)}
+.gl-d b{font-size:20px;font-weight:700}
+.gl-d small{font-size:12px;color:var(--good);font-weight:600;display:grid}
+.gl-d small em{font-style:normal;color:var(--ink)}
+.gl-d.none{background:var(--soft);border-color:transparent}
+.gl-d.none small,.gl-d.off small{color:var(--muted)}
+.gl-d.off{background:repeating-linear-gradient(135deg,var(--soft) 0 6px,var(--bg) 6px 12px);border-style:dashed}
+.wd{grid-template-columns:auto 44px minmax(0,1fr) auto}
+.wd-off{font-size:13px;grid-column:3/-1}
+.addslot .btn svg.i{width:14px;height:14px}
+.off-det{display:grid;gap:12px}
+.off-det summary{list-style:none;justify-self:start;cursor:pointer}
+.off-det summary::-webkit-details-marker{display:none}
+.off-det summary svg.i{width:14px;height:14px}
+.off-det[open]>summary{display:none}
+.off-det .off-add{margin-bottom:10px}
+.rule2{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line-soft)}
+.panel h2+.rule2{border-top:0}
+.rule2>span{display:grid;gap:1px}
+.rule2 b{font-size:14px;font-weight:600}
+.rule2 small{font-size:12.5px;color:var(--muted)}
+.svcs2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:stretch}
+.svc2{border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px;background:var(--bg)}
+.svc2.off{background:var(--soft)}
+.svc2.off .sv-h,.svc2.off .svc-desc,.svc2.off .sv-prices{opacity:.65}
+.sv-h{display:flex;gap:12px;align-items:flex-start}
+.sv-ic{width:40px;height:40px;border-radius:12px;background:var(--soft);display:grid;place-items:center;flex:none}
+.svc2.off .sv-ic{background:var(--bg)}
+.sv-ic svg.i{width:19px;height:19px}
+.sv-t{display:grid;gap:1px;min-width:0;flex:1}
+.sv-t h3{font-size:16px;font-weight:600}
+.sv-t span{font-size:13px;color:var(--muted)}
+.sv-live{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;cursor:pointer;flex:none}
+.sv-live .toggle.sm{margin:0}
+.sv-prices{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.sv-p span{white-space:nowrap}
+.sv-p{border:1px solid var(--line-soft);border-radius:10px;padding:8px 10px;display:grid;gap:1px}
+.sv-p span{font-size:12px;color:var(--muted)}
+.sv-p b{font-size:15px;font-weight:700}
+.sv-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:13px}
+.svc-add{border:1.5px dashed var(--line);border-radius:16px;background:transparent;display:grid;place-items:center;align-content:center;gap:4px;padding:24px;min-height:160px;font:inherit;color:var(--ink);cursor:pointer;text-align:center}
+.svc-add:hover{border-color:var(--ink);background:var(--soft)}
+.svc-add svg.i{width:22px;height:22px;margin-bottom:4px}
+.svc-add span{font-size:13px;color:var(--muted)}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.gl-row{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:640px){.gl-row{grid-template-columns:repeat(3,minmax(0,1fr))}.rule2{grid-template-columns:minmax(0,1fr)}}
 .pbar{height:8px;border-radius:99px;background:var(--line-soft);overflow:hidden}
 .pbar b{display:block;height:100%;background:var(--good);border-radius:99px}
 .chk{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -1386,41 +1458,50 @@ function checklist(){return [
 function dash(){const V={today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings};if(!V[S.tab])S.tab='today';return `<div class="host">${({today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings})[S.tab]()}</div>`}
 
 /* Today */
+function minsTo(b){const n=new Date();return b.off*1440+tmin(b.time)-(n.getHours()*60+n.getMinutes())}
+const canJoin=b=>b.st==='upcoming'&&minsTo(b)<=10&&minsTo(b)>-b.dur;
+function untilText(b){if(b.off!==0)return b.off===1?'Tomorrow':`In ${b.off} days`;const n=new Date(),d=tmin(b.time)-(n.getHours()*60+n.getMinutes());
+  if(d>60)return `Starts in ${Math.floor(d/60)} hr${d%60?` ${d%60} min`:''}`;if(d>0)return `Starts in ${d} min`;if(d>-b.dur)return 'Happening now';return `Was due ${Math.round(-d/60)||1} hr ago`}
 function dToday(){
   const up=BOOKINGS.filter(b=>b.st==='upcoming').sort((x,y)=>x.off-y.off||tmin(x.time)-tmin(y.time));
   const next=up[0], reqs=up.filter(b=>b.req), waitQ=QUESTIONS.filter(q=>q.st==='open'), fb=BOOKINGS.filter(b=>b.st==='done'&&b.rated==null);
-  const cl=checklist(),doneN=cl.filter(c=>c[1]).length,pct=Math.round(doneN/cl.length*100);
-  const actions=[...reqs.map(b=>[ic('calendar'),`<b>${b.who}</b> wants to move their call to ${sessDay(b.req.off)}, ${b.req.time}`,`<button class="btn sm" data-a="detail" data-id="${b.id}">Review</button>`]),
-    ...(waitQ.length?[[ic('chat'),`<b>${waitQ.length} question${waitQ.length>1?'s':''}</b> waiting for your answer`,`<button class="btn sm" data-tab="inbox">Answer</button>`]]:[]),
-    ...fb.map(b=>[ic('check'),`Add notes from your call with <b>${b.who}</b>`,`<button class="btn sm" data-a="wrap" data-id="${b.id}">Add notes</button>`])];
-  return `<div class="hhead"><div><h1>Welcome back, ${ME.first}</h1><p>${SETTINGS.paused?'Your profile is paused. Students can’t book you right now.':`${up.length} upcoming session${up.length===1?'':'s'} and ${waitQ.length} question${waitQ.length===1?'':'s'} to answer.`}</p></div>
-    <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Paused':'Live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View public profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
+  const wk=up.filter(b=>b.off<=6),wkMin=wk.reduce((n,b)=>n+b.dur,0),wkEarn=wk.reduce((n,b)=>n+earnOf(b),0);
+  const cl=checklist(),todo=cl.filter(c=>!c[1]),pct=Math.round((cl.length-todo.length)/cl.length*100);
+  const actions=[...reqs.map(b=>[ic('calendar'),`<b>${b.who}</b> asked to move their call to ${sessDay(b.req.off)}, ${b.req.time}`,`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review</button>`]),
+    ...(waitQ.length?[[ic('chat'),`<b>${waitQ.length} question${waitQ.length>1?'s':''}</b> waiting. Oldest asked ${waitQ[waitQ.length-1].age.toLowerCase()}`,`<button class="btn sm" data-tab="inbox">Answer</button>`]]:[]),
+    ...fb.map(b=>[ic('book'),`Add notes from your call with <b>${b.who}</b> so they can rate it`,`<button class="btn sm" data-a="wrap" data-id="${b.id}">Add notes</button>`])];
+  const kpi=(tab,label,val,sub)=>`<button class="kpi" data-tab="${tab}"><span>${label}</span><b class="num">${val}</b><small>${sub}</small></button>`;
+  return `<div class="hhead"><div><h1>${new Date().getHours()<12?'Good morning':new Date().getHours()<17?'Good afternoon':'Good evening'}, ${ME.first}</h1><p>${SETTINGS.paused?'Your profile is paused. Students can’t book you right now.':`Here’s your week at a glance.`}</p></div>
+    <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Profile paused':'Profile live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View public profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
+  <div class="kpis">
+    ${kpi('sessions','Next 7 days',`${wk.length} session${wk.length===1?'':'s'}`,`${wkMin>=60?`${+(wkMin/60).toFixed(1)} hrs`:`${wkMin} min`} · ${rupee(wkEarn)} to earn`)}
+    ${kpi('inbox','Questions waiting',waitQ.length,waitQ.length?'Answer within 24 hours':'All answered')}
+    ${kpi('earnings','Earned in October','₹18,450','+22% vs September')}
+    ${kpi('sessions','Your rating','4.92 ★','128 reviews')}
+  </div>
   <div class="tgrid">
     <div class="tmain">
-      ${next?`<div class="nexthero"><div class="nh-top"><span class="eyebrow2">Next session</span><span class="tag num">${fmtDur(next.dur)} · earn ${rupee(earnOf(next))}</span></div>
+      ${next?`<div class="nexthero"><div class="nh-top"><span class="eyebrow2">Next session</span><span class="soonpill ${next.off===0?'':'later'}">${untilText(next)}</span></div>
         <div class="nh-who">${avI(next.who,next.hue,56)}<div><h2>${next.who}</h2><span>${esc(next.ctx)}</span></div></div>
-        <div class="nh-when">${ic('clock')}<b>${sessDay(next.off)}, ${next.time}</b>${next.off===0?'<span class="soonpill">Starts in about 2 hours</span>':''}</div>
-        ${next.note?`<p class="nh-note">“${esc(next.note)}”</p>`:''}
-        <div class="nh-act">${next.off===0?`<button class="btn dark" data-a="join" data-id="${next.id}">${ic('video')}Join call</button>`:''}<button class="btn" data-a="msg" data-id="${next.id}">${ic('chat')}Message</button><button class="btn ghost2" data-a="resched" data-id="${next.id}">Reschedule</button><button class="btn ghost2" data-a="detail" data-id="${next.id}">Details</button></div></div>`
-      :`<div class="nexthero empty"><h2>No sessions booked yet</h2><p class="muted">Share your profile link to get your first booking.</p></div>`}
-      <div class="box2"><div class="box2-h"><h2>Needs your attention</h2><span class="muted num">${actions.length}</span></div>
-        ${actions.length?actions.map(([i,t,b])=>`<div class="act-row">${i}<span>${t}</span>${b}</div>`).join(''):'<p class="muted" style="font-size:14px">You’re all caught up.</p>'}</div>
-      <div class="box2"><div class="box2-h"><h2>Coming up</h2><button class="linkbtn" data-tab="sessions">All sessions</button></div>${agenda(up.slice(next?1:0,6))}</div>
+        <div class="nh-facts num"><span>${ic('calendar')}${sessDay(next.off)}, ${next.time}</span><span>${ic('clock')}${fmtDur(next.dur)} video call</span><span>${ic('rupee')}You earn ${rupee(earnOf(next))}</span></div>
+        ${next.note?`<div class="nh-note"><b>What they want to ask</b><p>${esc(next.note)}</p></div>`:''}
+        <div class="nh-act">${canJoin(next)?`<button class="btn dark" data-a="join" data-id="${next.id}">${ic('video')}Join call</button>`:next.off===0?`<button class="btn dark" disabled title="Opens 10 minutes before the call">${ic('video')}Join opens at ${(()=>{const m=tmin(next.time)-10;const h=Math.floor(m/60),mm=m%60;return `${h%12||12}:${String(mm).padStart(2,'0')} ${h<12?'AM':'PM'}`})()}</button>`:''}<button class="btn" data-a="msg" data-id="${next.id}">${ic('chat')}Message${next.msgs.length?` (${next.msgs.length})`:''}</button><span class="nh-more"><button class="linkbtn" data-a="resched" data-id="${next.id}">Reschedule</button><button class="linkbtn" data-a="detail" data-id="${next.id}">Details</button></span></div></div>`
+      :`<div class="nexthero empty"><h2>No sessions booked yet</h2><p class="muted">Share your profile link to get your first booking.</p><button class="btn sm" id="copy-link">Copy profile link</button></div>`}
+      <div class="box2"><div class="box2-h"><h2>Needs your attention</h2>${actions.length?`<span class="cnt-b num">${actions.length}</span>`:''}</div>
+        ${actions.length?actions.map(([i,t,b])=>`<div class="act-row">${i}<span>${t}</span>${b}</div>`).join(''):`<div class="allgood">${ic('check')}<span>You’re all caught up.</span></div>`}</div>
     </div>
     <div class="tside">
-      ${pct<100?`<div class="box2"><div class="box2-h"><h2>Profile ${pct}% complete</h2></div><div class="pbar"><b style="width:${pct}%"></b></div>
-        <ul class="chk">${cl.map(([t,ok,tab])=>`<li class="${ok?'ok':''}">${ok?ic('check'):'<i></i>'}<span>${t}</span>${ok?'':`<button class="linkbtn" data-tab="${tab}">Fix</button>`}</li>`).join('')}</ul></div>`:''}
-      <div class="box2"><div class="box2-h"><h2>October so far</h2></div>
-        <div class="mini-stats"><div><b class="num">₹18,450</b><span>Earned</span></div><div><b class="num">23</b><span>Calls</span></div><div><b class="num">4.92★</b><span>Rating</span></div><div><b class="num">41%</b><span>Booked again</span></div></div>
-        <button class="linkbtn" data-tab="earnings">See earnings</button></div>
+      <div class="box2"><div class="box2-h"><h2>Coming up</h2><button class="linkbtn" data-tab="sessions">All sessions</button></div>${agenda(up.slice(next?1:0,6),true)}</div>
+      ${todo.length?`<div class="box2"><div class="box2-h"><h2>Finish your profile</h2><span class="muted num" style="font-size:13px">${cl.length-todo.length} of ${cl.length} done</span></div><div class="pbar"><b style="width:${pct}%"></b></div>
+        <ul class="chk">${todo.map(([t,ok,tab])=>`<li><i></i><span>${t}</span><button class="btn sm" data-tab="${tab}">Do it</button></li>`).join('')}</ul>
+        <p class="muted" style="font-size:12.5px">Complete profiles get up to 3× more bookings.</p></div>`:''}
     </div>
   </div>`}
-
-function agenda(list){
-  if(!list.length)return '<p class="muted" style="font-size:14px">Nothing else booked this week.</p>';
+function agenda(list,compact){
+  if(!list.length)return '<p class="muted" style="font-size:14px">Nothing else booked yet.</p>';
   const groups=[];list.forEach(b=>{const g=groups.find(x=>x.off===b.off);g?g.items.push(b):groups.push({off:b.off,items:[b]})});
   return groups.map(g=>`<div class="ag-day"><span class="ag-d">${g.off===0?'Today':g.off===1?'Tomorrow':dinfo(g.off).date.toLocaleDateString('en-IN',{weekday:'long'})} · ${dinfo(g.off).date.toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</span>
-    ${g.items.map(b=>`<button class="ag-row ${b.req?'warn':b.pending?'pend':''}" data-a="detail" data-id="${b.id}" aria-label="${b.who}, ${b.time}, ${fmtDur(b.dur)} call">
+    ${g.items.map(b=>compact?`<button class="ag-row cmp ${b.req?'warn':b.pending?'pend':''}" data-a="detail" data-id="${b.id}" aria-label="${b.who}, ${b.time}"><span class="ag-time num"><b>${b.time}</b><span>${fmtDur(b.dur)}</span></span><span class="ag-who"><span><b>${b.who}</b><span>${b.req?`<em class="reqtxt">Wants ${dinfo(b.req.off).short}</em>`:b.pending?'Waiting on reply':esc(b.ctx)}</span></span></span><b class="num ag-amt">${rupee(earnOf(b))}</b></button>`:`<button class="ag-row ${b.req?'warn':b.pending?'pend':''}" data-a="detail" data-id="${b.id}" aria-label="${b.who}, ${b.time}, ${fmtDur(b.dur)} call">
       <span class="ag-time num"><b>${b.time}</b><span>${fmtDur(b.dur)}</span></span>
       <span class="ag-who">${avI(b.who,b.hue,36)}<span><b>${b.who}</b><span>${esc(b.note||b.ctx)}</span></span></span>
       <span class="ag-meta">${b.req?`<em class="reqtag">${ic('calendar')}Wants ${sessDay(b.req.off)}, ${b.req.time}</em>`:b.pending?`<em class="reqtag pend">${ic('clock')}Waiting on reply</em>`:b.free?'<em class="tag free">First connect</em>':''}<b class="num">${rupee(earnOf(b))}</b></span>
@@ -1444,7 +1525,7 @@ function sessRow(b){
   let status='',primary='';
   if(b.st==='upcoming'){
     status=b.req?`<span class="sdot warn"></span><span><b>Reschedule asked</b><small>for ${dinfo(b.req.off).short}, ${b.req.time}</small></span>`:b.pending?`<span class="sdot pend"></span><span><b>Waiting on student</b><small>you suggested ${dinfo(b.pending.off).short}</small></span>`:`<span class="sdot ok"></span><span><b>Confirmed</b>${b.msgs.length?`<small>${b.msgs.length} message${b.msgs.length>1?'s':''}</small>`:''}</span>`;
-    primary=b.req?`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review</button>`:b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">Join</button>`:'';
+    primary=b.req?`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review</button>`:canJoin(b)?`<button class="btn dark sm" data-a="join" data-id="${b.id}">Join</button>`:'';
   }else if(b.st==='done'){
     status=b.rated?`<span class="sdot done"></span><span><b class="num">${STAR} ${b.rated}.0</b><small>${b.myNote?'notes added':'rated by student'}</small></span>`:`<span class="sdot warn"></span><span><b>Add your notes</b><small>student rates after</small></span>`;
     primary=b.rated==null?`<button class="btn dark sm" data-a="wrap" data-id="${b.id}">Add notes</button>`:'';
@@ -1506,24 +1587,31 @@ function dInbox(){
   <div class="qs">${list.length?list.map(qCard).join(''):'<div class="emptybox">No questions waiting. New ones will show here.</div>'}</div>`}
 
 /* Calendar */
+function nextSuggest(sl){if(!sl.length)return '8:00 PM';const last=Math.max(...sl.map(tmin));const t=TIME_OPTS.find(x=>tmin(x)>=last+60&&!sl.includes(x));return t||TIME_OPTS.find(x=>!sl.includes(x))}
 function dCal(){
-  return `<div class="hhead"><div><h1>Calendar</h1><p>When students can book you. Times are in IST. Changes apply to your booking calendar straight away.</p></div><button class="btn dark sm" data-a="saveCal">Save</button></div>
+  const glance=[...Array(7)].map((_,o)=>{const iso=dinfo(o).date.toISOString().slice(0,10),off=TIMEOFF.find(x=>iso>=x.from&&iso<=x.to),wd=WEEK[(dinfo(o).date.getDay()+6)%7][1],booked=BOOKINGS.filter(b=>b.st==='upcoming'&&b.off===o).length,open=off?0:Math.max(0,wd.length-booked);
+    return `<div class="gl-d ${off?'off':!wd.length?'none':''}"><span class="gl-w">${o===0?'Today':dinfo(o).date.toLocaleDateString('en-IN',{weekday:'short'})}</span><b class="num">${dinfo(o).date.getDate()}</b>${off?'<small>Time off</small>':!wd.length?'<small>Unavailable</small>':`<small class="num">${booked?`<em>${booked} booked</em>`:''}${open} open</small>`}</div>`}).join('');
+  const rules=[['notice','Minimum notice','How soon before a call students can book',[['2','2 hours'],['4','4 hours'],['12','12 hours'],['24','1 day']]],['buffer','Gap between calls','Breathing room after each call',[['0','No gap'],['10','10 min'],['15','15 min'],['30','30 min']]],['max','Most calls in a day','We stop taking bookings once you hit this',[['1','1'],['2','2'],['3','3'],['5','5'],['99','No limit']]],['window','How far ahead','Students can’t book beyond this',[['14','2 weeks'],['30','4 weeks'],['45','6 weeks']]]];
+  return `<div class="hhead"><div><h1>Calendar</h1><p>Set when students can book you. Times are in IST.</p></div><span class="autosave">${ic('check')}Changes save automatically</span></div>
+  <div class="panel glance" style="margin-bottom:20px"><div class="box2-h"><h2>Next 7 days</h2><button class="linkbtn" data-tab="sessions">See booked sessions</button></div><div class="gl-row">${glance}</div></div>
   <div class="two cal2">
-    <div class="panel"><div class="box2-h"><h2>Weekly hours</h2><button class="linkbtn" data-a="copyMon">Copy Monday to weekdays</button></div>
+    <div class="panel"><div class="box2-h"><div><h2>Weekly hours</h2><p class="muted" style="font-size:13.5px;margin-top:2px">Start times students can pick each week. Each call starts at one of these.</p></div><button class="linkbtn" data-a="copyMon" style="white-space:nowrap" title="Copy Monday’s times to Tuesday–Friday">Copy Mon to weekdays</button></div>
       <div class="week2">${WEEK.map(([d,sl],i)=>`<div class="wd ${sl.length?'':'off'}">
         <label class="toggle sm"><input type="checkbox" id="wd-${i}" data-a="dayToggle" data-id="${i}" ${sl.length?'checked':''} aria-label="Available on ${d}"><span></span></label>
         <b>${d.slice(0,3)}</b>
-        <div class="chips">${sl.length?[...sl].sort((x,y)=>tmin(x)-tmin(y)).map(x=>`<span class="chip num">${x}<button class="chip-x" data-a="slotDel" data-id="${i}" data-v="${x}" aria-label="Remove ${x}">${ic('x')}</button></span>`).join(''):'<span class="muted" style="font-size:13px">Unavailable</span>'}</div>
-        <div class="addslot"><select class="input" id="as-${i}" aria-label="Time to add on ${d}">${TIME_OPTS.filter(t=>!sl.includes(t)).map(t=>`<option ${t==='8:00 PM'?'selected':''}>${t}</option>`).join('')}</select><button class="btn sm" data-a="slotAdd" data-id="${i}">Add</button></div>
+        ${sl.length?`<div class="chips">${[...sl].sort((x,y)=>tmin(x)-tmin(y)).map(x=>`<span class="chip num">${x}<button class="chip-x" data-a="slotDel" data-id="${i}" data-v="${x}" aria-label="Remove ${x} on ${d}">${ic('x')}</button></span>`).join('')}</div>
+        <div class="addslot"><select class="input" id="as-${i}" aria-label="Time to add on ${d}">${TIME_OPTS.filter(t=>!sl.includes(t)).map(t=>`<option ${t===nextSuggest(sl)?'selected':''}>${t}</option>`).join('')}</select><button class="btn sm" data-a="slotAdd" data-id="${i}">${ic('plus')}Add</button></div>`
+        :`<span class="muted wd-off">Not available. Switch on to add times.</span>`}
       </div>`).join('')}</div></div>
     <div style="display:grid;gap:20px;align-content:start">
-      <div class="panel"><h2>Time off</h2><p class="muted" style="font-size:14px;margin-top:-8px">Students can’t book you on these dates.</p>
-        ${TIMEOFF.map((x,i)=>`<div class="act-row">${ic('calendar')}<span><b class="num">${fmtRange(x.from,x.to)}</b>${x.note?` · ${esc(x.note)}`:''}</span><button class="x" data-a="offDel" data-id="${i}" aria-label="Remove time off">${ic('trash')}</button></div>`).join('')||'<p class="muted" style="font-size:14px">No time off planned.</p>'}
-        <div class="off-add"><label class="field">From<input class="input" type="date" id="off-from"></label><label class="field">To<input class="input" type="date" id="off-to"></label><label class="field" style="grid-column:1/-1">Note (optional)<input class="input" id="off-note" placeholder="e.g. Travelling"></label></div>
-        <button class="btn sm" data-a="offAdd" style="justify-self:start">${ic('plus')}Add time off</button></div>
+      <div class="panel"><h2>Time off</h2><p class="muted" style="font-size:13.5px;margin-top:-8px">Holidays or busy weeks. Students can’t book these dates.</p>
+        ${TIMEOFF.length?TIMEOFF.map((x,i)=>`<div class="act-row">${ic('calendar')}<span><b class="num">${fmtRange(x.from,x.to)}</b>${x.note?`<br><span class="muted" style="font-size:13px">${esc(x.note)}</span>`:''}</span><button class="ibtn danger" data-a="offDel" data-id="${i}" aria-label="Remove time off ${fmtRange(x.from,x.to)}">${ic('trash')}</button></div>`).join(''):'<p class="muted" style="font-size:14px">No time off planned.</p>'}
+        <details class="off-det" ${S.offOpen?'open':''}><summary class="btn sm">${ic('plus')}Add time off</summary>
+          <div class="off-add"><label class="field">From<input class="input" type="date" id="off-from"></label><label class="field">To<input class="input" type="date" id="off-to"></label><label class="field" style="grid-column:1/-1">Note (optional)<input class="input" id="off-note" placeholder="e.g. Travelling"></label></div>
+          <button class="btn dark sm" data-a="offAdd">Save time off</button></details></div>
       <div class="panel"><h2>Booking rules</h2>
-        ${[['notice','Minimum notice',[['2','2 hours'],['4','4 hours'],['12','12 hours'],['24','1 day']]],['buffer','Gap between calls',[['0','No gap'],['10','10 min'],['15','15 min'],['30','30 min']]],['max','Most calls in a day',[['1','1'],['2','2'],['3','3'],['5','5'],['99','No limit']]],['window','Students can book up to',[['14','2 weeks ahead'],['30','4 weeks ahead'],['45','6 weeks ahead']]]].map(([k,l,o])=>`<label class="field rule">${l}<select class="input" id="rule-${k}" data-rule="${k}">${o.map(([v,t])=>`<option value="${v}" ${RULES[k]===v?'selected':''}>${t}</option>`).join('')}</select></label>`).join('')}
-        <p class="muted" style="font-size:13px">Timezone: India Standard Time (IST)</p></div>
+        ${rules.map(([k,l,h,o])=>`<label class="rule2"><span><b>${l}</b><small>${h}</small></span><select class="input" id="rule-${k}" data-rule="${k}">${o.map(([v,t])=>`<option value="${v}" ${RULES[k]===v?'selected':''}>${t}</option>`).join('')}</select></label>`).join('')}
+        <p class="muted" style="font-size:12.5px">All times are India Standard Time (IST).</p></div>
     </div>
   </div>`}
 function fmtRange(a,b){const f=x=>new Date(x+'T00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short'});return a===b?f(a):`${f(a)} – ${f(b)}`}
@@ -1531,13 +1619,16 @@ function fmtRange(a,b){const f=x=>new Date(x+'T00:00').toLocaleDateString('en-IN
 /* Services */
 function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Students get 25% off their first connect. You still earn your full price.</b><span>On a student's first call or question, they pay 75% of your price and YourDegree pays the other 25%. A 10% platform fee applies to every booking.</span></p></div>`}
 function dSvc(){
-  return `<div class="hhead"><div><h1>Services</h1><p>What students can book on your profile.</p></div><div class="hbtns"><button class="btn sm" data-a="preview">${ic('globe')}Preview as student</button><button class="btn dark sm" data-a="svcNew">${ic('plus')}Add a service</button></div></div>
+  return `<div class="hhead"><div><h1>Services</h1><p>What students can book on your profile. Switch a service off to hide it.</p></div><div class="hbtns"><button class="btn sm" data-a="preview">${ic('globe')}Preview as student</button><button class="btn dark sm" data-a="svcNew">${ic('plus')}Add a service</button></div></div>
   ${freeInfo()}
-  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div style="min-width:0"><h3>${esc(s.title)}</h3><p class="sub">${s.kind==='call'?`Video call · ${s.durs.filter(x=>x.on).map(x=>fmtDur(x.dur)).join(', ')||'no lengths on'}`:`Written reply in ${s.eta}`}</p></div></div>
-      <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-a="svcToggle" data-id="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
+  <div class="svcs2">${SERVICES.map(s=>{const opts=s.kind==='call'?s.durs.filter(x=>x.on):[];return `<article class="svc2 ${s.on?'':'off'}">
+    <div class="sv-h"><span class="sv-ic">${ic(s.icon)}</span><div class="sv-t"><h3>${esc(s.title)}</h3><span>${s.kind==='call'?'Video call':`Written answer · reply in ${s.eta}`}</span></div>
+      <label class="sv-live"><span>${s.on?'Live':'Hidden'}</span><span class="toggle sm"><input type="checkbox" id="on-${s.id}" data-a="svcToggle" data-id="${s.id}" ${s.on?'checked':''} aria-label="${esc(s.title)} is ${s.on?'live':'hidden'}"><span></span></span></label></div>
     <p class="svc-desc">${esc(s.desc||'')}</p>
-    <div class="svc-prices">${s.kind==='call'?s.durs.filter(x=>x.on).map(x=>`<span class="chip num">${fmtDur(x.dur)} · ${rupee(x.price)}</span>`).join(''):`<span class="chip num">${rupee(s.price)} per question</span>`}</div>
-    <div class="svc-foot"><span class="muted num">${s.booked} bookings · ${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</span><div class="sess-acts"><button class="btn sm" data-a="svcEdit" data-id="${s.id}">Edit</button>${['s1','s2'].includes(s.id)?'':`<button class="btn sm ghost2 danger" data-a="svcDel" data-id="${s.id}">Delete</button>`}</div></div></div>`).join('')}</div>`}
+    <div class="sv-prices">${s.kind==='call'?(opts.length?opts.map(x=>`<div class="sv-p"><span>${fmtDur(x.dur)}</span><b class="num">${rupee(x.price)}</b></div>`).join(''):'<span class="muted">No lengths switched on</span>'):`<div class="sv-p"><span>Per question</span><b class="num">${rupee(s.price)}</b></div>`}</div>
+    <div class="sv-foot"><span class="muted num">${s.booked?`${s.booked} bookings so far`:'No bookings yet'}</span><div class="sess-acts">${['s1','s2'].includes(s.id)?'':`<button class="ibtn danger" data-a="svcDel" data-id="${s.id}" aria-label="Delete ${esc(s.title)}">${ic('trash')}</button>`}<button class="btn sm" data-a="svcEdit" data-id="${s.id}">Edit</button></div></div>
+  </article>`}).join('')}
+  <button class="svc-add" data-a="svcNew">${ic('plus')}<b>Add a service</b><span>A call for parents, a CV review, a group Q&amp;A…</span></button></div>`}
 
 /* Earnings */
 function dEarn(){
@@ -1689,6 +1780,7 @@ function modalHTML(){
   case 'otp':return shell('Verify your phone',`<section><p class="muted" style="font-size:14px">We sent a 4-digit code to ${SETTINGS.phone}. In this prototype, any 4 digits work.</p>
       <label class="field">Code<input class="input num" id="otp-in" inputmode="numeric" maxlength="4" placeholder="••••" style="letter-spacing:.4em;font-size:20px;max-width:160px"></label><p class="err" id="otp-err" hidden></p></section>`,
       `<button class="linkbtn" data-a="otpResend">Resend code</button><button class="btn dark sm" data-a="otpOk">Verify</button>`);
+  case 'svcDel':{const sv=SERVICES.find(x=>x.id===m.id);return shell('Delete this service?',`<section><p style="font-size:14px">“${esc(sv.title)}” will be removed from your profile. Sessions already booked stay booked.</p></section>`,`<button class="linkbtn" data-a="mclose">Keep it</button><button class="btn sm danger-fill" data-a="svcDelOk" data-id="${sv.id}">Delete service</button>`)}
   case 'deactivate':return shell('Deactivate your profile?',`<section><p style="font-size:14px">Your profile will be hidden and students can’t book you. Upcoming sessions stay booked unless you cancel them. You can reactivate any time from Settings.</p></section>`,
       `<button class="linkbtn" data-a="mclose">Keep profile</button><button class="btn sm danger-fill" data-a="deacOk">Deactivate</button>`);
   case 'verifyDeg':return shell('Verify your education',`<section><p class="muted" style="font-size:14px">Choose one. We check with the university and usually finish within 2 working days.</p>
@@ -1743,9 +1835,9 @@ document.addEventListener('click',e=>{
   case 'qfollow':{const q=Q(),txt=($('#fu-'+id).value||'').trim();if(!txt){toast('Write a reply first');return}q.fans=txt;refreshDash();toast('Reply sent');return}
   case 'copyMon':{for(const i of [1,2,3,4])WEEK[i][1]=[...WEEK[0][1]];refreshDash();toast('Monday’s hours copied to Tuesday–Friday');return}
   case 'slotDel':{const w=WEEK[+id][1];w.splice(w.indexOf(v),1);refreshDash();return}
-  case 'slotAdd':{const sel=$('#as-'+id),w=WEEK[+id][1];if(sel&&!w.includes(sel.value))w.push(sel.value);refreshDash();return}
+  case 'slotAdd':{const sel=$('#as-'+id),w=WEEK[+id][1];if(sel&&!w.includes(sel.value))w.push(sel.value);refreshDash();toast(`${sel.value} added on ${WEEK[+id][0]}`);return}
   case 'offDel':TIMEOFF.splice(+id,1);refreshDash();toast('Time off removed');return;
-  case 'offAdd':{const f=$('#off-from').value,to=$('#off-to').value||f,n=($('#off-note').value||'').trim();if(!f){toast('Pick a start date');return}if(to<f){toast('End date is before the start date');return}TIMEOFF.push({from:f,to,note:n});TIMEOFF.sort((x,y)=>x.from.localeCompare(y.from));refreshDash();toast('Time off added. Students can’t book those dates.');return}
+  case 'offAdd':{const f=$('#off-from').value,to=$('#off-to').value||f,n=($('#off-note').value||'').trim();if(!f){toast('Pick a start date');return}if(to<f){toast('End date is before the start date');return}TIMEOFF.push({from:f,to,note:n});TIMEOFF.sort((x,y)=>x.from.localeCompare(y.from));S.offOpen=false;refreshDash();toast('Time off added. Students can’t book those dates.');return}
   case 'saveCal':toast('Calendar saved');return;
   case 'svcNew':openModal({t:'svc',draft:{kind:'call',title:'',desc:'',price:99,eta:'1 day',durs:[{dur:15,price:149,on:true},{dur:30,price:249,on:true},{dur:60,price:449,on:false},{dur:120,price:799,on:false}]}});return;
   case 'svcType':S.modal.draft.kind=v;renderOverlay();return;
@@ -1756,7 +1848,8 @@ document.addEventListener('click',e=>{
     if(!m.id){SERVICES.push({...s,id:'s'+(SERVICES.length+1+Math.floor(Math.random()*1000)),on:false,booked:0,icon:s.kind==='call'?'video':'chat'})}
     if(s.id==='s1')syncCall(ME);if(s.id==='s2'){ME.services[1].price=s.price;ME.services[1].eta=s.eta}
     closeModal();refreshDash();toast(m.id?'Service updated':'Service added. Switch it on when you’re ready.');return}
-  case 'svcDel':{const i=SERVICES.findIndex(x=>x.id===id);SERVICES.splice(i,1);refreshDash();toast('Service deleted');return}
+  case 'svcDel':{openModal({t:'svcDel',id});return}
+  case 'svcDelOk':{const i=SERVICES.findIndex(x=>x.id===id);SERVICES.splice(i,1);closeModal();refreshDash();toast('Service deleted');return}
   case 'withdraw':openModal({t:'withdraw'});return;
   case 'wdConfirm':{const amt=Math.floor(+$('#wd-amt').value||0);if(amt<100||amt>BAL){toast(`Enter an amount between ₹100 and ${rupee(BAL)}`);return}BAL-=amt;TX.unshift({d:'Today',t:`Payout to ${PAYOUT.type==='bank'?`${PAYOUT.bank} ••${PAYOUT.last4}`:'UPI '+PAYOUT.upi}`,a:-amt,k:'payout',st:'Processing'});addNotif(`${rupee(amt)} withdrawal is on its way`,'earnings','rupee');closeModal();refreshDash();toast(`${rupee(amt)} is on its way. Usually arrives within 1 working day.`);return}
   case 'payout':openModal({t:'payout',type:PAYOUT.type});return;
@@ -1781,7 +1874,7 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
   if(S.view!=='alumni')return;const t=e.target,a=t.dataset.a;
   if(t.id==='photo-in'&&t.files[0]){const r=new FileReader();r.onload=()=>{ME.img=r.result;refreshDash();toast('Photo updated')};r.readAsDataURL(t.files[0]);return}
-  if(t.dataset.rule){RULES[t.dataset.rule]=t.value;return}
+  if(t.dataset.rule){RULES[t.dataset.rule]=t.value;toast('Saved');return}
   if(t.dataset.sf){SF[t.dataset.sf]=t.value;refreshDash();return}
   if(t.id==='sf-first'){SF.first=t.checked;refreshDash();return}
   if(!a)return;
