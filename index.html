@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Alumni Connect prototype: students book calls with verified alumni of online degree programmes. First connect is free.">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Alumni Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap">
+<style>
+/* Layout: Airbnb-style marketplace. Student side = pill search + category strip + photo grid + listing page with sticky booking card. Alumni side = hosting-style top tabs. */
+:root{
+  --bg:#FFFFFF; --soft:#F4F5F7; --ink:#101112; --muted:#666666; --line:#DFE1E6; --line-soft:#EEEFF2;
+  --brand:#EE2C3C; --brand-deep:#BE2330; --brand-ink:#BE2330; --brand-soft:#FCF0F1; --on-brand:#FFFFFF; --star:#FCBC05;
+  --good:#0A9044; --good-soft:#E6F4EC; --warn:#C4811D; --warn-soft:#FDF3E3; --bad:#BE2330; --bad-soft:#FCF0F1;
+  --h1:#FCF0F1; --h2:#F5F1FE; --h3:#E8F5EE; --h4:#FEF3E2; --h5:#FCF1F5; --h6:#EEF3FB;
+  --grad:linear-gradient(180deg,#EE2C3C,#DA202F 93.75%);
+  --font:"DM Sans", "Circular XX", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --shadow:0 6px 16px rgba(0,0,0,.12); --shadow-sm:0 1px 2px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111214; --soft:#1B1C1F; --ink:#F2F2F3; --muted:#A5A9B3; --line:#30333A; --line-soft:#24262B;
+  --brand:#F15663; --brand-deep:#EE2C3C; --brand-ink:#FF7581; --brand-soft:#3A1519; --star:#FCBC05; --good:#4CC37E; --good-soft:#12291C; --warn:#F0B04F; --warn-soft:#33240F; --bad:#FF7581; --bad-soft:#3A1519;
+  --h1:#3A1E22; --h2:#2A2340; --h3:#183326; --h4:#3A2C14; --h5:#3A1E2B; --h6:#1E2A3D;
+  --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111214; --soft:#1B1C1F; --ink:#F2F2F3; --muted:#A5A9B3; --line:#30333A; --line-soft:#24262B;
+  --brand:#F15663; --brand-deep:#EE2C3C; --brand-ink:#FF7581; --brand-soft:#3A1519; --star:#FCBC05; --good:#4CC37E; --good-soft:#12291C; --warn:#F0B04F; --warn-soft:#33240F; --bad:#FF7581; --bad-soft:#3A1519;
+  --h1:#3A1E22; --h2:#2A2340; --h3:#183326; --h4:#3A2C14; --h5:#3A1E2B; --h6:#1E2A3D;
+  --shadow:0 6px 16px rgba(0,0,0,.5); --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wrap{max-width:1760px;margin:0 auto;padding-inline:clamp(16px,4vw,80px)}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line-soft)}
+.top-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:8px;color:var(--brand);font-weight:800;font-size:21px;letter-spacing:-.03em;border:0;background:none;padding:0;justify-self:start}
+.logo svg{width:32px;height:32px}
+.right{display:flex;align-items:center;gap:8px;justify-self:end}
+.switch-link{border:0;background:none;font-weight:600;font-size:14px;padding:10px 14px;border-radius:99px;white-space:nowrap}
+.switch-link:hover{background:var(--soft)}
+.menu{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:99px;padding:5px 5px 5px 12px;background:var(--bg)}
+.menu:hover{box-shadow:var(--shadow-sm)}
+.menu img,.menu .av{width:30px;height:30px;border-radius:50%;object-fit:cover}
+.freechip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:8px 12px;border-radius:99px;background:var(--brand-soft);color:var(--brand-ink);white-space:nowrap}
+.freechip.used{background:var(--soft);color:var(--muted)}
+
+/* pill search */
+.search{display:flex;align-items:center;border:1px solid var(--line);border-radius:99px;box-shadow:var(--shadow-sm);background:var(--bg);padding:6px 6px 6px 0;min-width:0}
+.search .seg{display:grid;padding:6px 22px;border-right:1px solid var(--line-soft);min-width:0}
+.search .seg:last-of-type{border-right:0}
+.search .seg span{font-size:12px;font-weight:700}
+.search select,.search input{border:0;background:transparent;font-size:14px;color:var(--muted);padding:0;outline:none;min-width:0;width:100%}
+.search .seg:focus-within{background:var(--soft);border-radius:99px}
+.search .go{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--brand);color:#fff;display:grid;place-items:center}
+.search .go svg.i{stroke-width:3;width:16px;height:16px}
+
+/* categories */
+.cats-row{display:flex;align-items:center;gap:20px;padding-block:14px 0}
+.cats{display:flex;gap:32px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{border:0;background:none;display:grid;justify-items:center;gap:8px;padding:4px 0 12px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.cat svg.i{width:24px;height:24px;stroke-width:1.6}
+.cat:hover{color:var(--ink);border-color:var(--line)}
+.cat[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+.pillbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 16px;font-weight:600;font-size:13px;white-space:nowrap}
+.pillbtn:hover{border-color:var(--ink)}
+.pillbtn .count{background:var(--ink);color:var(--bg);border-radius:99px;font-size:11px;padding:0 6px}
+
+/* free banner */
+.banner{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-block:20px 8px;flex-wrap:wrap}
+.banner .gift{width:40px;height:40px;border-radius:50%;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center;flex:none}
+.banner .gift svg.i{width:20px;height:20px}
+.banner .txt{flex:1;min-width:220px;display:grid;gap:2px}
+.banner .txt b{font-size:15px}
+.banner .txt span{font-size:14px;color:var(--muted)}
+.linkbtn{border:0;background:none;padding:0;font-weight:600;text-decoration:underline;font-size:14px}
+
+/* grid */
+.results-meta{font-size:14px;color:var(--muted);padding-block:16px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:40px 24px;padding-block:12px 64px}
+.card{display:grid;gap:10px;cursor:pointer;min-width:0}
+.ph{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--soft);max-width:100%}
+.track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;height:100%;scroll-snap-align:start;position:relative;overflow:hidden}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card:hover .slide img{transform:scale(1.03)}
+.fav{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);color:#222;font-size:13px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18);z-index:2}
+.onphoto{position:absolute;left:12px;bottom:26px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.95);color:#222;font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.onphoto svg.i{width:13px;height:13px;stroke-width:3;color:#EE2C3C}
+.sl-pane{padding:20px 20px 30px;display:flex;flex-direction:column;gap:10px;justify-content:space-between;color:var(--ink)}
+.sl-k{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.75}
+.sl-big{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.sl-big small{font-size:16px;font-weight:600;opacity:.6;margin-left:2px}
+.sl-bars{display:grid;gap:7px}
+.sl-bar{display:grid;grid-template-columns:84px minmax(0,1fr) 26px;gap:8px;align-items:center;font-size:12px;font-weight:600}
+.sl-bar .t{height:6px;border-radius:99px;background:color-mix(in srgb,var(--ink) 14%,transparent);overflow:hidden}
+.sl-bar .t b{display:block;height:100%;background:var(--ink);border-radius:99px}
+.sl-facts{display:flex;gap:16px;font-size:12px;font-weight:600;flex-wrap:wrap}
+.sl-facts span{opacity:.7;font-weight:500}
+.sl-q{font-size:19px;line-height:1.35;font-weight:600;letter-spacing:-.01em}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#222;display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.2);opacity:0;transition:opacity .15s,transform .15s;z-index:2}
+.arrow svg.i{width:14px;height:14px;stroke-width:3}
+.arrow.prev{left:10px}.arrow.next{right:10px}
+.arrow:hover{transform:translateY(-50%) scale(1.06)}
+.card:hover .arrow,.arrow:focus-visible{opacity:1}
+@media (hover:none){.arrow{display:none}}
+.dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(0,0,0,.12);transition:transform .15s}
+.dots i.on{background:#fff;transform:scale(1.15)}
+.heart{position:absolute;top:10px;right:10px;border:0;background:none;padding:4px;z-index:2}
+.heart svg{width:26px;height:26px;fill:rgba(0,0,0,.5);stroke:#fff;stroke-width:2}
+.heart[aria-pressed="true"] svg{fill:#EE2C3C}
+.ct{display:grid;gap:2px;font-size:15px;min-width:0}
+.l1{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.l1 b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.rate{display:inline-flex;align-items:center;gap:4px;font-size:14px;white-space:nowrap}
+.rate svg{width:13px;height:13px;fill:var(--star);stroke:none}
+.ct .m{color:var(--muted);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rate .cnt{color:var(--muted)}
+.avail{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+.avail.soon{color:var(--good);font-weight:600}
+.avail svg.i{width:14px;height:14px}
+.price-line .u{text-decoration:underline;color:var(--muted)}
+.price-line{font-size:15px;margin-top:4px}
+.price-line s{color:var(--muted);font-weight:400}
+.price-line b{font-weight:700}
+.price-line .free{color:var(--brand-ink)}
+.empty{padding:64px 16px;text-align:center;color:var(--muted)}
+
+/* buttons */
+.btn{border:1px solid var(--ink);background:var(--bg);padding:12px 20px;border-radius:6px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.btn:hover{background:var(--soft)}
+.btn.sm{padding:8px 14px;font-size:14px}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn.dark:hover{opacity:.88}
+.btn.brand{background:var(--grad);border:0;color:#fff;font-weight:700;padding:14px 20px;font-size:16px}
+.btn.brand:hover{opacity:.95}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+
+/* modal (filters) */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:60;display:grid;place-items:center;padding:16px}
+.modal{background:var(--bg);border-radius:16px;width:min(640px,100%);max-height:90vh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;box-shadow:var(--shadow)}
+.modal-h{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line-soft);text-align:center;font-weight:700}
+.x{width:32px;height:32px;border-radius:50%;border:0;background:none;display:grid;place-items:center}
+.x:hover{background:var(--soft)}
+.modal-b{overflow:auto;padding:8px 24px}
+.modal-b section{padding-block:24px;border-bottom:1px solid var(--line-soft);display:grid;gap:14px}
+.modal-b section:last-child{border-bottom:0}
+.modal-b h3{font-size:20px}
+.modal-f{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-top:1px solid var(--line-soft)}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:10px 18px;font-size:14px;font-weight:500}
+.opt:hover{border-color:var(--ink)}
+.opt svg.i{width:16px;height:16px;vertical-align:-3px;margin-right:6px}
+.opt[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.field{display:grid;gap:6px;font-size:14px;font-weight:600}
+.field select,.input,textarea{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:12px;font-size:15px;width:100%}
+textarea{resize:vertical}
+
+/* ---------- listing page ---------- */
+.page{position:fixed;inset:0;z-index:50;background:var(--bg);overflow:auto;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);animation:rise .22s ease-out}
+@keyframes rise{from{transform:translateY(16px);opacity:.5}}
+@media (prefers-reduced-motion:reduce){.page{animation:none}.ph img{transition:none}}
+.page-bar{position:sticky;top:0;z-index:3;background:var(--bg);border-bottom:1px solid var(--line-soft)}
+.page-bar .in{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ghost{border:0;background:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:8px 10px;border-radius:8px;text-decoration:underline}
+.ghost:hover{background:var(--soft)}
+.listing{max-width:1120px;margin:0 auto;padding:24px 24px 120px}
+.listing h1{font-size:clamp(22px,3vw,28px);font-weight:600}
+.subline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:15px;margin-top:6px}
+.subline b{font-weight:600}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;margin-top:28px;align-items:start}
+.hostcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border-radius:24px;box-shadow:0 6px 20px rgba(0,0,0,.14);padding:28px 32px;background:var(--bg)}
+.hostcard .face{display:grid;justify-items:center;gap:6px;text-align:center}
+.hostcard .face .pic{position:relative}
+.hostcard .face img{width:112px;height:112px;border-radius:50%;object-fit:cover;display:block}
+.hostcard .face .badge{position:absolute;right:-2px;bottom:4px;width:32px;height:32px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center}
+.hostcard .face .badge svg.i{width:16px;height:16px;stroke-width:3}
+.hostcard .face h2{font-size:26px;font-weight:700}
+.hostcard .face span{font-size:13px;font-weight:600}
+.hstats{display:grid;gap:0}
+.hstats div{padding-block:10px;border-bottom:1px solid var(--line)}
+.hstats div:last-child{border-bottom:0}
+.hstats b{display:block;font-size:22px;font-weight:700;line-height:1.1}
+.hstats span{font-size:12px;font-weight:600}
+.sec{padding-block:32px;border-bottom:1px solid var(--line)}
+.sec h2{font-size:22px;font-weight:600;margin-bottom:20px}
+.hl{display:grid;gap:22px}
+.hl div{display:grid;grid-template-columns:28px minmax(0,1fr);gap:20px}
+.hl svg.i{width:26px;height:26px;stroke-width:1.6}
+.hl b{display:block;font-weight:600}
+.hl span{color:var(--muted);font-size:14px}
+.bigquote{font-size:18px;line-height:1.5;max-width:60ch}
+.ask{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ask div{display:flex;gap:14px;align-items:center}
+.ask svg.i{width:24px;height:24px;stroke-width:1.6}
+.overall{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.overall b{font-size:44px;font-weight:700;letter-spacing:-.03em}
+.scores{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.score{padding:16px 16px 0 0;border-right:1px solid var(--line);display:grid;gap:4px;align-content:start;padding-left:16px}
+.score:first-child{padding-left:0}
+.score:last-child{border-right:0}
+.score span{font-size:14px;font-weight:600}
+.score b{font-size:18px;font-weight:600}
+.score svg.i{width:28px;height:28px;stroke-width:1.5;margin-top:12px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.fact{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:2px}
+.fact b{font-size:22px;font-weight:700}
+.fact span{font-size:13px;color:var(--muted)}
+.reviews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px}
+.rv{display:grid;gap:8px;font-size:15px}
+.rv .who{display:flex;gap:12px;align-items:center}
+.rv .who b{display:block;font-weight:600}
+.rv .who span{font-size:13px;color:var(--muted)}
+.rv .stars{display:flex;gap:2px;color:var(--star)}
+.rv .stars svg{width:10px;height:10px;fill:currentColor}
+
+/* booking card */
+.book{position:sticky;top:88px;border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:var(--shadow);display:grid;gap:16px;background:var(--bg)}
+.book .p{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.book .p s{font-size:16px;color:var(--muted);font-weight:400}
+.book .p small{font-size:15px;font-weight:400}
+.book .p .free{color:var(--brand-ink)}
+.freenote{display:flex;gap:10px;align-items:flex-start;background:var(--brand-soft);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:13px}
+.freenote svg.i{color:var(--brand-ink);margin-top:1px}
+.picker{border:1px solid var(--muted);border-radius:10px;overflow:hidden}
+.picker .row2{display:grid;grid-template-columns:1fr 1fr}
+.picker button.svcopt{border:0;background:var(--bg);text-align:left;padding:10px 12px;display:grid;gap:1px}
+.picker button.svcopt+button.svcopt{border-left:1px solid var(--muted)}
+.picker button.svcopt span{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.picker button.svcopt b{font-size:14px;font-weight:500}
+.picker button.svcopt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink);border-radius:10px}
+.lbl{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.dates{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.date{flex:none;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;text-align:center;display:grid;min-width:56px}
+.date small{font-size:11px;color:var(--muted)}
+.date b{font-size:17px}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.slot{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 4px;font-weight:600;font-size:13px}
+.date:hover,.slot:hover{border-color:var(--ink)}
+.date[aria-pressed="true"],.slot[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.date[aria-pressed="true"] small{color:inherit}
+.charge{text-align:center;font-size:14px;color:var(--muted)}
+.lines{display:grid;gap:10px;font-size:15px}
+.lines div{display:flex;justify-content:space-between;gap:12px}
+.lines .u{text-decoration:underline}
+.lines .disc{color:var(--good)}
+.lines .total{border-top:1px solid var(--line);padding-top:14px;font-weight:700}
+.done{display:grid;gap:12px;justify-items:center;text-align:center}
+.done .ok{width:56px;height:56px;border-radius:50%;background:var(--good-soft);color:var(--good);display:grid;place-items:center}
+.done .ok svg.i{width:28px;height:28px;stroke-width:2.5}
+.mbar{display:none}
+
+/* ---------- hosting dashboard ---------- */
+.htabs{display:flex;gap:4px;justify-content:center;overflow-x:auto;scrollbar-width:none}
+.htabs::-webkit-scrollbar{display:none}
+.htab{border:0;background:none;padding:10px 14px;border-radius:99px;font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap;display:inline-flex;gap:6px;align-items:center}
+.htab:hover{background:var(--soft);color:var(--ink)}
+.htab[aria-current="page"]{color:var(--ink);background:var(--soft)}
+.dot-n{background:var(--brand);color:#fff;border-radius:99px;font-size:11px;padding:0 6px;font-weight:700}
+.host{max-width:1280px;margin:0 auto;padding:40px clamp(16px,4vw,48px) 80px}
+.host h1{font-size:clamp(26px,4vw,34px);font-weight:700;letter-spacing:-.02em}
+.hhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.hhead p{color:var(--muted);margin-top:6px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.rescards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.res{border:1px solid var(--line);border-radius:12px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
+.res .top2{padding:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px}
+.res .when{font-size:14px;font-weight:600;color:var(--brand-ink)}
+.res .when.past{color:var(--muted)}
+.res h3{font-size:20px;font-weight:600;margin-top:4px}
+.res .ctx{font-size:14px;color:var(--muted);margin-top:4px}
+.res .av{width:48px;height:48px;font-size:16px}
+.res .foot{border-top:1px solid var(--line);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--ink)}
+.tag.free{background:var(--brand-soft);color:var(--brand-ink)}
+.tag.ok{background:var(--good-soft);color:var(--good)}
+.av{flex:none;border-radius:50%;display:grid;place-items:center;font-weight:700;color:var(--ink)}
+.hsec{margin-top:48px}
+.hsec>h2{font-size:22px;font-weight:600;margin-bottom:16px}
+.statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.st{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:4px}
+.st span{font-size:14px;color:var(--muted)}
+.st b{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.st small{font-size:13px;color:var(--good);font-weight:600}
+.st small.n{color:var(--muted);font-weight:500}
+.qs{display:grid;gap:12px;max-width:820px}
+.q{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px}
+.q .meta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);flex-wrap:wrap;align-items:center}
+.q .meta b{color:var(--ink)}
+.svcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.svc{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px}
+.svc .head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.svc h3{font-size:17px;font-weight:600}
+.svc .sub{font-size:14px;color:var(--muted)}
+.svc .pr{display:flex;align-items:center;gap:8px;font-size:14px}
+.svc .pr input{width:100px;padding:8px 10px}
+.toggle{position:relative;width:48px;height:32px;flex:none}
+.toggle input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.toggle span{position:absolute;inset:0;background:var(--line);border-radius:99px;transition:background .15s;pointer-events:none}
+.toggle span::after{content:"";position:absolute;top:2px;left:2px;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+.toggle input:checked+span{background:var(--ink)}
+.toggle input:checked+span::after{transform:translateX(16px)}
+.toggle input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.info{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px;max-width:900px}
+.info svg.i{color:var(--brand-ink);width:22px;height:22px;margin-top:2px}
+.info b{display:block}
+.info span{font-size:14px;color:var(--muted)}
+.week{border:1px solid var(--line);border-radius:12px;max-width:900px}
+.day{display:grid;grid-template-columns:130px minmax(0,1fr);gap:16px;align-items:center;padding:16px 20px;border-top:1px solid var(--line)}
+.day:first-child{border-top:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:600}
+.chip.add{border-style:dashed;color:var(--muted)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th{text-align:left;font-weight:600;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px}
+td{padding:14px 16px;border-bottom:1px solid var(--line-soft)}
+tr:last-child td{border-bottom:0}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;max-width:1000px}
+.panel{border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:16px;align-content:start}
+.panel h2{font-size:18px;font-weight:600}
+.r{display:grid;grid-template-columns:130px minmax(0,1fr) 36px;gap:12px;align-items:center;font-size:14px}
+input[type=range]{accent-color:var(--ink);width:100%}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:10px;font-weight:600;font-size:14px;z-index:90;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
+
+@media (max-width:1100px){
+  .top-in{grid-template-columns:auto 1fr;}
+  .top-in .center{grid-column:1/-1;grid-row:2;justify-self:stretch}
+  .search{width:100%}
+  .cols{grid-template-columns:minmax(0,1fr) 340px;gap:40px}
+  .statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .book{position:static}
+  .scores{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .score:nth-child(2){border-right:0}
+  .score:nth-child(3){padding-left:0}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:4;background:var(--bg);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));justify-content:space-between;align-items:center;gap:12px}
+  .mbar .btn{padding:12px 22px}
+}
+@media (max-width:640px){
+  .search .seg.hide-sm{display:none}
+  .search .seg{padding:6px 16px}
+  .switch-link .long{display:none}
+  .freechip .long{display:none}
+  .hostcard{grid-template-columns:minmax(0,1fr);padding:24px}
+  .hstats{grid-template-columns:repeat(3,minmax(0,1fr));text-align:center}
+  .hstats div{border-bottom:0;border-right:1px solid var(--line)}
+  .hstats div:last-child{border-right:0}
+  .ask,.reviews,.facts{grid-template-columns:minmax(0,1fr)}
+  .listing{padding-inline:16px}
+  .page-bar .in{padding-inline:12px}
+  .day{grid-template-columns:minmax(0,1fr)}
+  .r{grid-template-columns:minmax(0,1fr) 36px}
+  .r input{grid-column:1/-1;grid-row:2}
+  .statgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .st b{font-size:22px}
+  .cats{gap:24px}
+}
+.ydlogo{height:34px;width:auto;display:block}
+.ac-tag{font-size:13px;font-weight:700;color:var(--brand-ink);border-left:1px solid var(--line);padding-left:10px;letter-spacing:0}
+@media (prefers-color-scheme: dark){.ydlogo{filter:invert(1) hue-rotate(180deg) saturate(1.4)}}
+@media (max-width:640px){.ac-tag{display:none}.ydlogo{height:28px}}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<main id="app"></main>
+<div id="overlay"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ---------- icons ---------- */
+const P={
+ search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+ all:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+ brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+ bed:'<path d="M3 18V6M21 18v-6a3 3 0 0 0-3-3h-8v6M3 15h18"/><circle cx="6.5" cy="11" r="1.5"/>',
+ rupee:'<path d="M6 4h12M6 9h12M14 4c3 0 3 10-3 10H7l8 7"/>',
+ book:'<path d="M4 19V5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h13"/>',
+ code:'<path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/>',
+ tree:'<path d="M12 22v-6M12 2 5 12h4l-3 4h12l-3-4h4Z"/>',
+ rocket:'<path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 15l-3-3c1-4 4-8 11-9-1 7-5 10-9 11Z"/><circle cx="14.5" cy="9.5" r="1.5"/>',
+ users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',
+ gift:'<rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8S10.5 3 8 3.5 6.5 8 12 8Zm0 0s1.5-5 4-4.5S17.5 8 12 8Z"/>',
+ sliders:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+ menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+ x:'<path d="M6 6l12 12M18 6 6 18"/>',
+ back:'<path d="M15 5l-7 7 7 7"/>',
+ check:'<path d="m5 12 5 5L20 7"/>',
+ medal:'<circle cx="12" cy="15" r="5"/><path d="M8.5 11 6 3h4l2 5 2-5h4l-2.5 8"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ shield:'<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/>',
+ video:'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',
+ chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/>',
+ cap:'<path d="M2 9l10-5 10 5-10 5Z"/><path d="M6 11v5c3 2 9 2 12 0v-5M22 9v6"/>',
+ gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M2.5 12h3M18.5 12h3M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+ chart:'<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/>',
+ steth:'<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a4.5 4.5 0 0 0 9 0v-3"/><circle cx="20" cy="11" r="2"/>',
+ scales:'<path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0Zm14 0-3 7a3 3 0 0 0 6 0Z"/>',
+ pen:'<path d="M12 19 5 12l7-9 7 9Z"/><circle cx="12" cy="11" r="2"/><path d="M8 21h8"/>',
+ calc:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18h8"/>',
+ mic:'<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/>',
+ building:'<path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6M9 11h.01M15 11h.01"/>',
+ laptop:'<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
+ flask:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M7.5 14h9"/>',
+ share:'<path d="M12 3v13M7 8l5-5 5 5M5 14v6h14v-6"/>',
+};
+const ic=(n,extra='')=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
+const HEART='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"/></svg>';
+const STAR='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15.1 1.58l-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"/></svg>';
+const LOGO='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3 1 10l15 7 12-5.6V20h3v-10Z"/><path fill="currentColor" d="M7 15.3v6.2C9.5 24 12.6 25 16 25s6.5-1 9-3.5v-6.2l-9 4.2Z" opacity=".75"/></svg>';
+
+/* ---------- data (all sample) ---------- */
+const HUES=['--h1','--h2','--h3','--h4','--h5','--h6'];
+const ALUMNI=[
+ {id:1,name:'Ananya Iyer',college:'Vindhya University Online',short:'Vindhya Online',course:'Online MCA',batch:2021,role:'SDE II',company:'Razorpay',city:'Bengaluru',rating:4.92,reviews:128,calls:212,fav:true,quote:'I did my MCA while working support at a startup. The live coding labs and project reviews were what got me into engineering.',scores:{'Career support':4.4,Faculty:3.9,'Live classes':4.2,'Fees vs value':4.5},median:'+65%',fees:'₹1.6L',topics:['Career switch','Live classes','Placement support','Work + study'],respond:'within 6 hours',services:[{t:'call',title:'Online MCA review call',dur:20,price:249},{t:'dm',title:'Priority DM',eta:'1 day',price:99}]},
+ {id:2,name:'Rohan Mehta',college:'Narmada University Online',short:'Narmada Online',course:'Online MBA',batch:2022,role:'Brand Manager',company:'Marico',city:'Mumbai',rating:4.81,reviews:74,calls:131,fav:false,quote:'The MBA helped me move from sales to brand. Placement support is a job portal and mock interviews; the network you build yourself.',scores:{'Career support':3.7,Faculty:4.1,'Live classes':3.9,'Fees vs value':4.0},median:'+40%',fees:'₹2.2L',topics:['Placement support','Career switch','Fees & EMI','Faculty'],respond:'within 1 day',services:[{t:'call',title:'Is an online MBA worth it?',dur:30,price:399},{t:'dm',title:'Priority DM',eta:'2 days',price:149}]},
+ {id:3,name:'Sneha Kulkarni',college:'Konkan Open University',short:'Konkan Open',course:'Online BA',batch:2020,role:'UX Researcher',company:'Swiggy',city:'Bengaluru',rating:4.97,reviews:41,calls:58,fav:true,quote:'I studied psychology online while freelancing. Recorded lectures made it possible; I added design courses on the side.',scores:{'Career support':3.3,Faculty:4.5,'Live classes':4.0,'Fees vs value':4.7},median:'+30%',fees:'₹75K',topics:['Work + study','Faculty','Degree recognition'],respond:'within 1 day',services:[{t:'call',title:'Online BA to a design career',dur:25,price:199},{t:'dm',title:'Priority DM',eta:'2 days',price:79}]},
+ {id:4,name:'Arjun Singh',college:'Aravali University Online',short:'Aravali Online',course:'Online MBA',batch:2019,role:'Supply Chain Manager',company:'Mahindra Logistics',city:'Pune',rating:4.63,reviews:52,calls:96,fav:false,quote:'Operations electives were practical and my employer accepted the degree for promotion. Exams are proctored, so plan your weekends.',scores:{'Career support':3.4,Faculty:3.8,'Live classes':3.6,'Fees vs value':4.1},median:'+35%',fees:'₹1.8L',topics:['Degree recognition','Exams & assessments','Work + study'],respond:'within 2 days',services:[{t:'call',title:'Online MBA for working managers',dur:20,price:149},{t:'dm',title:'Priority DM',eta:'3 days',price:49}]},
+ {id:5,name:'Fatima Shaikh',college:'Vindhya University Online',short:'Vindhya Online',course:'Online BCA',batch:2023,role:'Data Analyst',company:'Fractal',city:'Pune',rating:4.74,reviews:29,calls:44,fav:false,quote:'Good if you are self-driven. Live classes are in the evening and the doubt sessions are where you actually learn.',scores:{'Career support':3.9,Faculty:3.6,'Live classes':4.1,'Fees vs value':4.3},median:'First job',fees:'₹1.2L',topics:['Live classes','Exams & assessments','Placement support','Fees & EMI'],respond:'within 12 hours',services:[{t:'call',title:'Online BCA Q&A',dur:15,price:149},{t:'dm',title:'Priority DM',eta:'1 day',price:59}]},
+ {id:6,name:'Karthik Rao',college:'Deccan University Online',short:'Deccan Online',course:'Online BCom',batch:2021,role:'Audit Associate',company:'Deloitte',city:'Hyderabad',rating:4.9,reviews:63,calls:118,fav:true,quote:'I did my BCom online alongside CA. The flexible exam slots are the reason I could do both.',scores:{'Career support':3.8,Faculty:4.2,'Live classes':3.7,'Fees vs value':4.8},median:'First job',fees:'₹90K',topics:['Work + study','Exams & assessments','Fees & EMI'],respond:'within 6 hours',services:[{t:'call',title:'Online BCom + CA advice',dur:20,price:179},{t:'dm',title:'Priority DM',eta:'1 day',price:69}]},
+ {id:7,name:'Meera Joshi',college:'Narmada University Online',short:'Narmada Online',course:'Online BBA',batch:2022,role:'Business Analyst',company:'Bain & Company',city:'Gurugram',rating:4.86,reviews:37,calls:61,fav:false,quote:'The live case sessions were the best part. I used the time I saved on commuting for internships.',scores:{'Career support':4.0,Faculty:4.0,'Live classes':4.4,'Fees vs value':4.2},median:'First job',fees:'₹1.5L',topics:['Placement support','Live classes','Career switch'],respond:'within 1 day',services:[{t:'call',title:'Online BBA to consulting',dur:30,price:449},{t:'dm',title:'Priority DM',eta:'2 days',price:149}]},
+ {id:8,name:'Vikram Nair',college:'Konkan Open University',short:'Konkan Open',course:'Online MBA',batch:2018,role:'Program Manager',company:'Tata Motors',city:'Pune',rating:4.55,reviews:22,calls:39,fav:false,quote:'I was 34 with two kids. The executive MBA weekends were hard, but the degree is UGC-entitled and HR accepted it.',scores:{'Career support':3.2,Faculty:3.9,'Live classes':3.5,'Fees vs value':3.9},median:'+28%',fees:'₹2.0L',topics:['Degree recognition','Work + study','Faculty'],respond:'within 2 days',services:[{t:'call',title:'Online MBA after 30',dur:20,price:149},{t:'dm',title:'Priority DM',eta:'3 days',price:49}]},
+ {id:9,name:'Priya Menon',college:'Aravali University Online',short:'Aravali Online',course:'Online MCA',batch:2022,role:'Software Engineer',company:'Atlassian',city:'Bengaluru',rating:4.88,reviews:88,calls:154,fav:true,quote:'The curriculum is fine; what matters is the projects you build. Most product companies hired me for my GitHub, not the degree.',scores:{'Career support':3.5,Faculty:3.4,'Live classes':3.8,'Fees vs value':4.2},median:'+80%',fees:'₹1.4L',topics:['Career switch','Placement support','Live classes'],respond:'within 12 hours',services:[{t:'call',title:'Online MCA, no sugarcoating',dur:20,price:199},{t:'dm',title:'Priority DM',eta:'1 day',price:79}]},
+ {id:10,name:'Kavya Reddy',college:'Godavari University Online',short:'Godavari Online',course:'Online MSc',batch:2020,role:'Data Scientist',company:'Apollo Hospitals',city:'Hyderabad',rating:4.95,reviews:66,calls:97,fav:true,quote:'I moved from lab work to data science with an online MSc. The statistics faculty were excellent; Python I had to practise on my own.',scores:{'Career support':3.9,Faculty:4.6,'Live classes':4.0,'Fees vs value':4.4},median:'+55%',fees:'₹1.1L',topics:['Career switch','Faculty','Exams & assessments','Fees & EMI'],respond:'within 1 day',services:[{t:'call',title:'Online MSc Data Science',dur:20,price:299},{t:'dm',title:'Priority DM',eta:'2 days',price:99}]},
+ {id:11,name:'Aditi Sharma',college:'Satpura University Online',short:'Satpura Online',course:'Online MA',batch:2021,role:'Content Lead',company:'Unacademy',city:'Delhi',rating:4.89,reviews:47,calls:83,fav:false,quote:'My online MA in English was rigorous and the assignments taught me to write to deadlines, which is my job now.',scores:{'Career support':3.4,Faculty:4.4,'Live classes':3.9,'Fees vs value':4.5},median:'+38%',fees:'₹60K',topics:['Faculty','Exams & assessments','Degree recognition'],respond:'within 12 hours',services:[{t:'call',title:'Online MA, the real version',dur:25,price:349},{t:'dm',title:'Priority DM',eta:'1 day',price:129}]},
+ {id:12,name:'Siddharth Bose',college:'Deccan University Online',short:'Deccan Online',course:'Online MCom',batch:2019,role:'Finance Manager',company:'Asian Paints',city:'Mumbai',rating:4.7,reviews:31,calls:49,fav:false,quote:'An MCom online fit around month-end closing. Taxation and finance modules were directly useful at work.',scores:{'Career support':3.3,Faculty:4.0,'Live classes':3.6,'Fees vs value':4.3},median:'+30%',fees:'₹80K',topics:['Work + study','Fees & EMI','Degree recognition'],respond:'within 1 day',services:[{t:'call',title:'Is an online MCom right for you?',dur:20,price:199},{t:'dm',title:'Priority DM',eta:'2 days',price:79}]},
+ {id:13,name:'Zoya Khan',college:'Satpura University Online',short:'Satpura Online',course:'Online MA',batch:2022,role:'Correspondent',company:'NDTV',city:'Delhi',rating:4.84,reviews:26,calls:40,fav:true,quote:'My MA in journalism was online, my portfolio was not. I freelanced through the course and that got me hired.',scores:{'Career support':3.6,Faculty:4.1,'Live classes':4.2,'Fees vs value':4.4},median:'First job',fees:'₹70K',topics:['Career switch','Live classes','Placement support'],respond:'within 12 hours',services:[{t:'call',title:'Online MA in journalism Q&A',dur:20,price:179},{t:'dm',title:'Priority DM',eta:'1 day',price:69}]},
+ {id:14,name:'Harsh Patel',college:'Godavari University Online',short:'Godavari Online',course:'Online BBA',batch:2020,role:'Business Development Manager',company:'Sun Pharma',city:'Ahmedabad',rating:4.6,reviews:18,calls:27,fav:false,quote:'I joined the family business at 18 and did my BBA online. Exams and assignments fit around work without a break.',scores:{'Career support':3.4,Faculty:3.8,'Live classes':3.7,'Fees vs value':4.4},median:'+25%',fees:'₹1.3L',topics:['Work + study','Exams & assessments','Fees & EMI'],respond:'within 1 day',services:[{t:'call',title:'Online BBA while working',dur:20,price:149},{t:'dm',title:'Priority DM',eta:'2 days',price:49}]},
+];
+const NEXT=['Today, 8:30 PM','Tomorrow, 7:00 PM','Sat, 11:00 AM','Sun, 5:00 PM','Today, 9:00 PM','Tomorrow, 6:30 PM','Mon, 8:00 PM','Sat, 4:00 PM','Tomorrow, 9:00 PM','Today, 7:30 PM','Sun, 10:00 AM','Fri, 8:00 PM','Tomorrow, 8:00 PM','Sat, 6:00 PM'];
+const LANGS=['English, Hindi, Tamil','English, Hindi, Gujarati','English, Marathi, Hindi','English, Hindi, Punjabi','English, Hindi, Urdu','English, Telugu, Kannada','English, Hindi, Marathi','English, Malayalam, Hindi','English, Malayalam, Tamil','English, Telugu, Hindi','English, Hindi','English, Bengali, Hindi','English, Hindi, Urdu','English, Gujarati, Hindi'];
+const STREAM={1:'mca',2:'mba',3:'ba',4:'mba',5:'bca',6:'bcom',7:'bba',8:'mba',9:'mca',10:'msc',11:'ma',12:'mcom',13:'ma',14:'bba'};
+ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];a.stream=STREAM[a.id]});
+const CATS=[['all','All programs','all'],['mba','Online MBA','chart'],['mca','Online MCA','code'],['bba','Online BBA','brief'],['bca','Online BCA','laptop'],['bcom','Online BCom','calc'],['mcom','Online MCom','rupee'],['ma','Online MA','book'],['msc','Online MSc','flask'],['ba','Online BA','pen']];
+const TOPICS=['Placement support','Live classes','Exams & assessments','Degree recognition','Fees & EMI','Work + study','Career switch','Faculty'];
+const TOPIC_ICON={'Placement support':'brief','Live classes':'video','Exams & assessments':'book','Degree recognition':'shield','Fees & EMI':'rupee','Work + study':'clock','Career switch':'rocket','Faculty':'users'};
+const SCORE_ICON={'Career support':'brief',Faculty:'users','Live classes':'video','Fees vs value':'rupee'};
+const REVIEWS=[
+ ['Aditya','Working in sales · Lucknow','Told me exactly which electives matter and how much time live classes really take each week. Saved me from a bad choice.','h2'],
+ ['Nisha','Class 12 · Pune','Very clear about exam formats and the EMI options. It felt like talking to a senior, not reading a brochure.','h5'],
+ ['Kabir','Parent of a working student','My daughter and I joined together. We finally understood how employers see an online degree.','h6'],
+ ['Tanvi','Bank employee · Jaipur','The free first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
+];
+
+const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec',saved:new Set([3]),
+  freeLeft:1,connects:0,filtersOpen:false,
+  profile:null,svc:0,date:0,slot:null,done:null,
+  tab:'today',rTab:'upcoming',answered:new Set()};
+try{const v=localStorage.getItem('ac2-view');if(v==='alumni'||v==='student')S.view=v}catch(e){}
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rupee=n=>'₹'+n.toLocaleString('en-IN');
+const $=s=>document.querySelector(s);
+const initials=n=>n.split(' ').map(s=>s[0]).join('').slice(0,2);
+const avI=(name,hue,size)=>`<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.36)}px;background:var(--${hue})">${initials(name)}</span>`;
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2600)}
+
+/* ---------- header ---------- */
+function header(){
+  if(S.view==='student'){
+    const colleges=[...new Set(ALUMNI.map(a=>a.college))].sort();
+    const courses=[...new Set(ALUMNI.map(a=>a.course))].sort();
+    return `<div class="wrap"><div class="top-in">
+      <button class="logo" data-home aria-label="Alumni Connect home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"><span class="ac-tag">Alumni Connect</span></button>
+      <div class="center"><form class="search" id="searchform" role="search">
+        <label class="seg"><span>University</span><select id="f-college"><option value="all">Any university</option>${colleges.map(c=>`<option ${S.college===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+        <label class="seg hide-sm"><span>Course</span><select id="f-course"><option value="all">Any course</option>${courses.map(c=>`<option ${S.course===c?'selected':''}>${c}</option>`).join('')}</select></label>
+        <label class="seg"><span>Search</span><input id="q" type="search" placeholder="Name, company, city" value="${esc(S.q)}"></label>
+        <button class="go" type="submit" aria-label="Search">${ic('search')}</button>
+      </form></div>
+      <div class="right">
+        <span class="freechip ${S.freeLeft?'':'used'}" title="Your first connect on Alumni Connect is free">${ic('gift')}<span class="num">${S.freeLeft}</span><span class="long">&nbsp;free connect</span></span>
+        <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
+      </div></div></div>`}
+  const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
+  const tabs=[['today','Today'],['calendar','Calendar'],['services','Services'],['inbox','Questions',pend],['earnings','Earnings'],['review','My university review']];
+  return `<div class="wrap"><div class="top-in">
+    <button class="logo" data-tab="today" aria-label="Alumni dashboard home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"></button>
+    <div class="center" style="min-width:0"><nav class="htabs" aria-label="Dashboard">${tabs.map(([k,l,n])=>`<button class="htab" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${l}${n?`<span class="dot-n num">${n}</span>`:''}</button>`).join('')}</nav></div>
+    <div class="right"><button class="switch-link" data-view="student"><span class="long">Switch to </span>student<span class="long"> view</span></button>
+      <span class="menu">${ic('menu')}<img src="${ME.img}" alt="${ME.name}"></span></div>
+  </div></div>`}
+
+/* ---------- student: browse ---------- */
+function filtered(){
+  const q=S.q.trim().toLowerCase();
+  let list=ALUMNI.filter(a=>{
+    if(q&&![a.name,a.college,a.company,a.course,a.role,a.city].join(' ').toLowerCase().includes(q))return false;
+    if(S.college!=='all'&&a.college!==S.college)return false;
+    if(S.course!=='all'&&!a.course.startsWith(S.course))return false;
+    if(S.cat!=='all'&&a.stream!==S.cat)return false;
+    if(S.topic&&!a.topics.includes(S.topic))return false;
+    if(S.price!=='any'&&a.services[0].price>+S.price)return false;
+    return true});
+  if(S.sort==='rating')list.sort((a,b)=>b.rating-a.rating);
+  if(S.sort==='price')list.sort((a,b)=>a.services[0].price-b.services[0].price);
+  if(S.sort==='recent')list.sort((a,b)=>b.batch-a.batch);
+  return list}
+const filterCount=()=>(S.price!=='any')+!!S.topic+(S.sort!=='rec');
+
+function browse(){
+  return `<div class="wrap">
+    <div class="cats-row"><div class="cats" role="group" aria-label="Streams">${CATS.map(([k,l,i])=>`<button class="cat" data-cat="${esc(k)}" aria-pressed="${S.cat===k}">${ic(i)}${l}</button>`).join('')}</div>
+      <button class="pillbtn" id="open-filters">${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}</button></div>
+    ${banner()}
+    <div id="results">${results()}</div></div>`}
+function banner(){
+  return S.freeLeft
+   ?`<div class="banner"><span class="gift">${ic('gift')}</span><div class="txt"><b>Your first connect is free</b><span>Book a call or send a question to any alumni below at no cost. Connects after that are paid at each alumni's price.</span></div></div>`
+   :`<div class="banner"><span class="gift">${ic('check')}</span><div class="txt"><b>You've used your free connect</b><span>Connects are now paid. Calls start at ${rupee(Math.min(...ALUMNI.map(a=>a.services[0].price)))}.</span></div><button class="linkbtn" data-resetfree>Reset demo</button></div>`}
+function results(){
+  const list=filtered();
+  return `<p class="results-meta">${list.length} alumni ${S.cat!=='all'?`in <b style="color:var(--ink)">${CATS.find(c=>c[0]===S.cat)[1]}</b>`:'ready to talk'}${S.topic?` who can talk about <b style="color:var(--ink)">${esc(S.topic)}</b>`:''}</p>
+  ${list.length?`<div class="grid">${list.map(card).join('')}</div>`:`<div class="empty"><h3 style="color:var(--ink);margin-bottom:6px">No exact matches</h3>Try changing or removing some of your filters.<div style="margin-top:16px"><button class="btn sm" data-clear>Clear all filters</button></div></div>`}`}
+function priceLine(a,svc){
+  const s=a.services[svc||0];
+  const unit=s.t==='call'?`${s.dur} min call`:'question';
+  return S.freeLeft?`<b class="free">Free</b> first call · <span class="u">then ${rupee(s.price)}</span>`:`<b>${rupee(s.price)}</b> · ${unit}`}
+function card(a){
+  const avg=Object.values(a.scores).reduce((x,y)=>x+y,0)/4;
+  const soon=/^(Today|Tomorrow)/.test(a.next);
+  return `<article class="card" data-open="${a.id}" tabindex="0" aria-label="${esc(a.name)}, ${esc(a.course)} ${a.batch}, ${esc(a.college)}">
+    <div class="ph">
+      <div class="track" data-track="${a.id}">
+        <div class="slide"><img src="${a.img}" alt="${esc(a.name)}" loading="lazy"><span class="onphoto">${ic('check')}Verified alumni</span></div>
+        <div class="slide sl-pane" style="background:var(--${a.hue})">
+          <span class="sl-k">${esc(a.first)} rates ${esc(a.short)}</span>
+          <div class="sl-big num">${avg.toFixed(1)}<small>/5</small></div>
+          <div class="sl-bars">${Object.entries(a.scores).map(([k,v])=>`<div class="sl-bar"><span>${k}</span><span class="t"><b style="width:${v/5*100}%"></b></span><span class="num">${v.toFixed(1)}</span></div>`).join('')}</div>
+          <div class="sl-facts num"><div><span>Salary hike </span>${a.median}</div><div><span>Fees </span>${a.fees}</div></div>
+        </div>
+        <div class="slide sl-pane" style="background:var(--${a.hue})">
+          <span class="sl-k">In ${esc(a.first)}'s words</span>
+          <p class="sl-q">“${esc(a.quote)}”</p>
+          <span style="font-size:12px;font-weight:600"><span style="opacity:.7;font-weight:500">Speaks </span>${esc(a.langs)}</span>
+        </div>
+      </div>
+      ${a.fav?'<span class="fav">Student favourite</span>':''}
+      <button class="heart" data-heart="${a.id}" aria-pressed="${S.saved.has(a.id)}" aria-label="Save ${esc(a.name)}">${HEART}</button>
+      <button class="arrow prev" data-slide="-1" aria-label="Previous" hidden>${ic('back')}</button>
+      <button class="arrow next" data-slide="1" aria-label="Next">${ic('back','style="transform:scaleX(-1)"')}</button>
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="ct">
+      <div class="l1"><b>${esc(a.name)}</b><span class="rate num">${STAR}${a.rating.toFixed(2)}<span class="cnt">(${a.reviews})</span></span></div>
+      <span class="m">${esc(a.role)} at ${esc(a.company)}</span>
+      <span class="m">${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span>
+      <span class="avail ${soon?'soon':''}">${ic('clock')}${soon?'Available ':'Next: '}${a.next}</span>
+      <span class="price-line num">${priceLine(a)}</span>
+    </div></article>`}
+function syncSlide(track){
+  const ph=track.parentElement,i=Math.round(track.scrollLeft/track.clientWidth),n=track.children.length;
+  ph.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===i));
+  ph.querySelector('.arrow.prev').hidden=i===0;ph.querySelector('.arrow.next').hidden=i>=n-1}
+document.addEventListener('scroll',e=>{const t=e.target;if(t.classList&&t.classList.contains('track'))syncSlide(t)},true);
+
+function filtersModal(){
+  const prices=[['any','Any'],['200','Up to ₹200'],['300','Up to ₹300']];
+  return `<div class="scrim" data-scrim="filters"><div class="modal" role="dialog" aria-modal="true" aria-label="Filters">
+    <div class="modal-h"><button class="x" data-closefilters aria-label="Close">${ic('x')}</button><span>Filters</span><span></span></div>
+    <div class="modal-b">
+      <section><h3>What you want to ask about</h3><p class="muted">Show alumni who are happy to talk about this.</p>
+        <div class="opts">${TOPICS.map(t=>`<button class="opt" data-topic="${esc(t)}" aria-pressed="${S.topic===t}">${ic(TOPIC_ICON[t])}${t}</button>`).join('')}</div></section>
+      <section><h3>Call price</h3><p class="muted">Applies from your second connect. Your first one is free.</p>
+        <div class="opts">${prices.map(([v,l])=>`<button class="opt" data-price="${v}" aria-pressed="${S.price===v}">${l}</button>`).join('')}</div></section>
+      <section><h3>Sort by</h3>
+        <div class="opts">${[['rec','Recommended'],['rating','Highest rated'],['price','Lowest price'],['recent','Most recent batch']].map(([v,l])=>`<button class="opt" data-sort="${v}" aria-pressed="${S.sort===v}">${l}</button>`).join('')}</div></section>
+    </div>
+    <div class="modal-f"><button class="linkbtn" data-clearfilters>Clear all</button><button class="btn dark" data-closefilters>Show ${filtered().length} alumni</button></div>
+  </div></div>`}
+
+/* ---------- student: listing page ---------- */
+function nextDays(){const out=[],b=new Date();for(let i=0;i<7;i++){const d=new Date(b);d.setDate(b.getDate()+i);
+  out.push({dow:i===0?'Today':i===1?'Tmrw':d.toLocaleDateString('en-IN',{weekday:'short'}),dd:d.getDate(),long:d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})})}return out}
+const SLOTS=['10:00 AM','12:30 PM','5:00 PM','6:30 PM','8:00 PM','9:30 PM'];
+
+function listing(a){
+  const avg=(Object.values(a.scores).reduce((x,y)=>x+y,0)/4);
+  const yrs=new Date().getFullYear()-a.batch;
+  const s=a.services[S.svc];
+  return `<div class="page" role="dialog" aria-modal="true" aria-label="${esc(a.name)}">
+    <div class="page-bar"><div class="in"><button class="ghost" data-closepage>${ic('back')}All alumni</button>
+      <div style="display:flex;gap:4px"><button class="ghost" data-sharebtn>${ic('share')}Share</button><button class="ghost" data-heart="${a.id}" aria-pressed="${S.saved.has(a.id)}">${S.saved.has(a.id)?'Saved':'Save'}</button></div></div></div>
+    <div class="listing">
+      <h1>Ask ${esc(a.first)} what ${esc(a.college)} is really like</h1>
+      <div class="subline"><span class="rate num">${STAR}<b>${a.rating.toFixed(2)}</b></span>·<b class="num" style="text-decoration:underline">${a.reviews} reviews</b>·<span>${esc(a.course)}, ${a.batch}</span>·<span>${esc(a.city)}</span></div>
+      <div class="cols">
+        <div>
+          <div class="hostcard">
+            <div class="face"><div class="pic"><img src="${a.img}" alt="${esc(a.name)}"><span class="badge" title="Verified alumni">${ic('check')}</span></div>
+              <h2>${esc(a.first)}</h2><span>${esc(a.role)} at ${esc(a.company)}</span></div>
+            <div class="hstats"><div><b class="num">${a.reviews}</b><span>Reviews</span></div><div><b class="num">${a.rating.toFixed(2)}★</b><span>Rating</span></div><div><b class="num">${yrs}</b><span>Years since graduating</span></div></div>
+          </div>
+          <div class="sec"><div class="hl">
+            ${a.fav?`<div>${ic('medal')}<p><b>Student favourite</b><span>One of the most-loved alumni on Alumni Connect, based on ratings and reviews.</span></p></div>`:''}
+            <div>${ic('shield')}<p><b>Verified alumni</b><span>${esc(a.course)}, batch of ${a.batch}. Verified with a university email and degree certificate.</span></p></div>
+            <div>${ic('clock')}<p><b>Replies ${a.respond}</b><span>${a.calls} calls completed with students and parents.</span></p></div>
+          </div></div>
+          <div class="sec"><h2>In ${esc(a.first)}'s words</h2><p class="bigquote">“${esc(a.quote)}”</p></div>
+          <div class="sec"><h2>What you can ask about</h2><div class="ask">
+            ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
+            <div>${ic('users')}<span>Peers and networking</span></div><div>${ic('cap')}<span>Admission and eligibility</span></div></div></div>
+          <div class="sec"><div class="overall">${STAR.replace('<svg','<svg style="width:28px;height:28px;fill:currentColor"')}<b class="num">${avg.toFixed(1)}</b><span class="muted">${esc(a.first)}'s university scorecard, out of 5</span></div>
+            <div class="scores">${Object.entries(a.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div>
+            <div class="facts"><div class="fact"><b class="num">${a.median}</b><span>${esc(a.first)}'s salary change after the degree</span></div><div class="fact"><b class="num">${a.fees}</b><span>Total fees paid over the course</span></div></div></div>
+          <div class="sec" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
+            <div class="reviews">${REVIEWS.map(([n,c,t,h])=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="stars">${STAR.repeat(5)}</div><p>${esc(t)}</p></div>`).join('')}</div></div>
+        </div>
+        <aside class="book" id="bookcard">${bookCard(a)}</aside>
+      </div>
+    </div>
+    <div class="mbar"><div><div class="num" style="font-weight:600">${S.freeLeft?`<span style="color:var(--brand-ink)">Free</span> <s class="muted" style="font-weight:400">${rupee(s.price)}</s>`:rupee(s.price)}</div><div class="muted" style="font-size:13px">${S.freeLeft?'Your first connect':s.t==='call'?`${s.dur} min call`:'Priority DM'}</div></div>
+      <button class="btn brand" data-scrollbook>${S.freeLeft?'Book free':'Book'}</button></div>
+  </div>`}
+
+function bookCard(a){
+  const s=a.services[S.svc];
+  const free=S.freeLeft>0;
+  const days=nextDays();
+  if(S.done){
+    const d=S.done;
+    return `<div class="done"><span class="ok">${ic('check')}</span><h2 style="font-size:22px">${d.t==='call'?'Your call is booked':'Your question is sent'}</h2>
+      <p class="muted">${d.t==='call'?`${esc(a.first)} will meet you on ${d.when} at ${d.slot}. The video link is in your email and WhatsApp.`:`${esc(a.first)} usually replies ${a.respond}. We'll notify you when the answer is ready.`}</p>
+      ${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You used your <b>free first connect</b>. Your next connect with any alumni is paid.</span></div>`:`<p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>`}
+      <button class="btn block" data-again>Book another session</button></div>`}
+  const can=s.t==='dm'||S.slot;
+  return `<div class="p num">${free?`<span class="free">Free</span><s>${rupee(s.price)}</s>`:rupee(s.price)}<small>${s.t==='call'?`/ ${s.dur} min call`:'/ question'}</small></div>
+    ${free?`<div class="freenote">${ic('gift')}<span><b>Your first connect is free.</b> After this, ${esc(a.first)} charges ${rupee(s.price)} per ${s.t==='call'?'call':'question'}.</span></div>`:''}
+    <div class="picker"><div class="row2">${a.services.map((x,i)=>`<button class="svcopt" data-svc="${i}" aria-pressed="${S.svc===i}"><span>${x.t==='call'?'Video call':'Priority DM'}</span><b>${x.t==='call'?`${x.dur} min`:`Reply in ${x.eta}`}</b></button>`).join('')}</div></div>
+    ${s.t==='call'?`
+      <div style="display:grid;gap:8px"><span class="lbl">Date</span><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
+      <div style="display:grid;gap:8px"><span class="lbl">Time (IST)</span><div class="slots">${SLOTS.filter((x,i)=>(S.date+i)%4!==1).map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
+    :`<label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
+    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?(free?(s.t==='call'?'Book free call':'Send free question'):(s.t==='call'?'Book call':'Send question')):'Choose a time'}</button>
+    <p class="charge">${free?'You won\'t be charged for this one':'You\'ll pay after confirming'}</p>
+    <div class="lines num">
+      <div><span class="u">${s.t==='call'?`${s.dur} min video call`:'Priority DM'}</span><span>${rupee(s.price)}</span></div>
+      ${free?`<div class="disc"><span>First connect free</span><span>−${rupee(s.price)}</span></div>`:''}
+      <div class="total"><span>Total</span><span>${free?'₹0':rupee(s.price)}</span></div>
+    </div>`}
+
+/* ---------- alumni dashboard ---------- */
+const ME=ALUMNI[0];
+const BOOKINGS=[
+ {who:'Aditya Verma',ctx:'Works in customer support · MCA or MBA?',when:'Today',time:'8:30 PM',amt:249,free:false,hue:'h2',st:'upcoming'},
+ {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:0,free:true,hue:'h5',st:'upcoming'},
+ {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:0,free:true,hue:'h3',st:'upcoming'},
+ {who:'Ishita Bose',ctx:'Comparing three online universities',when:'5 Oct',time:'6:00 PM',amt:249,free:false,hue:'h4',st:'done',rated:5,repeat:true},
+ {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:0,free:true,hue:'h6',st:'done',rated:5},
+ {who:'Tanvi Rao',ctx:'Asked about fee waivers',when:'1 Oct',time:'Priority DM',amt:99,free:false,hue:'h1',st:'done',rated:4},
+];
+const QUESTIONS=[
+ {id:'q1',who:'Sameer K.',q:'Did the placement cell actually help you get interviews, or did you apply on your own?',age:'3 hours ago',amt:99,free:false},
+ {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:0,free:true},
+];
+const SERVICES=[
+ {id:'s1',title:'Online MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video'},
+ {id:'s2',title:'Priority DM: ask anything',kind:'Written reply in 1 day',dur:null,price:99,on:true,booked:50,icon:'chat'},
+ {id:'s3',title:'Parent Q&A call',kind:'Video call',dur:30,price:349,on:false,booked:0,icon:'users'},
+];
+const WEEK=[['Monday',['8:00 PM','9:30 PM']],['Tuesday',[]],['Wednesday',['8:00 PM']],['Thursday',[]],['Friday',['8:30 PM','9:30 PM']],['Saturday',['11:00 AM','5:00 PM','6:30 PM']],['Sunday',['11:00 AM']]];
+const MY_SCORES={...ME.scores};
+
+function dash(){return `<div class="host">${({today:dToday,calendar:dCal,services:dSvc,inbox:dInbox,earnings:dEarn,review:dReview})[S.tab]()}</div>`}
+function resCard(b){
+  return `<div class="res"><div class="top2"><div style="min-width:0"><span class="when ${b.st==='done'?'past':''}">${b.st==='done'?'Completed ':''}${b.when}${b.time.includes(':')?`, ${b.time}`:` · ${b.time}`}</span>
+    <h3>${b.who}</h3><p class="ctx">${b.ctx}</p></div>${avI(b.who,b.hue,48)}</div>
+    <div class="foot">${b.free?'<span class="tag free">Free first connect</span>':`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
+    ${b.st==='upcoming'?(b.when==='Today'?'<button class="btn dark sm" data-join>Join call</button>':'<button class="btn sm" data-msg>Message</button>'):`<span class="rate num">${STAR}${b.rated}.0</span>`}</div></div>`}
+function dToday(){
+  const list=BOOKINGS.filter(b=>S.rTab==='upcoming'?b.st==='upcoming':b.st==='done');
+  const pend=QUESTIONS.filter(q=>!S.answered.has(q.id));
+  return `<div class="hhead"><div><h1>Welcome back, ${ME.first}</h1><p>3 students want to hear about ${esc(ME.college)} this week.</p></div>
+    <button class="btn sm" id="copy-link">Copy profile link</button></div>
+  <div class="filters"><button class="opt" data-rtab="upcoming" aria-pressed="${S.rTab==='upcoming'}">Upcoming (3)</button><button class="opt" data-rtab="done" aria-pressed="${S.rTab==='done'}">Completed (3)</button></div>
+  <div class="rescards">${list.map(resCard).join('')}</div>
+  ${pend.length?`<div class="hsec"><h2>Questions waiting for you</h2><div class="qs">${pend.map(qCard).join('')}</div></div>`:''}
+  <div class="hsec"><h2>October so far</h2><div class="statgrid">
+    <div class="st"><span>Earned</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
+    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 free first connects</small></div>
+    <div class="st"><span>Free → paid</span><b class="num">41%</b><small class="n">of free connects booked again</small></div>
+    <div class="st"><span>Rating</span><b class="num">4.92★</b><small class="n">128 reviews</small></div>
+  </div></div>`}
+function qCard(q){
+  const done=S.answered.has(q.id);
+  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?'<span class="tag free">Free first connect</span>':`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
+    <p>${esc(q.q)}</p>
+    ${done?'':`<textarea id="ans-${q.id}" rows="2" placeholder="Be specific: real numbers, names of clubs, what you would do differently."></textarea><div><button class="btn dark sm" data-answer="${q.id}">Send answer</button></div>`}</div>`}
+function dInbox(){return `<div class="hhead"><div><h1>Questions</h1><p>Answer within 24 hours to keep your “replies within 6 hours” badge.</p></div></div><div class="qs">${QUESTIONS.map(qCard).join('')}</div>`}
+function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Every student's first connect is free</b><span>A student's first call or question on Alumni Connect costs them nothing. Your prices apply from their second connect. Last month 41% of your free connects booked a paid session.</span></p></div>`}
+function dSvc(){
+  return `<div class="hhead"><div><h1>Your services</h1><p>What students can book on your profile.</p></div><button class="btn dark sm" id="add-svc">Add a service</button></div>
+  ${freeInfo()}
+  <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div><h3>${esc(s.title)}</h3><p class="sub">${s.kind}${s.dur?` · ${s.dur} min`:''}</p></div></div>
+      <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-toggle="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
+    <div class="pr"><label for="price-${s.id}">Price from 2nd connect</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px"><span class="muted num">${s.booked} bookings</span>${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</div></div>`).join('')}</div>`}
+function dCal(){
+  return `<div class="hhead"><div><h1>Calendar</h1><p>Weekly hours when students can book you. Times are in IST.</p></div><button class="btn dark sm" id="save-av">Save</button></div>
+  <div class="week">${WEEK.map(([d,sl],i)=>`<div class="day"><b>${d}</b><div class="chips">${sl.length?sl.map(x=>`<span class="chip num">${x}</span>`).join(''):'<span class="muted" style="font-size:14px;align-self:center">Unavailable</span>'}<button class="chip add" data-addslot="${i}">+ Add time</button></div></div>`).join('')}</div>`}
+function dEarn(){
+  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · free first connect',0],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
+  return `<div class="hhead"><div><h1>Earnings</h1><p>Platform fee of 10% is already deducted.</p></div><button class="btn dark sm" id="withdraw">Withdraw ₹4,980</button></div>
+  <div class="statgrid" style="margin-bottom:24px">
+    <div class="st"><span>Available</span><b class="num">₹4,980</b><small class="n">Auto-payout on 15 Oct</small></div>
+    <div class="st"><span>This month</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
+    <div class="st"><span>Lifetime</span><b class="num">₹52,310</b><small class="n">since Jan 2025</small></div>
+    <div class="st"><span>Free connects given</span><b class="num">9</b><small class="n">this month</small></div></div>
+  <div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th style="text-align:right">Amount</th></tr></thead><tbody>
+  ${tx.map(([d,t,a])=>`<tr><td class="num">${d}</td><td>${t}</td><td class="num" style="text-align:right;color:${a>0?'var(--good)':'var(--muted)'}">${a===0?'Free':(a<0?'−':'+')+rupee(Math.abs(a))}</td></tr>`).join('')}</tbody></table></div>`}
+function dReview(){
+  return `<div class="hhead"><div><h1>My university review</h1><p>The first thing students read on your profile.</p></div><button class="btn dark sm" id="save-review">Save</button></div>
+  <div class="two">
+    <div class="panel"><h2>About your time there</h2>
+      <label class="field">One-line summary<textarea id="my-quote" rows="3" maxlength="140">${esc(ME.quote)}</textarea></label>
+      <div style="display:grid;gap:12px"><span class="lbl">Scorecard, out of 5</span>
+      ${Object.entries(MY_SCORES).map(([k,v],i)=>`<div class="r"><span>${k}</span><input type="range" min="1" max="5" step="0.1" id="sc-${i}" data-score="${esc(k)}" value="${v}"><b class="num" id="scv-${i}">${v.toFixed(1)}</b></div>`).join('')}</div></div>
+    <div class="panel"><h2>Your numbers</h2>
+      <label class="field">Salary change after your degree<input class="input" id="my-ctc" value="${ME.median}"></label>
+      <label class="field">Total fees you paid<input class="input" id="my-fees" value="${ME.fees}"></label>
+      <span class="tag ok" style="justify-self:start">${ic('check','style="width:14px;height:14px"')} Verified with university email</span></div>
+  </div>`}
+
+/* ---------- render ---------- */
+function render(){
+  $('#top').innerHTML=header();
+  $('#app').innerHTML=S.view==='student'?browse():dash();
+  renderOverlay()}
+function renderResults(){const r=$('#results');if(r)r.innerHTML=results();const fb=$('#open-filters');if(fb)fb.innerHTML=`${ic('sliders')}Filters${filterCount()?`<span class="count num">${filterCount()}</span>`:''}`}
+function renderOverlay(){
+  const a=S.profile&&ALUMNI.find(x=>x.id===S.profile);
+  let h='';
+  if(S.view==='student'&&a)h=listing(a);
+  if(S.view==='student'&&S.filtersOpen)h+=filtersModal();
+  $('#overlay').innerHTML=h;
+  document.body.style.overflow=h?'hidden':''}
+function renderBook(){const a=ALUMNI.find(x=>x.id===S.profile);const p=$('.page');const st=p?p.scrollTop:0;renderOverlay();const p2=$('.page');if(p2)p2.scrollTop=st}
+function open(id){Object.assign(S,{profile:id,svc:0,date:0,slot:null,done:null});renderOverlay()}
+
+document.addEventListener('submit',e=>{if(e.target.id==='searchform'){e.preventDefault();renderResults()}});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-open],[data-scrim]');if(!t)return;
+  const d=t.dataset;
+  if(d.view){S.view=d.view;S.profile=null;S.filtersOpen=false;try{localStorage.setItem('ac2-view',S.view)}catch(_){};render();scrollTo(0,0);return}
+  if(d.heart){const id=+d.heart;S.saved.has(id)?S.saved.delete(id):S.saved.add(id);t.setAttribute('aria-pressed',S.saved.has(id));if(!t.classList.contains('heart'))t.textContent=S.saved.has(id)?'Saved':'Save';
+    document.querySelectorAll(`.heart[data-heart="${id}"]`).forEach(h=>h.setAttribute('aria-pressed',S.saved.has(id)));toast(S.saved.has(id)?'Saved to your shortlist':'Removed from shortlist');return}
+  if(d.slide){const tr=t.parentElement.querySelector('.track');tr.scrollBy({left:+d.slide*tr.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return}
+  if(d.open){open(+d.open);return}
+  if(d.home!==undefined){Object.assign(S,{cat:'all',q:'',college:'all',course:'all'});render();return}
+  if(d.cat){S.cat=d.cat;document.querySelectorAll('.cat').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===S.cat));renderResults();return}
+  if(t.id==='open-filters'){S.filtersOpen=true;renderOverlay();return}
+  if(d.closefilters!==undefined||(d.scrim==='filters'&&e.target===t)){S.filtersOpen=false;renderOverlay();renderResults();return}
+  if(d.topic){S.topic=S.topic===d.topic?null:d.topic;renderOverlay();return}
+  if(d.price){S.price=d.price;renderOverlay();return}
+  if(d.sort){S.sort=d.sort;renderOverlay();return}
+  if(d.clearfilters!==undefined){Object.assign(S,{price:'any',topic:null,sort:'rec'});renderOverlay();return}
+  if(d.clear!==undefined){Object.assign(S,{q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec'});render();return}
+  if(d.resetfree!==undefined){S.freeLeft=1;render();toast('Demo reset: free connect restored');return}
+  if(d.closepage!==undefined){S.profile=null;renderOverlay();return}
+  if(d.sharebtn!==undefined){toast('Profile link copied');return}
+  if(d.scrollbook!==undefined){$('#bookcard')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+  if(d.svc){S.svc=+d.svc;S.slot=null;renderBook();return}
+  if(d.date){S.date=+d.date;S.slot=null;renderBook();return}
+  if(d.slot){S.slot=d.slot;renderBook();return}
+  if(d.again!==undefined){S.done=null;S.slot=null;renderBook();return}
+  if(t.id==='confirm'){
+    const a=ALUMNI.find(x=>x.id===S.profile),s=a.services[S.svc];
+    if(s.t==='dm'&&($('#dm')?.value||'').trim().length<10){toast('Write a question of at least 10 characters');return}
+    if(s.t==='call'&&!S.slot)return;
+    const free=S.freeLeft>0;
+    S.done={t:s.t,free,paid:s.price,when:nextDays()[S.date].long,slot:S.slot};
+    if(free)S.freeLeft=0;S.connects++;
+    $('#top').innerHTML=header();renderResults();const b=$('.banner');if(b)b.outerHTML=banner();
+    renderBook();return}
+  /* dashboard */
+  if(d.tab){S.tab=d.tab;render();scrollTo(0,0);return}
+  if(d.rtab){S.rTab=d.rtab;render();return}
+  if(d.answer){const v=($('#ans-'+d.answer)?.value||'').trim();if(!v){toast('Write an answer before sending');return}
+    const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(q.free?'Answer sent. This was their free first connect':`Answer sent. ${rupee(q.amt)} added to earnings`);return}
+  if(t.id==='copy-link'){const txt='alumniconnect.in/ananya-iyer';(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Profile link copied'),()=>toast('Your link: '+txt));return}
+  if(d.join!==undefined){toast('In the live product this opens the video call');return}
+  if(d.msg!==undefined){toast('In the live product this opens a chat with the student');return}
+  if(t.id==='add-svc'){SERVICES.push({id:'s'+(SERVICES.length+1),title:'New service',kind:'Video call',dur:15,price:99,on:false,booked:0,icon:'video'});render();toast('Draft added. Set a price, then switch it on');return}
+  if(d.addslot){const sl=WEEK[+d.addslot][1];const n=['7:00 PM','8:00 PM','9:00 PM','10:00 AM','6:00 PM'].find(o=>!sl.includes(o));if(n){sl.push(n);render()}return}
+  if(t.id==='save-av'){toast('Calendar saved');return}
+  if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;ME.median=$('#my-ctc').value;ME.fees=$('#my-fees').value;Object.assign(ME.scores,MY_SCORES);toast('Review saved. Students see it on your profile');return}
+  if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(S.filtersOpen){S.filtersOpen=false;renderOverlay()}else if(S.profile){S.profile=null;renderOverlay()}}
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-open]')){e.preventDefault();open(+e.target.dataset.open)}});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='q'){S.q=t.value;renderResults()}
+  if(t.dataset.score){MY_SCORES[t.dataset.score]=+t.value;$('#scv-'+t.id.split('-')[1]).textContent=(+t.value).toFixed(1)}
+  if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.id==='f-college'){S.college=t.value;renderResults()}
+  if(t.id==='f-course'){S.course=t.value;renderResults()}
+  if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
+render();
+</script>
+
+</body>
+</html>
