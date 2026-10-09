@@ -342,6 +342,20 @@ textarea{resize:vertical}
 .soc-ed .si svg.i{width:20px;height:20px}
 .soc-ed .toggle{margin-bottom:6px}
 .soc-ed .field span{font-size:13px}
+.pnav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.pnav::-webkit-scrollbar{display:none}
+.pnav button{border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:8px 12px;border-radius:99px;cursor:pointer;white-space:nowrap;position:relative}
+.pnav button:hover{color:var(--ink);background:var(--soft)}
+.pnav button[aria-current="true"]{color:var(--ink)}
+.pnav button[aria-current="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;border-radius:2px;background:var(--ink)}
+.sublink{border:0;background:none;padding:0;font:inherit;font-weight:600;text-decoration:underline;color:var(--ink);cursor:pointer}
+.hs-socs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.hs{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;background:var(--bg);padding:5px 10px 5px 8px;font:inherit;font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer}
+.hs svg.i{width:15px;height:15px;color:var(--c)}
+.hs:hover{border-color:var(--c);color:var(--c)}
+.rv-meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.hostcard .face h2{font-size:22px;text-align:center;text-wrap:balance}
+@media (max-width:860px){.pnav{display:none}}
 .hostcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border-radius:24px;box-shadow:0 6px 20px rgba(0,0,0,.14);padding:28px 32px;background:var(--bg)}
 .hostcard .face{display:grid;justify-items:center;gap:6px;text-align:center}
 .hostcard .face .pic{position:relative}
@@ -784,6 +798,7 @@ const CATS=[['all','All programs','all'],['mba','MBA','chart'],['mca','MCA','cod
 const TOPICS=['Placement support','Live classes','Campus life','Exams & assessments','Degree recognition','Fees & EMI','Work + study','Career switch','Faculty'];
 const TOPIC_ICON={'Campus life':'tree','Placement support':'brief','Live classes':'video','Exams & assessments':'book','Degree recognition':'shield','Fees & EMI':'rupee','Work + study':'clock','Career switch':'rocket','Faculty':'users'};
 const SCORE_ICON={'Career support':'brief',Faculty:'users',Teaching:'video','Fees vs value':'rupee'};
+const REV_META=[['September 2026','30 min call'],['September 2026','Priority DM'],['August 2026','1 hr call'],['July 2026','15 min call']];
 const REVIEWS=[
  ['Aditya','Working in sales · Lucknow','Told me exactly which electives matter and how much time live classes really take each week. Saved me from a bad choice.','h2'],
  ['Nisha','Class 12 · Pune','Very clear about exam formats and the EMI options. It felt like talking to a senior, not reading a brochure.','h5'],
@@ -935,7 +950,8 @@ function syncSlide(track){
   const ph=track.parentElement,i=Math.round(track.scrollLeft/track.clientWidth),n=track.children.length;
   ph.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===i));
   ph.querySelector('.arrow.prev').hidden=i===0;ph.querySelector('.arrow.next').hidden=i>=n-1}
-document.addEventListener('scroll',e=>{const t=e.target;if(t.classList&&t.classList.contains('track'))syncSlide(t)},true);
+function updNav(t){const ids=['s-about','s-ask','s-edu','s-score','s-rev'];let cur=null;for(const id of ids){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<160)cur=id}if(t.scrollTop+t.clientHeight>=t.scrollHeight-4)cur=ids[ids.length-1];if(t.scrollTop<40)cur=null;document.querySelectorAll('.pnav button').forEach(b=>b.setAttribute('aria-current',b.dataset.jump===cur))}
+document.addEventListener('scroll',e=>{const t=e.target;if(t.classList&&t.classList.contains('page'))updNav(t);if(t.classList&&t.classList.contains('track'))syncSlide(t)},true);
 
 function filtersModal(){
   const prices=[['any','Any'],['200','Up to ₹200'],['300','Up to ₹300']];
@@ -982,15 +998,16 @@ function listing(a){
   const s=a.services[S.svc];
   return `<div class="page" role="dialog" aria-modal="true" aria-label="${esc(a.name)}">
     <div class="page-bar"><div class="in"><button class="ghost" data-closepage>${ic('back')}All alumni</button>
+      <nav class="pnav" aria-label="Sections">${[['s-about','About'],['s-ask','Ask about'],['s-edu','Education'],['s-score','Scorecards'],['s-rev','Reviews']].map(([id,l])=>`<button data-jump="${id}">${l}</button>`).join('')}</nav>
       <div style="display:flex;gap:4px"><button class="ghost" data-sharebtn>${ic('share')}Share</button><button class="ghost" data-heart="${a.id}" aria-pressed="${S.saved.has(a.id)}">${S.saved.has(a.id)?'Saved':'Save'}</button></div></div></div>
     <div class="listing">
       <h1>Ask ${esc(a.first)} what ${esc(a.college)} is really like</h1>
-      <div class="subline"><span class="rate num">${STAR}<b>${a.rating.toFixed(2)}</b></span>·<b class="num" style="text-decoration:underline">${a.reviews} reviews</b>·<span>${esc(a.course)}, ${a.batch}</span>·<span>${esc(a.city)}</span></div>
+      <div class="subline"><span class="rate num">${STAR}<b>${a.rating.toFixed(2)}</b></span>·<button class="sublink num" data-jump="s-rev">${a.reviews} reviews</button>·<span>${esc(a.course)}, ${a.batch}</span>·<span>${esc(a.city)}</span></div>
       <div class="cols">
         <div>
           <div class="hostcard">
             <div class="face"><div class="pic"><img src="${a.img}" alt="${esc(a.name)}"><span class="badge" title="Verified alumni">${ic('check')}</span></div>
-              <h2>${esc(a.first)}</h2><span>${esc(a.role)} at ${esc(a.company)}</span>${a.socials.filter(x=>x.show).length?`<div class="mini-socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="ms" data-soc="${lbl}" style="--c:${col}" aria-label="${lbl}: ${esc(x.handle)}" title="${lbl}">${ic(icn)}</button>`}).join('')}</div>`:''}</div>
+              <h2>${esc(a.name)}</h2><span>${esc(a.role)} at ${esc(a.company)}</span>${a.socials.filter(x=>x.show).length?`<div class="hs-socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="hs" data-soc="${lbl}" style="--c:${col}" title="${esc(x.handle)}">${ic(icn)}${lbl}</button>`}).join('')}</div>`:''}</div>
             <div class="hstats"><div><b class="num">${a.reviews}</b><span>Reviews</span></div><div><b class="num">${a.rating.toFixed(2)}★</b><span>Rating</span></div><div><b class="num">${yrs}</b><span>Years since graduating</span></div></div>
           </div>
           <div class="sec"><div class="hl">
@@ -999,21 +1016,21 @@ function listing(a){
             <div>${ic('check')}<p><b>Protected booking on ${BRAND}</b><span>We hold your payment until the call ends. If ${esc(a.first)} cancels or doesn't join, you get a full refund.</span></p></div>
             <div>${ic('clock')}<p><b>Replies ${a.respond}</b><span>${a.calls} calls completed with students and parents.</span></p></div>
           </div></div>
-          <div class="sec"><h2>Education</h2><ol class="tl">${a.degrees.map(d=>`<li class="tl-i"><span class="tl-logo">${ic('college')}</span><div class="tl-b">
-              <b>${esc(d.college)}</b><span class="deg">${COURSE_FULL[d.course]||esc(d.course)} (${esc(d.course)})${d.field?`, ${esc(d.field)}`:''}</span>
-              <span class="yrs num">${d.start} – ${d.batch} · ${d.batch-d.start} yr${d.batch-d.start===1?'':'s'} · <span class="mode">${ic(MODE_ICON[d.mode]||'cap')}${esc(d.mode)}</span>${d.verified?` · <span class="vchk">${ic('check')}Verified</span>`:''}</span>${d.details?`<p>${esc(d.details)}</p>`:''}</div></li>`).join('')}</ol></div>
-          ${a.socials.filter(x=>x.show).length?`<div class="sec"><h2>Find ${esc(a.first)} online</h2><div class="socs">${a.socials.filter(x=>x.show).map(x=>{const [lbl,icn,col]=SOC_META[x.net];return `<button class="soc" data-soc="${lbl}" style="--c:${col}"><span class="si">${ic(icn)}</span><span class="sx"><b>${lbl}</b><small>${esc(x.handle)}</small></span></button>`}).join('')}</div></div>`:''}
-          ${a.bio?`<div class="sec"><h2>About ${esc(a.first)}</h2><p class="about">${esc(a.bio)}</p></div>`:''}
-          <div class="sec"><h2>What you can ask about</h2><div class="ask">
+          ${a.bio?`<div class="sec" id="s-about"><h2>About ${esc(a.first)}</h2><p class="about">${esc(a.bio)}</p></div>`:''}
+          <div class="sec" id="s-ask"><h2>What you can ask about</h2><div class="ask">
             ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
             <div>${ic('users')}<span>Peers and networking</span></div><div>${ic('cap')}<span>Admission and eligibility</span></div></div></div>
-          <div class="sec"><h2>${a.degrees.length>1?`${esc(a.first)}'s university scorecards`:`${esc(a.first)}'s university scorecard`}</h2><div class="scgrid">${a.degrees.filter(d=>d.scores).map(d=>{const av=Object.values(d.scores).reduce((x,y)=>x+y,0)/4;return `<div class="sccard">
+          <div class="sec" id="s-edu"><h2>Education</h2><ol class="tl">${a.degrees.map(d=>`<li class="tl-i"><span class="tl-logo">${ic('college')}</span><div class="tl-b">
+              <b>${esc(d.college)}</b><span class="deg">${COURSE_FULL[d.course]||esc(d.course)} (${esc(d.course)})${d.field?`, ${esc(d.field)}`:''}</span>
+              <span class="yrs num">${d.start} – ${d.batch} · ${d.batch-d.start} yr${d.batch-d.start===1?'':'s'} · <span class="mode">${ic(MODE_ICON[d.mode]||'cap')}${esc(d.mode)}</span>${d.verified?` · <span class="vchk">${ic('check')}Verified</span>`:''}</span>${d.details?`<p>${esc(d.details)}</p>`:''}</div></li>`).join('')}</ol></div>
+          <div class="sec" id="s-score"><h2>${a.degrees.length>1?`${esc(a.first)}'s university scorecards`:`${esc(a.first)}'s university scorecard`}</h2><div class="scgrid">${a.degrees.filter(d=>d.scores).map(d=>{const av=Object.values(d.scores).reduce((x,y)=>x+y,0)/4;return `<div class="sccard">
             <div class="sch"><span class="tl-logo">${ic('college')}</span><div class="sch-t"><b>${esc(d.college)}</b><span class="num">${esc(d.course)} · ${d.start} – ${d.batch} · ${esc(d.mode)}</span></div></div>
             <div class="scavg"><b class="num">${av.toFixed(1)}</b><span>${STAR}${STAR}${STAR}${STAR}${STAR}<i style="width:${(av/5*100).toFixed(0)}%">${STAR}${STAR}${STAR}${STAR}${STAR}</i></span><small>overall</small></div>
             <div class="scrows">${Object.entries(d.scores).map(([k,v])=>`<div class="scr"><span>${k}</span><span class="bar"><b style="width:${v/5*100}%"></b></span><b class="num">${v.toFixed(1)}</b></div>`).join('')}</div>
           </div>`}).join('')}</div></div>
-          <div class="sec" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
-            <div class="reviews">${REVIEWS.map(([n,c,t,h])=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="stars">${STAR.repeat(5)}</div><p>${esc(t)}</p></div>`).join('')}</div></div>
+          <div class="sec" id="s-rev" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
+            <div class="reviews">${REVIEWS.map(([n,c,t,h],i)=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="rv-meta"><span class="stars">${STAR.repeat(5)}</span><span>${REV_META[i][0]} · ${REV_META[i][1]}</span></div><p>${esc(t)}</p></div>`).join('')}</div>
+            <button class="btn sm" data-allrev style="margin-top:28px">Show all ${a.reviews} reviews</button></div>
         </div>
         <aside class="book" id="bookcard">${bookCard(a)}</aside>
       </div>
@@ -1249,6 +1266,8 @@ document.addEventListener('click',e=>{
   if(d.addslot){const sl=WEEK[+d.addslot][1];const n=['7:00 PM','8:00 PM','9:00 PM','10:00 AM','6:00 PM'].find(o=>!sl.includes(o));if(n){sl.push(n);render()}return}
   if(t.id==='save-av'){toast('Calendar saved');return}
   if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;syncLatest(ME);toast('Review saved. Students see it on your profile');return}
+  if(d.jump){const pg=$('.page'),el=document.getElementById(d.jump);if(pg&&el){const top=Math.min(pg.scrollHeight-pg.clientHeight,Math.max(0,el.getBoundingClientRect().top-pg.getBoundingClientRect().top+pg.scrollTop-96));pg.scrollTo({top,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});setTimeout(()=>{if(Math.abs(pg.scrollTop-top)>4)pg.scrollTop=top;updNav(pg)},700)}return}
+  if(d.allrev!==undefined){toast('In the live product this opens all reviews');return}
   if(d.soc){toast(`In the live product this opens ${d.soc}`);return}
   if(t.id==='add-degree'){const y=new Date().getFullYear();ME.degrees.unshift({course:'MBA',start:y-2,batch:y,college:'',field:'',details:'',mode:'Online',verified:false,scores:{...DEFAULT_SCORES}});render();$('#deg-u-0')?.focus();return}
   if(d.degdel){if(ME.degrees.length===1){toast('Keep at least one education entry');return}ME.degrees.splice(+d.degdel,1);syncLatest(ME);render();toast('Education removed');return}
