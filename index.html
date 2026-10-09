@@ -729,6 +729,59 @@ input[type=range]{accent-color:var(--ink);width:100%}
 .ag-meta em{font-style:normal}
 .ag-row>svg.i{width:14px;height:14px;color:var(--muted)}
 @media (max-width:640px){.ag-row{grid-template-columns:64px minmax(0,1fr) 14px}.ag-meta{grid-column:2;grid-row:2}}
+.stabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+.stab{border:0;background:none;font:inherit;font-size:14.5px;font-weight:600;color:var(--muted);padding:10px 14px;display:inline-flex;align-items:center;gap:8px;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
+.stab span{font-size:12px;background:var(--soft);color:var(--muted);border-radius:99px;padding:1px 8px}
+.stab.hot span{background:var(--warn-soft);color:var(--warn)}
+.stab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.stab[aria-selected="true"] span{background:var(--ink);color:var(--bg)}
+.sfbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.sfbar select.input{width:auto;padding:9px 12px;font-size:14px;border-radius:99px}
+.sfbar .opt{display:inline-flex;align-items:center;gap:6px;padding:9px 14px}
+.sfbar .opt svg.i{width:15px;height:15px}
+.sf-search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:0 14px;min-width:240px;flex:0 1 300px}
+.sf-search svg.i{width:16px;height:16px;color:var(--muted);flex:none}
+.sf-search input{border:0;padding:9px 0;font-size:14px;outline:none;background:transparent}
+.sf-search:focus-within{border-color:var(--ink)}
+.sesslist2{display:grid;gap:14px}
+.sum-line{display:flex;gap:16px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.sum-line b{color:var(--ink)}
+.srow{display:grid;grid-template-columns:76px minmax(170px,1fr) minmax(0,1.3fr) 170px auto;gap:18px;align-items:center;border:1px solid var(--line-soft);border-left:3px solid var(--good);border-radius:14px;padding:14px 16px;background:var(--bg);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.srow:hover{border-color:var(--line);border-left-color:var(--good);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.srow:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.srow.warn,.srow.warn:hover{border-left-color:var(--warn)}
+.srow.st-done,.srow.st-done:hover{border-left-color:var(--line)}
+.srow.st-cancelled,.srow.st-cancelled:hover{border-left-color:var(--line-soft);opacity:.72}
+.sr-time{display:grid;gap:1px}
+.sr-time b{font-size:15px;font-weight:700}
+.sr-time span{font-size:12.5px;color:var(--muted)}
+.sr-who{display:flex;gap:10px;align-items:center;min-width:0}
+.sr-who>div{display:grid;min-width:0}
+.sr-who b{font-weight:600}
+.sr-who span{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr-mid{display:grid;gap:4px;min-width:0}
+.sr-q,.sr-fb{font-size:13.5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-note{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr-note svg.i{width:13px;height:13px;flex:none}
+.sr-stat{display:grid;gap:6px;justify-items:start}
+.sr-stat .reqtag{margin-top:0;white-space:nowrap}
+.stag{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.stag svg.i{width:12px;height:12px;stroke-width:2.5}
+.stag svg{width:12px;height:12px;fill:currentColor}
+.stag.ok{background:var(--good-soft);color:var(--good)}
+.stag.rate{color:var(--ink)}
+.stag.muted2{background:var(--soft)}
+.sr-earn{display:flex;align-items:center;gap:6px;font-weight:700;font-size:15px}
+.sr-earn em{font-style:normal}
+.sr-act{display:flex;gap:6px;align-items:center;justify-content:flex-end}
+.sr-act .btn svg.i{width:15px;height:15px}
+.ibtn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg);display:grid;place-items:center;color:var(--ink);cursor:pointer}
+.ibtn:hover{border-color:var(--ink)}
+.ibtn svg.i{width:15px;height:15px}
+.ibtn.danger{color:var(--bad)}
+.ibtn.danger:hover{border-color:var(--bad);background:var(--bad-soft)}
+@media (max-width:1100px){.srow{grid-template-columns:70px minmax(0,1fr) auto;row-gap:10px}.sr-mid{grid-column:2/-1;grid-row:2}.sr-stat{grid-column:2;grid-row:3;display:flex;align-items:center;gap:10px}.sr-act{grid-column:3;grid-row:1/4;align-self:start;flex-direction:column;align-items:flex-end}}
+@media (max-width:640px){.srow{grid-template-columns:60px minmax(0,1fr)}.sr-act{grid-column:1/-1;grid-row:auto;flex-direction:row;justify-content:flex-start}.sf-search{flex:1 1 100%;min-width:0}}
 .pbar{height:8px;border-radius:99px;background:var(--line-soft);overflow:hidden}
 .pbar b{display:block;height:100%;background:var(--good);border-radius:99px}
 .chk{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -1360,30 +1413,60 @@ function agenda(list){
       ${ic('back','style="transform:scaleX(-1)"')}
     </button>`).join('')}</div>`).join('')}
 /* Sessions */
-function sessCard(b){
-  const when=`${sessDay(b.off)}, ${b.time}`;
-  const acts=b.st==='upcoming'
-    ?`${b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">Join call</button>`:''}<button class="btn sm" data-a="msg" data-id="${b.id}">Message${b.msgs.length?` (${b.msgs.length})`:''}</button><button class="btn sm" data-a="resched" data-id="${b.id}">Reschedule</button><button class="btn sm ghost2 danger" data-a="cancel" data-id="${b.id}">Cancel</button>`
-    :b.st==='done'?`${b.rated==null?`<button class="btn dark sm" data-a="wrap" data-id="${b.id}">Add notes</button>`:''}<button class="btn sm" data-a="msg" data-id="${b.id}">Message</button>`
-    :'';
-  return `<div class="sess st-${b.st}">
-    <div class="sess-l"><span class="sess-when num">${when}</span><span class="muted num">${fmtDur(b.dur)} video call</span></div>
-    <div class="sess-m">${avI(b.who,b.hue,40)}<div><b>${b.who}</b><span>${esc(b.ctx)}</span>
-      ${b.req?`<span class="reqtag">${ic('calendar')}Asked to move to ${sessDay(b.req.off)}, ${b.req.time}</span>`:''}
-      ${b.pending?`<span class="reqtag pend">${ic('clock')}You suggested ${sessDay(b.pending.off)}, ${b.pending.time} · waiting for reply</span>`:''}
-      ${b.st==='done'?(b.rated?`<span class="fb">${STAR.repeat(b.rated)} “${esc(b.fb)}”</span>`:`<span class="muted" style="font-size:13px">Waiting for the student’s rating</span>`):''}
-      ${b.st==='cancelled'?`<span class="muted" style="font-size:13px">${esc(b.reason)}</span>`:''}
-      ${b.myNote?`<span class="mynote">Your notes: ${esc(b.myNote)}</span>`:''}</div></div>
-    <div class="sess-r"><span class="num earn">${b.st==='cancelled'?'₹0':rupee(earnOf(b))}</span>${b.free?'<span class="tag free">first connect</span>':''}<div class="sess-acts">${acts}<button class="btn sm ghost2" data-a="detail" data-id="${b.id}">Details</button></div></div>
+const SF={q:'',period:'all',len:'all',first:false,sort:'soon'};
+const needsAction=b=>(b.st==='upcoming'&&!!b.req)||(b.st==='done'&&b.rated==null);
+function sessFiltered(){
+  const q=SF.q.trim().toLowerCase();
+  let list=BOOKINGS.filter(b=>S.sTab==='action'?needsAction(b):b.st===S.sTab);
+  if(q)list=list.filter(b=>[b.who,b.ctx,b.note].join(' ').toLowerCase().includes(q));
+  if(SF.period!=='all')list=list.filter(b=>SF.period==='today'?b.off===0:SF.period==='week'?b.off>=0&&b.off<=7:SF.period==='month'?dinfo(b.off).date.getMonth()===new Date().getMonth():SF.period==='past30'?b.off<0&&b.off>=-30:true);
+  if(SF.len!=='all')list=list.filter(b=>b.dur===+SF.len);
+  if(SF.first)list=list.filter(b=>b.free);
+  const asc=(x,y)=>x.off-y.off||tmin(x.time)-tmin(y.time);
+  const upLike=S.sTab==='upcoming'||S.sTab==='action';
+  return list.sort((x,y)=>(SF.sort==='soon')===upLike?asc(x,y):asc(y,x))}
+function sessRow(b){
+  const iconBtn=(a,icon,label,cls='')=>`<button class="ibtn ${cls}" data-a="${a}" data-id="${b.id}" aria-label="${label}" title="${label}">${ic(icon)}</button>`;
+  let status='',primary='';
+  if(b.st==='upcoming'){
+    status=b.req?`<span class="reqtag" title="Wants ${sessDay(b.req.off)}, ${b.req.time}">${ic('calendar')}Wants ${dinfo(b.req.off).short}</span>`:b.pending?`<span class="reqtag pend" title="You suggested ${sessDay(b.pending.off)}, ${b.pending.time}">${ic('clock')}Suggested ${dinfo(b.pending.off).short}</span>`:`<span class="stag ok">${ic('check')}Confirmed</span>`;
+    primary=b.req?`<button class="btn dark sm" data-a="detail" data-id="${b.id}">Review request</button>`:b.off===0?`<button class="btn dark sm" data-a="join" data-id="${b.id}">${ic('video')}Join</button>`:`<button class="btn sm" data-a="msg" data-id="${b.id}">${ic('chat')}Message${b.msgs.length?` (${b.msgs.length})`:''}</button>`;
+  }else if(b.st==='done'){
+    status=b.rated?`<span class="stag rate">${STAR}${b.rated}.0</span>`:`<span class="stag">${ic('clock')}Awaiting rating</span>`;
+    primary=b.rated==null||!b.myNote?`<button class="btn ${b.rated==null?'dark':''} sm" data-a="wrap" data-id="${b.id}">${b.myNote?'Edit notes':'Add notes'}</button>`:'';
+  }else{status=`<span class="stag muted2">${ic('x')}Cancelled</span>`}
+  const secondary=b.st==='upcoming'?(primary.includes('data-a="msg"')?'':iconBtn('msg','chat','Message'))+iconBtn('resched','calendar','Reschedule')+iconBtn('cancel','x','Cancel session','danger'):b.st==='done'?iconBtn('msg','chat','Message'):'';
+  const detail=b.st==='done'&&b.rated?`<p class="sr-fb">“${esc(b.fb)}”</p>`:b.st==='cancelled'?`<p class="sr-fb muted">${esc(b.reason)}</p>`:b.note?`<p class="sr-q">“${esc(b.note)}”</p>`:`<p class="sr-q muted">No question added yet</p>`;
+  return `<div class="srow st-${b.st} ${b.req?'warn':''}" data-a="detail" data-id="${b.id}" role="button" tabindex="0" aria-label="${b.who}, ${sessDay(b.off)} ${b.time}">
+    <div class="sr-time num"><b>${b.time}</b><span>${fmtDur(b.dur)}</span></div>
+    <div class="sr-who">${avI(b.who,b.hue,40)}<div><b>${b.who}</b><span>${esc(b.ctx)}</span></div></div>
+    <div class="sr-mid">${detail}${b.myNote?`<span class="sr-note">${ic('book')}Your notes: ${esc(b.myNote)}</span>`:''}</div>
+    <div class="sr-stat">${status}<span class="sr-earn num">${b.st==='cancelled'?'₹0':rupee(earnOf(b))}${b.free?'<em class="tag free">first connect</em>':''}</span></div>
+    <div class="sr-act">${primary}${secondary}</div>
   </div>`}
+function sessListHTML(){
+  const list=sessFiltered();
+  if(!list.length){const any=SF.q||SF.period!=='all'||SF.len!=='all'||SF.first;return `<div class="emptybox">${any?`No sessions match these filters. <button class="linkbtn" data-a="sfClear">Clear filters</button>`:S.sTab==='upcoming'?'No upcoming sessions. Share your profile link to get booked.':S.sTab==='action'?'Nothing needs your attention. Nice.':S.sTab==='done'?'Completed sessions will show here.':'No cancelled sessions.'}</div>`}
+  const mins=list.reduce((n,b)=>n+(b.st==='cancelled'?0:b.dur),0),earn=list.reduce((n,b)=>n+(b.st==='cancelled'?0:earnOf(b)),0);
+  const summary=`<div class="sum-line num"><b>${list.length} session${list.length===1?'':'s'}</b><span>${mins>=60?`${(mins/60).toFixed(mins%60?1:0)} hrs`:`${mins} min`} ${S.sTab==='done'?'talked':'booked'}</span><span>${rupee(earn)} ${S.sTab==='upcoming'||S.sTab==='action'?'to earn':S.sTab==='done'?'earned':''}</span></div>`;
+  const groups=[];list.forEach(b=>{const g=groups.find(x=>x.off===b.off);g?g.items.push(b):groups.push({off:b.off,items:[b]})});
+  return summary+groups.map(g=>`<div class="ag-day"><span class="ag-d">${g.off===0?'Today':g.off===1?'Tomorrow':g.off===-1?'Yesterday':dinfo(g.off).date.toLocaleDateString('en-IN',{weekday:'long'})} · ${dinfo(g.off).date.toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</span>${g.items.map(sessRow).join('')}</div>`).join('')}
 function dSessions(){
-  const tabs=[['upcoming','Upcoming'],['done','Completed'],['cancelled','Cancelled']];
   S.sTab=S.sTab||'upcoming';
-  const list=BOOKINGS.filter(b=>b.st===S.sTab).sort((x,y)=>S.sTab==='upcoming'?x.off-y.off:y.off-x.off);
-  return `<div class="hhead"><div><h1>Sessions</h1><p>Join, reschedule or wrap up your calls. Times are in IST.</p></div></div>
-  <div class="filters">${tabs.map(([k,l])=>`<button class="opt" data-a="stab" data-v="${k}" aria-pressed="${S.sTab===k}">${l} (${BOOKINGS.filter(b=>b.st===k).length})</button>`).join('')}</div>
-  <div class="sesslist">${list.length?list.map(sessCard).join(''):`<div class="emptybox">${S.sTab==='upcoming'?'No upcoming sessions. Share your profile link to get booked.':S.sTab==='done'?'Completed sessions will show here.':'No cancelled sessions. Nice.'}</div>`}</div>`}
-
+  const tabs=[['upcoming','Upcoming',b=>b.st==='upcoming'],['action','Needs action',needsAction],['done','Completed',b=>b.st==='done'],['cancelled','Cancelled',b=>b.st==='cancelled']];
+  const lens=[...new Set(BOOKINGS.map(b=>b.dur))].sort((x,y)=>x-y);
+  const periods=S.sTab==='upcoming'||S.sTab==='action'?[['all','Any time'],['today','Today'],['week','Next 7 days'],['month','This month']]:[['all','Any time'],['past30','Past 30 days'],['month','This month']];
+  return `<div class="hhead"><div><h1>Sessions</h1><p>Every call booked with you. Times are in IST.</p></div><button class="btn sm" data-tab="calendar">${ic('calendar')}Edit availability</button></div>
+  <div class="stabs" role="tablist">${tabs.map(([k,l,f])=>{const n=BOOKINGS.filter(f).length;return `<button role="tab" class="stab ${k==='action'&&n?'hot':''}" data-a="stab" data-v="${k}" aria-selected="${S.sTab===k}">${l}<span class="num">${n}</span></button>`}).join('')}</div>
+  <div class="sfbar">
+    <label class="sf-search">${ic('search')}<input class="input" id="sf-q" placeholder="Search student or topic" value="${esc(SF.q)}" aria-label="Search sessions"></label>
+    <select class="input" id="sf-period" data-sf="period" aria-label="Period">${periods.map(([v,l])=>`<option value="${v}" ${SF.period===v?'selected':''}>${l}</option>`).join('')}</select>
+    <select class="input" id="sf-len" data-sf="len" aria-label="Call length"><option value="all">Any length</option>${lens.map(m=>`<option value="${m}" ${SF.len==m?'selected':''}>${fmtDur(m)}</option>`).join('')}</select>
+    <button class="opt ${SF.first?'':''}" data-a="sfFirst" aria-pressed="${SF.first}">${ic('gift')}First connects</button>
+    <select class="input" id="sf-sort" data-sf="sort" aria-label="Sort"><option value="soon" ${SF.sort==='soon'?'selected':''}>${S.sTab==='upcoming'||S.sTab==='action'?'Soonest first':'Most recent first'}</option><option value="late" ${SF.sort==='late'?'selected':''}>${S.sTab==='upcoming'||S.sTab==='action'?'Latest first':'Oldest first'}</option></select>
+    ${SF.q||SF.period!=='all'||SF.len!=='all'||SF.first?'<button class="linkbtn" data-a="sfClear">Clear</button>':''}
+  </div>
+  <div id="sess-list" class="sesslist2">${sessListHTML()}</div>`}
 /* Questions */
 function qCard(q){
   const pay=q.free?`<span class="tag free num">Earn ${rupee(Math.round(q.amt*0.9))} · first connect</span>`:`<span class="tag num">Earn ${rupee(Math.round(q.amt*0.9))}</span>`;
@@ -1613,7 +1696,9 @@ document.addEventListener('click',e=>{
   case 'nGo':{const n=NOTIFS.find(x=>x.id===id);n.unread=false;S.notif=false;S.tab=n.go;render();scrollTo(0,0);return}
   case 'preview':S.view='student';S.profile=null;render();open(ME.id);return;
   case 'mclose':closeModal();return;
-  case 'stab':S.sTab=v;refreshDash();return;
+  case 'stab':S.sTab=v;SF.period='all';refreshDash();return;
+  case 'sfFirst':SF.first=!SF.first;refreshDash();return;
+  case 'sfClear':Object.assign(SF,{q:'',period:'all',len:'all',first:false});refreshDash();return;
   case 'qtab':S.qTab=v;refreshDash();return;
   case 'txf':S.txf=v;refreshDash();return;
   case 'detail':openModal({t:'detail',id});return;
@@ -1677,6 +1762,7 @@ document.addEventListener('change',e=>{
   if(S.view!=='alumni')return;const t=e.target,a=t.dataset.a;
   if(t.id==='photo-in'&&t.files[0]){const r=new FileReader();r.onload=()=>{ME.img=r.result;refreshDash();toast('Photo updated')};r.readAsDataURL(t.files[0]);return}
   if(t.dataset.rule){RULES[t.dataset.rule]=t.value;return}
+  if(t.dataset.sf){SF[t.dataset.sf]=t.value;refreshDash();return}
   if(!a)return;
   if(a==='dayToggle'){const w=WEEK[+t.dataset.id];w[1]=t.checked?(w[1].length?w[1]:['8:00 PM']):[];refreshDash();return}
   if(a==='svcToggle'){const s=SERVICES.find(x=>x.id===t.dataset.id);s.on=t.checked;refreshDash();toast(s.on?'Service is live on your profile':'Service hidden from students');return}
@@ -1690,11 +1776,13 @@ document.addEventListener('input',e=>{
   if(t.id==='my-quote')ME.quote=t.value;
   if(t.dataset.qdraft){const q=QUESTIONS.find(x=>x.id===t.dataset.qdraft);q.draft=t.value;const c=$('#qc-'+q.id);if(c){c.textContent=t.value.trim().length>=80?`${t.value.length} characters · ready to send`:`${t.value.trim().length} / 80 characters minimum`;c.classList.toggle('ok',t.value.trim().length>=80)}}
   if(t.dataset.me){ME[t.dataset.me]=t.value}
+  if(t.id==='sf-q'){SF.q=t.value;const l=$('#sess-list');if(l)l.innerHTML=sessListHTML()}
 });
 document.addEventListener('keydown',e=>{
   if(S.view!=='alumni')return;
   if(e.key==='Escape'&&S.modal){closeModal();return}
   if(e.key==='Escape'&&S.notif){S.notif=false;$('#top').innerHTML=header();return}
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('srow')){e.preventDefault();openModal({t:'detail',id:e.target.dataset.id});return}
   if(e.key==='Enter'&&e.target.id==='chat-in'){e.preventDefault();document.querySelector('[data-a="chatSend"]')?.click()}
   if(e.key==='Enter'&&e.target.id==='lang-in'){e.preventDefault();document.querySelector('[data-a="langAdd"]')?.click()}
 });
