@@ -228,7 +228,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 @media (prefers-reduced-motion:reduce){.cta,.cta::after{transition:none}}
 .below .go2{flex:none;border:0;border-radius:99px;background:var(--ink);color:var(--bg);font:inherit;font-size:13px;font-weight:600;padding:8px 14px;cursor:pointer;transition:background .15s}
 .card:hover .below .go2{background:var(--brand)}
-.sl-pane{padding:16px 16px 26px;overflow:hidden}
+.sl-pane{padding:52px 16px 26px;overflow:hidden}
 .sl-big{font-size:32px}
 .sl-bars{gap:5px}
 .sl-q{font-size:16px;line-height:1.4}
@@ -340,7 +340,12 @@ textarea{resize:vertical}
 .ask{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .ask div{display:flex;gap:14px;align-items:center}
 .ask svg.i{width:24px;height:24px;stroke-width:1.6}
-.overall{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.overall{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.scgroup{display:grid;gap:36px}
+.overall b.num{font-size:36px}
+.sc-who{display:grid;gap:1px;margin-left:6px;padding-left:14px;border-left:1px solid var(--line)}
+.overall .sc-who b{font-size:15px;font-weight:600;letter-spacing:0}
+.sc-who span{font-size:13px;color:var(--muted)}
 .overall b{font-size:44px;font-weight:700;letter-spacing:-.03em}
 .scores{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
 .score{padding:16px 16px 0 0;border-right:1px solid var(--line);display:grid;gap:4px;align-content:start;padding-left:16px}
@@ -609,16 +614,18 @@ const EDU={
  14:[['BBA',2017,2020,'Godavari University','Marketing','Joined the family business at 18 and studied around work without a break.']],
 };
 const EDU_MODE={1:['Online','On-campus'],2:['Online','Online'],3:['Distance'],4:['Online','Distance'],5:['Online'],6:['Online'],7:['Online'],8:['Online','Distance'],9:['On-campus'],10:['On-campus','Online'],11:['Online'],12:['Online','On-campus'],13:['On-campus'],14:['Online']};
+const EXTRA_SCORES={1:{'Career support':4.1,Faculty:4.3,Teaching:4.0,'Fees vs value':3.6},2:{'Career support':3.2,Faculty:3.7,Teaching:3.5,'Fees vs value':4.4},4:{'Career support':2.9,Faculty:3.3,Teaching:3.1,'Fees vs value':4.2},8:{'Career support':3.0,Faculty:3.6,Teaching:3.4,'Fees vs value':4.0},10:{'Career support':3.6,Faculty:4.0,Teaching:3.8,'Fees vs value':4.6},12:{'Career support':4.2,Faculty:3.9,Teaching:3.7,'Fees vs value':4.1}};
+const DEFAULT_SCORES={'Career support':3.5,Faculty:3.5,Teaching:3.5,'Fees vs value':3.5};
 const MODES=['Online','On-campus','Distance'];
 const MODE_ICON={'Online':'laptop','On-campus':'building','Distance':'book'};
 const sortEdu=ds=>ds.sort((x,y)=>(y.batch-x.batch)||(y.start-x.start));
-const syncLatest=a=>{if(!a.degrees.length)return;sortEdu(a.degrees);const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college};
+const syncLatest=a=>{if(!a.degrees.length)return;sortEdu(a.degrees);const d=a.degrees[0];a.course=d.course;a.batch=d.batch;a.college=d.college;if(d.scores)a.scores=d.scores};
 const COURSE_FULL={MBA:'Master of Business Administration',MCA:'Master of Computer Applications',BBA:'Bachelor of Business Administration',BCA:'Bachelor of Computer Applications',BCom:'Bachelor of Commerce',MCom:'Master of Commerce',MA:'Master of Arts',MSc:'Master of Science',BA:'Bachelor of Arts'};
 const COURSE_STREAM={MBA:'mba',MCA:'mca',BBA:'bba',BCA:'bca',BCom:'bcom',MCom:'mcom',MA:'ma',MSc:'msc',BA:'ba'};
 const SOC_META={linkedin:['LinkedIn','linkedin','#0A66C2'],instagram:['Instagram','instagram','#E1306C'],youtube:['YouTube','youtube','#FF0000'],x:['X','xsoc','#111111'],website:['Website','globe','#222222']};
 const SOCIALS={1:{linkedin:'in/ananya-iyer-dev',instagram:'@ananya.codes'},2:{linkedin:'in/rohanmehta-brand',instagram:'@rohan.markets'},3:{linkedin:'in/sneha-kulkarni-ux',website:'snehakulkarni.design'},4:{linkedin:'in/arjun-singh-scm'},5:{linkedin:'in/fatima-shaikh-data',x:'@fatimadata'},6:{linkedin:'in/karthik-rao-ca'},7:{linkedin:'in/meera-joshi-ba',instagram:'@meera.cases'},8:{linkedin:'in/vikram-nair-pm'},9:{linkedin:'in/priya-menon-eng',x:'@priyabuilds',website:'priyamenon.dev'},10:{linkedin:'in/kavya-reddy-ds',youtube:'@KavyaExplainsData'},11:{linkedin:'in/aditi-sharma-writes',instagram:'@aditi.reads'},12:{linkedin:'in/siddharth-bose-fin'},13:{linkedin:'in/zoya-khan-news',x:'@zoyareports',youtube:'@ZoyaOnTheGround'},14:{linkedin:'in/harsh-patel-bd'}};
 ALUMNI.forEach((a,i)=>{a.img=`img/a${i+1}.jpg`;a.first=a.name.split(' ')[0];a.hue=['h1','h2','h3','h4','h5','h6'][i%6];a.next=NEXT[i];a.langs=LANGS[i];
-  a.degrees=(EDU[a.id]||[]).map(([course,start,batch,college,field,details],k)=>({course,start,batch,college,field,details,mode:(EDU_MODE[a.id]||[])[k]||'Online',verified:true}));syncLatest(a);
+  a.degrees=(EDU[a.id]||[]).map(([course,start,batch,college,field,details],k)=>({course,start,batch,college,field,details,mode:(EDU_MODE[a.id]||[])[k]||'Online',verified:true,scores:k===0?{...a.scores}:{...(EXTRA_SCORES[a.id]||DEFAULT_SCORES)}}));syncLatest(a);
   a.socials=Object.entries(SOCIALS[a.id]||{}).map(([net,handle])=>({net,handle,show:true}))});
 const streamsOf=a=>a.degrees.map(d=>COURSE_STREAM[d.course]);
 
@@ -737,7 +744,6 @@ function card(a){
           <span class="sl-k">${esc(a.first)} rates ${esc(a.short)}</span>
           <div class="sl-big num">${avg.toFixed(1)}<small>/5</small></div>
           <div class="sl-bars">${Object.entries(a.scores).map(([k,v])=>`<div class="sl-bar"><span>${k}</span><span class="t"><b style="width:${v/5*100}%"></b></span><span class="num">${v.toFixed(1)}</span></div>`).join('')}</div>
-          <div class="sl-facts num"><div><span>Salary hike </span>${a.median}</div><div><span>Fees </span>${a.fees}</div></div>
         </div>
         <div class="slide sl-pane" style="background:var(--${a.hue})">
           <span class="sl-k">In ${esc(a.first)}'s words</span>
@@ -819,8 +825,9 @@ function listing(a){
           <div class="sec"><h2>What you can ask about</h2><div class="ask">
             ${a.topics.map(t=>`<div>${ic(TOPIC_ICON[t]||'chat')}<span>${esc(t)}</span></div>`).join('')}
             <div>${ic('users')}<span>Peers and networking</span></div><div>${ic('cap')}<span>Admission and eligibility</span></div></div></div>
-          <div class="sec"><div class="overall">${STAR.replace('<svg','<svg style="width:28px;height:28px;fill:currentColor"')}<b class="num">${avg.toFixed(1)}</b><span class="muted">${esc(a.first)}'s university scorecard, out of 5</span></div>
-            <div class="scores">${Object.entries(a.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div></div>
+          <div class="sec"><h2>${a.degrees.length>1?`${esc(a.first)}'s university scorecards`:`${esc(a.first)}'s university scorecard`}</h2><div class="scgroup">${a.degrees.filter(d=>d.scores).map(d=>{const av=Object.values(d.scores).reduce((x,y)=>x+y,0)/4;return `<div class="scblock">
+            <div class="overall">${STAR.replace('<svg','<svg style="width:24px;height:24px;fill:currentColor"')}<b class="num">${av.toFixed(1)}</b><div class="sc-who"><b>${esc(d.college)}</b><span class="num">${esc(d.course)} · ${d.start} – ${d.batch} · ${esc(d.mode)}</span></div></div>
+            <div class="scores">${Object.entries(d.scores).map(([k,v])=>`<div class="score"><span>${k}</span><b class="num">${v.toFixed(1)}</b>${ic(SCORE_ICON[k])}</div>`).join('')}</div></div>`}).join('')}</div></div>
           <div class="sec" style="border-bottom:0"><h2><span class="num">${STAR.replace('<svg','<svg style="width:18px;height:18px;fill:currentColor;vertical-align:-2px"')} ${a.rating.toFixed(2)} · ${a.reviews} reviews</span></h2>
             <div class="reviews">${REVIEWS.map(([n,c,t,h])=>`<div class="rv"><div class="who">${avI(n,h,44)}<div><b>${n}</b><span>${c}</span></div></div><div class="stars">${STAR.repeat(5)}</div><p>${esc(t)}</p></div>`).join('')}</div></div>
         </div>
@@ -877,7 +884,6 @@ const SERVICES=[
  {id:'s3',title:'Parent Q&A call',kind:'Video call',dur:30,price:349,on:false,booked:0,icon:'users'},
 ];
 const WEEK=[['Monday',['8:00 PM','9:30 PM']],['Tuesday',[]],['Wednesday',['8:00 PM']],['Thursday',[]],['Friday',['8:30 PM','9:30 PM']],['Saturday',['11:00 AM','5:00 PM','6:30 PM']],['Sunday',['11:00 AM']]];
-const MY_SCORES={...ME.scores};
 
 function dash(){return `<div class="host">${({today:dToday,calendar:dCal,services:dSvc,inbox:dInbox,earnings:dEarn,review:dReview,profile:dProfile})[S.tab]()}</div>`}
 function resCard(b){
@@ -960,15 +966,12 @@ function dProfile(){
   </div>`}
 function dReview(){
   return `<div class="hhead"><div><h1>My university review</h1><p>The first thing students read on your profile.</p></div><button class="btn dark sm" id="save-review">Save</button></div>
-  <div class="two">
+  <div class="two" style="grid-template-columns:minmax(0,640px)">
     <div class="panel"><h2>About your time there</h2>
       <label class="field">One-line summary<textarea id="my-quote" rows="3" maxlength="140">${esc(ME.quote)}</textarea></label>
-      <div style="display:grid;gap:12px"><span class="lbl">Scorecard, out of 5</span>
-      ${Object.entries(MY_SCORES).map(([k,v],i)=>`<div class="r"><span>${k}</span><input type="range" min="1" max="5" step="0.1" id="sc-${i}" data-score="${esc(k)}" value="${v}"><b class="num" id="scv-${i}">${v.toFixed(1)}</b></div>`).join('')}</div></div>
-    <div class="panel"><h2>Your numbers</h2>
-      <label class="field">Salary change after your degree<input class="input" id="my-ctc" value="${ME.median}"></label>
-      <label class="field">Total fees you paid<input class="input" id="my-fees" value="${ME.fees}"></label>
-      <span class="tag ok" style="justify-self:start">${ic('check','style="width:14px;height:14px"')} Verified with university email</span></div>
+      <div style="display:grid;gap:20px"><span class="lbl">Scorecard for each university, out of 5</span>
+      ${ME.degrees.map((d,di)=>{d.scores=d.scores||{...DEFAULT_SCORES};return `<div style="display:grid;gap:10px"><div><b style="font-weight:600">${esc(d.college||'New university')}</b> <span class="muted" style="font-size:13px">· ${esc(d.course)} ${d.start} – ${d.batch}</span></div>
+        ${Object.entries(d.scores).map(([k,v],i)=>`<div class="r"><span>${k}</span><input type="range" min="1" max="5" step="0.1" id="sc-${di}-${i}" data-score="${esc(k)}" data-sdeg="${di}" value="${v}"><b class="num" id="scv-${di}-${i}">${v.toFixed(1)}</b></div>`).join('')}</div>`}).join('')}</div></div>
   </div>`}
 
 /* ---------- render ---------- */
@@ -1039,9 +1042,9 @@ document.addEventListener('click',e=>{
   if(t.id==='add-svc'){SERVICES.push({id:'s'+(SERVICES.length+1),title:'New service',kind:'Video call',dur:15,price:99,on:false,booked:0,icon:'video'});render();toast('Draft added. Set a price, then switch it on');return}
   if(d.addslot){const sl=WEEK[+d.addslot][1];const n=['7:00 PM','8:00 PM','9:00 PM','10:00 AM','6:00 PM'].find(o=>!sl.includes(o));if(n){sl.push(n);render()}return}
   if(t.id==='save-av'){toast('Calendar saved');return}
-  if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;ME.median=$('#my-ctc').value;ME.fees=$('#my-fees').value;Object.assign(ME.scores,MY_SCORES);toast('Review saved. Students see it on your profile');return}
+  if(t.id==='save-review'){const q=$('#my-quote').value.trim();if(q)ME.quote=q;syncLatest(ME);toast('Review saved. Students see it on your profile');return}
   if(d.soc){toast(`In the live product this opens ${d.soc}`);return}
-  if(t.id==='add-degree'){const y=new Date().getFullYear();ME.degrees.unshift({course:'MBA',start:y-2,batch:y,college:'',field:'',details:'',mode:'Online',verified:false});render();$('#deg-u-0')?.focus();return}
+  if(t.id==='add-degree'){const y=new Date().getFullYear();ME.degrees.unshift({course:'MBA',start:y-2,batch:y,college:'',field:'',details:'',mode:'Online',verified:false,scores:{...DEFAULT_SCORES}});render();$('#deg-u-0')?.focus();return}
   if(d.degdel){if(ME.degrees.length===1){toast('Keep at least one education entry');return}ME.degrees.splice(+d.degdel,1);syncLatest(ME);render();toast('Education removed');return}
   if(t.id==='save-profile'){syncLatest(ME);render();toast('Profile saved. Students see your education and links now');return}
   if(t.id==='withdraw'){toast('Withdrawal of ₹4,980 requested');return}
@@ -1056,7 +1059,7 @@ document.addEventListener('input',e=>{
   if(t.dataset.deg!==undefined){const dg=ME.degrees[+t.dataset.deg],f=t.dataset.f;dg[f]=(f==='batch'||f==='start')?(+t.value||dg[f]):t.value}
   if(t.dataset.socnet){const n=t.dataset.socnet;let cur=ME.socials.find(x=>x.net===n);const v=t.value.trim();if(!cur&&v){cur={net:n,handle:v,show:true};ME.socials.push(cur);const tg=$('#soc-on-'+n);if(tg)tg.checked=true}else if(cur){cur.handle=v;if(!v)ME.socials=ME.socials.filter(x=>x!==cur)}}
   if(t.id==='q'){S.q=t.value;renderResults()}
-  if(t.dataset.score){MY_SCORES[t.dataset.score]=+t.value;$('#scv-'+t.id.split('-')[1]).textContent=(+t.value).toFixed(1)}
+  if(t.dataset.score){ME.degrees[+t.dataset.sdeg].scores[t.dataset.score]=+t.value;$('#scv-'+t.id.slice(3)).textContent=(+t.value).toFixed(1)}
   if(t.dataset.setprice){const s=SERVICES.find(x=>x.id===t.dataset.setprice);s.price=Math.max(0,+t.value||0);if(s.id==='s1')ME.services[0].price=s.price;if(s.id==='s2')ME.services[1].price=s.price}});
 document.addEventListener('change',e=>{
   const t=e.target;
