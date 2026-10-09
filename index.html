@@ -416,6 +416,19 @@ textarea{resize:vertical}
 .bk-sum .disc,.bk-sum .disc span:first-child{color:var(--good)}
 .bk-sum .total{border-top:1px solid var(--line);padding-top:10px;font-weight:700;font-size:15px}
 .bk-sum .total span:first-child{color:var(--ink)}
+.bk-pick{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--good)}
+.bk-pick svg.i{width:13px;height:13px;stroke-width:3}
+.bk-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--line-soft);padding-top:16px;margin-top:2px}
+.bk-tot{display:grid;gap:2px;min-width:0}
+.bk-tot>span{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.bk-tot b{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.bk-tot s{font-size:14px;color:var(--muted)}
+.bk-det{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--ink);text-decoration:underline;cursor:pointer;justify-self:start}
+.bk-det svg.i{width:12px;height:12px;stroke-width:2.5}
+.btn.brand.bk-go{flex:none;padding:13px 22px;border-radius:12px;font-size:15px}
+.bk-note{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin-top:-4px}
+.bk-note svg.i{width:13px;height:13px}
+.bk-note span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
 .bk-trust{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:12.5px;color:var(--muted)}
 .bk-trust li{display:flex;align-items:center;gap:8px}
 .bk-trust svg.i{width:15px;height:15px}
@@ -928,17 +941,19 @@ function bookCard(a){
     ${q.call?`
       <div class="bk-sec"><span class="lbl">Duration</span><div class="durs">${q.opts.map((x,i)=>`<button class="dur" data-dur="${i}" aria-pressed="${q.o===x}"><b>${fmtDur(x.dur)}</b><span class="num">${rupee(q.free?off(x.price):x.price)}</span></button>`).join('')}</div></div>
       <div class="bk-sec"><div class="bk-row"><span class="lbl">Date</span><span class="muted" style="font-size:13px">${new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'})}</span></div><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
-      <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span><span class="muted" style="font-size:13px">${slots.length} slots</span></div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
+      <div class="bk-sec"><div class="bk-row"><span class="lbl">Time (IST)</span>${S.slot?`<span class="bk-pick num">${ic('check')}${days[S.date].dow==='Today'?'Today':days[S.date].long.split(',')[0]} · ${S.slot}</span>`:`<span class="muted" style="font-size:13px">${slots.length} slots</span>`}</div><div class="slots">${slots.map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
     :`<ul class="bk-trust" style="font-size:13.5px;color:var(--ink)"><li>${ic('chat')}One detailed written answer from ${esc(a.first)}</li><li>${ic('clock')}Reply in ${q.s.eta}</li><li>${ic('check')}One follow-up question included</li></ul>
       <label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
-    <div class="bk-sum num">
-      ${q.call&&S.slot?`<div><span>When</span><b>${days[S.date].dow==='Today'?'Today':days[S.date].long.split(',')[0]}, ${S.slot}</b></div>`:''}
+    <div class="bk-foot">
+      <div class="bk-tot"><span class="num"><b>${rupee(q.pay)}</b>${q.free?`<s>${rupee(q.full)}</s>`:''}</span><button class="bk-det" data-pdet aria-expanded="${!!S.pdet}">${S.pdet?'Hide details':'Price details'}${ic('back',`style="transform:rotate(${S.pdet?90:-90}deg)"`)}</button></div>
+      <button class="btn brand bk-go" id="confirm" ${can?'':'disabled'}>${can?(q.call?'Book call':'Send question'):(q.call?'Pick a time':'Write your question')}</button>
+    </div>
+    ${S.pdet?`<div class="bk-sum num">
+      ${q.call&&S.slot?`<div><span>When</span><span>${days[S.date].long}, ${S.slot}</span></div>`:''}
       <div><span>${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}</span><span>${rupee(q.full)}</span></div>
       ${q.free?`<div class="disc"><span>First-connect discount (25%)</span><span>−${rupee(q.full-q.pay)}</span></div>`:''}
-      <div class="total"><span>Total</span><span>${rupee(q.pay)}</span></div>
-    </div>
-    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?(q.call?`Book ${fmtDur(q.o.dur)} call · ${rupee(q.pay)}`:`Send question · ${rupee(q.pay)}`):'Pick a time to continue'}</button>
-    <ul class="bk-trust"><li>${ic('shield')}Secure payment, refunded if ${esc(a.first)} cancels</li><li>${ic('clock')}Free reschedule up to 4 hours before</li></ul>`}
+      <div class="total"><span>You pay</span><span>${rupee(q.pay)}</span></div></div>`:''}
+    <p class="bk-note"><span>${ic('shield')}Secure payment</span><span>${ic('clock')}Free reschedule up to 4 hrs before</span></p>`}
 function mbarHTML(a){return `<div class="mbar">${(()=>{const q=quote(a);return `<div><div class="num" style="font-weight:700">${rupee(q.pay)}${q.free?` <s class="muted" style="font-weight:400">${rupee(q.full)}</s>`:''}</div><div class="muted" style="font-size:13px">${q.call?`${fmtDur(q.o.dur)} video call`:'Priority DM'}${q.free?' · 25% off':''}</div></div>`})()}
       <button class="btn brand" data-scrollbook>Book</button></div>`}
 function slotsFor(dur,dayIdx){return SLOTS.filter((x,i)=>(dayIdx+i)%4!==1&&!(dur>=60&&x==='9:30 PM')&&!(dur>=120&&x==='8:00 PM'))}
@@ -1104,6 +1119,7 @@ document.addEventListener('click',e=>{
   if(d.scrollbook!==undefined){$('#bookcard')?.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(d.svc){S.svc=+d.svc;S.slot=null;renderBook();return}
   if(d.dur){S.dur=+d.dur;renderBook();return}
+  if(d.pdet!==undefined){S.pdet=!S.pdet;renderBook();return}
   if(d.date){S.date=+d.date;S.slot=null;renderBook();return}
   if(d.slot){S.slot=d.slot;renderBook();return}
   if(d.again!==undefined){S.done=null;S.slot=null;renderBook();return}
