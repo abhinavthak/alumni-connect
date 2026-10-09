@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Alumni Connect prototype: students book calls with verified alumni of online degree programmes. First connect is free.">
+<meta name="description" content="Alumni Connect prototype: students book calls with verified alumni of online degree programmes. First connect is 25% off.">
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Alumni Connect</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,8 +203,8 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .cta{position:relative;overflow:hidden;width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:700;font-size:14.5px;color:#fff;background:var(--grad);cursor:pointer;box-shadow:0 1px 2px rgba(215,4,102,.25);transition:transform .12s,box-shadow .2s,filter .2s}
 .cta .l{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .cta .l svg.i{width:18px;height:18px;stroke-width:2}
-.cta .r{font-size:13.5px;font-weight:600;white-space:nowrap}
-.cta .r s{opacity:.8;font-weight:500}
+.cta .cp{font-size:14px;font-weight:700;white-space:nowrap;display:inline-flex;align-items:baseline;gap:6px}
+.cta .cp s{opacity:.75;font-weight:500;font-size:12.5px}
 .cta .r i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);flex:none}
 .cta .r.soon i{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3)}
 .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
@@ -540,7 +540,7 @@ const REVIEWS=[
  ['Aditya','Working in sales · Lucknow','Told me exactly which electives matter and how much time live classes really take each week. Saved me from a bad choice.','h2'],
  ['Nisha','Class 12 · Pune','Very clear about exam formats and the EMI options. It felt like talking to a senior, not reading a brochure.','h5'],
  ['Kabir','Parent of a working student','My daughter and I joined together. We finally understood how employers see an online degree.','h6'],
- ['Tanvi','Bank employee · Jaipur','The free first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
+ ['Tanvi','Bank employee · Jaipur','The discounted first call was enough to rule out one university. I booked a paid follow-up for the next one.','h3'],
 ];
 
 const S={view:'student',q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec',dd:null,saved:new Set([3]),
@@ -551,6 +551,7 @@ try{const v=localStorage.getItem('ac2-view');if(v==='alumni'||v==='student')S.vi
 
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const rupee=n=>'₹'+n.toLocaleString('en-IN');
+const DISC=25,off=p=>Math.round(p*(100-DISC)/100);
 const $=s=>document.querySelector(s);
 const initials=n=>n.split(' ').map(s=>s[0]).join('').slice(0,2);
 const avI=(name,hue,size)=>`<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.36)}px;background:var(--${hue})">${initials(name)}</span>`;
@@ -587,7 +588,7 @@ function header(){
         <button class="go" type="submit" aria-label="Search">${ic('search')}</button>
       </form>${S.dd?ddPanel():''}</div>
       <div class="right">
-        <span class="freechip ${S.freeLeft?'':'used'}" title="Your first connect on Alumni Connect is free">${ic('gift')}<span class="num">${S.freeLeft}</span><span class="long">&nbsp;free connect</span></span>
+        <span class="freechip ${S.freeLeft?'':'used'}" title="Your first call on Alumni Connect is 25% off">${ic('gift')}${S.freeLeft?'<span class="num">25% off</span><span class="long">&nbsp;first call</span>':'<span>Offer used</span>'}</span>
         <button class="switch-link" data-view="alumni"><span class="long">Switch to </span>alumni<span class="long"> dashboard</span></button>
       </div></div></div>`}
   const pend=QUESTIONS.filter(q=>!S.answered.has(q.id)).length;
@@ -624,8 +625,8 @@ function browse(){
     <div id="results">${results()}</div></div>`}
 function banner(){
   return S.freeLeft
-   ?`<div class="banner"><span class="gift">${ic('gift')}</span><div class="txt"><b>Your first connect is free</b><span>Book a call or send a question to any alumni below at no cost. Connects after that are paid at each alumni's price.</span></div></div>`
-   :`<div class="banner"><span class="gift">${ic('check')}</span><div class="txt"><b>You've used your free connect</b><span>Connects are now paid. Calls start at ${rupee(Math.min(...ALUMNI.map(a=>a.services[0].price)))}.</span></div><button class="linkbtn" data-resetfree>Reset demo</button></div>`}
+   ?`<div class="banner"><span class="gift">${ic('gift')}</span><div class="txt"><b>Get 25% off your first call</b><span>Your first call or question with any alum below is 25% off. After that, each alum's normal price applies.</span></div></div>`
+   :`<div class="banner"><span class="gift">${ic('check')}</span><div class="txt"><b>You've used your 25% first-call discount</b><span>Normal prices now apply. Calls start at ${rupee(Math.min(...ALUMNI.map(a=>a.services[0].price)))}.</span></div><button class="linkbtn" data-resetfree>Reset demo</button></div>`}
 function results(){
   const list=filtered();
   return `<p class="results-meta">${list.length} alumni ${S.cat!=='all'?`in <b style="color:var(--ink)">${CATS.find(c=>c[0]===S.cat)[1]}</b>`:'ready to talk'}${S.topic?` who can talk about <b style="color:var(--ink)">${esc(S.topic)}</b>`:''}</p>
@@ -633,7 +634,7 @@ function results(){
 function priceLine(a,svc){
   const s=a.services[svc||0];
   const unit=s.t==='call'?`${s.dur} min call`:'question';
-  return S.freeLeft?`<b class="free">Free</b> first call · <span class="u">then ${rupee(s.price)}</span>`:`<b>${rupee(s.price)}</b> · ${unit}`}
+  return S.freeLeft?`<b class="free">${rupee(off(s.price))}</b> first call · <span class="u">then ${rupee(s.price)}</span>`:`<b>${rupee(s.price)}</b> · ${unit}`}
 function card(a){
   const avg=Object.values(a.scores).reduce((x,y)=>x+y,0)/4;
   const soon=/^(Today|Tomorrow)/.test(a.next),s0=a.services[0];
@@ -664,9 +665,9 @@ function card(a){
       <div class="ln strong">${ic('brief')}<span>${esc(a.role)} at ${esc(a.company)}</span></div>
       <div class="ln">${ic('cap')}<span>${esc(a.course)} ’${String(a.batch).slice(2)} · ${esc(a.college)}</span></div>
       <div class="ln when2 ${soon?'soon':''}"><i></i><span>${soon?'Available ':'Next slot: '}${a.next}</span></div>
-      <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book free call with ${esc(a.first)}, normally ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
-        <span class="l">${ic('video')}${S.freeLeft?'Book free call':'Book call'}</span>
-        <span class="r num">${S.freeLeft?`<s>${rupee(s0.price)}</s>`:rupee(s0.price)}</span>
+      <button class="cta ${S.freeLeft?'':'paid'}" data-open="${a.id}" aria-label="${S.freeLeft?`Book call with ${esc(a.first)} for ${rupee(off(s0.price))}, 25% off ${rupee(s0.price)}`:`Book call with ${esc(a.first)} for ${rupee(s0.price)}`}">
+        <span class="l">${ic('video')}Book call</span>
+        <span class="cp num">${S.freeLeft?`<s>${rupee(s0.price)}</s> ${rupee(off(s0.price))}`:rupee(s0.price)}</span>
       </button>
     </div></article>`}
 function syncSlide(track){
@@ -682,7 +683,7 @@ function filtersModal(){
     <div class="modal-b">
       <section><h3>What you want to ask about</h3><p class="muted">Show alumni who are happy to talk about this.</p>
         <div class="opts">${TOPICS.map(t=>`<button class="opt" data-topic="${esc(t)}" aria-pressed="${S.topic===t}">${ic(TOPIC_ICON[t])}${t}</button>`).join('')}</div></section>
-      <section><h3>Call price</h3><p class="muted">Applies from your second connect. Your first one is free.</p>
+      <section><h3>Call price</h3><p class="muted">Each alum's normal price. Your first call is 25% off.</p>
         <div class="opts">${prices.map(([v,l])=>`<button class="opt" data-price="${v}" aria-pressed="${S.price===v}">${l}</button>`).join('')}</div></section>
       <section><h3>Sort by</h3>
         <div class="opts">${[['rec','Recommended'],['rating','Highest rated'],['price','Lowest price'],['recent','Most recent batch']].map(([v,l])=>`<button class="opt" data-sort="${v}" aria-pressed="${S.sort===v}">${l}</button>`).join('')}</div></section>
@@ -730,8 +731,8 @@ function listing(a){
         <aside class="book" id="bookcard">${bookCard(a)}</aside>
       </div>
     </div>
-    <div class="mbar"><div><div class="num" style="font-weight:600">${S.freeLeft?`<span style="color:var(--brand-ink)">Free</span> <s class="muted" style="font-weight:400">${rupee(s.price)}</s>`:rupee(s.price)}</div><div class="muted" style="font-size:13px">${S.freeLeft?'Your first connect':s.t==='call'?`${s.dur} min call`:'Priority DM'}</div></div>
-      <button class="btn brand" data-scrollbook>${S.freeLeft?'Book free':'Book'}</button></div>
+    <div class="mbar"><div><div class="num" style="font-weight:600">${S.freeLeft?`<span style="color:var(--brand-ink)">${rupee(off(s.price))}</span> <s class="muted" style="font-weight:400">${rupee(s.price)}</s>`:rupee(s.price)}</div><div class="muted" style="font-size:13px">${S.freeLeft?'25% off your first connect':s.t==='call'?`${s.dur} min call`:'Priority DM'}</div></div>
+      <button class="btn brand" data-scrollbook>Book</button></div>
   </div>`}
 
 function bookCard(a){
@@ -742,37 +743,37 @@ function bookCard(a){
     const d=S.done;
     return `<div class="done"><span class="ok">${ic('check')}</span><h2 style="font-size:22px">${d.t==='call'?'Your call is booked':'Your question is sent'}</h2>
       <p class="muted">${d.t==='call'?`${esc(a.first)} will meet you on ${d.when} at ${d.slot}. The video link is in your email and WhatsApp.`:`${esc(a.first)} usually replies ${a.respond}. We'll notify you when the answer is ready.`}</p>
-      ${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You used your <b>free first connect</b>. Your next connect with any alumni is paid.</span></div>`:`<p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>`}
+      <p class="num" style="font-weight:600">Paid ${rupee(d.paid)}</p>${d.free?`<div class="freenote" style="text-align:left">${ic('gift')}<span>You saved <b>${rupee(d.full-d.paid)}</b> with your 25% first-connect discount. Normal prices apply from your next connect.</span></div>`:''}
       <button class="btn block" data-again>Book another session</button></div>`}
   const can=s.t==='dm'||S.slot;
-  return `<div class="p num">${free?`<span class="free">Free</span><s>${rupee(s.price)}</s>`:rupee(s.price)}<small>${s.t==='call'?`/ ${s.dur} min call`:'/ question'}</small></div>
-    ${free?`<div class="freenote">${ic('gift')}<span><b>Your first connect is free.</b> After this, ${esc(a.first)} charges ${rupee(s.price)} per ${s.t==='call'?'call':'question'}.</span></div>`:''}
+  return `<div class="p num">${free?`<span class="free">${rupee(off(s.price))}</span><s>${rupee(s.price)}</s>`:rupee(s.price)}<small>${s.t==='call'?`/ ${s.dur} min call`:'/ question'}</small></div>
+    ${free?`<div class="freenote">${ic('gift')}<span><b>25% off your first connect.</b> After this, ${esc(a.first)} charges ${rupee(s.price)} per ${s.t==='call'?'call':'question'}.</span></div>`:''}
     <div class="picker"><div class="row2">${a.services.map((x,i)=>`<button class="svcopt" data-svc="${i}" aria-pressed="${S.svc===i}"><span>${x.t==='call'?'Video call':'Priority DM'}</span><b>${x.t==='call'?`${x.dur} min`:`Reply in ${x.eta}`}</b></button>`).join('')}</div></div>
     ${s.t==='call'?`
       <div style="display:grid;gap:8px"><span class="lbl">Date</span><div class="dates">${days.map((d,i)=>`<button class="date" data-date="${i}" aria-pressed="${S.date===i}"><small>${d.dow}</small><b class="num">${d.dd}</b></button>`).join('')}</div></div>
       <div style="display:grid;gap:8px"><span class="lbl">Time (IST)</span><div class="slots">${SLOTS.filter((x,i)=>(S.date+i)%4!==1).map(x=>`<button class="slot num" data-slot="${x}" aria-pressed="${S.slot===x}">${x}</button>`).join('')}</div></div>`
     :`<label style="display:grid;gap:8px"><span class="lbl">Your question</span><textarea id="dm" rows="4" placeholder="e.g. Are live classes recorded? I work night shifts."></textarea></label>`}
-    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?(free?(s.t==='call'?'Book free call':'Send free question'):(s.t==='call'?'Book call':'Send question')):'Choose a time'}</button>
-    <p class="charge">${free?'You won\'t be charged for this one':'You\'ll pay after confirming'}</p>
+    <button class="btn brand block" id="confirm" ${can?'':'disabled'}>${can?`${s.t==='call'?'Book call':'Send question'} · ${rupee(free?off(s.price):s.price)}`:'Choose a time'}</button>
+    <p class="charge">${free?'25% first-connect discount applied':'You\'ll pay after confirming'}</p>
     <div class="lines num">
       <div><span class="u">${s.t==='call'?`${s.dur} min video call`:'Priority DM'}</span><span>${rupee(s.price)}</span></div>
-      ${free?`<div class="disc"><span>First connect free</span><span>−${rupee(s.price)}</span></div>`:''}
-      <div class="total"><span>Total</span><span>${free?'₹0':rupee(s.price)}</span></div>
+      ${free?`<div class="disc"><span>First connect, 25% off</span><span>−${rupee(s.price-off(s.price))}</span></div>`:''}
+      <div class="total"><span>Total</span><span>${rupee(free?off(s.price):s.price)}</span></div>
     </div>`}
 
 /* ---------- alumni dashboard ---------- */
 const ME=ALUMNI[0];
 const BOOKINGS=[
  {who:'Aditya Verma',ctx:'Works in customer support · MCA or MBA?',when:'Today',time:'8:30 PM',amt:249,free:false,hue:'h2',st:'upcoming'},
- {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:0,free:true,hue:'h5',st:'upcoming'},
- {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:0,free:true,hue:'h3',st:'upcoming'},
+ {who:'Nisha Gupta',ctx:'Class 12, Pune · how exams work online',when:'Tomorrow',time:'7:00 PM',amt:187,free:true,hue:'h5',st:'upcoming'},
+ {who:'Rahul Das',ctx:'Lateral entry after diploma',when:'Saturday',time:'11:00 AM',amt:187,free:true,hue:'h3',st:'upcoming'},
  {who:'Ishita Bose',ctx:'Comparing three online universities',when:'5 Oct',time:'6:00 PM',amt:249,free:false,hue:'h4',st:'done',rated:5,repeat:true},
- {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:0,free:true,hue:'h6',st:'done',rated:5},
+ {who:'Kabir Malhotra',ctx:'Parent of a working student',when:'3 Oct',time:'8:00 PM',amt:187,free:true,hue:'h6',st:'done',rated:5},
  {who:'Tanvi Rao',ctx:'Asked about fee waivers',when:'1 Oct',time:'Priority DM',amt:99,free:false,hue:'h1',st:'done',rated:4},
 ];
 const QUESTIONS=[
  {id:'q1',who:'Sameer K.',q:'Did the placement cell actually help you get interviews, or did you apply on your own?',age:'3 hours ago',amt:99,free:false},
- {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:0,free:true},
+ {id:'q2',who:'Divya P.',q:'Are live classes mandatory? I work rotating shifts at a bank.',age:'Yesterday',amt:74,free:true},
 ];
 const SERVICES=[
  {id:'s1',title:'MCA review call',kind:'Video call',dur:20,price:249,on:true,booked:162,icon:'video'},
@@ -786,7 +787,7 @@ function dash(){return `<div class="host">${({today:dToday,calendar:dCal,service
 function resCard(b){
   return `<div class="res"><div class="top2"><div style="min-width:0"><span class="when ${b.st==='done'?'past':''}">${b.st==='done'?'Completed ':''}${b.when}${b.time.includes(':')?`, ${b.time}`:` · ${b.time}`}</span>
     <h3>${b.who}</h3><p class="ctx">${b.ctx}</p></div>${avI(b.who,b.hue,48)}</div>
-    <div class="foot">${b.free?'<span class="tag free">Free first connect</span>':`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
+    <div class="foot">${b.free?`<span class="tag free num">${rupee(b.amt)} · first connect, 25% off</span>`:`<span class="tag num">${rupee(b.amt)}${b.repeat?' · 2nd connect':''}</span>`}
     ${b.st==='upcoming'?(b.when==='Today'?'<button class="btn dark sm" data-join>Join call</button>':'<button class="btn sm" data-msg>Message</button>'):`<span class="rate num">${STAR}${b.rated}.0</span>`}</div></div>`}
 function dToday(){
   const list=BOOKINGS.filter(b=>S.rTab==='upcoming'?b.st==='upcoming':b.st==='done');
@@ -798,35 +799,35 @@ function dToday(){
   ${pend.length?`<div class="hsec"><h2>Questions waiting for you</h2><div class="qs">${pend.map(qCard).join('')}</div></div>`:''}
   <div class="hsec"><h2>October so far</h2><div class="statgrid">
     <div class="st"><span>Earned</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
-    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 free first connects</small></div>
-    <div class="st"><span>Free → paid</span><b class="num">41%</b><small class="n">of free connects booked again</small></div>
+    <div class="st"><span>Calls completed</span><b class="num">23</b><small class="n">9 were first connects at 25% off</small></div>
+    <div class="st"><span>Booked again</span><b class="num">41%</b><small class="n">of first-time students</small></div>
     <div class="st"><span>Rating</span><b class="num">4.92★</b><small class="n">128 reviews</small></div>
   </div></div>`}
 function qCard(q){
   const done=S.answered.has(q.id);
-  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?'<span class="tag free">Free first connect</span>':`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
+  return `<div class="q"><div class="meta"><span><b>${q.who}</b> · ${q.age}</span>${done?'<span class="tag ok">Answered</span>':q.free?`<span class="tag free num">Earn ${rupee(q.amt)} · 25% off</span>`:`<span class="tag num">Earn ${rupee(q.amt)}</span>`}</div>
     <p>${esc(q.q)}</p>
     ${done?'':`<textarea id="ans-${q.id}" rows="2" placeholder="Be specific: real numbers, names of clubs, what you would do differently."></textarea><div><button class="btn dark sm" data-answer="${q.id}">Send answer</button></div>`}</div>`}
 function dInbox(){return `<div class="hhead"><div><h1>Questions</h1><p>Answer within 24 hours to keep your “replies within 6 hours” badge.</p></div></div><div class="qs">${QUESTIONS.map(qCard).join('')}</div>`}
-function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Every student's first connect is free</b><span>A student's first call or question on Alumni Connect costs them nothing. Your prices apply from their second connect. Last month 41% of your free connects booked a paid session.</span></p></div>`}
+function freeInfo(){return `<div class="info">${ic('gift')}<p><b>Every student's first connect is 25% off</b><span>A student's first call or question on Alumni Connect is charged at 75% of your price. Your full price applies from their second connect. Last month 41% of your first-time students booked again.</span></p></div>`}
 function dSvc(){
   return `<div class="hhead"><div><h1>Your services</h1><p>What students can book on your profile.</p></div><button class="btn dark sm" id="add-svc">Add a service</button></div>
   ${freeInfo()}
   <div class="svcs">${SERVICES.map(s=>`<div class="svc"><div class="head"><div style="display:flex;gap:12px;align-items:flex-start;min-width:0">${ic(s.icon)}<div><h3>${esc(s.title)}</h3><p class="sub">${s.kind}${s.dur?` · ${s.dur} min`:''}</p></div></div>
       <label class="toggle" title="Show on profile"><input type="checkbox" id="on-${s.id}" data-toggle="${s.id}" ${s.on?'checked':''} aria-label="Show ${esc(s.title)} on profile"><span></span></label></div>
-    <div class="pr"><label for="price-${s.id}">Price from 2nd connect</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>
+    <div class="pr"><label for="price-${s.id}">Your price</label><span>₹</span><input class="input num" type="number" min="0" step="10" id="price-${s.id}" data-setprice="${s.id}" value="${s.price}"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;font-size:14px"><span class="muted num">${s.booked} bookings</span>${s.on?'<span class="tag ok">Live</span>':'<span class="tag">Hidden</span>'}</div></div>`).join('')}</div>`}
 function dCal(){
   return `<div class="hhead"><div><h1>Calendar</h1><p>Weekly hours when students can book you. Times are in IST.</p></div><button class="btn dark sm" id="save-av">Save</button></div>
   <div class="week">${WEEK.map(([d,sl],i)=>`<div class="day"><b>${d}</b><div class="chips">${sl.length?sl.map(x=>`<span class="chip num">${x}</span>`).join(''):'<span class="muted" style="font-size:14px;align-self:center">Unavailable</span>'}<button class="chip add" data-addslot="${i}">+ Add time</button></div></div>`).join('')}</div>`}
 function dEarn(){
-  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · free first connect',0],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
+  const tx=[['8 Oct','Ishita Bose · review call (2nd connect)',249],['8 Oct','Kabir Malhotra · first connect, 25% off',187],['6 Oct','Tanvi Rao · priority DM',99],['5 Oct','Sameer K. · review call',249],['3 Oct','Payout to HDFC ••4821',-6420]];
   return `<div class="hhead"><div><h1>Earnings</h1><p>Platform fee of 10% is already deducted.</p></div><button class="btn dark sm" id="withdraw">Withdraw ₹4,980</button></div>
   <div class="statgrid" style="margin-bottom:24px">
     <div class="st"><span>Available</span><b class="num">₹4,980</b><small class="n">Auto-payout on 15 Oct</small></div>
     <div class="st"><span>This month</span><b class="num">₹18,450</b><small>+22% vs September</small></div>
     <div class="st"><span>Lifetime</span><b class="num">₹52,310</b><small class="n">since Jan 2025</small></div>
-    <div class="st"><span>Free connects given</span><b class="num">9</b><small class="n">this month</small></div></div>
+    <div class="st"><span>First connects at 25% off</span><b class="num">9</b><small class="n">this month</small></div></div>
   <div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th style="text-align:right">Amount</th></tr></thead><tbody>
   ${tx.map(([d,t,a])=>`<tr><td class="num">${d}</td><td>${t}</td><td class="num" style="text-align:right;color:${a>0?'var(--good)':'var(--muted)'}">${a===0?'Free':(a<0?'−':'+')+rupee(Math.abs(a))}</td></tr>`).join('')}</tbody></table></div>`}
 function dReview(){
@@ -881,7 +882,7 @@ document.addEventListener('click',e=>{
   if(d.sort){S.sort=d.sort;renderOverlay();return}
   if(d.clearfilters!==undefined){Object.assign(S,{price:'any',topic:null,sort:'rec'});renderOverlay();return}
   if(d.clear!==undefined){Object.assign(S,{q:'',college:'all',course:'all',cat:'all',price:'any',topic:null,sort:'rec'});render();return}
-  if(d.resetfree!==undefined){S.freeLeft=1;render();toast('Demo reset: free connect restored');return}
+  if(d.resetfree!==undefined){S.freeLeft=1;render();toast('Demo reset: 25% first-call discount restored');return}
   if(d.closepage!==undefined){S.profile=null;renderOverlay();return}
   if(d.sharebtn!==undefined){toast('Profile link copied');return}
   if(d.scrollbook!==undefined){$('#bookcard')?.scrollIntoView({behavior:'smooth',block:'start'});return}
@@ -894,7 +895,7 @@ document.addEventListener('click',e=>{
     if(s.t==='dm'&&($('#dm')?.value||'').trim().length<10){toast('Write a question of at least 10 characters');return}
     if(s.t==='call'&&!S.slot)return;
     const free=S.freeLeft>0;
-    S.done={t:s.t,free,paid:s.price,when:nextDays()[S.date].long,slot:S.slot};
+    S.done={t:s.t,free,paid:free?off(s.price):s.price,full:s.price,when:nextDays()[S.date].long,slot:S.slot};
     if(free)S.freeLeft=0;S.connects++;
     $('#top').innerHTML=header();renderResults();const b=$('.banner');if(b)b.outerHTML=banner();
     renderBook();return}
@@ -902,7 +903,7 @@ document.addEventListener('click',e=>{
   if(d.tab){S.tab=d.tab;render();scrollTo(0,0);return}
   if(d.rtab){S.rTab=d.rtab;render();return}
   if(d.answer){const v=($('#ans-'+d.answer)?.value||'').trim();if(!v){toast('Write an answer before sending');return}
-    const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(q.free?'Answer sent. This was their free first connect':`Answer sent. ${rupee(q.amt)} added to earnings`);return}
+    const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(`Answer sent. ${rupee(q.amt)} added to earnings${q.free?' (first connect, 25% off)':''}`);return}
   if(t.id==='copy-link'){const txt='alumniconnect.in/ananya-iyer';(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Profile link copied'),()=>toast('Your link: '+txt));return}
   if(d.join!==undefined){toast('In the live product this opens the video call');return}
   if(d.msg!==undefined){toast('In the live product this opens a chat with the student');return}
