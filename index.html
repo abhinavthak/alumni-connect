@@ -4,12 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Alumni Connect prototype: students book calls with verified alumni of online and on-campus degree programmes. First connect is 25% off.">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.crumbs{display:flex;align-items:center;gap:6px;justify-self:start;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden}
+.crumbs button{border:0;background:none;font:inherit;color:var(--muted);padding:6px 4px;border-radius:6px;cursor:pointer}
+.crumbs button:hover{color:var(--ink);text-decoration:underline}
+.crumbs svg.i{width:12px;height:12px;color:var(--muted);flex:none}
+.crumbs b{font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.top-in:has(.crumbs){grid-template-columns:auto 1fr auto}
+.umenu-w{position:relative;display:inline-flex}
+.umenu-btn{position:relative;cursor:pointer;font:inherit}
+.udot{position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--brand);border:2px solid var(--bg)}
+.um-panel{position:absolute;top:calc(100% + 10px);right:0;width:min(300px,calc(100vw - 32px));background:var(--bg);border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:8px;z-index:50;display:grid;animation:ddin .16s ease-out}
+.um-me{display:flex;gap:12px;align-items:center;padding:10px 10px 12px;border-bottom:1px solid var(--line-soft);margin-bottom:6px}
+.um-me img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.um-me div{display:grid;min-width:0}
+.um-me b{font-size:14.5px}
+.um-me span{font-size:12.5px;color:var(--muted)}
+.um-i{display:flex;align-items:center;gap:12px;border:0;background:none;font:inherit;font-size:14.5px;color:var(--ink);padding:11px 10px;border-radius:10px;text-align:left;cursor:pointer}
+.um-i:hover{background:var(--soft)}
+.um-i svg.i{width:17px;height:17px;color:var(--muted)}
+.um-i span{flex:1}
+.um-i em{font-style:normal;font-size:11.5px;font-weight:700;background:var(--brand);color:#fff;border-radius:99px;padding:1px 7px}
+.um-i[data-u="dash"] span{font-weight:600}
+.um-panel hr{border:0;border-top:1px solid var(--line-soft);margin:6px 4px}
+.backlink{display:inline-flex;align-items:center;gap:6px;border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--ink);padding:6px 0;margin-bottom:10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.backlink svg.i{width:15px;height:15px}
+.manage{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:24px}
+.mg{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg);padding:16px;font:inherit;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.mg:hover{border-color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.mg-ic{width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center;flex:none}
+.mg-ic svg.i{width:20px;height:20px}
+.mg-t{display:grid;gap:1px;flex:1;min-width:0}
+.mg-t b{font-size:15.5px;font-weight:700}
+.mg-t span{font-size:13px;color:var(--muted)}
+.mg-t em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--warn)}
+.mg>svg.i{width:14px;height:14px;color:var(--muted);flex:none}
+@media (max-width:640px){.manage{grid-template-columns:minmax(0,1fr);gap:8px}.mg{padding:13px 14px}.mg-ic{width:40px;height:40px}}
+</style>
 <title>Alumni Connect</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap">
 <style>
-/* Layout: Airbnb-style marketplace. Student side = pill search + category strip + photo grid + listing page with sticky booking card. Alumni side = hosting-style top tabs. */
+/* Layout: Airbnb-style marketplace. Student side = pill search + category strip + photo grid + listing page with sticky booking card. Alumni side = dashboard inside the profile area: home with section cards, each section its own page (hash routes). */
 :root{
   --bg:#FFFFFF; --soft:#F7F7F7; --ink:#222222; --muted:#6A6A6A; --line:#DDDDDD; --line-soft:#EBEBEB;
   --brand:#FF385C; --brand-deep:#D70466; --brand-ink:#D70466; --brand-soft:#FFF0F3; --on-brand:#FFFFFF; --star:#222222;
@@ -1007,7 +1042,7 @@ input[type=range]{accent-color:var(--ink);width:100%}
 @keyframes sheetin{from{transform:translateY(40px);opacity:.6}}
 @media (prefers-reduced-motion:reduce){.book.sheet{animation:none}}
 @media (max-width:760px){
-  .top-in .center:has(.htabs){display:none}
+  .crumbs{display:none!important}
   .btabs{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
   .bt{position:relative;border:0;background:none;font:inherit;display:grid;justify-items:center;gap:3px;padding:6px 2px;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer}
   .bt svg.i{width:21px;height:21px}
@@ -1075,7 +1110,8 @@ input[type=range]{accent-color:var(--ink);width:100%}
 @media (max-width:640px){
   .top-in{grid-template-columns:auto 1fr;padding-block:10px 0}
   .top-in .center:has(.search){display:none}
-  .top-in .right:has(.freechip){display:none}
+  .top-in .right .freechip{display:none}
+  .top-in:has(.freechip){grid-template-columns:1fr auto}
   .logo svg{width:28px;height:28px}
   .msearch{display:flex;gap:8px;align-items:center;padding:8px 0 10px}
   .ms-box{flex:1;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:99px;padding:0 16px;height:48px;box-shadow:0 2px 10px rgba(0,0,0,.08);background:var(--bg)}
@@ -1303,6 +1339,30 @@ function ddPanel(){
   return `<div class="dd ${key==='course'?'mid':''}" role="listbox" aria-labelledby="dd-${key}" id="ddpanel"><h4>${head}</h4>
     ${opts.map(([v,l,i,sub])=>`<button type="button" class="ddo" role="option" data-pick="${esc(v)}" aria-selected="${cur===v}"><span class="tile">${ic(i)}</span><span class="txt"><b>${esc(l)}</b><small>${sub}</small></span><span class="ok">${ic('check')}</span></button>`).join('')}</div>`}
 function setDD(k){S.dd=k;$('#top').innerHTML=header();if(k){const b=$('#dd-'+k),pn=$('#ddpanel'),c=$('.center');if(b&&pn&&c){const l=b.getBoundingClientRect().left-c.getBoundingClientRect().left;if(l+pn.offsetWidth<=c.offsetWidth)pn.style.left=l+'px';else{pn.style.left='auto';pn.style.right='0'}}const sel=$('#ddpanel [aria-selected="true"]')||$('#ddpanel .ddo');sel&&sel.focus()}}
+const SECTION_NAMES={today:'Alumni dashboard',sessions:'Sessions',inbox:'Questions',calendar:'Calendar',services:'Services',earnings:'Earnings',profile:'Profile',settings:'Settings'};
+function umenuBtn(){const att=BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length+QUESTIONS.filter(q=>q.st==='open').length;
+  return `<span class="umenu-w"><button class="menu umenu-btn" data-u="toggle" aria-haspopup="menu" aria-expanded="${!!S.umenu}" aria-label="Your profile menu">${ic('menu')}<img src="${ME.img}" alt="">${att?'<i class="udot"></i>':''}</button>${S.umenu?umenuPanel(att):''}</span>`}
+function umenuPanel(att){
+  const item=(v,label,icon,extra='')=>`<button class="um-i" role="menuitem" data-u="${v}">${ic(icon)}<span>${label}</span>${extra}</button>`;
+  return `<div class="um-panel" role="menu"><div class="um-me"><img src="${ME.img}" alt=""><div><b>${esc(ME.name)}</b><span>Verified alum · ${esc(ME.course)} ’${String(ME.batch).slice(2)}</span></div></div>
+    ${item('dash','Alumni dashboard','all',att?`<em class="num">${att}</em>`:'')}
+    ${item('bookings','My bookings','calendar')}${item('saved','Saved alumni','chat')}${item('account','Account settings','sliders')}
+    <hr>${S.view==='alumni'?item('browse','Browse alumni','search'):''}${item('help','Help centre','book')}${item('logout','Log out','back')}</div>`}
+function navTo(view,tab){const h=view==='alumni'?(tab&&tab!=='today'?'dash-'+tab:'dash'):'browse';if(location.hash.slice(1)===h){applyRoute();return}location.hash=h}
+function applyRoute(){const h=location.hash.slice(1);S.modal=null;S.notif=false;S.umenu=false;S.dd=null;S.filtersOpen=false;
+  if(h.startsWith('dash')){const t=h.split('-')[1]||'today';S.view='alumni';S.tab=SECTION_NAMES[t]?t:'today';S.profile=null}else if(h==='browse'){S.view='student'}
+  try{localStorage.setItem('ac2-view',S.view)}catch(_){};render();scrollTo(0,0)}
+window.addEventListener('hashchange',applyRoute);
+document.addEventListener('click',e=>{
+  if(S.umenu&&!e.target.closest('.umenu-w')){S.umenu=false;$('#top').innerHTML=header()}
+  const t=e.target.closest('[data-u]');if(!t)return;const u=t.dataset.u;
+  if(u==='toggle'){S.umenu=!S.umenu;$('#top').innerHTML=header();return}
+  S.umenu=false;
+  if(u==='dash')return navTo('alumni','today');
+  if(u==='account')return navTo('alumni','settings');
+  if(u==='browse')return navTo('student');
+  $('#top').innerHTML=header();toast(u==='logout'?'In the live product this logs you out':u==='help'?'In the live product this opens the help centre':u==='bookings'?'In the live product this shows your bookings as a student':'In the live product this shows alumni you saved');
+});
 function header(){
   if(S.view==='student'){
     const colleges=[...new Set(ALUMNI.map(a=>a.college))].sort();
@@ -1317,7 +1377,7 @@ function header(){
       </form>${S.dd?ddPanel():''}</div>
       <div class="right">
         <span class="freechip ${S.freeLeft?'':'used'}" title="Your first call on Alumni Connect is 25% off">${ic('gift')}${S.freeLeft?'<span class="num">25% off</span><span class="long">&nbsp;first call</span>':'<span>Offer used</span>'}</span>
-        <button class="switch-link" data-view="alumni"><span class="long">Switch to alumni dashboard</span><span class="short">For alumni</span></button>
+        ${umenuBtn()}
       </div></div>
     <div class="msearch"><label class="ms-box">${ic('search')}<input id="mq" type="search" placeholder="Search name, company or university" value="${esc(S.q)}" aria-label="Search alumni"></label><button class="ms-f" id="open-filters" aria-label="Filters${filterCount()?`, ${filterCount()} on`:''}">${ic('sliders')}${filterCount()?`<i class="num">${filterCount()}</i>`:''}</button></div>
   </div>`}
@@ -1326,10 +1386,8 @@ function header(){
   const tabs=[['today','Today'],['sessions','Sessions',BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length||0],['inbox','Questions',qN],['calendar','Calendar'],['services','Services'],['earnings','Earnings'],['profile','Profile'],['settings','Settings']];
   return `<div class="wrap"><div class="top-in">
     <button class="logo" data-tab="today" aria-label="Alumni dashboard home"><img class="ydlogo" src="img/yourdegree-logo.svg" alt="YourDegree"></button>
-    <div class="center" style="min-width:0"><nav class="htabs" aria-label="Dashboard">${tabs.map(([k,l,n])=>`<button class="htab" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${l}${n?`<span class="dot-n num">${n}</span>`:''}</button>`).join('')}</nav></div>
-    <nav class="btabs" aria-label="Dashboard">${[['today','Today','all'],['sessions','Sessions','video'],['inbox','Questions','chat'],['calendar','Calendar','calendar']].map(([k,l,i])=>{const n=k==='inbox'?qN:k==='sessions'?(BOOKINGS.filter(b=>b.req&&b.st==='upcoming').length||0):0;return `<button class="bt" data-tab="${k}" ${S.tab===k?'aria-current="page"':''}>${ic(i)}${n?`<i class="num">${n}</i>`:''}<span>${l}</span></button>`}).join('')}<button class="bt" data-a="more" ${['services','earnings','profile','settings'].includes(S.tab)?'aria-current="page"':''}>${ic('menu')}<span>More</span></button></nav>
-    <div class="right"><button class="bell" data-a="bell" aria-label="Notifications${nN?`, ${nN} unread`:''}" aria-expanded="${!!S.notif}">${ic('bell')}${nN?`<span class="bdg num">${nN}</span>`:''}</button>${S.notif?notifPanel():''}<button class="switch-link" data-view="student"><span class="long">Switch to student view</span><span class="short">Student view</span></button>
-      <span class="menu">${ic('menu')}<img src="${ME.img}" alt="${ME.name}"></span></div>
+    <nav class="crumbs center" aria-label="Breadcrumb"><button data-view="student">Profile</button>${ic('back','style="transform:scaleX(-1)"')}${S.tab==='today'?'<b>Alumni dashboard</b>':`<button data-tab="today">Alumni dashboard</button>${ic('back','style="transform:scaleX(-1)"')}<b>${SECTION_NAMES[S.tab]||''}</b>`}</nav>
+    <div class="right"><button class="bell" data-a="bell" aria-label="Notifications${nN?`, ${nN} unread`:''}" aria-expanded="${!!S.notif}">${ic('bell')}${nN?`<span class="bdg num">${nN}</span>`:''}</button>${S.notif?notifPanel():''}${umenuBtn()}</div>
   </div></div>`}
 
 /* ---------- student: browse ---------- */
@@ -1608,7 +1666,7 @@ function checklist(){return [
  ['Verify your phone number',SETTINGS.phoneVerified,'settings'],
 ]}
 
-function dash(){const V={today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings};if(!V[S.tab])S.tab='today';return `<div class="host">${({today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings})[S.tab]()}</div>`}
+function dash(){const V={today:dToday,sessions:dSessions,inbox:dInbox,calendar:dCal,services:dSvc,earnings:dEarn,profile:dProfile,settings:dSettings};if(!V[S.tab])S.tab='today';return `<div class="host">${S.tab==='today'?'':`<button class="backlink" data-tab="today">${ic('back')}Alumni dashboard</button>`}${V[S.tab]()}</div>`}
 
 /* Today */
 function minsTo(b){const n=new Date();return b.off*1440+tmin(b.time)-(n.getHours()*60+n.getMinutes())}
@@ -1626,12 +1684,15 @@ function dToday(){
   const kpi=(tab,label,val,sub)=>`<button class="kpi" data-tab="${tab}"><span>${label}</span><b class="num">${val}</b><small>${sub}</small></button>`;
   return `<div class="hhead"><div><h1>${new Date().getHours()<12?'Good morning':new Date().getHours()<17?'Good afternoon':'Good evening'}, ${ME.first}</h1><p>${SETTINGS.paused?'Your profile is paused. Students can’t book you right now.':`Here’s your week at a glance.`}</p></div>
     <div class="hbtns"><span class="livepill ${SETTINGS.paused?'off':''}"><i></i>${SETTINGS.paused?'Profile paused':'Profile live'}</span><button class="btn sm" data-a="preview">${ic('globe')}View <span class="long">public </span>profile</button><button class="btn sm" id="copy-link">Copy link</button></div></div>
-  <div class="kpis">
-    ${kpi('sessions','Next 7 days',`${wk.length} session${wk.length===1?'':'s'}`,`${wkMin>=60?`${+(wkMin/60).toFixed(1)} hrs`:`${wkMin} min`} · ${rupee(wkEarn)} to earn`)}
-    ${kpi('inbox','Questions waiting',waitQ.length,waitQ.length?'Answer within 24 hours':'All answered')}
-    ${kpi('earnings','Earned in October','₹18,450','+22% vs September')}
-    ${kpi('sessions','Your rating','4.92 ★','128 reviews')}
-  </div>
+  <section class="manage" aria-label="Manage your alumni profile">${[
+    ['sessions','Sessions','video',`${up.length} upcoming · ${rupee(wkEarn)} to earn`,reqs.length?`${reqs.length} needs your reply`:''],
+    ['inbox','Questions','chat',waitQ.length?`${waitQ.length} waiting for an answer`:'All answered',waitQ.length?'Answer within 24 hours':''],
+    ['calendar','Calendar','calendar',`${WEEK.filter(w=>w[1].length).length} days a week${TIMEOFF.length?` · ${TIMEOFF.length} time off`:''}`,''],
+    ['services','Services','brief',`${SERVICES.filter(x=>x.on).length} live · ${SERVICES.filter(x=>!x.on).length} hidden`,''],
+    ['earnings','Earnings','rupee',`${rupee(BAL)} available`,''],
+    ['profile','Profile','users',`${pct}% complete`,todo.length?`${todo.length} step${todo.length>1?'s':''} left`:''],
+    ['settings','Settings','sliders',SETTINGS.paused?'Profile paused':'Profile live',SETTINGS.phoneVerified?'':'Verify your phone']
+  ].map(([k,l,i,sub,alert])=>`<button class="mg" data-tab="${k}"><span class="mg-ic">${ic(i)}</span><span class="mg-t"><b>${l}</b><span class="num">${sub}</span>${alert?`<em>${alert}</em>`:''}</span>${ic('back','style="transform:scaleX(-1)"')}</button>`).join('')}</section>
   <div class="tgrid">
     <div class="tmain">
       ${next?`<div class="nexthero"><div class="nh-top"><span class="eyebrow2">Next session</span><span class="soonpill ${next.off===0?'':'later'}">${untilText(next)}</span></div>
@@ -1958,12 +2019,12 @@ document.addEventListener('click',e=>{
   if(t.tagName==='INPUT'||t.tagName==='SELECT')return; /* handled in change */
   switch(a){
   case 'more':openModal({t:'more'});return;
-  case 'moreGo':S.modal=null;S.tab=v;render();scrollTo(0,0);return;
-  case 'toStudent':S.modal=null;S.view='student';S.profile=null;try{localStorage.setItem('ac2-view','student')}catch(_){};render();scrollTo(0,0);return;
+  case 'moreGo':navTo('alumni',v);return;
+  case 'toStudent':navTo('student');return;
   case 'bell':S.notif=!S.notif;$('#top').innerHTML=header();return;
   case 'nAll':NOTIFS.forEach(n=>n.unread=false);$('#top').innerHTML=header();return;
-  case 'nGo':{const n=NOTIFS.find(x=>x.id===id);n.unread=false;S.notif=false;S.tab=n.go;render();scrollTo(0,0);return}
-  case 'preview':S.view='student';S.profile=null;render();open(ME.id);return;
+  case 'nGo':{const n=NOTIFS.find(x=>x.id===id);n.unread=false;navTo('alumni',n.go);return}
+  case 'preview':S.view='student';S.profile=null;history.pushState(null,'','#browse');render();open(ME.id);return;
   case 'mclose':closeModal();return;
   case 'stab':S.sTab=v;SF.period='all';refreshDash();return;
   case 'sfFirst':SF.first=!SF.first;refreshDash();return;
@@ -2088,7 +2149,7 @@ document.addEventListener('click',e=>{
   if(dd){setDD(S.dd===dd.dataset.dd?null:dd.dataset.dd);return}
   const t=e.target.closest('button,[data-open],[data-scrim]');if(!t)return;
   const d=t.dataset;
-  if(d.view){S.view=d.view;S.profile=null;S.filtersOpen=false;try{localStorage.setItem('ac2-view',S.view)}catch(_){};render();scrollTo(0,0);return}
+  if(d.view){S.profile=null;navTo(d.view,'today');return}
   if(d.heart){const id=+d.heart;S.saved.has(id)?S.saved.delete(id):S.saved.add(id);t.setAttribute('aria-pressed',S.saved.has(id));if(!t.classList.contains('heart'))t.textContent=S.saved.has(id)?'Saved':'Save';
     document.querySelectorAll(`.heart[data-heart="${id}"]`).forEach(h=>h.setAttribute('aria-pressed',S.saved.has(id)));toast(S.saved.has(id)?'Saved to your shortlist':'Removed from shortlist');return}
   if(d.slide){const tr=t.parentElement.querySelector('.track');tr.scrollBy({left:+d.slide*tr.clientWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return}
@@ -2129,7 +2190,7 @@ document.addEventListener('click',e=>{
     $('#top').innerHTML=header();renderResults();const b=$('.trust');if(b)b.outerHTML=banner();
     renderBook();return}
   /* dashboard */
-  if(d.tab){S.tab=d.tab;render();scrollTo(0,0);return}
+  if(d.tab){navTo('alumni',d.tab);return}
   if(d.rtab){S.rTab=d.rtab;render();return}
   if(d.answer){const v=($('#ans-'+d.answer)?.value||'').trim();if(!v){toast('Write an answer before sending');return}
     const q=QUESTIONS.find(x=>x.id===d.answer);S.answered.add(d.answer);render();toast(`Answer sent. ${rupee(q.amt)} added to earnings${q.free?' (YourDegree covered the 25% first-connect discount)':''}`);return}
@@ -2171,6 +2232,7 @@ document.addEventListener('change',e=>{
   if(t.dataset.socshow){const n=t.dataset.socshow,cur=ME.socials.find(x=>x.net===n);if(cur)cur.show=t.checked;else{t.checked=false;toast('Add a link first, then switch it on')}}
   if(t.dataset.duron){const [sid,i]=t.dataset.duron.split(':');const sv=SERVICES.find(x=>x.id===sid);if(!t.checked&&sv.durs.filter(x=>x.on).length===1){t.checked=true;toast('Keep at least one call length on');return}sv.durs[+i].on=t.checked;if(sid==='s1')syncCall(ME);render();return}
   if(t.dataset.toggle){const s=SERVICES.find(x=>x.id===t.dataset.toggle);s.on=t.checked;render();toast(s.on?'Service is live on your profile':'Service hidden from students')}});
+if(/^#(dash|browse)/.test(location.hash)){const h=location.hash.slice(1);if(h.startsWith('dash')){S.view='alumni';const t=h.split('-')[1]||'today';S.tab=SECTION_NAMES[t]?t:'today'}else S.view='student'}
 render();
 </script>
 
